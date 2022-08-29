@@ -1,4 +1,4 @@
-import Test from 'components/Proptype';
+import Test from 'Components/Proptype';
 
 function App() {
 	return (
