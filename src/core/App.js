@@ -1,13 +1,11 @@
-import { Online, Offline } from 'react-detect-offline';
+import Test from 'components/Proptype';
 
 function App() {
-    return (
-        <div>
-            <h1>Hello world</h1>
-            <Online>Show when online</Online>
-            <Offline>Show when offline</Offline>
-        </div>
-    );
+	return (
+		<div>
+			<Test />
+		</div>
+	);
 }
 
 export default App;
