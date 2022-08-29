@@ -16,7 +16,7 @@
 		"sourceType": "module"
 	},
 	"plugins": [
-		"react"
+		"react", "react-hooks", "sort-exports", "import"
 	],
 	"rules": {
 		"react/react-in-jsx-scope": "off",
@@ -59,11 +59,21 @@
 		],
 		"indent": [
 			"error",
-			2
+			4
 		],
 		"jsx-quotes": [
 			"error",
 			"prefer-single"
-		]
+		],
+		"react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+		"semi": ["error", "always"],
+		"max-len": ["error", 120],
+		"no-console": "error",
+		"no-param-reassign": ["error", { "props": false }],
+		"sort-exports/sort-exports": ["error", { "sortDir": "asc" }],
+		"prefer-promise-reject-errors": "error",
+		"react/require-default-props": "error",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn"
 	}
 }
