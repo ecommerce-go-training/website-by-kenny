@@ -58,8 +58,7 @@
 			"avoid-escape"
 		],
 		"indent": [
-			"error",
-			4
+			"off"
 		],
 		"jsx-quotes": [
 			"error",
