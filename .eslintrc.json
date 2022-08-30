@@ -68,7 +68,7 @@
 		"react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
 		"semi": ["error", "always"],
 		"max-len": ["error", 120],
-		"no-console": "error",
+		"no-console": "off",
 		"no-param-reassign": ["error", { "props": false }],
 		"sort-exports/sort-exports": ["error", { "sortDir": "asc" }],
 		"prefer-promise-reject-errors": "error",
