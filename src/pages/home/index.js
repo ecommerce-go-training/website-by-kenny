@@ -4,12 +4,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment } from 'global/redux/reducers/index';
 import { useState, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
-import { resources } from 'assets/i18n/index';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 function Home({ name, age }) {
   // router
   const navigate = useNavigate();
+  const isLogin = localStorage.getItem('isLogin');
+
+  const handleLogout = () => {
+    localStorage.setItem('isLogin', 'false');
+    navigate('/');
+  };
 
   // redux
   const count = useSelector((state) => state.counter.value);
@@ -37,6 +44,30 @@ function Home({ name, age }) {
 
   // i18next
   const { t, i18n } = useTranslation('translation');
+  console.log('Login check: ', isLogin);
+  const lngs = [
+    { value: 'eng', label: 'English' },
+    { value: 'vie', label: 'Vietnamese' },
+  ];
+
+  // React select
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
+  const animatedOptions = makeAnimated();
+  const colorOptions = [
+    { value: 'Red', label: 'Red' },
+    { value: 'Blue', label: 'Blue' },
+    { value: 'Green', label: 'Green' },
+    { value: 'Yellow', label: 'Yellow' },
+  ];
+  const handleChange = (options) => {
+    setSelectedOptions(options);
+  };
+  console.log(selectedOptions[0]?.value);
 
   return (
     <div>
@@ -67,7 +98,8 @@ function Home({ name, age }) {
         <Trans i18nKey='Greet'></Trans>
         <p>{t('Description')}</p>
         <p>{t('Poet')}</p>
-        <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
+        <Select options={lngs} onChange={(e) => i18n.changeLanguage(e.value)} />
+        {/*<select onChange={(e) => i18n.changeLanguage(e.target.value)}>
           {Object.entries(resources)
             .map((item) => item[0])
             .map((item, index) => (
@@ -75,9 +107,28 @@ function Home({ name, age }) {
                 {item}
               </option>
             ))}
-        </select>
+        </select>*/}
       </div>
-      <button onClick={() => navigate('/signin')}>Login</button>
+      <div>
+        <h1>Router check: </h1>
+        <button onClick={() => navigate('/signin')}>Login</button>
+        <button
+          style={{ display: isLogin === 'true' ? '' : 'none' }}
+          onClick={handleLogout}
+        >
+					Logout
+        </button>
+      </div>
+      <div>
+        <h1>React-select check:</h1>
+        <Select options={options} />
+        <Select
+          components={animatedOptions}
+          isMulti
+          options={colorOptions}
+          onChange={handleChange}
+        />
+      </div>
       <div>
         <h1>Axios check:</h1>
         <button onClick={handleClick}> Axios check </button>
