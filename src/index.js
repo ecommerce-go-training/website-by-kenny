@@ -4,9 +4,6 @@ import ReactDOM from 'react-dom/client';
 import App from './core/App';
 import reportWebVitals from './reportWebVitals';
 
-import './assets/scss/global.scss';
-import './assets/i18n/index';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 

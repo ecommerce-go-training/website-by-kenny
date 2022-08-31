@@ -1,13 +1,13 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigate } from 'react-router-dom';
 
-import { signInVal } from 'validations';
+import { Link } from 'react-router-dom';
+import signUpVal from './validation';
 
 import './style.scss';
 
-function SignInForm() {
+function SignUpForm() {
   const navigate = useNavigate();
   const {
     register,
@@ -15,7 +15,7 @@ function SignInForm() {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(signInVal),
+    resolver: yupResolver(signUpVal),
   });
 
   const submitForm = (data) => {
@@ -29,28 +29,43 @@ function SignInForm() {
   return (
     <div className='login'>
       <form className='login__form' onSubmit={handleSubmit(submitForm)}>
-        <label onClick={() => navigate('/')}>LOGIN</label>
+        <label>SIGN UP</label>
+        <input
+          {...register('username')}
+          name='username'
+          placeholder='Username'
+          type='text'
+        />
+        <p>{errors.username?.message}</p>
         <input
           {...register('email')}
+          name='email'
           placeholder='Email'
           type='text'
-          name='email'
         />
         <p>{errors.email?.message}</p>
         <input
           {...register('password')}
+          name='password'
           placeholder='Password'
           type='password'
         />
         <p>{errors.password?.message}</p>
-        <button>Login</button>
+        <input
+          {...register('confirmPassword')}
+          name='confirmPassword'
+          placeholder='Confirm password'
+          type='password'
+        />
+        <p>{errors.confirmPassword && 'Doesnt match'}</p>
+        <button>Sign Up</button>
       </form>
       <div>
-        <span>Dont have an account?</span>
-        <Link to='/signUp'>Sign up now</Link>
+        <p>Already have an account?</p>
+        <Link to='/signIn'>Login now</Link>
       </div>
     </div>
   );
 }
 
-export default SignInForm;
+export default SignUpForm;

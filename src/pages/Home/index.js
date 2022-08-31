@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { PropTypes } from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
-import { decrement, increment } from 'global/redux/reducers/index';
-import { useState, useEffect } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+
+import { PropTypes } from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { decrement, increment } from 'global/redux/counter/slice';
 
 function Home({ name, age }) {
   // router

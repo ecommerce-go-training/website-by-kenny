@@ -1,10 +1,15 @@
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
 import { store } from './store';
-import Home from 'pages/home';
-import SignIn from 'pages/signIn';
-import SignUp from 'pages/signUp';
+
+import Home from 'pages/Home';
+import SignIn from 'pages/SignIn';
+import SignUp from 'pages/SignUp';
+
+import 'services/i18n';
+
+import 'assets/scss/global.scss';
 
 function App() {
   return (
