@@ -1,4 +1,4 @@
-import English from './en/en';
-import Vietnamese from './vi/vi';
+import English from './en';
+import Vietnamese from './vi';
 
 export { English, Vietnamese };
