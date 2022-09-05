@@ -3,7 +3,8 @@ import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
 import { store } from './store';
 
-import Home from 'pages/Home';
+//import Home from 'pages/Home';
+import Test from 'config';
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 
@@ -16,7 +17,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Test />} />
           <Route path='/signIn' element={<SignIn />} />
           <Route path='/signUp' element={<SignUp />} />
         </Routes>

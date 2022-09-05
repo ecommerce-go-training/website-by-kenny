@@ -1,0 +1,88 @@
+@import 'assets/scss/mixin.scss';
+
+.header {
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100px;
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.8s;
+  @include responsive(tablet) {
+    padding: 0 70px;
+  }
+  @include responsive(mobile) {
+    height: 70px;
+    padding: 0 5px;
+  }
+  & a {
+    text-decoration: none;
+    font-family: 'Sofia Pro';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.15em;
+    color: white;
+    @include responsive(tablet) {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+    @include responsive(mobile) {
+      font-size: 5px;
+      letter-spacing: 0;
+    }
+  }
+  &__nav {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+    flex: 1;
+    text-align: center;
+    & .logo {
+      font-size: 40px;
+      @include responsive(tablet) {
+        font-size: 28px;
+      }
+      @include responsive(mobile) {
+        font-size: 14px;
+      }
+    }
+  }
+  &__icon {
+    flex: 1;
+    font-size: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    @include responsive(tablet) {
+      font-size: 20px;
+      gap: 30px;
+    }
+    @include responsive(mobile) {
+      font-size: 10px;
+      gap: 10px;
+    }
+    & .bx-search {
+      position: relative;
+      right: 10vw;
+      @include responsive(tablet) {
+        right: 8vw;
+      }
+      @include responsive(mobile) {
+        right: 8vw;
+      }
+    }
+    & i {
+      cursor: pointer;
+    }
+  }
+}

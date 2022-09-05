@@ -1,0 +1,21 @@
+@import 'assets/scss/mixin.scss';
+
+.item {
+  width: 5vw;
+  padding: 5vw;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  @include responsive(tablet) {
+    background-color: red;
+    font-size: 25px;
+  }
+  @include responsive(mobile) {
+    background-color: green;
+    font-size: 20px;
+  }
+}

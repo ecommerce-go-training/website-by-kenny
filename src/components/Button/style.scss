@@ -1,0 +1,28 @@
+@import 'assets/scss/mixin.scss';
+
+.button {
+  background-color: black;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 128%;
+  letter-spacing: 0.15em;
+  padding: 25px 0;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+  @include responsive(tablet) {
+    background-color: red;
+    font-size: 0.9rem;
+  }
+  @include responsive(mobile) {
+    background-color: green;
+    padding: 20px 0px;
+    font-size: 0.4rem;
+  }
+}

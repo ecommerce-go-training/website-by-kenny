@@ -1,9 +1,16 @@
 $min-tablet-width: 738px;
 $max-tablet-width: 1300px;
+$min-mobile-width: 280px;
+$max-mobile-width: 737px;
 
 @mixin responsive($type) {
   @if $type==tablet {
     @media only screen and (min-width: $min-tablet-width) and (max-width: $max-tablet-width) {
+      @content;
+    }
+  }
+  @if $type==mobile {
+    @media only screen and (min-width: $min-mobile-width) and (max-width: $max-mobile-width) {
       @content;
     }
   }
