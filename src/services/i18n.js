@@ -5,17 +5,17 @@ import { initReactI18next } from 'react-i18next';
 import { English, Vietnamese } from 'translation';
 
 const resources = {
-  eng: {
+  en: {
     translation: English,
   },
-  vie: {
+  vi: {
     translation: Vietnamese,
   },
 };
 
 i18n.use(initReactI18next).init({
   resources,
-  lng          : 'eng',
+  lng          : 'en',
   keySeparator : false,
   interpolation: {
     escapeValue: false,
@@ -23,4 +23,3 @@ i18n.use(initReactI18next).init({
 });
 
 export default i18n;
-export { resources };

@@ -48,8 +48,8 @@ function Home({ name, age }) {
   const { t, i18n } = useTranslation('translation');
   console.log('Login check: ', isLogin);
   const lngs = [
-    { value: 'eng', label: 'English' },
-    { value: 'vie', label: 'Vietnamese' },
+    { value: 'en', label: 'English' },
+    { value: 'vi', label: 'Vietnamese' },
   ];
 
   // React select
