@@ -24,15 +24,21 @@ function Header() {
       className='header'
     >
       <div className='header__nav'>
-        <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
-					new arrivals
-        </Link>
-        <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
-					shop
-        </Link>
-        <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
-					fall winter
-        </Link>
+        <div className='header__nav-link'>
+          <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
+						new arrivals
+          </Link>
+          <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
+						shop
+          </Link>
+          <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
+						fall winter
+          </Link>
+        </div>
+        <div onClick={() => alert('pop later')} className='header__nav-line'>
+          <div style={{ backgroundColor: bg ? 'black' : 'white' }}></div>
+          <div style={{ backgroundColor: bg ? 'black' : 'white' }}></div>
+        </div>
       </div>
       <div className='header__logo'>
         <Link style={{ color: bg ? 'black' : 'white' }} className='logo' to='/'>

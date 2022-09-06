@@ -5,7 +5,7 @@ import './style.scss';
 function Button({ label, size, handleClick }) {
   let width = 100;
   if (size === 'sm') width = 25;
-  if (size === 'med') width = 50;
+  if (size === 'md') width = 50;
   if (size === 'lg') width = 100;
 
   const style = {
@@ -25,9 +25,9 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  label  : PropTypes.string,
-  size   : PropTypes.oneOf(['sm', 'med', 'lg']),
-  onClick: PropTypes.func.isRequired,
+  label      : PropTypes.string,
+  size       : PropTypes.oneOf(['sm', 'md', 'lg']),
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Button;

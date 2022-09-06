@@ -1,6 +1,7 @@
 @import 'assets/scss/mixin.scss';
 
 .header {
+  z-index: 1;
   position: fixed;
   top: 0;
   box-sizing: border-box;
@@ -10,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.8s;
+  transition: all 0.3s;
   @include responsive(tablet) {
     padding: 0 70px;
   }
@@ -29,8 +30,8 @@
     letter-spacing: 0.15em;
     color: white;
     @include responsive(tablet) {
-      font-size: 10px;
-      letter-spacing: 0.1em;
+      font-size: 12px;
+      letter-spacing: 0;
     }
     @include responsive(mobile) {
       font-size: 5px;
@@ -40,8 +41,38 @@
   &__nav {
     flex: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    height: 100%;
+    &-link {
+      flex: 4;
+      display: flex;
+      justify-content: space-between;
+      @include responsive(mobile) {
+        display: none;
+      }
+    }
+    &-line {
+      flex: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 5px;
+      cursor: pointer;
+      @include responsive(tablet) {
+        background-color: green;
+      }
+      & div {
+        display: none;
+        width: 30px;
+        height: 1px;
+        @include responsive(mobile) {
+          margin-left: 10px;
+          display: inline;
+        }
+      }
+    }
   }
   &__logo {
     flex: 1;
@@ -68,21 +99,27 @@
       gap: 30px;
     }
     @include responsive(mobile) {
-      font-size: 10px;
+      font-size: 15px;
       gap: 10px;
+      margin-right: 10px;
     }
     & .bx-search {
       position: relative;
       right: 10vw;
       @include responsive(tablet) {
-        right: 8vw;
+        right: 6vw;
       }
       @include responsive(mobile) {
-        right: 8vw;
+        right: 0;
       }
     }
     & i {
       cursor: pointer;
+    }
+    & a {
+      @include responsive(mobile) {
+        display: none;
+      }
     }
   }
 }
