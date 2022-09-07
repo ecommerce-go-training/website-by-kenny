@@ -39,7 +39,7 @@ function Footer() {
               <i className='bx bxl-tiktok'></i>tiktok
             </Link>
           </Stack>
-          <p className='copyright'>© 2020 Dear José All Rights Reserved.</p>
+          <p className='copyright'>© 2020 Élemush All Rights Reserved.</p>
         </div>
         <div className='footer__about'>
           <p className='title'>about</p>
@@ -122,7 +122,7 @@ function Footer() {
               <br /> TEAM@ELEMUSH.COM
             </p>
           </div>
-          <p className='copyright'>© 2020 Dear José All Rights Reserved.</p>
+          <p className='copyright'>© 2020 Élemush All Rights Reserved.</p>
         </div>
       </div>
     </div>

@@ -60,15 +60,12 @@
       justify-content: flex-start;
       gap: 5px;
       cursor: pointer;
-      @include responsive(tablet) {
-        background-color: green;
-      }
       & div {
         display: none;
         width: 30px;
         height: 1px;
         @include responsive(mobile) {
-          margin-left: 10px;
+          margin-right: 10px;
           display: inline;
         }
       }

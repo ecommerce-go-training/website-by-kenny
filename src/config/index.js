@@ -1,4 +1,5 @@
 import Stack from 'components/Stack';
+import Input from 'components/input';
 import Button from 'components/Button';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -21,11 +22,16 @@ function Test() {
         <Button size='sm' />
         <Button size='md' />
         <Button size='lg' />
+        <Button size='sm' />
+        <Button size='md' />
+        <Button size='lg' />
+        <Dropdown
+          label={'Dropdown'}
+          description={['Roses are red', 'Violets are blue', 'I love you']}
+        />
+        <Input />
+        <Input label='password' type='password' />
       </Stack>
-      <Dropdown
-        label={'Dropdown'}
-        description={['Roses are red', 'Violets are blue', 'I love you']}
-      />
       <Footer />
     </div>
   );
