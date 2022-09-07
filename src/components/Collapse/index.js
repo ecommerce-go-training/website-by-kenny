@@ -1,24 +1,23 @@
+import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
-
 import Stack from 'components/Stack';
-
+import { plus, minus } from 'assets/images/index';
 import './style.scss';
 
-function Dropdown({ label, description = [] }) {
-  const [check, setCheck] = useState(false);
+function Collapse({ label, description = [] }) {
+  const [toggle, setToggle] = useState(false);
   const handleClick = () => {
-    setCheck((prev) => !prev);
+    setToggle((prev) => !prev);
   };
 
   return (
-    <div className='dropdown'>
+    <div className='collapse'>
       <p onClick={handleClick}>
-        <i className={`bx bx-${check ? 'minus' : 'plus'}`}></i>
+        <img src={toggle ? minus : plus} alt='plus, minus icon' />
         {label}
       </p>
-      <Stack direction='column' show={check}>
+      <Stack direction='column' show={toggle}>
         {description.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
@@ -27,14 +26,14 @@ function Dropdown({ label, description = [] }) {
   );
 }
 
-Dropdown.defaultProps = {
+Collapse.defaultProps = {
   label      : 'Add label',
   description: 'Add item list',
 };
 
-Dropdown.proptypes = {
+Collapse.proptypes = {
   label      : PropTypes.string,
   description: PropTypes.array,
 };
 
-export default Dropdown;
+export default memo(Collapse);

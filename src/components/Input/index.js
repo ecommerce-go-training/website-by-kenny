@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
 import { closeEye, openEye } from 'assets/images';
 import './style.scss';
@@ -56,4 +56,4 @@ Input.propTypes = {
   type : PropTypes.oneOf(['text', 'password', 'email']),
 };
 
-export default Input;
+export default memo(Input);

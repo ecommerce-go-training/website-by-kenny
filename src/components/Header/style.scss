@@ -1,9 +1,9 @@
-@import 'assets/scss/mixin.scss';
+@import 'assets/scss/mixins.scss';
 
 .header {
   z-index: 1;
   position: fixed;
-  top: 0;
+  top: 30px;
   box-sizing: border-box;
   width: 100vw;
   height: 100px;
@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s;
+  transition: all 0.4s;
   @include responsive(tablet) {
     padding: 0 70px;
   }
@@ -25,10 +25,9 @@
     text-transform: uppercase;
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 100%;
     letter-spacing: 0.15em;
-    color: white;
     @include responsive(tablet) {
       font-size: 12px;
       letter-spacing: 0;
@@ -36,6 +35,9 @@
     @include responsive(mobile) {
       font-size: 5px;
       letter-spacing: 0;
+    }
+    &:hover {
+      color: black !important;
     }
   }
   &__nav {
@@ -45,9 +47,8 @@
     align-items: center;
     height: 100%;
     &-link {
-      flex: 4;
       display: flex;
-      justify-content: space-between;
+      gap: 68px;
       @include responsive(mobile) {
         display: none;
       }
@@ -100,18 +101,17 @@
       gap: 10px;
       margin-right: 10px;
     }
-    & .bx-search {
+    & .search {
       position: relative;
-      right: 10vw;
-      @include responsive(tablet) {
-        right: 6vw;
-      }
+      right: 8vw;
       @include responsive(mobile) {
         right: 0;
       }
     }
-    & i {
+    & img {
       cursor: pointer;
+      width: 20px;
+      height: auto;
     }
     & a {
       @include responsive(mobile) {

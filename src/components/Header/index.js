@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import { search, cart } from 'assets/images';
+
 import './style.scss';
 
 function Header() {
@@ -25,13 +27,25 @@ function Header() {
     >
       <div className='header__nav'>
         <div className='header__nav-link'>
-          <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
+          <Link
+            className='hover'
+            style={{ color: bg ? 'black' : 'white' }}
+            to='/'
+          >
 						new arrivals
           </Link>
-          <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
+          <Link
+            className='hover'
+            style={{ color: bg ? 'black' : 'white' }}
+            to='/'
+          >
 						shop
           </Link>
-          <Link style={{ color: bg ? 'black' : 'white' }} to='/'>
+          <Link
+            className='hover'
+            style={{ color: bg ? 'black' : 'white' }}
+            to='/'
+          >
 						fall winter
           </Link>
         </div>
@@ -42,15 +56,19 @@ function Header() {
       </div>
       <div className='header__logo'>
         <Link style={{ color: bg ? 'black' : 'white' }} className='logo' to='/'>
-					Elemush
+					Élemush
         </Link>
       </div>
       <div className='header__icon'>
-        <i className='bx bx-search'></i>
-        <Link style={{ color: bg ? 'black' : 'white' }} to='/signIn'>
+        <img className='search' src={search} alt='search img' />
+        <Link
+          className='hover'
+          style={{ color: bg ? 'black' : 'white' }}
+          to='/signIn'
+        >
 					log in
         </Link>
-        <i className='bx bx-shopping-bag'></i>
+        <img src={cart} alt='cart img' />
       </div>
     </div>
   );

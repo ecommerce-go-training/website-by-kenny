@@ -1,9 +1,10 @@
 import Stack from 'components/Stack';
-import Input from 'components/input';
+import Input from 'components/Input';
 import Button from 'components/Button';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import Dropdown from 'components/Dropdown';
+import Announce from 'components/Announce';
+import Collapse from 'components/Collapse';
 
 function Test() {
   return (
@@ -11,21 +12,21 @@ function Test() {
       style={{
         height       : 'auto',
         position     : 'relative',
-        marginTop    : '100px',
+        marginTop    : '160px',
         display      : 'flex',
         flexDirection: 'column',
       }}
     >
+      <Announce />
       <Header />
       <Stack direction='column' spacing='4' wrap={false}>
         <h1>Component Testing</h1>
-        <Button size='sm' />
-        <Button size='md' />
-        <Button size='lg' />
-        <Button size='sm' />
-        <Button size='md' />
-        <Button size='lg' />
-        <Dropdown
+        <Button>Hello</Button>
+        <Button>Hello</Button>
+        <Button>Hello</Button>
+        <Button>Hello</Button>
+        <Button>Hello</Button>
+        <Collapse
           label={'Dropdown'}
           description={['Roses are red', 'Violets are blue', 'I love you']}
         />

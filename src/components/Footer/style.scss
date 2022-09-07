@@ -1,4 +1,4 @@
-@import 'assets/scss/mixin.scss';
+@import 'assets/scss/mixins.scss';
 
 .footer {
   box-sizing: border-box;
@@ -12,6 +12,15 @@
   @include responsive(tablet) {
     padding: 0 50px;
     gap: 30px;
+  }
+  & .social {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  & .contact {
+    width: 25px;
+    height: 25px;
   }
   & .title {
     font-family: 'Sofia Pro';
@@ -35,6 +44,7 @@
     line-height: 258%;
     letter-spacing: 0.1rem;
     display: flex;
+    align-items: center;
     @include responsive(tablet) {
       font-size: 10px;
     }
@@ -162,6 +172,10 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  .contact {
+    width: 25px;
+    margin-right: 5px;
+  }
   .line {
     border: 1px dashed #C8C8C8;
   }
@@ -178,6 +192,7 @@
       line-height: 100%;
       display: flex;
       justify-content: center;
+      align-items: center;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       text-decoration: none;

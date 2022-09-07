@@ -2,8 +2,17 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Stack from 'components/Stack';
-import Dropdown from 'components/Dropdown';
-import { certificate } from 'assets/images';
+import Collapse from 'components/Collapse';
+
+import {
+  certificate,
+  facebook,
+  instagram,
+  pinterest,
+  tiktok,
+  phone,
+  mail,
+} from 'assets/images';
 
 import './style.scss';
 
@@ -27,16 +36,19 @@ function Footer() {
           <p className='title'>follow us</p>
           <Stack direction='column' spacing={0}>
             <Link to='/'>
-              <i className='bx bxl-facebook'></i>facebook
+              <img className='social' src={facebook} alt='facebook icon' />
+							facebook
             </Link>
             <Link to='/'>
-              <i className='bx bxl-instagram'></i>instagram
+              <img className='social' src={instagram} alt='instagram icon' />{' '}
+							instagram
             </Link>
             <Link to='/'>
-              <i className='bx bxl-pinterest-alt'></i>pinterest
+              <img className='social' src={pinterest} alt='pinterest icon' />{' '}
+							pinterest
             </Link>
             <Link to='/'>
-              <i className='bx bxl-tiktok'></i>tiktok
+              <img className='social' src={tiktok} alt='tiktok icon' /> tiktok
             </Link>
           </Stack>
           <p className='copyright'>© 2020 Élemush All Rights Reserved.</p>
@@ -64,10 +76,11 @@ function Footer() {
           <p className='title'>contact us</p>
           <div className='footer__contact-mail'>
             <Link to='/'>
-              <i className='bx bx-phone'></i>+ 84 986 491 486
+              <img className='contact' src={phone} alt='phone icon' /> + 84 986
+							491 486
             </Link>
             <div className='info'>
-              <i className='bx bx-envelope'></i>
+              <img className='contact' src={mail} alt='mail icon' />
               <p>
 								customer services <br />
 								CONTACT@ELEMUSH.COM
@@ -86,14 +99,14 @@ function Footer() {
         direction='column'
         style={{ display: mobileCheck ? 'flex' : 'none' }}
       >
-        <Dropdown
+        <Collapse
           label={'FOLLOW US'}
           description={['FACEBOOK', 'INSTAGRAM', 'PINTEREST', 'TIKTOK']}
         />
         <div className='line'></div>
-        <Dropdown label={'ABOUT'} description={['BRAND', 'STORE LOCATOR']} />
+        <Collapse label={'ABOUT'} description={['BRAND', 'STORE LOCATOR']} />
         <div className='line'></div>
-        <Dropdown
+        <Collapse
           label={'CUSTOMER CARE'}
           description={[
             'FAQ',
@@ -107,10 +120,11 @@ function Footer() {
         <div className='line'></div>
         <div className='mobile-footer__info'>
           <Link to='/'>
-            <i className='bx bx-phone'></i>+ 84 986 491 486
+            <img className='contact' src={phone} alt='phone icon' />+ 84 986 491
+						486
           </Link>
           <div>
-            <i className='bx bx-envelope'></i>
+            <img className='contact' src={mail} alt='mail icon' />
             <p>
               {' '}
               <b>customer services</b> <br />

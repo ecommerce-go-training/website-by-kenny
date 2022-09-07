@@ -10,26 +10,14 @@ const Template = (args) => <Button {...args} />;
 
 const logIn = Template.bind({});
 logIn.args = {
-  label: 'log in',
-  size : 'med',
+  type    : 'button',
+  children: 'log in',
 };
 
 const signIn = Template.bind({});
 signIn.args = {
-  label: 'sign in',
-  size : 'med',
+  type    : 'submit',
+  children: 'sign in',
 };
 
-const create = Template.bind({});
-create.args = {
-  label: 'create',
-  size : 'med',
-};
-
-const submit = Template.bind({});
-submit.args = {
-  label: 'submit',
-  size : 'med',
-};
-
-export { create, logIn, signIn, submit };
+export { logIn, signIn };

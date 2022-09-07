@@ -1,33 +1,28 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
+import classNames from 'classnames';
 
 import './style.scss';
 
-function Button({ label, size, handleClick }) {
-  let width = 100;
-  if (size === 'sm') width = 25;
-  if (size === 'md') width = 50;
-  if (size === 'lg') width = 100;
-
-  const style = {
-    width: `${width}%`,
-  };
-
+function Button({ type, handleClick, children }) {
   return (
-    <button className='button' style={style} onClick={handleClick}>
-      {label}
+    <button
+      type={type}
+      className={classNames(['button'])}
+      onClick={handleClick}
+    >
+      {children}
     </button>
   );
 }
 
 Button.defaultProps = {
-  label: 'submit',
-  size : 'lg',
+  type: 'button',
 };
 
 Button.propTypes = {
-  label      : PropTypes.string,
-  size       : PropTypes.oneOf(['sm', 'md', 'lg']),
+  type       : PropTypes.oneOf(['button', 'submit', 'reset']),
   handleClick: PropTypes.func.isRequired,
 };
 
-export default Button;
+export default memo(Button);
