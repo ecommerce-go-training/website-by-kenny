@@ -1,14 +1,12 @@
 import { Provider } from 'react-redux';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
-import { store } from './store';
-
-//import Home from 'pages/Home';
+import 'services/i18n';
 import Test from 'config';
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 
-import 'services/i18n';
+import { store } from './store';
 
 import 'assets/scss/global.scss';
 

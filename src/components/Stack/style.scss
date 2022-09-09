@@ -1,5 +1,33 @@
 @import 'assets/scss/mixins.scss';
 
+.stack {
+  display: flex;
+  &.row {
+    flex-direction: row;
+  }
+  &.col {
+    flex-direction: column;
+  }
+  &.center {
+    align-items: center;
+  }
+  &.spacing {
+    gap: 50px;
+  }
+  &.disable {
+    display: none;
+  }
+  & >p {
+    font-family: 'Sofia Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 300%;
+    color: black;
+    margin-left: 30px;
+  }
+}
+// for storybook only
 .item {
   width: 5vw;
   padding: 5vw;

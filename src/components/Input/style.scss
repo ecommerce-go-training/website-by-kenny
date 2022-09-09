@@ -1,9 +1,14 @@
 @import 'assets/scss/mixins.scss';
 
-.row {
+.input-row {
   position: relative;
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  &.up {
+    & span {
+      bottom: 25px;
+    }
+  }
   & .input {
     outline: none;
     border: none;
@@ -33,7 +38,7 @@
     letter-spacing: 0.05em;
     transition: ease 0.3s;
   }
-  & div {
+  & .show-icon {
     position: relative;
     & img {
       position: absolute;
@@ -47,3 +52,8 @@
     }
   }
 }
+
+.hide {
+  display: none;
+}
+

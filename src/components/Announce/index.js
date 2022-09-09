@@ -1,5 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 
+import { ONE_SECOND } from 'utils/constants';
+
 import './style.scss';
 
 function Announce() {
@@ -7,11 +9,11 @@ function Announce() {
   useEffect(() => {
     const interval1 = setInterval(() => {
       setInfo('free shipping for international orders over 500$');
-    }, 4000);
+    }, ONE_SECOND * 4);
 
     const interval2 = setInterval(() => {
       setInfo('free shipping in vietnam');
-    }, 8000);
+    }, ONE_SECOND * 8);
 
     return () => clearInterval(interval1, interval2);
   }, []);

@@ -1,29 +1,29 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-function Stack({ children, spacing, direction, wrap, show }) {
-  const style = {
-    position     : 'relative',
-    display      : show ? 'flex' : 'none',
-    gap          : `${spacing * 0.25}rem`,
-    flexDirection: direction,
-    flexWrap     : wrap ? 'wrap' : 'nowrap',
-  };
+import './style.scss';
 
-  return <div style={style}>{children}</div>;
+function Stack({ children, row, col, disable, spacing, center }) {
+  const classes = classNames({
+    stack  : true,
+    row    : row,
+    col    : col,
+    spacing: spacing,
+    disable: disable,
+    center : center,
+  });
+
+  return <div className={classes}>{children}</div>;
 }
 
 Stack.defaultProps = {
-  spacing  : 4,
-  wrap     : false,
-  direction: 'row',
-  show     : true,
+  row: null,
+  col: null,
 };
 
 Stack.propTypes = {
-  spacing  : PropTypes.number,
-  wrap     : PropTypes.bool,
-  direction: PropTypes.oneOf(['column', 'row']),
-  show     : PropTypes.bool,
+  row: PropTypes.bool,
+  col: PropTypes.bool,
 };
 
 export default Stack;

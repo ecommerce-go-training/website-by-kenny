@@ -1,6 +1,11 @@
 @use 'assets/scss/variables' as v;
 @import 'assets/scss/mixins';
 
+@keyframes fade {
+  from{opacity: 0}
+  to{opacity: 1}
+}
+
 .announce {
   background-color: v.$sub-color;
   position: fixed;
@@ -15,6 +20,7 @@
     font-family: 'Sofia Pro';
     font-size: 14px;
     text-transform: uppercase;
+    animation: fade 4s infinite ;
     @include responsive(mobile) {
       font-size: 10px;
     }

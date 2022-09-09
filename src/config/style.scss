@@ -1,0 +1,21 @@
+.container {
+  background-color: green;
+  &__row {
+    display: flex;
+    flex-direction: row;
+    background-color: blue;
+    gap: 50px;
+  }
+  &__col {
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    gap: 30px;
+  }
+  &.zoom {
+    font-size: 100px;
+  }
+  &.active {
+    background-color: red;
+  }
+}

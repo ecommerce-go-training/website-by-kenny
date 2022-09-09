@@ -3,6 +3,12 @@
   src: url('../fonts/SofiaProRegular.ttf');
 }
 
+:global {
+  .disable {
+    display: none;
+  }
+}
+
 * {
 	margin: 0;
 	padding: 0;

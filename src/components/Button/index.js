@@ -17,12 +17,13 @@ function Button({ type, handleClick, children }) {
 }
 
 Button.defaultProps = {
-  type: 'button',
+  type       : 'button',
+  handleClick: null,
 };
 
 Button.propTypes = {
   type       : PropTypes.oneOf(['button', 'submit', 'reset']),
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
 };
 
 export default memo(Button);

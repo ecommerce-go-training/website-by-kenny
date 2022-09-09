@@ -1,17 +1,30 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import { useState, memo } from 'react';
 
 import { closeEye, openEye } from 'assets/images';
+
 import './style.scss';
 
 function Input({ label, type }) {
   const firstLetterCap = (label) => label[0].toUpperCase() + label.slice(1);
   const [input, setInput] = useState('');
-  const [togglePsw, setTogglePsw] = useState(false);
+  const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
 
+  const classes = classNames({
+    'input-row': true,
+    up         : input,
+  });
+
+  const showPsw = classNames({
+    'show-icon': true,
+    hide       : type !== 'password',
+  });
+
   return (
-    <div className='row'>
+    <div className={classes}>
       <input
         className='input'
         value={input}
@@ -19,27 +32,15 @@ function Input({ label, type }) {
         type={inputType}
         name={label}
       />
-      <span style={{ bottom: input ? '30px' : '7px' }}>
-        {firstLetterCap(label)}
-      </span>
-      <div style={{ display: type === 'password' ? '' : 'none' }}>
+      <span>{firstLetterCap(label)}</span>
+      <div className={showPsw}>
         <img
-          style={{ display: togglePsw ? 'none' : '' }}
           onClick={() => {
-            setTogglePsw(true);
-            setInputType('text');
+            setTogglePsw(!togglePsw);
+            setInputType(togglePsw ? 'text' : 'password');
           }}
-          src={closeEye}
-          alt='hide password'
-        />
-        <img
-          style={{ display: togglePsw ? '' : 'none' }}
-          onClick={() => {
-            setTogglePsw(false);
-            setInputType('password');
-          }}
-          src={openEye}
-          alt='show password'
+          src={togglePsw ? closeEye : openEye}
+          alt='show-hide password'
         />
       </div>
     </div>

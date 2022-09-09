@@ -1,3 +1,6 @@
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -26,15 +29,17 @@ function Footer() {
     });
   });
 
+  const classes = classNames({
+    footer : true,
+    disable: mobileCheck,
+  });
+
   return (
     <div>
-      <div
-        style={{ display: mobileCheck ? 'none' : 'flex' }}
-        className='footer'
-      >
+      <div className={classes}>
         <div className='footer__follow'>
           <p className='title'>follow us</p>
-          <Stack direction='column' spacing={0}>
+          <Stack col spacing={0}>
             <Link to='/'>
               <img className='social' src={facebook} alt='facebook icon' />
 							facebook
@@ -55,14 +60,14 @@ function Footer() {
         </div>
         <div className='footer__about'>
           <p className='title'>about</p>
-          <Stack direction='column' spacing={0}>
+          <Stack col>
             <Link to='/'>brand</Link>
             <Link to='/'>store locator</Link>
           </Stack>
         </div>
         <div className='footer__customer'>
           <p className='title'>customer care</p>
-          <Stack direction='column' spacing={0}>
+          <Stack col>
             <Link to='/'>faq</Link>
             <Link to='/'>sizing</Link>
             <Link to='/'>shipping & returns</Link>
@@ -99,24 +104,27 @@ function Footer() {
         direction='column'
         style={{ display: mobileCheck ? 'flex' : 'none' }}
       >
-        <Collapse
-          label={'FOLLOW US'}
-          description={['FACEBOOK', 'INSTAGRAM', 'PINTEREST', 'TIKTOK']}
-        />
+        <Collapse label='FOLLOW US'>
+          <p>FACEBOOK</p>
+          <p>INSTAGRAM</p>
+          <p>PINTEREST</p>
+          <p>TIKTOK</p>
+        </Collapse>
         <div className='line'></div>
-        <Collapse label={'ABOUT'} description={['BRAND', 'STORE LOCATOR']} />
+        <Collapse label='ABOUT'>
+          <p>BRAND</p>
+          <p>STORE LOCATOR</p>
+        </Collapse>
         <div className='line'></div>
-        <Collapse
-          label={'CUSTOMER CARE'}
-          description={[
-            'FAQ',
-            'SIZING',
-            'SHIPPING & RETURNS',
-            'TERMS & CONDITIONS',
-            'GARMENT CARE',
-            'MAKE A RETURN',
-          ]}
-        />
+        <Collapse label={'CUSTOMER CARE'}>
+          <p>FAQ</p>
+          <p>SIZING</p>
+          <p>SHIPPING & RETURNS</p>
+          <p>TERMS & CONDITIONS</p>
+          <p>PRIVACY POLICY</p>
+          <p>GARMENT CARE</p>
+          <p>MAKE A RETURN</p>
+        </Collapse>
         <div className='line'></div>
         <div className='mobile-footer__info'>
           <Link to='/'>
@@ -142,5 +150,13 @@ function Footer() {
     </div>
   );
 }
+
+Footer.defaultProps = {
+  disable: false,
+};
+
+Footer.propTypes = {
+  disable: PropTypes.bool,
+};
 
 export default Footer;

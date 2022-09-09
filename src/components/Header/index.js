@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-import { search, cart } from 'assets/images';
+import { Link } from 'react-router-dom';
+import { useEffect, useState, memo } from 'react';
+
+import { search, searchBlack, cart, cartBlack } from 'assets/images';
 
 import './style.scss';
 
-function Header() {
+function Header({ disable }) {
   const [bg, setBg] = useState(false);
+
   const changeBackground = () => {
     if (window.scrollY >= 100) setBg(true);
     else setBg(false);
@@ -17,61 +21,50 @@ function Header() {
     window.addEventListener('scroll', changeBackground);
   });
 
+  const classes = classNames({
+    header : true,
+    disable: disable,
+    move   : bg,
+    stand  : !bg,
+  });
+
   return (
-    <div
-      style={{
-        backgroundColor: bg ? 'white' : 'red',
-        color          : bg ? 'black' : 'white',
-      }}
-      className='header'
-    >
+    <div className={classes}>
       <div className='header__nav'>
         <div className='header__nav-link'>
-          <Link
-            className='hover'
-            style={{ color: bg ? 'black' : 'white' }}
-            to='/'
-          >
-						new arrivals
-          </Link>
-          <Link
-            className='hover'
-            style={{ color: bg ? 'black' : 'white' }}
-            to='/'
-          >
-						shop
-          </Link>
-          <Link
-            className='hover'
-            style={{ color: bg ? 'black' : 'white' }}
-            to='/'
-          >
-						fall winter
-          </Link>
+          <Link to='/'>new arrivals</Link>
+          <Link to='/'>shop</Link>
+          <Link to='/'>fall winter</Link>
         </div>
         <div onClick={() => alert('pop later')} className='header__nav-line'>
-          <div style={{ backgroundColor: bg ? 'black' : 'white' }}></div>
-          <div style={{ backgroundColor: bg ? 'black' : 'white' }}></div>
+          <div className='line'></div>
+          <div className='line'></div>
         </div>
       </div>
       <div className='header__logo'>
-        <Link style={{ color: bg ? 'black' : 'white' }} className='logo' to='/'>
+        <Link className='logo' to='/'>
 					Élemush
         </Link>
       </div>
       <div className='header__icon'>
-        <img className='search' src={search} alt='search img' />
-        <Link
-          className='hover'
-          style={{ color: bg ? 'black' : 'white' }}
-          to='/signIn'
-        >
-					log in
-        </Link>
-        <img src={cart} alt='cart img' />
+        <img
+          className='search'
+          src={bg ? searchBlack : search}
+          alt='search img'
+        />
+        <Link to='/signIn'>log in</Link>
+        <img src={bg ? cartBlack : cart} alt='cart img' />
       </div>
     </div>
   );
 }
 
-export default Header;
+Header.defaultProps = {
+  disable: false,
+};
+
+Header.propTypes = {
+  disable: PropTypes.bool,
+};
+
+export default memo(Header);
