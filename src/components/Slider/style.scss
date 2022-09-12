@@ -28,7 +28,7 @@
     overflow: hidden;
     & img {
       width: 25%;
-      height: 500px;
+      height: 550px;
       @include responsive(tablet) {
         width: 30%;
         height: 300px;

@@ -13,11 +13,15 @@ function Slider({ imgList }) {
   let res = [];
 
   const handleLeft = () => {
-    setCurrentIndex(currentIndex === 0 ? imgList.length - 1 : currentIndex - 1);
+    setCurrentIndex(
+      currentIndex === 0 ? imgList.length - imgToShow : currentIndex - imgToShow
+    );
   };
 
   const handleRight = () => {
-    setCurrentIndex(currentIndex === imgList.length - 1 ? 0 : currentIndex + 1);
+    setCurrentIndex(
+      currentIndex === imgList.length - imgToShow ? 0 : currentIndex + imgToShow
+    );
   };
 
   if (currentIndex + imgToShow > imgList.length) {
