@@ -1,0 +1,224 @@
+@import 'assets/scss/mixins.scss';
+
+.footer {
+  box-sizing: border-box;
+  padding: 0 15vw;
+  height: 45vh;
+  margin-top: 30px;
+  border-top: 1px solid #C8C8C8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include responsive(tablet) {
+    padding: 0 50px;
+    gap: 30px;
+  }
+  & .social {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  & .contact {
+    width: 25px;
+    height: 25px;
+  }
+  & .title {
+    font-family: 'Sofia Pro';
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 120%;
+    @include responsive(tablet) {
+      font-size: 16px;
+    }
+  }
+  & a {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    font-family: 'Sofia Pro';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 258%;
+    letter-spacing: 0.1rem;
+    display: flex;
+    align-items: center;
+    @include responsive(tablet) {
+      font-size: 10px;
+    }
+    @include responsive(mobile) {
+      display: none;
+    }
+  }
+  &__follow, &__about, &__customer, &__contact {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    @include responsive(tablet) {
+      gap: 20px;
+    }
+  }
+  &__follow {
+    & div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      & i {
+        margin-right: 10px;
+        font-size: 25px;
+      }
+    }
+    & .copyright {
+      position: relative;
+      top: 30px;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 120%;
+      @include responsive(tablet) {
+        font-size: 10px;
+      }
+    }
+  }
+  &__about {
+    position: relative;
+    right: 100px;
+    justify-content: flex-start;
+    @include responsive(tablet) {
+      left: 10px;
+    }
+    & div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      @include responsive(tablet) {
+        gap: 0px;
+      }
+      & p {
+        text-transform: uppercase;
+        font-family: 'Sofia Pro';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 258%;
+      }
+    }
+  }
+  &__customer {
+    position: relative;
+    right: 60px;
+    @include responsive(tablet) {
+      left: 20px;
+    }
+  }
+  &__contact {
+    position: relative;
+    right: 50px;
+    @include responsive(tablet) {
+      left: 30px;
+    }
+    &-mail {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @include responsive(tablet) {
+        flex: 0.7;
+      }
+      & a {
+        align-items: center;
+        gap: 15px;
+        font-size: 15px;
+        & i {
+          font-size: 20px;
+        }
+      }
+      & .info {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        @include responsive(tablet) {
+          gap: 10px;
+        }
+        & p {
+          font-family: 'Sofia Pro';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 18px;
+          letter-spacing: 0.05em;
+          @include responsive(tablet) {
+            font-size: 10px;
+          }
+        }
+      } 
+      & img {
+        cursor: pointer;
+        width: 180px;
+        height: auto;
+        @include responsive(tablet) {
+          width: 120px;
+        }
+      }
+    }
+  }
+}
+
+.mobile-footer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  .contact {
+    width: 25px;
+    margin-right: 5px;
+  }
+  .line {
+    border: 1px dashed #C8C8C8;
+  }
+  &__info {
+    padding: 80px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    & a {
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: black;
+    }
+    & div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 5vw;
+      font-family: 'Sofia Pro';
+      font-size: 10px;
+    }
+    & .copyright {
+      text-align: center;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 150%;
+    }
+  }
+}
+
+.disable {
+  display: none;
+}
+

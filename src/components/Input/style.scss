@@ -1,0 +1,59 @@
+@import 'assets/scss/mixins.scss';
+
+.input-row {
+  position: relative;
+  display: flex;
+  margin-bottom: 20px;
+  &.up {
+    & span {
+      bottom: 25px;
+    }
+  }
+  & .input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #C8C8C8;
+    font-family: 'Sofia Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 140%;  
+    letter-spacing: 0.05em;
+    padding: 6px 0;
+    width: 100%;
+    &:focus {
+    border-bottom: 1px solid black;
+    color: black;
+    }
+  }
+  & span {
+    position: absolute;
+    bottom: 7px;
+    color: #C8C8C8;
+    font-family: 'Sofia Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 140%;  
+    letter-spacing: 0.05em;
+    transition: ease 0.3s;
+  }
+  & .show-icon {
+    position: relative;
+    & img {
+      position: absolute;
+      right: 15px;
+      top: 5px;
+      cursor: pointer;
+      width: 25px;
+      @include responsive(mobile) {
+        right: 10px;
+      }
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+

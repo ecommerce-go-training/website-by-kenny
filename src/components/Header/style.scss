@@ -1,0 +1,150 @@
+@import 'assets/scss/mixins.scss';
+
+.header {
+  z-index: 1;
+  position: fixed;
+  top: 30px;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100px;
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s;
+  @include responsive(tablet) {
+    padding: 0 70px;
+  }
+  @include responsive(mobile) {
+    height: 70px;
+    padding: 0 5px;
+  }
+  & a {
+    text-decoration: none;
+    font-family: 'Sofia Pro';
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0.15em;
+    @include responsive(tablet) {
+      font-size: 12px;
+      letter-spacing: 0;
+    }
+    @include responsive(mobile) {
+      font-size: 5px;
+      letter-spacing: 0;
+    }
+    &:hover {
+      color: black !important;
+    }
+  }
+  &__nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: 68px;
+      @include responsive(tablet) {
+        gap: 40px;
+      }
+      @include responsive(mobile) {
+        display: none;
+      }
+    }
+    &-line {
+      flex: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 5px;
+      cursor: pointer;
+      & div {
+        display: none;
+        width: 30px;
+        height: 1px;
+        @include responsive(mobile) {
+          margin-right: 10px;
+          display: inline;
+        }
+      }
+    }
+  }
+  &__logo {
+    flex: 1;
+    text-align: center;
+    & .logo {
+      font-size: 40px;
+      @include responsive(tablet) {
+        font-size: 28px;
+      }
+      @include responsive(mobile) {
+        font-size: 14px;
+      }
+    }
+  }
+  &__icon {
+    flex: 1;
+    font-size: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
+    @include responsive(tablet) {
+      font-size: 20px;
+      gap: 30px;
+    }
+    @include responsive(mobile) {
+      font-size: 15px;
+      gap: 10px;
+      margin-right: 10px;
+    }
+    & .search {
+      position: relative;
+      right: 8vw;
+      @include responsive(mobile) {
+        right: 0;
+      }
+    }
+    & img {
+      cursor: pointer;
+      width: 20px;
+      height: auto;
+    }
+    & a {
+      @include responsive(mobile) {
+        display: none;
+      }
+    }
+  }
+}
+
+.disable {
+  display: none;
+}
+
+.move {
+  background-color: white;
+  & a, &.logo {
+    color: black;
+  }
+  & .line {
+    background-color: black;
+  }
+}
+
+.stand {
+  background-color: red;
+  & a, &.logo {
+    color: white;
+  }
+  & .line {
+    background-color: white;
+  }
+}
