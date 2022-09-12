@@ -1,4 +1,4 @@
-@use 'assets/scss/variables' as v;
+@import 'assets/scss/variables';
 @import 'assets/scss/mixins';
 
 @keyframes fade {
@@ -7,11 +7,11 @@
 }
 
 .announce {
-  background-color: v.$sub-color;
+  background-color: $sub-color;
   position: fixed;
   top: 0;
   z-index: 2;
-  width: 100%;
+  width: 100vw;
   height: 30px;
   display: flex;
   justify-content: center;

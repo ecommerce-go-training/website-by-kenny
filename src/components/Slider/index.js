@@ -1,26 +1,25 @@
 import PropTypes from 'prop-types';
 
-import { useState, memo } from 'react';
+import { useState } from 'react';
 
 import { leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-function Slider({ imgList }) {
+function Slider({ imgList, imgToShow, shiftImg }) {
   // desktop  4, tablet 3, mobile 1
-  const imgToShow = 4;
   const [currentIndex, setCurrentIndex] = useState(0);
   let res = [];
 
   const handleLeft = () => {
     setCurrentIndex(
-      currentIndex === 0 ? imgList.length - imgToShow : currentIndex - imgToShow
+      currentIndex === 0 ? imgList.length - shiftImg : currentIndex - shiftImg
     );
   };
 
   const handleRight = () => {
     setCurrentIndex(
-      currentIndex === imgList.length - imgToShow ? 0 : currentIndex + imgToShow
+      currentIndex === imgList.length - shiftImg ? 0 : currentIndex + shiftImg
     );
   };
 
@@ -38,19 +37,40 @@ function Slider({ imgList }) {
 
   return (
     <div className='slider'>
-      <img onClick={handleLeft} src={leftArrow} alt='left arrow' />
+      <img
+        className='slider__arrow'
+        onClick={handleLeft}
+        src={leftArrow}
+        alt='left arrow'
+      />
       <div className='slider__img'>
         {result.slice(0, imgToShow).map((item, index) => (
-          <img src={item} alt={`${item} image`} key={index} />
+          <div key={index}>
+            <img src={item} alt={`${item} image`} />
+            <p className='description'>new in dresses</p>
+            <p className='description'>999.000VND</p>
+          </div>
         ))}
       </div>
-      <img onClick={handleRight} src={rightArrow} alt='right arrow' />
+      <img
+        className='slider__arrow'
+        onClick={handleRight}
+        src={rightArrow}
+        alt='right arrow'
+      />
     </div>
   );
 }
 
-Slider.propTypes = {
-  imgList: PropTypes.array.isRequired,
+Slider.defaultProps = {
+  imgToShow: 4,
+  shiftImg : 1,
 };
 
-export default memo(Slider);
+Slider.propTypes = {
+  imgList  : PropTypes.array.isRequired,
+  imgToShow: PropTypes.number,
+  shiftImg : PropTypes.number,
+};
+
+export default Slider;

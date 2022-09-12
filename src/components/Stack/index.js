@@ -8,22 +8,27 @@ function Stack({ children, row, col, disable, spacing, center }) {
     stack  : true,
     row    : row,
     col    : col,
-    spacing: spacing,
     disable: disable,
     center : center,
   });
 
-  return <div className={classes}>{children}</div>;
+  return (
+    <div style={{ gap: `${spacing}px` }} className={classes}>
+      {children}
+    </div>
+  );
 }
 
 Stack.defaultProps = {
-  row: null,
-  col: null,
+  row    : true,
+  col    : false,
+  spacing: 0,
 };
 
 Stack.propTypes = {
-  row: PropTypes.bool,
-  col: PropTypes.bool,
+  row    : PropTypes.bool,
+  col    : PropTypes.bool,
+  spacing: PropTypes.number,
 };
 
 export default Stack;

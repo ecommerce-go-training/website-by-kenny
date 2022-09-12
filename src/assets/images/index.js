@@ -1,3 +1,8 @@
+import subBg1 from './homepage/subBg1.png';
+import subBg2 from './homepage/subBg2.png';
+import model1 from './homepage/model1.png';
+import model2 from './homepage/model2.png';
+import background from './homepage/background.png';
 import beachEdit1 from './homepage/beachEdit1.png';
 import beachEdit2 from './homepage/beachEdit2.png';
 import beachEdit3 from './homepage/beachEdit3.png';
@@ -26,6 +31,7 @@ import rightArrow from './icons/rightArrow.png';
 import searchBlack from './icons/searchBlack.png';
 
 export {
+  background,
   beachEdit1,
   beachEdit2,
   beachEdit3,
@@ -39,6 +45,8 @@ export {
   leftArrow,
   mail,
   minus,
+  model1,
+  model2,
   newArrival1,
   newArrival2,
   newArrival3,
@@ -50,5 +58,7 @@ export {
   rightArrow,
   search,
   searchBlack,
+  subBg1,
+  subBg2,
   tiktok,
 };
