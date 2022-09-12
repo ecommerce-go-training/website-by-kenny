@@ -16,6 +16,7 @@ import certificate from './homepage/certificate.png';
 import plus from './icons/plus.png';
 import mail from './icons/mail.png';
 import cart from './icons/cart.png';
+import xmark from './icons/x.png';
 import minus from './icons/minus.png';
 import phone from './icons/phone.png';
 import search from './icons/search.png';
@@ -61,4 +62,5 @@ export {
   subBg1,
   subBg2,
   tiktok,
+  xmark,
 };
