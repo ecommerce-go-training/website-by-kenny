@@ -14,6 +14,9 @@
   justify-content: center;
   gap: 40px;
   transition: all 0.5s;
+  @include responsive(mobile) {
+    height: 300px;
+  }
   &.active {
     transform: translateY(400px);
   }
@@ -25,13 +28,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    @include responsive(tablet) {
+      width: 400px;
+    }
+    @include responsive(mobile) {
+      width: 230px;
+    }
     & input[type='text'] {
       width: 100%;
       background-color: transparent;
       outline: none;
       border: none;
       border-bottom: 1px solid $black;
-      padding: 5px 20px;
+      padding: 5px 5px 5px 20px;
       font-family: 'Sofia Pro';
       font-style: normal;
       font-weight: 400;
@@ -39,6 +48,13 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: $black;
+      @include responsive(mobile) {
+        padding: 5px;
+        border-bottom: 1px solid $white;
+        &:focus {
+          border-bottom: 1px solid $black;
+        }
+      }
     }
     & .search-icon, & .x-icon {
       position: absolute;
@@ -48,30 +64,49 @@
     & .search-icon {
       left: 0;
       bottom: 6px;
+      @include responsive(mobile) {
+        display: none;
+      }
     }
     & .x-icon {
       right: -90px;
       bottom: 80px;
+      @include responsive(tablet) {
+        right: -30px;
+      }
+      @include responsive(mobile) {
+        right: 0px;
+        bottom: 120px;
+      }
     }
   }
   &__quick-nav {
     align-self: center;
     & p {
-    font-family: 'Sofia Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 250%;
-    text-align: center;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 250%;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      @include responsive(mobile) {
+        color: $white;
+      }
     }
     & div {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 50px;
+      @include responsive(tablet) {
+        gap: 25px;
+      }
+      @include responsive(mobile) {
+        gap: 15px;
+      }
       & a {
         text-decoration: none;
         font-family: 'Sofia Pro';
@@ -82,6 +117,15 @@
         text-transform: capitalize;
         color: $white;
         &:hover {
+          color: $black;
+        }
+        @include responsive(tablet) {
+          font-size: 24px;
+          color: $white;
+        }
+        @include responsive(mobile) {
+          text-transform: uppercase;
+          font-size: 12px;
           color: $black;
         }
       }

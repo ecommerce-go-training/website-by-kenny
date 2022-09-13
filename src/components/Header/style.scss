@@ -86,7 +86,7 @@
         font-size: 28px;
       }
       @include responsive(mobile) {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }
@@ -103,7 +103,7 @@
     }
     @include responsive(mobile) {
       font-size: 15px;
-      gap: 10px;
+      gap: 15px;
       margin-right: 10px;
     }
     & .search-img {
@@ -141,7 +141,7 @@
 }
 
 .stand {
-  background-color: $transparent;
+  background-color: transparent;
   & a, &.logo {
     color: $white;
   }

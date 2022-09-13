@@ -10,6 +10,9 @@ import Slider from 'components/Slider';
 import Footer from 'components/Footer';
 
 import {
+  w,
+  ooo,
+  build,
   subBg1,
   subBg2,
   model1,
@@ -92,7 +95,7 @@ function Home() {
           <img src={subBg2} alt='Beach edit bg img' />
         </div>
         <div className='home__slider'>
-          <Stack row center spacing={200}>
+          <Stack row center spacing>
             <p className='switch active' to='/'>
 							the beach edit
             </p>
@@ -104,16 +107,16 @@ function Home() {
         </Link>
         <div className='home__social'>
           <div>
-            <img src={model2} alt='model info' />
-          </div>
-          <div>
             <img src={model1} alt='model info' />
           </div>
           <div>
-            <img src={model2} alt='model info' />
+            <img src={build} alt='model info' />
           </div>
           <div>
-            <img src={model1} alt='model info' />
+            <img src={ooo} alt='model info' />
+          </div>
+          <div>
+            <img src={w} alt='model info' />
           </div>
           <div>
             <img src={model2} alt='model info' />

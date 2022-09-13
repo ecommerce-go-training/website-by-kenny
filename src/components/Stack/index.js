@@ -10,25 +10,20 @@ function Stack({ children, row, col, disable, spacing, center }) {
     col    : col,
     disable: disable,
     center : center,
+    spacing: spacing,
   });
 
-  return (
-    <div style={{ gap: `${spacing}px` }} className={classes}>
-      {children}
-    </div>
-  );
+  return <div className={classes}>{children}</div>;
 }
 
 Stack.defaultProps = {
-  row    : true,
-  col    : false,
-  spacing: 0,
+  row: true,
+  col: false,
 };
 
 Stack.propTypes = {
-  row    : PropTypes.bool,
-  col    : PropTypes.bool,
-  spacing: PropTypes.number,
+  row: PropTypes.bool,
+  col: PropTypes.bool,
 };
 
 export default Stack;

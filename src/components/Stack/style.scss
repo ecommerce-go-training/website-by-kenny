@@ -13,7 +13,10 @@
     justify-content: center;
   }
   &.spacing {
-    gap: 50px;
+    gap: 200px;
+    @include responsive(tablet) {
+      gap: 30px;
+    }
   }
   &.disable {
     display: none;

@@ -1,3 +1,6 @@
+import ooo from './homepage/ooo.png';
+import build from './homepage/build.jpg';
+import w from './homepage/w.jpg';
 import subBg1 from './homepage/subBg1.png';
 import subBg2 from './homepage/subBg2.png';
 import model1 from './homepage/model1.png';
@@ -37,6 +40,7 @@ export {
   beachEdit2,
   beachEdit3,
   beachEdit4,
+  build,
   cart,
   cartBlack,
   certificate,
@@ -52,6 +56,7 @@ export {
   newArrival2,
   newArrival3,
   newArrival4,
+  ooo,
   openEye,
   phone,
   pinterest,
@@ -62,5 +67,6 @@ export {
   subBg1,
   subBg2,
   tiktok,
+  w,
   xmark,
 };

@@ -22,7 +22,7 @@
     text-transform: uppercase;
     animation: fade 4s infinite ;
     @include responsive(mobile) {
-      font-size: 10px;
+      font-size: 9px;
     }
   }
 }
