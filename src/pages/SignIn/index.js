@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -29,9 +29,9 @@ function SignIn() {
             </Button>
           </div>
         </form>
-        <div className='login__forgot'>
-          <p>forgot your password</p>
-          <p>sign up</p>
+        <div className='forgot'>
+          <p>Forgot your password ?</p>
+          <Link to='/signUp'>sign up</Link>
         </div>
       </div>
     </div>

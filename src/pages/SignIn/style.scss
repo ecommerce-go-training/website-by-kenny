@@ -1,3 +1,6 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
 .container {
   box-sizing: border-box;
   width: 100vw;
@@ -7,17 +10,48 @@
   align-items: center;
   justify-content: center;
   & .login {
-    background-color: red;
     width: 520px;
     height: 400px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    & label {
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 140%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: $black;
+      margin-bottom: 30px;
+    }
     &__button {
       width: 300px;
     } 
-    &__forgot {
-      display: flex;
+  }
+  & .forgot {
+    position: relative;
+    bottom: 20px;
+    width: 520px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    & > p {
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 140%;
+      letter-spacing: 0.05em;
+    }
+    & :first-child {
+      text-decoration: underline;
+    }
+    & :last-child {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $black;
     }
   }
 }

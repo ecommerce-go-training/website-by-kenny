@@ -1,4 +1,5 @@
 @import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
 
 .input-row {
   position: relative;
@@ -13,7 +14,7 @@
   & .input {
     outline: none;
     border: none;
-    border-bottom: 1px solid #C8C8C8;
+    border-bottom: 1px solid $light-grey;
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
@@ -24,14 +25,14 @@
     width: 100%;
     background-color: transparent;
     &:focus {
-    border-bottom: 1px solid black;
-    color: black;
+    border-bottom: 1px solid $black;
+    color: $black;
     }
   }
   & span {
     position: absolute;
     bottom: 7px;
-    color: #C8C8C8;
+    color: $light-grey;
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
