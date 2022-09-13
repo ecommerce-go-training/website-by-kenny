@@ -149,3 +149,15 @@
     background-color: $white;
   }
 }
+
+.login-header {
+  position: fixed;
+  top: 0px;
+  background-color: transparent;
+  & a, &.logo {
+    color: $black;
+  }
+  & .line {
+    background-color: $white;
+  }
+}

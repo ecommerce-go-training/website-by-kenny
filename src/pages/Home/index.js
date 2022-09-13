@@ -62,7 +62,7 @@ function Home() {
         <div className='home__background'>
           <img src={background} alt='background img' />
           <div className='home__background-intro'>
-            <Stack col center spacing={50}>
+            <Stack col center>
               <p className='title'>&#39;ÉLEMUSH AURA&#39;</p>
               <p className='description'>
 								The Resort 2021 collection is a love letter to our youth.
@@ -74,7 +74,7 @@ function Home() {
           </div>
         </div>
         <div className='home__slider'>
-          <Stack row center spacing={200}>
+          <Stack row center spacing>
             <p
               onClick={() => setActive(true)}
               className={classNames('switch', toggleOn)}
@@ -128,7 +128,7 @@ function Home() {
 						Sign-up to receive 10% off your first purchase as well as the <br />
 						latest updates on new arrivals, exclusive promotions and events.
           </p>
-          <div className='button'>
+          <div className='home__signup-button'>
             <Button handleClick={() => navigate('/signUp')}>sign up</Button>
           </div>
         </div>

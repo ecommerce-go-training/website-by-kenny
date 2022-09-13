@@ -10,7 +10,7 @@ import { search, searchBlack, cart, cartBlack } from 'assets/images';
 
 import './style.scss';
 
-function Header({ disable }) {
+function Header({ disable, disableAnnounce, login }) {
   const [bg, setBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
   const changeBackground = () => {
@@ -24,15 +24,16 @@ function Header({ disable }) {
   });
 
   const classes = classNames({
-    header : true,
-    disable: disable,
-    move   : bg,
-    stand  : !bg,
+    header        : true,
+    disable       : disable,
+    move          : bg,
+    stand         : !bg,
+    'login-header': login,
   });
 
   return (
     <div>
-      <Announce />
+      <Announce disable={disableAnnounce} />
       <Search toggle={toggleSearch} setToggle={setToggleSearch} />
       <div className={classes}>
         <div className='header__nav'>
@@ -55,11 +56,11 @@ function Header({ disable }) {
           <img
             onClick={() => setToggleSearch(true)}
             className='search-img'
-            src={bg ? searchBlack : search}
+            src={bg || login ? searchBlack : search}
             alt='search img'
           />
           <Link to='/signIn'>log in</Link>
-          <img src={bg ? cartBlack : cart} alt='cart img' />
+          <img src={bg || login ? cartBlack : cart} alt='cart img' />
         </div>
       </div>
     </div>
@@ -67,11 +68,13 @@ function Header({ disable }) {
 }
 
 Header.defaultProps = {
-  disable: false,
+  disable        : false,
+  disableAnnounce: false,
 };
 
 Header.propTypes = {
-  disable: PropTypes.bool,
+  disable        : PropTypes.bool,
+  disableAnnounce: PropTypes.bool,
 };
 
 export default memo(Header);

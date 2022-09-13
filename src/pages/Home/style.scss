@@ -47,6 +47,10 @@
         font-size: 13px;
         line-height: 150%;
         letter-spacing: 0.05em;
+        margin: 50px 0px;
+        @include responsive(mobile) {
+          display: none;
+        }
       }
       & a {
         text-decoration: none;
@@ -150,9 +154,8 @@
       letter-spacing: 0.05em;
       color: $black;
     }
-    & .button {
+    &-button {
       width: 250px;
-      height: 40px;
     }
   }
   & .active {

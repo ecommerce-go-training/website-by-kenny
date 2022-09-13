@@ -1,22 +1,30 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useState, memo } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 import { leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-function Slider({ imgList, imgToShow, shiftImg }) {
+function Slider({ imgList, shiftImg }) {
   // desktop  4, tablet 3, mobile 1
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(true);
+  const [imgToShow, setImgToShow] = useState(4);
   const slide = classNames({
     slider__img  : true,
     'slide-left' : direction,
     'slide-right': !direction,
   });
   let res = [];
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 1300) setImgToShow(3);
+      if (window.innerWidth < 738) setImgToShow(1);
+    });
+  });
 
   const handleLeft = () => {
     setCurrentIndex(
@@ -77,14 +85,12 @@ function Slider({ imgList, imgToShow, shiftImg }) {
 }
 
 Slider.defaultProps = {
-  imgToShow: 4,
-  shiftImg : 1,
+  shiftImg: 1,
 };
 
 Slider.propTypes = {
-  imgList  : PropTypes.array.isRequired,
-  imgToShow: PropTypes.number,
-  shiftImg : PropTypes.number,
+  imgList : PropTypes.array.isRequired,
+  shiftImg: PropTypes.number,
 };
 
 export default memo(Slider);
