@@ -1,8 +1,21 @@
 @import 'assets/scss/mixins.scss';
 
-@keyframes slide-in {
-  from{transform: translateX(-100%)}
-  to{transform: translate(0)}
+@keyframes leftslide {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rightslide {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .slider {
@@ -28,15 +41,26 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    animation: slide-in 0.3s;
+    &.slide-left {
+      animation: 0.8s leftslide;
+    }
+    &.slide-right {
+      animation: 0.8s rightslide;
+    }
     & div {
-      & img {
+      & .img-container {
+        overflow: hidden;
         width: 340px;
         height: 510px;
         margin-bottom: 20px;
+      }
+      & img {
+        width: 100%;
+        height: 100%;
+        transition: all 0.3s;
         cursor: pointer;
         &:hover {
-          opacity: 0.8;
+          scale: 1.1;
         }
         @include responsive(tablet) {
 

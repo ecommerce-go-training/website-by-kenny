@@ -9,7 +9,7 @@ import './style.scss';
 function Search({ toggle, setToggle }) {
   const classes = classNames({
     search: true,
-    active: !toggle,
+    active: toggle,
   });
 
   return (
@@ -21,7 +21,7 @@ function Search({ toggle, setToggle }) {
           onClick={() => setToggle(false)}
           className='x-icon'
           src={xmark}
-          alt='search icon'
+          alt='x icon'
         />
       </div>
       <div className='search__quick-nav'>

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
 import { leftArrow, rightArrow } from 'assets/images';
 
@@ -9,18 +10,26 @@ import './style.scss';
 function Slider({ imgList, imgToShow, shiftImg }) {
   // desktop  4, tablet 3, mobile 1
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(true);
+  const slide = classNames({
+    slider__img  : true,
+    'slide-left' : direction,
+    'slide-right': !direction,
+  });
   let res = [];
 
   const handleLeft = () => {
     setCurrentIndex(
       currentIndex === 0 ? imgList.length - shiftImg : currentIndex - shiftImg
     );
+    setDirection(true);
   };
 
   const handleRight = () => {
     setCurrentIndex(
       currentIndex === imgList.length - shiftImg ? 0 : currentIndex + shiftImg
     );
+    setDirection(false);
   };
 
   if (currentIndex + imgToShow > imgList.length) {
@@ -35,18 +44,23 @@ function Slider({ imgList, imgToShow, shiftImg }) {
     .slice(currentIndex, currentIndex + imgToShow)
     .concat(res.slice(imgList.length - (currentIndex + imgToShow)));
 
+  console.log('direction', direction);
+
   return (
-    <div className='slider'>
+  //mathrandom to trigger css animation each time compoent rerender
+    <div key={Math.random()} className='slider'>
       <img
         className='slider__arrow'
         onClick={handleLeft}
         src={leftArrow}
         alt='left arrow'
       />
-      <div className='slider__img'>
+      <div className={slide}>
         {result.slice(0, imgToShow).map((item, index) => (
           <div key={index}>
-            <img src={item} alt={`${item} image`} />
+            <div className='img-container'>
+              <img src={item} alt={`${item} image`} />
+            </div>
             <p className='description'>new in dresses</p>
             <p className='description'>999.000VND</p>
           </div>
@@ -73,4 +87,4 @@ Slider.propTypes = {
   shiftImg : PropTypes.number,
 };
 
-export default Slider;
+export default memo(Slider);

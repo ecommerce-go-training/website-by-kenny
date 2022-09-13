@@ -8,7 +8,6 @@ import Button from 'components/Button';
 import Header from 'components/Header';
 import Slider from 'components/Slider';
 import Footer from 'components/Footer';
-import Announce from 'components/Announce';
 
 import {
   subBg1,
@@ -29,6 +28,7 @@ import {
 import './style.scss';
 
 function Home() {
+  const navigate = useNavigate();
   const imgList = [
     beachEdit1,
     beachEdit2,
@@ -39,98 +39,95 @@ function Home() {
     newArrival3,
     newArrival4,
   ];
-  const [active, setActive] = useState(true);
-  const navigate = useNavigate();
 
+  const [active, setActive] = useState(true);
   const toggleOn = classNames({
     active  : active,
     inactive: !active,
   });
-
   const toggleOff = classNames({
     active  : !active,
     inactive: active,
   });
 
-  const handleClick = () => {
-    navigate('/signUp');
-  };
+  console.log('home render');
 
   return (
-    <div className='home'>
-      <Announce />
+    <div>
       <Header />
-      <div className='home__background'>
-        <img src={background} alt='background img' />
-        <div className='home__background-intro'>
-          <Stack col center spacing={50}>
-            <p className='title'>&#39;ÉLEMUSH AURA&#39;</p>
-            <p className='description'>
-							The Resort 2021 collection is a love letter to our youth. Discover
-							the <br />
-							beauty of blooming flowers under the blue sky and sunny
+      <div className='home'>
+        <div className='home__background'>
+          <img src={background} alt='background img' />
+          <div className='home__background-intro'>
+            <Stack col center spacing={50}>
+              <p className='title'>&#39;ÉLEMUSH AURA&#39;</p>
+              <p className='description'>
+								The Resort 2021 collection is a love letter to our youth.
+								Discover the <br />
+								beauty of blooming flowers under the blue sky and sunny
+              </p>
+              <Link to='/'>explore the collection</Link>
+            </Stack>
+          </div>
+        </div>
+        <div className='home__slider'>
+          <Stack row center spacing={200}>
+            <p
+              onClick={() => setActive(true)}
+              className={classNames('switch', toggleOn)}
+            >
+							shop new arrivals
             </p>
-            <Link to='/'>explore the collection</Link>
+            <p
+              onClick={() => setActive(false)}
+              className={classNames('switch', toggleOff)}
+            >
+							shop best seller
+            </p>
           </Stack>
+          <Slider imgList={imgList} />
         </div>
-      </div>
-      <div className='home__slider'>
-        <Stack row center spacing={200}>
-          <p
-            onClick={() => setActive(true)}
-            className={classNames('switch', toggleOn)}
-          >
-						shop new arrivals
+        <div className='home__doublebg'>
+          <img src={subBg1} alt='Knitwear bg img' />
+          <img src={subBg2} alt='Beach edit bg img' />
+        </div>
+        <div className='home__slider'>
+          <Stack row center spacing={200}>
+            <p className='switch active' to='/'>
+							the beach edit
+            </p>
+          </Stack>
+          <Slider imgList={imgList} shiftImg={4} />
+        </div>
+        <Link to='/' className='home__follow'>
+					follow US @ÉLEMUSH.XO
+        </Link>
+        <div className='home__social'>
+          <div>
+            <img src={model2} alt='model info' />
+          </div>
+          <div>
+            <img src={model1} alt='model info' />
+          </div>
+          <div>
+            <img src={model2} alt='model info' />
+          </div>
+          <div>
+            <img src={model1} alt='model info' />
+          </div>
+          <div>
+            <img src={model2} alt='model info' />
+          </div>
+        </div>
+        <div className='home__signup'>
+          <p className='title'>sign up for update</p>
+          <p className='description'>
+						Sign-up to receive 10% off your first purchase as well as the <br />
+						latest updates on new arrivals, exclusive promotions and events.
           </p>
-          <p
-            onClick={() => setActive(false)}
-            className={classNames('switch', toggleOff)}
-          >
-						shop best seller
-          </p>
-        </Stack>
-        <Slider imgList={imgList} />
-      </div>
-      <div className='home__doublebg'>
-        <img src={subBg1} alt='Knitwear bg img' />
-        <img src={subBg2} alt='Beach edit bg img' />
-      </div>
-      <div className='home__slider'>
-        <Stack row center spacing={200}>
-          <p className='switch active' to='/'>
-						the beach edit
-          </p>
-        </Stack>
-        <Slider imgList={imgList} shiftImg={4} />
-      </div>
-      <Link to='/' className='home__follow'>
-				follow US @ÉLEMUSH.XO
-      </Link>
-      <div className='home__social'>
-        <div>
-          <img src={model2} alt='model info' />
-        </div>
-        <div>
-          <img src={model1} alt='model info' />
-        </div>
-        <div>
-          <img src={model2} alt='model info' />
-        </div>
-        <div>
-          <img src={model1} alt='model info' />
-        </div>
-        <div>
-          <img src={model2} alt='model info' />
-        </div>
-      </div>
-      <div className='home__signup'>
-        <p className='title'>sign up for update</p>
-        <p className='description'>
-					Sign-up to receive 10% off your first purchase as well as the <br />
-					latest updates on new arrivals, exclusive promotions and events.
-        </p>
-        <div className='button'>
-          <Button handleClick={handleClick}>sign up</Button>
+          <div className='button'>
+            <Button handleClick={() => navigate('/signUp')}>sign up</Button>
+          </div>
         </div>
       </div>
       <Footer />

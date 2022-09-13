@@ -106,7 +106,7 @@
       gap: 10px;
       margin-right: 10px;
     }
-    & .search {
+    & .search-img {
       position: relative;
       right: 8vw;
       @include responsive(mobile) {
@@ -141,7 +141,7 @@
 }
 
 .stand {
-  background-color: transparent;
+  background-color: $transparent;
   & a, &.logo {
     color: $white;
   }

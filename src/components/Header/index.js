@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import Announce from 'components/Announce';
+import Search from 'components/Search';
 import { Link } from 'react-router-dom';
 import { useEffect, useState, memo } from 'react';
 
@@ -10,7 +12,7 @@ import './style.scss';
 
 function Header({ disable }) {
   const [bg, setBg] = useState(false);
-
+  const [toggleSearch, setToggleSearch] = useState(false);
   const changeBackground = () => {
     if (window.scrollY >= 100) setBg(true);
     else setBg(false);
@@ -29,31 +31,36 @@ function Header({ disable }) {
   });
 
   return (
-    <div className={classes}>
-      <div className='header__nav'>
-        <div className='header__nav-link'>
-          <Link to='/'>new arrivals</Link>
-          <Link to='/'>shop</Link>
-          <Link to='/'>fall winter</Link>
+    <div>
+      <Announce />
+      <Search toggle={toggleSearch} setToggle={setToggleSearch} />
+      <div className={classes}>
+        <div className='header__nav'>
+          <div className='header__nav-link'>
+            <Link to='/'>new arrivals</Link>
+            <Link to='/'>shop</Link>
+            <Link to='/'>fall winter</Link>
+          </div>
+          <div onClick={() => alert('pop later')} className='header__nav-line'>
+            <div className='line'></div>
+            <div className='line'></div>
+          </div>
         </div>
-        <div onClick={() => alert('pop later')} className='header__nav-line'>
-          <div className='line'></div>
-          <div className='line'></div>
+        <div className='header__logo'>
+          <Link className='logo' to='/'>
+						Élemush
+          </Link>
         </div>
-      </div>
-      <div className='header__logo'>
-        <Link className='logo' to='/'>
-					Élemush
-        </Link>
-      </div>
-      <div className='header__icon'>
-        <img
-          className='search'
-          src={bg ? searchBlack : search}
-          alt='search img'
-        />
-        <Link to='/signIn'>log in</Link>
-        <img src={bg ? cartBlack : cart} alt='cart img' />
+        <div className='header__icon'>
+          <img
+            onClick={() => setToggleSearch(true)}
+            className='search-img'
+            src={bg ? searchBlack : search}
+            alt='search img'
+          />
+          <Link to='/signIn'>log in</Link>
+          <img src={bg ? cartBlack : cart} alt='cart img' />
+        </div>
       </div>
     </div>
   );
