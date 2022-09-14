@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { memo } from 'react';
 import classNames from 'classnames';
+
+import React, { memo } from 'react';
 
 import './style.scss';
 

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Stack from 'components/Stack';
@@ -10,9 +10,9 @@ import Slider from 'components/Slider';
 import Footer from 'components/Footer';
 
 import {
-  w,
-  ooo,
-  build,
+  riderW,
+  riderOoo,
+  riderBuild,
   subBg1,
   subBg2,
   model1,
@@ -110,13 +110,13 @@ function Home() {
             <img src={model1} alt='model info' />
           </div>
           <div>
-            <img src={build} alt='model info' />
+            <img src={riderBuild} alt='model info' />
           </div>
           <div>
-            <img src={ooo} alt='model info' />
+            <img src={riderOoo} alt='model info' />
           </div>
           <div>
-            <img src={w} alt='model info' />
+            <img src={riderW} alt='model info' />
           </div>
           <div>
             <img src={model2} alt='model info' />

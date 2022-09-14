@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Announce from 'components/Announce';
 import Search from 'components/Search';
 import { Link } from 'react-router-dom';
-import { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 
 import { search, searchBlack, cart, cartBlack } from 'assets/images';
 

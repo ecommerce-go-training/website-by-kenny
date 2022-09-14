@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useState, memo } from 'react';
+import React, { useState, forwardRef, memo } from 'react';
 
 import { closeEye, openEye } from 'assets/images';
 
 import './style.scss';
 
-function Input({ label, type }) {
+const Input = forwardRef(({ label, type, ...props }, ref) => {
   const firstLetterCap = (label) => label[0].toUpperCase() + label.slice(1);
   const [input, setInput] = useState('');
   const [togglePsw, setTogglePsw] = useState(true);
@@ -26,6 +26,8 @@ function Input({ label, type }) {
   return (
     <div className={classes}>
       <input
+        {...props}
+        ref={ref}
         className='input'
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -45,7 +47,7 @@ function Input({ label, type }) {
       </div>
     </div>
   );
-}
+});
 
 Input.defaultProps = {
   label: 'Add something',

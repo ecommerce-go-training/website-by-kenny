@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 
 import { ONE_SECOND } from 'utils/constants';
 
