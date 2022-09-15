@@ -16,8 +16,8 @@ function SignIn() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(signInVal),
   });
@@ -37,31 +37,23 @@ function SignIn() {
     <div>
       <Header disableAnnounce login />
       <div className='container'>
-        <form className='login' onSubmit={handleSubmit(formSubmit)}>
-          <label>sign in</label>
-          <div className='login__row'>
-            <Input
-              {...register('email')}
-              name='email'
-              type='text'
-              label='email'
-            />
-            <p>{errors.email?.message}</p>
-          </div>
-          <div className='login__row'>
-            <Input
-              {...register('password')}
-              label='password'
-              name='password'
-              type='password'
-            />
-            <p>{errors.password?.message}</p>
-          </div>
-          <div className='login__button'>
-            <Button type='submit'>
-              <p>log in</p>
-            </Button>
-          </div>
+        <form onSubmit={handleSubmit(formSubmit)}>
+          <Input
+            register={register}
+            error={errors.email?.message}
+            label='email'
+            name='email'
+          />
+          <Input
+            register={register}
+            error={errors.password?.message}
+            label='password'
+            name='password'
+            type='password'
+          />
+          <Button type='submit'>
+            <p>Submit</p>
+          </Button>
         </form>
         <div className='forgot'>
           <Link to='/forgotPsw'>Forgot your password ?</Link>

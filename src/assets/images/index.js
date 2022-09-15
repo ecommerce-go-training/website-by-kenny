@@ -27,6 +27,7 @@ import tiktok from './icons/tiktok.png';
 import openEye from './icons/eyeOpen.png';
 import facebook from './icons/facebook.png';
 import closeEye from './icons/eyeClose.png';
+import blackCart from './icons/blackCart.png';
 import instagram from './icons/instagram.png';
 import pinterest from './icons/pinterest.png';
 import cartBlack from './icons/cartBlack.png';
@@ -40,6 +41,7 @@ export {
   beachEdit2,
   beachEdit3,
   beachEdit4,
+  blackCart,
   cart,
   cartBlack,
   certificate,

@@ -1,53 +1,56 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import React, { useState, forwardRef, memo } from 'react';
+import React, { useState, memo } from 'react';
 
 import { closeEye, openEye } from 'assets/images';
 
 import './style.scss';
 
-const Input = forwardRef(({ label, type, ...props }, ref) => {
-  const firstLetterCap = (label) => label[0].toUpperCase() + label.slice(1);
-  const [input, setInput] = useState('');
+function Input({ register, error, name, label, type }) {
   const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
-
-  const classes = classNames({
-    'input-row': true,
-    up         : input,
-  });
-
+  const [inputCheck, setInputCheck] = useState(false);
+  const capFirstLetter = (string) => string[0].toUpperCase() + string.slice(1);
   const showPsw = classNames({
     'show-icon': true,
     hide       : type !== 'password',
   });
 
+  const up = classNames({
+    label    : true,
+    'move-up': inputCheck,
+  });
+
   return (
-    <div className={classes}>
-      <input
-        {...props}
-        ref={ref}
-        className='input'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        type={inputType}
-        name={label}
-      />
-      <span>{firstLetterCap(label)}</span>
-      <div className={showPsw}>
-        <img
-          onClick={() => {
-            setTogglePsw(!togglePsw);
-            setInputType(togglePsw ? 'text' : 'password');
-          }}
-          src={togglePsw ? closeEye : openEye}
-          alt='show-hide password'
+    <div className='input-row'>
+      <div className='input-row-item'>
+        <label className={up} htmlFor={label}>
+          {capFirstLetter(label)}
+        </label>
+        <input
+          {...register(name)}
+          className='input'
+          type={inputType}
+          name={label}
+          id={label}
+          onKeyDown={() => setInputCheck(true)}
         />
+        <span className={showPsw}>
+          <img
+            onClick={() => {
+              setTogglePsw(!togglePsw);
+              setInputType(togglePsw ? 'text' : 'password');
+            }}
+            src={togglePsw ? closeEye : openEye}
+            alt='show-hide password'
+          />
+        </span>
       </div>
+      <p className='error'>{error}</p>
     </div>
   );
-});
+}
 
 Input.defaultProps = {
   label: 'Add something',
