@@ -17,8 +17,10 @@ function SignIn() {
     register,
     handleSubmit,
     formState: { errors },
+    //watch,
     reset,
   } = useForm({
+    mode    : 'all',
     resolver: yupResolver(signInVal),
   });
 
@@ -37,7 +39,8 @@ function SignIn() {
     <div>
       <Header disableAnnounce login />
       <div className='container'>
-        <form onSubmit={handleSubmit(formSubmit)}>
+        <form className='login' onSubmit={handleSubmit(formSubmit)}>
+          <label>sign in</label>
           <Input
             register={register}
             error={errors.email?.message}
@@ -51,12 +54,15 @@ function SignIn() {
             name='password'
             type='password'
           />
-          <Button type='submit'>
-            <p>Submit</p>
-          </Button>
+          <div className='login__button'>
+            <Button type='submit'>
+              <p>Submit</p>
+            </Button>
+          </div>
+          {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
         </form>
         <div className='forgot'>
-          <Link to='/forgotPsw'>Forgot your password ?</Link>
+          <Link to='/resetPassword'>Forgot your password ?</Link>
           <Link to='/signUp'>sign up</Link>
         </div>
       </div>

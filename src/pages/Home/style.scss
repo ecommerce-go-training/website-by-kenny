@@ -111,7 +111,7 @@
   &__social {
     display: flex;
     margin-bottom: 70px;
-    & div {
+    & > div {
       flex: 1;
       height: 330px;
       overflow: hidden;

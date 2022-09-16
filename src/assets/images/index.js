@@ -25,6 +25,7 @@ import phone from './icons/phone.png';
 import search from './icons/search.png';
 import tiktok from './icons/tiktok.png';
 import openEye from './icons/eyeOpen.png';
+import success from './icons/success.png';
 import facebook from './icons/facebook.png';
 import closeEye from './icons/eyeClose.png';
 import blackCart from './icons/blackCart.png';
@@ -34,6 +35,7 @@ import cartBlack from './icons/cartBlack.png';
 import leftArrow from './icons/leftArrow.png';
 import rightArrow from './icons/rightArrow.png';
 import searchBlack from './icons/searchBlack.png';
+import successMail from './icons/successMail.png';
 
 export {
   background,
@@ -69,6 +71,8 @@ export {
   searchBlack,
   subBg1,
   subBg2,
+  success,
+  successMail,
   tiktok,
   xmark,
 };

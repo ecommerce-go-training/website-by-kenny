@@ -5,9 +5,10 @@ import React, { memo } from 'react';
 
 import './style.scss';
 
-function Button({ type, handleClick, children }) {
+function Button({ type, handleClick, children, disable }) {
   return (
     <button
+      disabled={disable}
       type={type}
       className={classNames(['button'])}
       onClick={handleClick}

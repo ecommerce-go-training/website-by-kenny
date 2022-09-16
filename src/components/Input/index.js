@@ -7,11 +7,12 @@ import { closeEye, openEye } from 'assets/images';
 
 import './style.scss';
 
-function Input({ register, error, name, label, type }) {
+function Input({ register, error, centerError, name, label, type }) {
   const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
   const [inputCheck, setInputCheck] = useState(false);
   const capFirstLetter = (string) => string[0].toUpperCase() + string.slice(1);
+
   const showPsw = classNames({
     'show-icon': true,
     hide       : type !== 'password',
@@ -21,6 +22,17 @@ function Input({ register, error, name, label, type }) {
     label    : true,
     'move-up': inputCheck,
   });
+
+  const errorClass = classNames({
+    error         : true,
+    'center-error': centerError,
+  });
+
+  const handleBlur = (e) => {
+    const input = e.target.value;
+    if (input) setInputCheck(true);
+    else setInputCheck(false);
+  };
 
   return (
     <div className='input-row'>
@@ -33,8 +45,8 @@ function Input({ register, error, name, label, type }) {
           className='input'
           type={inputType}
           name={label}
-          id={label}
-          onKeyDown={() => setInputCheck(true)}
+          onFocus={() => setInputCheck(true)}
+          onBlur={handleBlur}
         />
         <span className={showPsw}>
           <img
@@ -47,7 +59,7 @@ function Input({ register, error, name, label, type }) {
           />
         </span>
       </div>
-      <p className='error'>{error}</p>
+      <p className={errorClass}>{error}</p>
     </div>
   );
 }

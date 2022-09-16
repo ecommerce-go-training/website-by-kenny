@@ -1,0 +1,223 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
+.container {
+  & .page1 {
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include responsive(tablet) {
+      width: 420px;
+    }
+    @include responsive(mobile) {
+      width: 80vw;
+    }
+    &__intro {
+      text-align: center;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      color: $black;
+      margin-bottom: 80px;
+      @include responsive(tablet) {
+        margin-bottom: 60px;
+      }
+      @include responsive(mobile) {
+        margin-bottom: 40px;
+      }
+      & .title {
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 140%;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+        @include responsive(tablet) {
+          font-size: 18px;
+        }
+        @include responsive(mobile) {
+          font-size: 16px;
+        }
+      }
+      & .description {
+        font-size: 13px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+        @include responsive(tablet) {
+          font-size: 12px;
+        }
+        @include responsive(mobile) {
+          font-size: 11px;
+        }
+      }
+    }
+    &__button {
+      align-self: center;
+      width: 60%;
+    }
+    & > a {
+      color: $black;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 140%;
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
+  & .page2 {
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include responsive(tablet) {
+      width: 420px;
+    }
+    @include responsive(mobile) {
+      width: 80vw;
+    }
+    &__intro {
+      text-align: center;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      color: $black;
+      & .title {
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 140%;
+        letter-spacing: 0.1em;
+        margin-bottom: 15px;
+      }
+      & .description {
+        font-size: 13px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+      }
+    }
+    & img {
+      align-self: center;
+      width: 120px;
+      height: 110px;
+      margin-bottom: 65px;
+      @include responsive(tablet) {
+        width: 100px;
+        height: 90px;
+      }
+      @include responsive(mobile) {
+        width: 90px;
+        height: 80px;
+      }
+    }
+    &__button {
+      align-self: center;
+      width: 60%;
+      margin-bottom: 30px;
+    }
+    & > p {
+      text-align: center;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 140%;
+      letter-spacing: 0.05em;
+      color: $black;
+      & span {
+        cursor: pointer;
+        color: $red;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+  & .page3 {
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include responsive(tablet) {
+      width: 420px;
+    }
+    @include responsive(mobile) {
+      width: 80vw;
+    }
+    &__intro {
+      text-align: center;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      color: $black;
+      margin-bottom: 45px;
+      & .title {
+        text-transform: uppercase;
+        font-size: 20px;
+        line-height: 140%;
+        letter-spacing: 0.1em;
+        margin-bottom: 15px;
+      }
+      & .description {
+        font-size: 13px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+      }
+    }
+    &__button {
+      align-self: center;
+      width: 60%;
+    }
+  }
+  & .page4 {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include responsive(tablet) {
+      width: 420px;
+    }
+    @include responsive(mobile) {
+      width: 80vw;
+    }
+    & > img {
+      width: 90px;
+      height: 90px;
+    }
+    & > p {
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      color: $black;
+      &.title {
+        text-transform: uppercase;
+        font-family: 'Sofia Pro';
+        font-size: 20px;
+        line-height: 140%;
+        letter-spacing: 0.1em;
+        margin-top: 30px;
+        @include responsive(tablet) {
+          font-size: 18px;
+        }
+        @include responsive(mobile) {
+          font-size: 16px;
+        }
+      }
+      &.description {
+        font-size: 13px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+        margin: 30px 0 60px 0;
+        @include responsive(tablet) {
+          font-size: 12px;
+        }
+        @include responsive(mobile) {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+

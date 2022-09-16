@@ -6,7 +6,7 @@
   width: 100%;
   height: 50px;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,16 +19,29 @@
     line-height: 140%;
     letter-spacing: 0.05em;
     color: $red;
+    &.center-error {
+      text-align: center;
+    }
   }
   &-item {
     position: relative;
     & .label {
       position: absolute;
-      top: 10px;
+      opacity: 0.8;
+      top: 9px;
       left: 0;
-      transition: 0.8s all;
+      transition: 0.5s all;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      color: $very-light-grey;
       &.move-up {
         top: -20px;
+        opacity: 1;
+        color: $black;
+        font-size: 14px;
       }
     }
     & .input {
@@ -45,7 +58,7 @@
       width: 100%;
       background-color: $transparent;
       &:focus {
-        background-color: red;
+        border-bottom: 1px solid $black;
       }
     }
     & span {
