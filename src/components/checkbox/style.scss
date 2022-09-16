@@ -4,4 +4,12 @@
   width: 25px;
   height: 25px;
   accent-color: black;
+  @include responsive(tablet) {
+    width: 30px;
+    height: 30px;
+  }
+  @include responsive(mobile) {
+    width: 50px;
+    height: 50px;
+  }
 }

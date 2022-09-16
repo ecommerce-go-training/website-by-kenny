@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from 'components/Input';
 import Header from 'components/Header';
 import Button from 'components/Button';
+import Checkbox from 'components/checkbox';
 import signUpVal from './validation';
 
 import './style.scss';
@@ -16,7 +17,6 @@ function SignUp() {
     register,
     handleSubmit,
     formState: { errors },
-    //watch,
     reset,
   } = useForm({
     mode    : 'all',
@@ -31,9 +31,28 @@ function SignUp() {
   return (
     <div>
       <Header disableAnnounce login />
-      <div className='container'>
-        <form className='login' onSubmit={handleSubmit(formSubmit)}>
-          <label>sign in</label>
+      <div className='signup__container'>
+        <form className='signup' onSubmit={handleSubmit(formSubmit)}>
+          <label>create an account</label>
+          <p>Please register your details below to create an account</p>
+          <Input
+            register={register}
+            error={errors.firstName?.message}
+            label='firstName'
+            name='firstName'
+          />
+          <Input
+            register={register}
+            error={errors.lastName?.message}
+            label='lastName'
+            name='lastName'
+          />
+          <Input
+            register={register}
+            error={errors.phone?.message}
+            label='phone'
+            name='phone'
+          />
           <Input
             register={register}
             error={errors.email?.message}
@@ -47,15 +66,26 @@ function SignUp() {
             name='password'
             type='password'
           />
-          <Button type='submit'>
-            <p>Submit</p>
-          </Button>
-          {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
+          <div className='signup__checkbox'>
+            <Checkbox>
+              <p>
+								Sign me up to reveive updates on new arrivals, events,
+								promotions and much more!
+              </p>
+            </Checkbox>
+          </div>
+          <p className='agree'>
+						By signing up you agree to Elemush &nbsp;
+            <Link to='/privacy'>Terms of Service</Link> &nbsp; and &nbsp;
+            <Link to='/privacy'>Privacy Policy</Link>
+          </p>
+          <div className='signup__button'>
+            <Button type='submit'>
+              <p>Submit</p>
+            </Button>
+          </div>
+          <Link to='/signIn'>I have an account</Link>
         </form>
-        <div className='forgot'>
-          <Link to='/resetPassword'>Forgot your password ?</Link>
-          <Link to='/signUp'>sign up</Link>
-        </div>
       </div>
     </div>
   );

@@ -17,18 +17,21 @@
     @include responsive(tablet) {
       gap: 30px;
     }
+    @include responsive(mobile) {
+      gap: 10px;
+    }
   }
   &.disable {
     display: none;
   }
-  & >p {
+  & > p {
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 300%;
     color: black;
-    margin-left: 30px;
+    margin-left: 20px;
   }
 }
 // for storybook only
