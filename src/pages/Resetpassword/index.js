@@ -22,7 +22,8 @@ function Resetpsw() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid },
+    watch,
+    formState: { errors },
   } = useForm({
     mode    : 'all',
     resolver: yupResolver(resetVal),
@@ -30,13 +31,14 @@ function Resetpsw() {
 
   const handleClick = () => {
     setPage((prev) => prev + 1);
-    reset();
   };
 
   const formSubmit = (data) => {
     alert(JSON.stringify(data));
     reset();
   };
+
+  console.log(watch('email'));
 
   return (
     <div>
@@ -60,9 +62,9 @@ function Resetpsw() {
                 name='email'
                 centerError
               />
-              <div className='page2__button'>
+              <div className='page1__button'>
                 <Button
-                  disable={isValid}
+                  disable={errors.email}
                   handleClick={handleClick}
                   type='button'
                 >
@@ -90,9 +92,12 @@ function Resetpsw() {
                 name='code'
                 centerError
               />
-              <p>{errors.code?.message}</p>
               <div className='page2__button'>
-                <Button handleClick={handleClick} type='button'>
+                <Button
+                  disable={errors.code}
+                  handleClick={handleClick}
+                  type='button'
+                >
                   <p>Submit</p>
                 </Button>
               </div>
@@ -126,7 +131,11 @@ function Resetpsw() {
                 type='text'
               />
               <div className='page3__button'>
-                <Button handleClick={handleClick} type='button'>
+                <Button
+                  disable={errors.password}
+                  handleClick={handleClick}
+                  type='submit'
+                >
                   <p>Reset Password</p>
                 </Button>
               </div>
@@ -144,6 +153,8 @@ function Resetpsw() {
             </section>
           )}
         </form>
+        {/*<p>{JSON.stringify(watch())}</p>
+        <p>{watch('email')}</p>*/}
       </div>
     </div>
   );
