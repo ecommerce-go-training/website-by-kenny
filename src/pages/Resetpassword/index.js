@@ -64,7 +64,7 @@ function Resetpsw() {
               />
               <div className='page1__button'>
                 <Button
-                  disable={errors.email}
+                  disable={watch('email') && !errors.email ? false : true}
                   handleClick={handleClick}
                   type='button'
                 >
@@ -94,7 +94,7 @@ function Resetpsw() {
               />
               <div className='page2__button'>
                 <Button
-                  disable={errors.code}
+                  disable={watch('code') && !errors.code ? false : true}
                   handleClick={handleClick}
                   type='button'
                 >
@@ -132,7 +132,7 @@ function Resetpsw() {
               />
               <div className='page3__button'>
                 <Button
-                  disable={errors.password}
+                  disable={watch('password') && !errors.password ? false : true}
                   handleClick={handleClick}
                   type='submit'
                 >
