@@ -1,44 +1,89 @@
 @import 'assets/scss/mixins.scss';
 
+@keyframes leftslide {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rightslide {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .slider {
   box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 4vw;
-  gap: 4vw;
+  padding: 0 80px;
   @include responsive(mobile) {
     padding: 0 15px;
     gap: 15px;
   }
-  & img {
+  &__arrow {
     cursor: pointer;
-    width: 25px;
+    width: 15px;
     @include responsive(mobile) {
       width: 15px;
     }
   }
   &__img {
-    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 20px;
-    overflow: hidden;
-    & img {
-      width: 25%;
-      height: 550px;
-      @include responsive(tablet) {
-        width: 30%;
-        height: 300px;
+    &.slide-left {
+      animation: 0.8s leftslide;
+    }
+    &.slide-right {
+      animation: 0.8s rightslide;
+    }
+    & div {
+      & .img-container {
+        overflow: hidden;
+        width: 340px;
+        height: 510px;
+        margin-bottom: 20px;
+        @include responsive(tablet) {
+
+        }
+        @include responsive(mobile) {
+          
+        }
       }
-      @include responsive(mobile) {
+      & img {
         width: 100%;
-        height: 400px;
+        height: 100%;
+        transition: all 0.3s;
+        cursor: pointer;
+        &:hover {
+          scale: 1.1;
+        }
+        @include responsive(tablet) {
+
+        }
+        @include responsive(mobile) {
+
+        }
       }
-      &:hover {
-        opacity: 0.8;
+      & .description {
+        font-family: 'Sofia Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 140%;
+        display: flex;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
       }
     }
   }

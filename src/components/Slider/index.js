@@ -1,27 +1,43 @@
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import { useState, memo } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 import { leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-function Slider({ imgList }) {
+function Slider({ imgList, shiftImg }) {
   // desktop  4, tablet 3, mobile 1
-  const imgToShow = 4;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(true);
+  const [imgToShow, setImgToShow] = useState(4);
+  const slide = classNames({
+    slider__img  : true,
+    'slide-left' : direction,
+    'slide-right': !direction,
+  });
   let res = [];
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 1300) setImgToShow(3);
+      if (window.innerWidth < 738) setImgToShow(1);
+    });
+  });
 
   const handleLeft = () => {
     setCurrentIndex(
-      currentIndex === 0 ? imgList.length - imgToShow : currentIndex - imgToShow
+      currentIndex === 0 ? imgList.length - shiftImg : currentIndex - shiftImg
     );
+    setDirection(true);
   };
 
   const handleRight = () => {
     setCurrentIndex(
-      currentIndex === imgList.length - imgToShow ? 0 : currentIndex + imgToShow
+      currentIndex === imgList.length - shiftImg ? 0 : currentIndex + shiftImg
     );
+    setDirection(false);
   };
 
   if (currentIndex + imgToShow > imgList.length) {
@@ -36,21 +52,45 @@ function Slider({ imgList }) {
     .slice(currentIndex, currentIndex + imgToShow)
     .concat(res.slice(imgList.length - (currentIndex + imgToShow)));
 
+  console.log('direction', direction);
+
   return (
-    <div className='slider'>
-      <img onClick={handleLeft} src={leftArrow} alt='left arrow' />
-      <div className='slider__img'>
+  //mathrandom to trigger css animation each time compoent rerender
+    <div key={Math.random()} className='slider'>
+      <img
+        className='slider__arrow'
+        onClick={handleLeft}
+        src={leftArrow}
+        alt='left arrow'
+      />
+      <div className={slide}>
         {result.slice(0, imgToShow).map((item, index) => (
-          <img src={item} alt={`${item} image`} key={index} />
+          <div key={index}>
+            <div className='img-container'>
+              <img src={item} alt={`${item} image`} />
+            </div>
+            <p className='description'>new in dresses</p>
+            <p className='description'>999.000VND</p>
+          </div>
         ))}
       </div>
-      <img onClick={handleRight} src={rightArrow} alt='right arrow' />
+      <img
+        className='slider__arrow'
+        onClick={handleRight}
+        src={rightArrow}
+        alt='right arrow'
+      />
     </div>
   );
 }
 
+Slider.defaultProps = {
+  shiftImg: 1,
+};
+
 Slider.propTypes = {
-  imgList: PropTypes.array.isRequired,
+  imgList : PropTypes.array.isRequired,
+  shiftImg: PropTypes.number,
 };
 
 export default memo(Slider);

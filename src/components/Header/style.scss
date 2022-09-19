@@ -1,4 +1,5 @@
-@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+@import 'assets/scss/mixins';
 
 .header {
   z-index: 1;
@@ -37,7 +38,7 @@
       letter-spacing: 0;
     }
     &:hover {
-      color: black !important;
+      color: $primary-color !important;
     }
   }
   &__nav {
@@ -85,7 +86,7 @@
         font-size: 28px;
       }
       @include responsive(mobile) {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }
@@ -102,10 +103,10 @@
     }
     @include responsive(mobile) {
       font-size: 15px;
-      gap: 10px;
+      gap: 15px;
       margin-right: 10px;
     }
-    & .search {
+    & .search-img {
       position: relative;
       right: 8vw;
       @include responsive(mobile) {
@@ -130,21 +131,33 @@
 }
 
 .move {
-  background-color: white;
+  background-color: $white;
   & a, &.logo {
-    color: black;
+    color: $primary-color;
   }
   & .line {
-    background-color: black;
+    background-color: $white;
   }
 }
 
 .stand {
-  background-color: red;
+  background-color: transparent;
   & a, &.logo {
-    color: white;
+    color: $white;
   }
   & .line {
-    background-color: white;
+    background-color: $white;
+  }
+}
+
+.login-header {
+  position: fixed;
+  top: 0px;
+  background-color: transparent;
+  & a, &.logo {
+    color: $black;
+  }
+  & .line {
+    background-color: $white;
   }
 }

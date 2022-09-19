@@ -8,17 +8,17 @@ function Stack({ children, row, col, disable, spacing, center }) {
     stack  : true,
     row    : row,
     col    : col,
-    spacing: spacing,
     disable: disable,
     center : center,
+    spacing: spacing,
   });
 
   return <div className={classes}>{children}</div>;
 }
 
 Stack.defaultProps = {
-  row: null,
-  col: null,
+  row: true,
+  col: false,
 };
 
 Stack.propTypes = {

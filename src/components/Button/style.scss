@@ -1,9 +1,9 @@
-@use 'assets/scss/variables' as v;
+@import 'assets/scss/variables';
 @import 'assets/scss/mixins.scss';
 
 .button {
-  background-color: v.$primary-color;
-  color: white;
+  background-color: $primary-color;
+  color: $white;
   border: none;
   text-transform: uppercase;
   font-family: 'Sofia Pro';
@@ -12,9 +12,9 @@
   font-size: 1rem;
   line-height: 128%;
   letter-spacing: 0.15em;
-  padding: 25px 0;
   cursor: pointer;
   width: 100%;
+  padding: 20px;
   &:hover {
     opacity: 0.8;
   }
