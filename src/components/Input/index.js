@@ -7,10 +7,17 @@ import { closeEye, openEye } from 'assets/images';
 
 import './style.scss';
 
-function Input({ register, error, centerError, name, label, type }) {
+function Input({
+  register,
+  error,
+  centerError,
+  name,
+  label,
+  type,
+  inputCheck,
+}) {
   const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
-  const [inputCheck, setInputCheck] = useState(false);
   const capFirstLetter = (string) => string[0].toUpperCase() + string.slice(1);
 
   const showPsw = classNames({
@@ -28,12 +35,6 @@ function Input({ register, error, centerError, name, label, type }) {
     'center-error': centerError,
   });
 
-  const handleBlur = (e) => {
-    const input = e.target.value;
-    if (input) setInputCheck(true);
-    else setInputCheck(false);
-  };
-
   return (
     <div className='input-row'>
       <div className='input-row-item'>
@@ -45,8 +46,6 @@ function Input({ register, error, centerError, name, label, type }) {
           className='input'
           type={inputType}
           name={label}
-          onFocus={() => setInputCheck(true)}
-          onBlur={handleBlur}
         />
         <span className={showPsw}>
           <img

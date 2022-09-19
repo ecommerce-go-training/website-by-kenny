@@ -61,6 +61,7 @@ function Resetpsw() {
                 label='email'
                 name='email'
                 centerError
+                inputCheck={watch('email')}
               />
               <div className='page1__button'>
                 <Button
@@ -91,6 +92,7 @@ function Resetpsw() {
                 label='code'
                 name='code'
                 centerError
+                inputCheck={watch('code')}
               />
               <div className='page2__button'>
                 <Button
@@ -122,6 +124,7 @@ function Resetpsw() {
                 label='password'
                 name='password'
                 type='password'
+                inputCheck={watch('password')}
               />
               <Input
                 register={register}
@@ -129,6 +132,7 @@ function Resetpsw() {
                 label='confirmPassword'
                 name='confirmPassword'
                 type='text'
+                inputCheck={watch('confirmPassword')}
               />
               <div className='page3__button'>
                 <Button
@@ -153,8 +157,7 @@ function Resetpsw() {
             </section>
           )}
         </form>
-        {/*<p>{JSON.stringify(watch())}</p>
-        <p>{watch('email')}</p>*/}
+        {/*<p>{JSON.stringify(watch())}</p>*/}
       </div>
     </div>
   );

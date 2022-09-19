@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Input from 'components/Input';
 import * as yup from 'yup';
 
 function Test() {
   const schema = yup
     .object({
-      name    : yup.string().required(),
+      name    : yup.string().required('Hello world'),
       email   : yup.string().email().required(),
       password: yup.string().min(4).max(7).required(),
     })
@@ -37,15 +38,14 @@ function Test() {
       {page >= 0 && (
         <section>
           <label>Form 1</label>
-          <input
-            {...register('name', {
-              required: true,
-            })}
-            type='text'
+          <Input
+            register={register}
+            error={errors.name?.message}
+            label='name'
             name='name'
             placeholder='name'
+            inputCheck={watch('name')}
           />
-          <p style={{ color: 'red' }}>{errors?.name?.message}</p>
         </section>
       )}
 
