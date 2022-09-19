@@ -16,6 +16,12 @@ import newArrival3 from './homepage/newArrival3.png';
 import newArrival4 from './homepage/newArrival4.png';
 import certificate from './homepage/certificate.png';
 
+import stockist from './store/stockistsBg.png';
+import showRoom from './store/showRoomBg.jpg';
+import ourStories from './store/ourStoriesBg.jpg';
+
+import sizeGuide from './size/sizeGuide.jpg';
+
 import plus from './icons/plus.png';
 import mail from './icons/mail.png';
 import cart from './icons/cart.png';
@@ -60,6 +66,7 @@ export {
   newArrival3,
   newArrival4,
   openEye,
+  ourStories,
   phone,
   pinterest,
   plus,
@@ -69,6 +76,9 @@ export {
   rightArrow,
   search,
   searchBlack,
+  showRoom,
+  sizeGuide,
+  stockist,
   subBg1,
   subBg2,
   success,

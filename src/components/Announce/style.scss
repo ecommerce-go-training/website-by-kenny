@@ -20,7 +20,8 @@
     font-family: 'Sofia Pro';
     font-size: 14px;
     text-transform: uppercase;
-    animation: fade 4s infinite ;
+    animation: fade 4s infinite;
+    cursor: pointer;
     @include responsive(mobile) {
       font-size: 9px;
     }

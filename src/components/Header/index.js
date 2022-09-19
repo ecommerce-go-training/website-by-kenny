@@ -10,7 +10,7 @@ import { search, searchBlack, cart, cartBlack } from 'assets/images';
 
 import './style.scss';
 
-function Header({ disable, disableAnnounce, login }) {
+function Header({ disable, disableAnnounce, login, store }) {
   const [bg, setBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
   const changeBackground = () => {
@@ -29,6 +29,7 @@ function Header({ disable, disableAnnounce, login }) {
     move          : bg,
     stand         : !bg,
     'login-header': login,
+    'store-header': store,
   });
 
   return (
@@ -38,7 +39,7 @@ function Header({ disable, disableAnnounce, login }) {
       <div className={classes}>
         <div className='header__nav'>
           <div className='header__nav-link'>
-            <Link to='/'>new arrivals</Link>
+            <Link to='/size'>new arrivals</Link>
             <Link to={login ? '/season' : '/store'}>
               {login ? 'Shop winter' : 'shop'}
             </Link>
@@ -58,11 +59,11 @@ function Header({ disable, disableAnnounce, login }) {
           <img
             onClick={() => setToggleSearch(true)}
             className='search-img'
-            src={bg || login ? searchBlack : search}
+            src={bg || login || store ? searchBlack : search}
             alt='search img'
           />
           <Link to='/signIn'>{login ? 'Account' : 'Log in'}</Link>
-          <img src={bg || login ? cartBlack : cart} alt='cart img' />
+          <img src={bg || login || store ? cartBlack : cart} alt='cart img' />
         </div>
       </div>
     </div>

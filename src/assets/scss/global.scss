@@ -2,6 +2,14 @@
   font-family: 'Sofia Pro';
   src: url('../fonts/SofiaProRegular.ttf');
 }
+@font-face {
+  font-family: 'Ogg';
+  src: url('../fonts/OggRegular.ttf');
+}
+@font-face {
+  font-family: 'Ogg Italic';
+  src: url('../fonts/OggItalic.otf');
+}
 
 :global {
   .disable {
