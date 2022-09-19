@@ -16,6 +16,7 @@ function SignUp() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
     reset,
   } = useForm({
@@ -40,24 +41,28 @@ function SignUp() {
             error={errors.firstName?.message}
             label='firstName'
             name='firstName'
+            inputCheck={watch('firstName')}
           />
           <Input
             register={register}
             error={errors.lastName?.message}
             label='lastName'
             name='lastName'
+            inputCheck={watch('lastName')}
           />
           <Input
             register={register}
             error={errors.phone?.message}
             label='phone'
             name='phone'
+            inputCheck={watch('phone')}
           />
           <Input
             register={register}
             error={errors.email?.message}
             label='email'
             name='email'
+            inputCheck={watch('email')}
           />
           <Input
             register={register}
@@ -65,6 +70,7 @@ function SignUp() {
             label='password'
             name='password'
             type='password'
+            inputCheck={watch('password')}
           />
           <div className='signup__checkbox'>
             <Checkbox>

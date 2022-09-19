@@ -17,7 +17,7 @@ function SignIn() {
     register,
     handleSubmit,
     formState: { errors },
-    //watch,
+    watch,
     reset,
   } = useForm({
     mode    : 'all',
@@ -46,6 +46,7 @@ function SignIn() {
             error={errors.email?.message}
             label='email'
             name='email'
+            inputCheck={watch('email')}
           />
           <Input
             register={register}
@@ -53,6 +54,7 @@ function SignIn() {
             label='password'
             name='password'
             type='password'
+            inputCheck={watch('password')}
           />
           <div className='login__button'>
             <Button type='submit'>

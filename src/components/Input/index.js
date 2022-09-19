@@ -18,6 +18,7 @@ function Input({
 }) {
   const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
+  const [aim, setAim] = useState(false);
   const capFirstLetter = (string) => string[0].toUpperCase() + string.slice(1);
 
   const showPsw = classNames({
@@ -27,7 +28,7 @@ function Input({
 
   const up = classNames({
     label    : true,
-    'move-up': inputCheck,
+    'move-up': inputCheck || aim ? true : false,
   });
 
   const errorClass = classNames({
@@ -46,6 +47,8 @@ function Input({
           className='input'
           type={inputType}
           name={label}
+          onFocus={() => setAim(true)}
+          onBlur={() => (inputCheck ? setAim(true) : setAim(false))}
         />
         <span className={showPsw}>
           <img
