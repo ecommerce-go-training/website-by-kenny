@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useState, memo } from 'react';
+import React, { useState, memo } from 'react';
 
 import Stack from 'components/Stack';
 

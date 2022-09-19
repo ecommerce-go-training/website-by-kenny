@@ -1,75 +1,86 @@
-import Stack from 'components/Stack';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Input from 'components/Input';
-import Button from 'components/Button';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import Slider from 'components/Slider';
-import Checkbox from 'components/checkbox';
-import Announce from 'components/Announce';
-import Collapse from 'components/Collapse';
-
-import {
-  beachEdit1,
-  beachEdit2,
-  beachEdit3,
-  beachEdit4,
-  newArrival1,
-  newArrival2,
-  newArrival3,
-  newArrival4,
-} from 'assets/images';
+import * as yup from 'yup';
 
 function Test() {
-  const imgList = [
-    beachEdit1,
-    beachEdit2,
-    beachEdit3,
-    beachEdit4,
-    newArrival1,
-    newArrival2,
-    newArrival3,
-    newArrival4,
-  ];
+  const schema = yup
+    .object({
+      name    : yup.string().required('Hello world'),
+      email   : yup.string().email().required(),
+      password: yup.string().min(4).max(7).required(),
+    })
+    .required();
+
+  const {
+    watch,
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode    : 'all',
+    resolver: yupResolver(schema),
+  });
+
+  const [page, setPage] = useState(0);
+
+  const handleClick = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  const hanldeFormSubmit = (data) => {
+    alert(JSON.stringify(data));
+  };
 
   return (
-    <div
-      style={{
-        height   : 'auto',
-        position : 'relative',
-        marginTop: '160px',
-      }}
-    >
-      <Announce />
-      <Header />
-      <Stack col spacing>
-        <h1>Component Testing</h1>
-        <Button>Gundeptrai</Button>
-        <Button>Hello</Button>
-        <Button>Hello</Button>
-        <Button>Hello</Button>
-        <Button>Hello</Button>
-        <Collapse label={'How to get a girlfriend'}>
-          <Collapse label={'Bruh'}>
-            <p>Wait me get one</p>
-            <p>Ty</p>
-          </Collapse>
-        </Collapse>
-      </Stack>
-      <h1>Input check</h1>
-      <br />
-      <Input />
-      <Input label='password' type='password' />
-      <h1>Slider check</h1>
-      <br />
-      <Slider imgList={imgList} />
-      <br />
-      <h1>Checkbox check</h1>
-      <Checkbox>
-        <p>Tick here if you lonely</p>
-      </Checkbox>
-      <h1>Footer check</h1>
-      <Footer />
-    </div>
+    <form onSubmit={handleSubmit(hanldeFormSubmit)}>
+      {page >= 0 && (
+        <section>
+          <label>Form 1</label>
+          <Input
+            register={register}
+            error={errors.name?.message}
+            label='name'
+            name='name'
+            placeholder='name'
+            inputCheck={watch('name')}
+          />
+        </section>
+      )}
+
+      {page >= 1 && (
+        <section>
+          <label>Form 2</label>
+          <input
+            {...register('email')}
+            type='text'
+            name='email'
+            placeholder='email'
+          />
+          <p style={{ color: 'red' }}>{errors?.email?.message}</p>
+        </section>
+      )}
+
+      {page >= 2 && (
+        <section>
+          <label>Form 3</label>
+          <input
+            {...register('password')}
+            name='password'
+            type='text'
+            placeholder='password'
+          />
+          <p style={{ color: 'red' }}>{errors?.password?.message}</p>
+        </section>
+      )}
+      <button type='submit'>Submit</button>
+      <button onClick={handleClick} type='button'>
+				Next
+      </button>
+      <pre>{JSON.stringify(watch(), null, 2)}</pre>
+      <pre>{isValid}</pre>
+    </form>
   );
 }
 

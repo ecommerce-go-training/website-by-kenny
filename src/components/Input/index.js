@@ -1,48 +1,67 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useState, memo } from 'react';
+import React, { useState, memo } from 'react';
 
 import { closeEye, openEye } from 'assets/images';
 
 import './style.scss';
 
-function Input({ label, type }) {
-  const firstLetterCap = (label) => label[0].toUpperCase() + label.slice(1);
-  const [input, setInput] = useState('');
+function Input({
+  register,
+  error,
+  centerError,
+  name,
+  label,
+  type,
+  inputCheck,
+}) {
   const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
-
-  const classes = classNames({
-    'input-row': true,
-    up         : input,
-  });
+  const [aim, setAim] = useState(false);
+  const capFirstLetter = (string) => string[0].toUpperCase() + string.slice(1);
 
   const showPsw = classNames({
     'show-icon': true,
     hide       : type !== 'password',
   });
 
+  const up = classNames({
+    label    : true,
+    'move-up': inputCheck || aim ? true : false,
+  });
+
+  const errorClass = classNames({
+    error         : true,
+    'center-error': centerError,
+  });
+
   return (
-    <div className={classes}>
-      <input
-        className='input'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        type={inputType}
-        name={label}
-      />
-      <span>{firstLetterCap(label)}</span>
-      <div className={showPsw}>
-        <img
-          onClick={() => {
-            setTogglePsw(!togglePsw);
-            setInputType(togglePsw ? 'text' : 'password');
-          }}
-          src={togglePsw ? closeEye : openEye}
-          alt='show-hide password'
+    <div className='input-row'>
+      <div className='input-row-item'>
+        <label className={up} htmlFor={label}>
+          {capFirstLetter(label)}
+        </label>
+        <input
+          {...register(name)}
+          className='input'
+          type={inputType}
+          name={label}
+          onFocus={() => setAim(true)}
+          onBlur={() => (inputCheck ? setAim(true) : setAim(false))}
         />
+        <span className={showPsw}>
+          <img
+            onClick={() => {
+              setTogglePsw(!togglePsw);
+              setInputType(togglePsw ? 'text' : 'password');
+            }}
+            src={togglePsw ? closeEye : openEye}
+            alt='show-hide password'
+          />
+        </span>
       </div>
+      <p className={errorClass}>{error}</p>
     </div>
   );
 }

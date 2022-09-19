@@ -1,6 +1,6 @@
-import ooo from './homepage/ooo.png';
-import build from './homepage/build.jpg';
-import w from './homepage/w.jpg';
+import riderOoo from './homepage/kamenRiderOOO.png';
+import riderBuild from './homepage/kamenRiderBuild.jpg';
+import riderW from './homepage/kamenRiderW.jpg';
 import subBg1 from './homepage/subBg1.png';
 import subBg2 from './homepage/subBg2.png';
 import model1 from './homepage/model1.png';
@@ -19,20 +19,23 @@ import certificate from './homepage/certificate.png';
 import plus from './icons/plus.png';
 import mail from './icons/mail.png';
 import cart from './icons/cart.png';
-import xmark from './icons/x.png';
+import xmark from './icons/xmark.png';
 import minus from './icons/minus.png';
 import phone from './icons/phone.png';
 import search from './icons/search.png';
 import tiktok from './icons/tiktok.png';
 import openEye from './icons/eyeOpen.png';
+import success from './icons/success.png';
 import facebook from './icons/facebook.png';
 import closeEye from './icons/eyeClose.png';
+import blackCart from './icons/blackCart.png';
 import instagram from './icons/instagram.png';
 import pinterest from './icons/pinterest.png';
 import cartBlack from './icons/cartBlack.png';
 import leftArrow from './icons/leftArrow.png';
 import rightArrow from './icons/rightArrow.png';
 import searchBlack from './icons/searchBlack.png';
+import successMail from './icons/successMail.png';
 
 export {
   background,
@@ -40,7 +43,7 @@ export {
   beachEdit2,
   beachEdit3,
   beachEdit4,
-  build,
+  blackCart,
   cart,
   cartBlack,
   certificate,
@@ -56,17 +59,20 @@ export {
   newArrival2,
   newArrival3,
   newArrival4,
-  ooo,
   openEye,
   phone,
   pinterest,
   plus,
+  riderBuild,
+  riderOoo,
+  riderW,
   rightArrow,
   search,
   searchBlack,
   subBg1,
   subBg2,
+  success,
+  successMail,
   tiktok,
-  w,
   xmark,
 };

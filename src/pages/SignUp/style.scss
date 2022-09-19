@@ -1,0 +1,101 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/mixins';
+
+.signup__container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & .signup {
+    width: 530px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include responsive(tablet) {
+      width: 450px;
+    }
+    @include responsive(mobile) {
+      width: 80vw;
+    }
+    & > label {
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 140%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: $black;
+      margin-bottom: 20px;
+      @include responsive(tablet) {
+        margin-top: 100px;
+        font-size: 18px;
+      }
+      @include responsive(mobile) {
+        margin-top: 100px;
+        font-size: 16px;
+      }
+    }
+    & > p {
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 150%;
+      letter-spacing: 0.05em;
+      color: $black;
+      margin-bottom: 40px;
+      @include responsive(tablet) {
+        font-size: 12px;
+      }
+      @include responsive(mobile) {
+        font-size: 8px;
+      }
+      & > a {
+        color: $black;
+      }
+    }
+    &__checkbox {
+      align-self: flex-start;
+      & p {
+        font-family: 'Sofia Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 150%;
+        color: $black;
+        @include responsive(tablet) {
+          font-size: 12px;
+        }
+        @include responsive(mobile) {
+          font-size: 8px;
+        }
+      }
+    }
+    &__button {
+      width: 300px;
+      @include responsive(tablet) {
+        width: 80vw;
+      }
+      @include responsive(mobile) {
+        width: 80vw;
+      }
+    }
+    & > a {
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 140%;
+      letter-spacing: 0.05em;
+      margin-top: 30px;
+      color: $black;
+    }
+    & .agree {
+      margin-top: 10px;
+      align-self: flex-start;
+    }
+  }
+}

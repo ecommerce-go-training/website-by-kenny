@@ -19,12 +19,10 @@
     opacity: 0.8;
   }
   @include responsive(tablet) {
-    background-color: red;
     font-size: 0.9rem;
   }
   @include responsive(mobile) {
-    background-color: green;
     padding: 20px 0px;
-    font-size: 0.4rem;
+    font-size: 0.7rem;
   }
 }

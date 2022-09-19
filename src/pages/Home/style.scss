@@ -76,7 +76,7 @@
       line-height: 128%;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: $light-grey;
+      color: $very-light-grey;
       cursor: pointer;
       @include responsive(tablet) {
         color: green;
@@ -111,7 +111,7 @@
   &__social {
     display: flex;
     margin-bottom: 70px;
-    & div {
+    & > div {
       flex: 1;
       height: 330px;
       overflow: hidden;
@@ -167,7 +167,7 @@
     }
   }
   & .inactive {
-    color: $light-grey;
+    color: $very-light-grey;
     padding: 0;
     border-bottom: none;
   }

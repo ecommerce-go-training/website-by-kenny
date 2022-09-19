@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, useRef, memo } from 'react';
 
 import { leftArrow, rightArrow } from 'assets/images';
 
@@ -9,6 +9,7 @@ import './style.scss';
 
 function Slider({ imgList, shiftImg }) {
   // desktop  4, tablet 3, mobile 1
+  const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(true);
   const [imgToShow, setImgToShow] = useState(4);
@@ -23,14 +24,17 @@ function Slider({ imgList, shiftImg }) {
     window.addEventListener('resize', () => {
       if (window.innerWidth < 1300) setImgToShow(3);
       if (window.innerWidth < 738) setImgToShow(1);
+      else setImgToShow(4);
     });
   });
 
   const handleLeft = () => {
+    sliderRef.current.style.animation = '0.8s left-slide';
     setCurrentIndex(
       currentIndex === 0 ? imgList.length - shiftImg : currentIndex - shiftImg
     );
     setDirection(true);
+    console.log(sliderRef.current.style);
   };
 
   const handleRight = () => {
@@ -63,7 +67,7 @@ function Slider({ imgList, shiftImg }) {
         src={leftArrow}
         alt='left arrow'
       />
-      <div className={slide}>
+      <div className={slide} ref={sliderRef}>
         {result.slice(0, imgToShow).map((item, index) => (
           <div key={index}>
             <div className='img-container'>
