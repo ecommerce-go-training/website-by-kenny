@@ -39,7 +39,9 @@ function Header({ disable, disableAnnounce, login }) {
         <div className='header__nav'>
           <div className='header__nav-link'>
             <Link to='/'>new arrivals</Link>
-            <Link to='/'>{login ? 'Shop winter' : 'shop'}</Link>
+            <Link to={login ? '/season' : '/store'}>
+              {login ? 'Shop winter' : 'shop'}
+            </Link>
             <Link to='/'>{login ? 'about' : 'fall winter'}</Link>
           </div>
           <div onClick={() => alert('pop later')} className='header__nav-line'>
