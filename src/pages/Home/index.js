@@ -1,9 +1,7 @@
 import classNames from 'classnames';
 
 import React, { useState } from 'react';
-/*eslint-disable */
-import i18next from 'i18next';
-/*eslint-enable */
+
 //import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -61,7 +59,9 @@ function Home() {
       <Header />
       <div className='home'>
         <div className='home__background'>
-          <img src={background} alt='background img' />
+          <div className='home__background-img'>
+            <img src={background} alt='background img' />
+          </div>
           <div className='home__background-intro'>
             <div>
               <p className='title'>&#39;ÉLEMUSH AURA&#39;</p>
