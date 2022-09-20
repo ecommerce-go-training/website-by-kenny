@@ -1,16 +1,21 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import Announce from 'components/Announce';
-import Search from 'components/Search';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState, memo } from 'react';
+
+import Search from 'components/Search';
+import Announce from 'components/Announce';
 
 import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
 import './style.scss';
 
 function Header({ disable, disableAnnounce, login, store }) {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Components.Header',
+  });
   const [bg, setBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
   const changeBackground = () => {
@@ -39,11 +44,11 @@ function Header({ disable, disableAnnounce, login, store }) {
       <div className={classes}>
         <div className='header__nav'>
           <div className='header__nav-link'>
-            <Link to='/'>new arrivals</Link>
+            <Link to='/'>{t('new arrivals')}</Link>
             <Link to={login ? '/season' : '/store'}>
-              {login ? 'Shop winter' : 'shop'}
+              {login ? t('shop winter') : t('shop')}
             </Link>
-            <Link to='/season'>{login ? 'about' : 'fall winter'}</Link>
+            <Link to='/season'>{login ? t('about') : t('fall winter')}</Link>
             <div onClick={() => alert('pop later')} className='triple-line'>
               <div className='line'></div>
               <div className='line'></div>
@@ -63,7 +68,7 @@ function Header({ disable, disableAnnounce, login, store }) {
             src={bg || login || store ? searchBlack : search}
             alt='search img'
           />
-          <Link to='/signIn'>{login ? 'Account' : 'Log in'}</Link>
+          <Link to='/signIn'>{login ? t('account') : t('log in')}</Link>
           <img
             src={bg || login || store ? (login ? blackCart : cartBlack) : cart}
             alt='cart img'

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 import React, { useState } from 'react';
 
-//import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Stack from 'components/Stack';
@@ -33,7 +33,7 @@ import {
 import './style.scss';
 
 function Home() {
-  //const { t } = useTranslation('translation');
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Home' });
   const navigate = useNavigate();
   const imgList = [
     beachEdit1,
@@ -66,11 +66,9 @@ function Home() {
             <div>
               <p className='title'>&#39;ÉLEMUSH AURA&#39;</p>
               <p className='description'>
-								The Resort 2021 collection is a love letter to our youth.
-								Discover the <br />
-								beauty of blooming flowers under the blue sky and sunny
+                {t('description1')} <br /> {t('description2')}
               </p>
-              <Link to='/'>explore the collection</Link>
+              <Link to='/'>{t('explore')}</Link>
             </div>
           </div>
         </div>

@@ -13,7 +13,9 @@ import signInVal from './validation';
 import './style.scss';
 
 function SignIn() {
-  const { t, i18n } = useTranslation('translation', { keyPrefix: 'SignIn' });
+  const { t, i18n } = useTranslation('translation', {
+    keyPrefix: 'Pages.SignIn',
+  });
   const navigate = useNavigate();
   const {
     register,
