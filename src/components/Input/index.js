@@ -67,13 +67,22 @@ function Input({
 }
 
 Input.defaultProps = {
-  label: 'Add something',
-  type : 'text',
+  label      : 'Add something',
+  type       : 'text',
+  register   : null,
+  error      : '',
+  centerError: false,
+  inputCheck : '',
 };
 
 Input.propTypes = {
-  label: PropTypes.string,
-  type : PropTypes.oneOf(['text', 'password', 'email']),
+  label      : PropTypes.string,
+  type       : PropTypes.oneOf(['text', 'password', 'email']),
+  register   : PropTypes.func,
+  error      : PropTypes.bool,
+  centerError: PropTypes.string,
+  name       : PropTypes.string.isRequired,
+  inputCheck : PropTypes.string,
 };
 
 export default memo(Input);

@@ -22,6 +22,16 @@ import ourStories from './store/ourStoriesBg.jpg';
 
 import sizeGuide from './size/sizeGuide.jpg';
 
+import newTop from './season/newTop.jpg';
+import newTop2 from './season/newTop2.jpg';
+import seasonBg from './season/seasonBg.png';
+import backDress from './season/backDress.png';
+import frontDress from './season/frontDress.png';
+import greenDress from './season/greenDress.jpg';
+import whiteDress from './season/whiteDress.jpg';
+import orangeDress from './season/orangeDress.jpg';
+import newMiniDress from './season/newMiniDress.jpg';
+
 import plus from './icons/plus.png';
 import mail from './icons/mail.png';
 import cart from './icons/cart.png';
@@ -39,11 +49,13 @@ import instagram from './icons/instagram.png';
 import pinterest from './icons/pinterest.png';
 import cartBlack from './icons/cartBlack.png';
 import leftArrow from './icons/leftArrow.png';
+import nextArrow from './icons/nextArrow.png';
 import rightArrow from './icons/rightArrow.png';
 import searchBlack from './icons/searchBlack.png';
 import successMail from './icons/successMail.png';
 
 export {
+  backDress,
   background,
   beachEdit1,
   beachEdit2,
@@ -55,6 +67,8 @@ export {
   certificate,
   closeEye,
   facebook,
+  frontDress,
+  greenDress,
   instagram,
   leftArrow,
   mail,
@@ -65,7 +79,12 @@ export {
   newArrival2,
   newArrival3,
   newArrival4,
+  newMiniDress,
+  newTop,
+  newTop2,
+  nextArrow,
   openEye,
+  orangeDress,
   ourStories,
   phone,
   pinterest,
@@ -76,6 +95,7 @@ export {
   rightArrow,
   search,
   searchBlack,
+  seasonBg,
   showRoom,
   sizeGuide,
   stockist,
@@ -84,5 +104,6 @@ export {
   success,
   successMail,
   tiktok,
+  whiteDress,
   xmark,
 };

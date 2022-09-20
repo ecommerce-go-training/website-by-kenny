@@ -1,5 +1,10 @@
 {
-  "Greet": "Hello",
-  "Description": "Roses are red, violets are blue",
-  "Poet": "Let me love you"
+  "SignIn": {
+    "title": "sign in",
+    "email": "email",
+    "password": "password",
+    "resetPsw": "Forgot your password ?",
+    "submit": "submit",
+    "signup": "sign up"
+  }
 }

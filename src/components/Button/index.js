@@ -21,11 +21,13 @@ function Button({ type, handleClick, children, disable }) {
 Button.defaultProps = {
   type       : 'button',
   handleClick: null,
+  disable    : false,
 };
 
 Button.propTypes = {
   type       : PropTypes.oneOf(['button', 'submit', 'reset']),
   handleClick: PropTypes.func,
+  disable    : PropTypes.bool,
 };
 
 export default memo(Button);

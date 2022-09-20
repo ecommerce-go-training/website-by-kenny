@@ -24,6 +24,7 @@
     cursor: pointer;
     @include responsive(mobile) {
       font-size: 15px;
+      margin-bottom: 0px;
     }
   }
   & li {
@@ -37,7 +38,7 @@
       font-size: 12px;
     }
   }
-  & >p {
+  & > p {
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;

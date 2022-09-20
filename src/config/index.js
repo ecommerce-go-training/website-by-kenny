@@ -1,87 +1,29 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Input from 'components/Input';
-import * as yup from 'yup';
+import Slider from 'components/Slider';
+
+import {
+  beachEdit1,
+  beachEdit2,
+  beachEdit3,
+  beachEdit4,
+  newArrival1,
+  newArrival2,
+  newArrival3,
+  newArrival4,
+} from 'assets/images';
 
 function Test() {
-  const schema = yup
-    .object({
-      name    : yup.string().required('Hello world'),
-      email   : yup.string().email().required(),
-      password: yup.string().min(4).max(7).required(),
-    })
-    .required();
+  const imgList = [
+    beachEdit1,
+    beachEdit2,
+    beachEdit3,
+    beachEdit4,
+    newArrival1,
+    newArrival2,
+    newArrival3,
+    newArrival4,
+  ];
 
-  const {
-    watch,
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm({
-    mode    : 'all',
-    resolver: yupResolver(schema),
-  });
-
-  const [page, setPage] = useState(0);
-
-  const handleClick = () => {
-    setPage((prev) => prev + 1);
-  };
-
-  const hanldeFormSubmit = (data) => {
-    alert(JSON.stringify(data));
-  };
-
-  return (
-    <form onSubmit={handleSubmit(hanldeFormSubmit)}>
-      {page >= 0 && (
-        <section>
-          <label>Form 1</label>
-          <Input
-            register={register}
-            error={errors.name?.message}
-            label='name'
-            name='name'
-            placeholder='name'
-            inputCheck={watch('name')}
-          />
-        </section>
-      )}
-
-      {page >= 1 && (
-        <section>
-          <label>Form 2</label>
-          <input
-            {...register('email')}
-            type='text'
-            name='email'
-            placeholder='email'
-          />
-          <p style={{ color: 'red' }}>{errors?.email?.message}</p>
-        </section>
-      )}
-
-      {page >= 2 && (
-        <section>
-          <label>Form 3</label>
-          <input
-            {...register('password')}
-            name='password'
-            type='text'
-            placeholder='password'
-          />
-          <p style={{ color: 'red' }}>{errors?.password?.message}</p>
-        </section>
-      )}
-      <button type='submit'>Submit</button>
-      <button onClick={handleClick} type='button'>
-				Next
-      </button>
-      <pre>{JSON.stringify(watch(), null, 2)}</pre>
-      <pre>{isValid}</pre>
-    </form>
-  );
+  return <Slider imgList={imgList} />;
 }
 
 export default Test;

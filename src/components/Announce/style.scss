@@ -23,7 +23,7 @@
     animation: fade 4s infinite;
     cursor: pointer;
     @include responsive(mobile) {
-      font-size: 9px;
+      font-size: 10px;
     }
   }
   &.active {

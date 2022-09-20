@@ -6,7 +6,7 @@ import Search from 'components/Search';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState, memo } from 'react';
 
-import { search, searchBlack, cart, cartBlack } from 'assets/images';
+import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
 import './style.scss';
 
@@ -39,15 +39,16 @@ function Header({ disable, disableAnnounce, login, store }) {
       <div className={classes}>
         <div className='header__nav'>
           <div className='header__nav-link'>
-            <Link to='/size'>new arrivals</Link>
+            <Link to='/'>new arrivals</Link>
             <Link to={login ? '/season' : '/store'}>
               {login ? 'Shop winter' : 'shop'}
             </Link>
-            <Link to='/'>{login ? 'about' : 'fall winter'}</Link>
-          </div>
-          <div onClick={() => alert('pop later')} className='header__nav-line'>
-            <div className='line'></div>
-            <div className='line'></div>
+            <Link to='/season'>{login ? 'about' : 'fall winter'}</Link>
+            <div onClick={() => alert('pop later')} className='triple-line'>
+              <div className='line'></div>
+              <div className='line'></div>
+              <div className='line'></div>
+            </div>
           </div>
         </div>
         <div className='header__logo'>
@@ -63,7 +64,10 @@ function Header({ disable, disableAnnounce, login, store }) {
             alt='search img'
           />
           <Link to='/signIn'>{login ? 'Account' : 'Log in'}</Link>
-          <img src={bg || login || store ? cartBlack : cart} alt='cart img' />
+          <img
+            src={bg || login || store ? (login ? blackCart : cartBlack) : cart}
+            alt='cart img'
+          />
         </div>
       </div>
     </div>
@@ -73,9 +77,13 @@ function Header({ disable, disableAnnounce, login, store }) {
 Header.defaultProps = {
   disable        : false,
   disableAnnounce: false,
+  login          : false,
+  store          : false,
 };
 
 Header.propTypes = {
+  login          : PropTypes.bool,
+  store          : PropTypes.bool,
   disable        : PropTypes.bool,
   disableAnnounce: PropTypes.bool,
 };

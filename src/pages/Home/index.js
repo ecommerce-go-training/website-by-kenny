@@ -1,6 +1,10 @@
 import classNames from 'classnames';
 
 import React, { useState } from 'react';
+/*eslint-disable */
+import i18next from 'i18next';
+/*eslint-enable */
+//import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Stack from 'components/Stack';
@@ -31,6 +35,7 @@ import {
 import './style.scss';
 
 function Home() {
+  //const { t } = useTranslation('translation');
   const navigate = useNavigate();
   const imgList = [
     beachEdit1,
@@ -45,15 +50,11 @@ function Home() {
 
   const [active, setActive] = useState(true);
   const toggleOn = classNames({
-    active  : active,
-    inactive: !active,
+    active: active,
   });
   const toggleOff = classNames({
-    active  : !active,
-    inactive: active,
+    active: !active,
   });
-
-  console.log('home render');
 
   return (
     <div>
@@ -62,7 +63,7 @@ function Home() {
         <div className='home__background'>
           <img src={background} alt='background img' />
           <div className='home__background-intro'>
-            <Stack col center>
+            <div>
               <p className='title'>&#39;ÉLEMUSH AURA&#39;</p>
               <p className='description'>
 								The Resort 2021 collection is a love letter to our youth.
@@ -70,7 +71,7 @@ function Home() {
 								beauty of blooming flowers under the blue sky and sunny
               </p>
               <Link to='/'>explore the collection</Link>
-            </Stack>
+            </div>
           </div>
         </div>
         <div className='home__slider'>
@@ -79,13 +80,13 @@ function Home() {
               onClick={() => setActive(true)}
               className={classNames('switch', toggleOn)}
             >
-							shop new arrivals
+              {window.innerWidth < 737 ? 'new arrivals' : 'shop new arrivals'}
             </p>
             <p
               onClick={() => setActive(false)}
               className={classNames('switch', toggleOff)}
             >
-							shop best seller
+              {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
           <Slider imgList={imgList} />

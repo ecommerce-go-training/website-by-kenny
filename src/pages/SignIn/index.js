@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -12,6 +13,7 @@ import signInVal from './validation';
 import './style.scss';
 
 function SignIn() {
+  const { t, i18n } = useTranslation('translation', { keyPrefix: 'SignIn' });
   const navigate = useNavigate();
   const {
     register,
@@ -40,32 +42,37 @@ function SignIn() {
       <Header disableAnnounce login />
       <div className='container'>
         <form className='login' onSubmit={handleSubmit(formSubmit)}>
-          <label>sign in</label>
+          <label
+            onClick={() => i18n.changeLanguage('vi')}
+            onDoubleClick={() => i18n.changeLanguage('en')}
+          >
+            {t('title')}
+          </label>
           <Input
             register={register}
             error={errors.email?.message}
-            label='email'
+            label={t('email')}
             name='email'
             inputCheck={watch('email')}
           />
           <Input
             register={register}
             error={errors.password?.message}
-            label='password'
+            label={t('password')}
             name='password'
             type='password'
             inputCheck={watch('password')}
           />
           <div className='login__button'>
             <Button type='submit'>
-              <p>Submit</p>
+              <p>{t('submit')}</p>
             </Button>
           </div>
           {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
         </form>
         <div className='forgot'>
-          <Link to='/resetPassword'>Forgot your password ?</Link>
-          <Link to='/signUp'>sign up</Link>
+          <Link to='/resetPassword'>{t('resetPsw')}</Link>
+          <Link to='/signUp'>{t('signup')}</Link>
         </div>
       </div>
     </div>

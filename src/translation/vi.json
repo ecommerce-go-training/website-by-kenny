@@ -1,5 +1,10 @@
 {
-  "Greet": "Xin chao",
-  "Description": "Hoa Hong mau do, hoa violet mau xanh",
-  "Poet": "Yeu toi diiiii"
+  "SignIn": {
+    "title": "Đăng nhập",
+    "email": "email",
+    "password": "Mật khẩu",
+    "resetPsw": "Quên mật khẩu ?",
+    "submit": "Xác nhận",
+    "signup": "Đăng kí"
+  }
 }
