@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import React, { useState, useLayoutEffect, useRef, memo } from 'react';
+import React, { useState, useEffect, useRef, memo } from 'react';
 
 import { leftArrow, rightArrow } from 'assets/images';
 
@@ -20,13 +20,13 @@ function Slider({ imgList, shiftImg }) {
   });
   let res = [];
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', () => {
       if (window.innerWidth < 900) setImgToShow(3);
       if (window.innerWidth < 738) setImgToShow(1);
       if (window.innerWidth > 900) setImgToShow(4);
     });
-  }, []);
+  });
 
   const handleLeft = () => {
     sliderRef.current.style.animation = '0.8s left-slide';
