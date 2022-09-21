@@ -17,7 +17,8 @@ import newArrival4 from './homepage/newArrival4.png';
 import certificate from './homepage/certificate.png';
 
 import stockist from './store/stockistsBg.png';
-import showRoom from './store/showRoomBg.jpg';
+import hcmShowroom from './store/hcmShowroom.jpg';
+import hnShowroom from './store/hnShowroom.jpg';
 import ourStories from './store/ourStoriesBg.jpg';
 
 import sizeGuide from './size/sizeGuide.jpg';
@@ -69,6 +70,8 @@ export {
   facebook,
   frontDress,
   greenDress,
+  hcmShowroom,
+  hnShowroom,
   instagram,
   leftArrow,
   mail,
@@ -96,7 +99,6 @@ export {
   search,
   searchBlack,
   seasonBg,
-  showRoom,
   sizeGuide,
   stockist,
   subBg1,

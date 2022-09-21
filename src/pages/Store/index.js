@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from 'components/Header';
 import classNames from 'classnames';
 
-import { stockist, showRoom, ourStories } from 'assets/images';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+
+import { stockist, hcmShowroom, hnShowroom } from 'assets/images';
 
 import './style.scss';
 
@@ -48,37 +50,27 @@ function Store() {
           {page === 0 && (
             <section>
               <div className='img'>
-                <img src={ourStories} alt='img' />
+                <img src={hnShowroom} alt='img' />
               </div>
-              <div className='ourStories-info'>
-                <p>
-									The <span>modern</span> <div></div>
-                  <span>romantic</span> women.
-                </p>
+              <div className='showroom-info'>
+                <div>
+                  <h3>44A phan dinh phung, quan 7, hanoi city, vietnam</h3>
+                  <p>Opening hours:</p>
+                  <p>Monday - Sunday 10AM - 10PM</p>
+                  <br />
+                  <p>Contact:</p>
+                  <p>contact@elemush.com</p>
+                  <p>+84 888 551 230</p>
+                </div>
                 <div>
                   <p>
-										A women’s ready-to-wear label by Thanh Duong Nguyen. He
-										serves as Founder and Creative Director with a focus to meet
-										the wardrobe needs of women all over the world. The brand
-										name is sweet like a love letter, sending rich and evocative
-										messages through clothing.
+										Our new era is marked by a new concept store with limitless
+										inspiration from stories. Our duty is bringing a miracle to
+										this world by creating beautiful dresses and conveying
+										civilized stories. Discover our store to not only dress in
+										Elemush, but also to feel its elegance.
                   </p>
-                  <p>
-										After graduating in Industrial Design, Thanh Duong Nguyen
-										became an accessory designer and freelance creative
-										director. He founded Dear José in 2018 with the desire to
-										change the style of young Vietnamese women. The design is
-										aimed at femininity, softness with romantic poetic spirit.
-                  </p>
-                  <p>
-										Artfully crafted and beautifully designed, each garment and
-										accessory breathes new life into the ever-evolving female
-										wardrobe. Our silhouettes are defined by fluidity, and
-										remain wearable through the changing of trends and seasons.
-										We are detailed and thoughtful in our manufacturing to
-										ensure our clothes are not only affordable, but can
-										withstand the test of time.
-                  </p>
+                  <Link to='/'>view the map here</Link>
                 </div>
               </div>
             </section>
@@ -87,7 +79,7 @@ function Store() {
           {page === 1 && (
             <section>
               <div className='img'>
-                <img src={showRoom} alt='img' />
+                <img src={hcmShowroom} alt='img' />
               </div>
               <div className='showroom-info'>
                 <div>
@@ -105,7 +97,7 @@ function Store() {
 										inspiration from fairy tales. We believe fashion is a
 										miracle of this world by creating beautiful things and
 										conveying civilized stories. Discover our store to not only
-										dress in José, but also to feel José.
+										dress in Elemush, but also to feel its elegance.
                   </p>
                   <Link to='/'>view the map here</Link>
                 </div>
@@ -159,6 +151,7 @@ function Store() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

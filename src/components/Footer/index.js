@@ -61,7 +61,7 @@ function Footer() {
         <div className='footer__about'>
           <p className='title'>about</p>
           <Stack col>
-            <Link to='/'>brand</Link>
+            <Link to='/brand'>brand</Link>
             <Link to='/store'>store locator</Link>
           </Stack>
         </div>
@@ -112,7 +112,7 @@ function Footer() {
         </Collapse>
         <div className='line'></div>
         <Collapse label='ABOUT'>
-          <Link to='/'>BRAND</Link>
+          <Link to='/brand'>BRAND</Link>
           <Link to='/store'>STORE LOCATOR</Link>
         </Collapse>
         <div className='line'></div>
