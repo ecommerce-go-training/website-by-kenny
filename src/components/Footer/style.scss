@@ -173,6 +173,9 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  @include responsive(mobile) {
+    margin-top: 10px;
+  }
   & a {
     color: $black;
     text-decoration: none;
@@ -182,6 +185,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 258%;
+    padding: 0 25px;
   }
   .contact {
     width: 25px;

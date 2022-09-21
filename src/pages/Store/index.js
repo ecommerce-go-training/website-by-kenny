@@ -114,7 +114,7 @@ function Store() {
                 <div>
                   <h3>online</h3>
                   <p>Moda Operdandi</p>
-                  <p>https://www.modaoperandi.com/</p>
+                  <p>https://www.ele.com/</p>
                   <br />
                   <p>Revolve</p>
                   <p>contact@elemush.com</p>
@@ -150,6 +150,17 @@ function Store() {
             </section>
           )}
         </div>
+      </div>
+      <div className='store-mobile'>
+        <p onClick={() => setPage(0)} className={page === 0 ? 'active' : ''}>
+					ha noi
+        </p>
+        <p onClick={() => setPage(1)} className={page === 1 ? 'active' : ''}>
+					ho chi minh
+        </p>
+        <p onClick={() => setPage(2)} className={page === 2 ? 'active' : ''}>
+					stockists
+        </p>
       </div>
       <Footer />
     </div>
