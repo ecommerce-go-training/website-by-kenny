@@ -9,7 +9,7 @@ import { plus, minus } from 'assets/images/index';
 
 import './style.scss';
 
-function Collapse({ label, children, mobile }) {
+function Collapse({ label, children, mobile, line }) {
   const [toggle, setToggle] = useState(true);
   const handleClick = () => {
     setToggle(!toggle);
@@ -17,14 +17,15 @@ function Collapse({ label, children, mobile }) {
   const classes = classNames({
     collapse: true,
     mobile  : mobile,
+    line    : line,
   });
 
   return (
     <div className={classes}>
-      <p className='collapse__title' onClick={handleClick}>
+      <label className='collapse__title' onClick={handleClick}>
         <img src={toggle ? plus : minus} alt='plus, minus icon' />
         {label}
-      </p>
+      </label>
       <Stack col disable={toggle}>
         {children}
       </Stack>
@@ -35,11 +36,13 @@ function Collapse({ label, children, mobile }) {
 Collapse.defaultProps = {
   label : 'Add label',
   mobile: false,
+  line  : false,
 };
 
 Collapse.proptypes = {
   label : PropTypes.string,
   mobile: PropTypes.bool,
+  line  : PropTypes.bool,
 };
 
 export default memo(Collapse);

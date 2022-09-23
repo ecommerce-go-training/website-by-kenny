@@ -1,0 +1,29 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
+
+.policy {
+  width: 100%;
+  white-space: pre-line;
+  &-intro {
+    text-align: justify;
+    width: 90%;
+    margin-bottom: 30px;
+    @include responsive(mobile) {
+      box-sizing: border-box;
+      width: 90%;
+      margin-left: 20px !important;
+    }
+  }
+  & p {
+    width: 80%;
+    margin-left: 30px;
+    font-family: 'Sofia Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    color: $black;
+  }
+}

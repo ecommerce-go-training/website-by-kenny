@@ -166,7 +166,7 @@
 .login-header {
   position: fixed;
   top: 0px;
-  background-color: transparent;
+  background-color: $white;
   & a, &.logo {
     color: $black;
   }

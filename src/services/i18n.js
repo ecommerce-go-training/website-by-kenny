@@ -18,7 +18,7 @@ i18n.use(initReactI18next).init({
   lng          : 'en',
   //keySeparator : false,
   interpolation: {
-    escapeValue: false,
+    escapeValue: true,
   },
 });
 

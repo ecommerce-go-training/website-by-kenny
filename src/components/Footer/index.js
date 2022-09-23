@@ -68,13 +68,13 @@ function Footer() {
         <div className='footer__customer'>
           <p className='title'>customer care</p>
           <Stack col>
-            <Link to='/'>faq</Link>
+            <Link to='/customerSupport'>faq</Link>
             <Link to='/size'>sizing</Link>
-            <Link to='/'>shipping & returns</Link>
-            <Link to='/'>terms & conditions</Link>
-            <Link to='/'>privacy policy</Link>
-            <Link to='/'>garment care</Link>
-            <Link to='/'>make a return</Link>
+            <Link to='/customerSupport'>shipping & returns</Link>
+            <Link to='/customerSupport'>terms & conditions</Link>
+            <Link to='/customerSupport'>privacy policy</Link>
+            <Link to='/customerSupport'>garment care</Link>
+            <Link to='/customerSupport'>make a return</Link>
           </Stack>
         </div>
         <div className='footer__contact'>
