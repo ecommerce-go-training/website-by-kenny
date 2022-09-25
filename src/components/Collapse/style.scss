@@ -9,11 +9,12 @@
     padding: 0px;
   }
   &__title {
+    text-transform: uppercase;
     position: relative;
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 26px;
     letter-spacing: 0.05em;
     display: flex;
     align-items: center;
@@ -24,7 +25,7 @@
       font-size: 24px;
     }
     @include responsive(mobile) {
-      font-size: 14px;
+      font-size: 16px;
     }
     & > img {
       position: relative;
@@ -47,6 +48,14 @@
     padding: 10px 20px;
     width: 90%;
     border-bottom: 0.25px dashed $very-light-grey;
+    @include responsive(mobile) {
+      width: 100%;
+    }
+  }
+  &.lineTop {
+    padding: 20px 10px 5px 20px;
+    margin-top: 0;
+    border-top: 0.25px dashed $very-light-grey;
     @include responsive(mobile) {
       width: 100%;
     }

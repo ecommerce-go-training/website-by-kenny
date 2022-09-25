@@ -3,7 +3,7 @@
 
 .mobileTitle {
   display: none;
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-family: 'Sofia Pro';
   margin-bottom: 20px !important;
   @include responsive(mobile) {
@@ -12,7 +12,7 @@
   &-title {
     text-align: center;
     font-size: 28px !important;
-    margin: 0 !important;
+    margin-bottom: 20px;
   }
   &-path {
     margin: 0 !important;

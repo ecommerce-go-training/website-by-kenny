@@ -104,27 +104,33 @@ function Footer() {
         direction='column'
         style={{ display: mobileCheck ? 'flex' : 'none' }}
       >
-        <Collapse label='FOLLOW US'>
-          <Link to='/'>FACEBOOK</Link>
-          <Link to='/'>INSTAGRAM</Link>
-          <Link to='/'>PINTEREST</Link>
-          <Link to='/'>TIKTOK</Link>
-        </Collapse>
+        <div className='mobile-footer-collapse'>
+          <Collapse label='FOLLOW US'>
+            <Link to='/'>FACEBOOK</Link>
+            <Link to='/'>INSTAGRAM</Link>
+            <Link to='/'>PINTEREST</Link>
+            <Link to='/'>TIKTOK</Link>
+          </Collapse>
+        </div>
         <div className='line'></div>
-        <Collapse label='ABOUT'>
-          <Link to='/brand'>BRAND</Link>
-          <Link to='/store'>STORE LOCATOR</Link>
-        </Collapse>
+        <div className='mobile-footer-collapse'>
+          <Collapse label='ABOUT'>
+            <Link to='/brand'>BRAND</Link>
+            <Link to='/store'>STORE LOCATOR</Link>
+          </Collapse>
+        </div>
         <div className='line'></div>
-        <Collapse label={'CUSTOMER CARE'}>
-          <Link to='/'>FAQ</Link>
-          <Link to='/size'>SIZING</Link>
-          <Link to='/'>SHIPPING & RETURNS</Link>
-          <Link to='/'>TERMS & CONDITIONS</Link>
-          <Link to='/'>PRIVACY POLICY</Link>
-          <Link to='/'>GARMENT CARE</Link>
-          <Link to='/'>MAKE A RETURN</Link>
-        </Collapse>
+        <div className='mobile-footer-collapse'>
+          <Collapse label={'CUSTOMER CARE'}>
+            <Link to='/'>FAQ</Link>
+            <Link to='/size'>SIZING</Link>
+            <Link to='/'>SHIPPING & RETURNS</Link>
+            <Link to='/'>TERMS & CONDITIONS</Link>
+            <Link to='/'>PRIVACY POLICY</Link>
+            <Link to='/'>GARMENT CARE</Link>
+            <Link to='/'>MAKE A RETURN</Link>
+          </Collapse>
+        </div>
         <div className='line'></div>
         <div className='mobile-footer__info'>
           <Link to='/'>

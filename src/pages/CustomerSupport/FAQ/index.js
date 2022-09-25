@@ -14,46 +14,46 @@ function Faq() {
     <div className='faq'>
       <MobileTitle label={'FAQ'} />
       <Collapse line label={t('question1')}>
-        <p>{t('answ1')}</p>
+        <p className='faq-item'>{t('answ1')}</p>
       </Collapse>
       <Collapse line label={t('question2')}>
-        <p>{t('answ2')}</p>
-        <p>{t('visa')}</p>
-        <p>{t('mastercard')}</p>
-        <p>{t('paypal')}</p>
+        <p className='faq-item'>{t('answ2')}</p>
+        <p className='faq-item'>{t('visa')}</p>
+        <p className='faq-item'>{t('mastercard')}</p>
+        <p className='faq-item'>{t('paypal')}</p>
       </Collapse>
       <Collapse line label={t('question3')}>
-        <p>{t('answ3')}</p>
+        <p className='faq-item'>{t('answ3')}</p>
       </Collapse>
       <Collapse line label={t('question4')}>
-        <p>{t('answ4')}</p>
+        <p className='faq-item'>{t('answ4')}</p>
       </Collapse>
       <Collapse line label={t('question5')}>
-        <p>{t('answ5')}</p>
+        <p className='faq-item'>{t('answ5')}</p>
       </Collapse>
       <Collapse line label={t('question6')}>
-        <p>{t('answ6')}</p>
+        <p className='faq-item'>{t('answ6')}</p>
       </Collapse>
       <Collapse line label={t('question7')}>
-        <p>{t('answ7')}</p>
+        <p className='faq-item'>{t('answ7')}</p>
       </Collapse>
       <Collapse line label={t('question8')}>
-        <p>{t('answ8')}</p>
+        <p className='faq-item'>{t('answ8')}</p>
       </Collapse>
       <Collapse line label={t('question9')}>
-        <p>{t('answ9')}</p>
+        <p className='faq-item'>{t('answ9')}</p>
       </Collapse>
       <Collapse line label={t('question10')}>
-        <p>{t('answ10')}</p>
+        <p className='faq-item'>{t('answ10')}</p>
       </Collapse>
       <Collapse line label={t('question11')}>
-        <p>{t('answ11')}</p>
+        <p className='faq-item'>{t('answ11')}</p>
       </Collapse>
       <Collapse line label={t('question12')}>
-        <p>{t('answ12')}</p>
+        <p className='faq-item'>{t('answ12')}</p>
       </Collapse>
       <Collapse line label={t('question13')}>
-        <p>{t('answ13')}</p>
+        <p className='faq-item'>{t('answ13')}</p>
       </Collapse>
     </div>
   );

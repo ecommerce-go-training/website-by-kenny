@@ -3,12 +3,12 @@
 
 .faq {
   width: 100%;
-  & p {
+  &-item {
     margin-left: 30px;
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 14px !important;
     line-height: 150%;
     letter-spacing: 0.05em;
     color: $black;

@@ -176,6 +176,9 @@
   @include responsive(mobile) {
     margin-top: 10px;
   }
+  &-collapse {
+    padding: 0 20px;
+  }
   & a {
     color: $black;
     text-decoration: none;
