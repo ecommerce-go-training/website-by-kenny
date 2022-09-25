@@ -32,7 +32,7 @@
   }
   &__bill {
     box-sizing: border-box;
-    background-color: rgb(200, 200, 200, 0.1);
+    background-color: $blur-very-light-grey;
     padding: 30px 40px;
     display: flex;
     flex-direction: column;
