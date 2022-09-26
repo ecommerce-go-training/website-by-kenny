@@ -26,12 +26,14 @@ import sizeGuide from './size/sizeGuide.jpg';
 import newTop from './season/newTop.jpg';
 import newTop2 from './season/newTop2.jpg';
 import seasonBg from './season/seasonBg.png';
+import mobileBg from './season/mobileBg.jpg';
 import backDress from './season/backDress.png';
 import frontDress from './season/frontDress.png';
 import greenDress from './season/greenDress.jpg';
 import whiteDress from './season/whiteDress.jpg';
 import orangeDress from './season/orangeDress.jpg';
 import newMiniDress from './season/newMiniDress.jpg';
+import backDressMobile from './season/backDressMobile.jpg';
 
 import plus from './icons/plus.png';
 import mail from './icons/mail.png';
@@ -57,6 +59,7 @@ import successMail from './icons/successMail.png';
 
 export {
   backDress,
+  backDressMobile,
   background,
   beachEdit1,
   beachEdit2,
@@ -76,6 +79,7 @@ export {
   leftArrow,
   mail,
   minus,
+  mobileBg,
   model1,
   model2,
   newArrival1,

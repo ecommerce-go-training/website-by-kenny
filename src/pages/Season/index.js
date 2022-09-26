@@ -15,7 +15,9 @@ import {
   orangeDress,
   greenDress,
   backDress,
+  backDressMobile,
   frontDress,
+  mobileBg,
 } from 'assets/images';
 
 import './style.scss';
@@ -28,6 +30,7 @@ function Season() {
       <div className='season'>
         <div className='season__bg'>
           <img src={seasonBg} alt='season background' />
+          <img src={mobileBg} alt='season background' />
           <div className='season__bg-intro'>
             <p>{t('smallTitle')}</p>
             <p>{t('bigTitle')}</p>
@@ -64,10 +67,11 @@ function Season() {
           imgRightLink={t('shopTheLook')}
           desRight={t('desRight2')}
         />
-        <div className='season__inequalDoubleBg'>
+        <div className='season__inEqualDoubleBg'>
           <img src={backDress} alt='Left image' />
-          <div className='season__inequalDoubleBg-info'>
-            <img src={frontDress} alt='Right image' />
+          <img src={frontDress} alt='Right image' />
+          <img src={backDressMobile} alt='Left image' />
+          <div className='season__inEqualDoubleBg-info'>
             <div>
               <p>{t('loungewear')}</p>
               <p>{t('loungewearDes')}</p>

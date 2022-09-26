@@ -3,13 +3,16 @@
 
 .season__doubleBg {
   display: flex;
-  & .upper {
-    text-transform: uppercase;
+  @include responsive(mobile) {
+    flex-direction: column;
   }
   & .imgLeft, .imgRight {
     display: flex;
     flex-direction: column;
     width: 50%;
+    @include responsive(mobile) {
+      width: 100%;
+    }
     & > p {
       height: 200px;
       text-align: center;
@@ -24,7 +27,11 @@
         font-size: 13px;
       }
       @include responsive(mobile) {
-        display: none;
+        height: 130px;
+        padding: 0 40px;
+        font-size: 12px;
+        line-height: 145%;
+        letter-spacing: 0.05em;
       }
     }
     & > div {
@@ -35,7 +42,7 @@
         height: 800px;
       }
       @include responsive(mobile) {
-        display: none;
+        height: 590px;
       }
       & > a {
         position: absolute;
@@ -57,7 +64,7 @@
           bottom: 50px;
         }
         @include responsive(mobile) {
-          display: none;
+          
         }
         &:hover {
           color: $white;
@@ -70,6 +77,12 @@
         width: 100%;
         height: 100%;
       }
+    }
+  }
+  & .upper {
+    text-transform: uppercase;
+    @include responsive(mobile) {
+      text-transform: capitalize;
     }
   }
 }
