@@ -4,13 +4,10 @@
   box-sizing: border-box;
   padding: 20px;
   margin-top: 20px;
-  & img {
-    position: relative;
-    bottom: 3px;
-    width: 20px;
-    margin-right: 5px;
+  @include responsive(mobile) {
+    padding: 0px;
   }
-  & p {
+  &__title {
     position: relative;
     font-family: 'Sofia Pro';
     font-style: normal;
@@ -23,26 +20,23 @@
     margin-bottom: 15px;
     cursor: pointer;
     @include responsive(mobile) {
-      font-size: 15px;
+      font-size: 14px;
+    }
+    & > img {
+      position: relative;
+      bottom: 3px;
+      width: 20px;
+      margin-right: 5px;
+      @include responsive(mobile) {
+        width: 15px;
+        margin-right: 3px;
+      }
     }
   }
-  & li {
-    list-style: none;
-    margin-left: 40px;
-    font-family: 'Sofia Pro';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
+  &.mobile {
+    display: none;
     @include responsive(mobile) {
-      font-size: 12px;
+      display: block;
     }
-  }
-  & >p {
-    font-family: 'Sofia Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 300%;
-    color: black;
   }
 }

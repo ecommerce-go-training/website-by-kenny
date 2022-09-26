@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
@@ -38,5 +39,15 @@ function Search({ toggle, setToggle }) {
     </div>
   );
 }
+
+Search.defaultProps = {
+  toggle   : false,
+  setToggle: null,
+};
+
+Search.propTypes = {
+  toggle   : PropTypes.bool,
+  setToggle: PropTypes.func,
+};
 
 export default Search;

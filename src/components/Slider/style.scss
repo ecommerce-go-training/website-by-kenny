@@ -20,11 +20,12 @@
 
 .slider {
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 80px;
   @include responsive(tablet) {
     padding: 0 50px;
   }
@@ -33,13 +34,20 @@
     gap: 15px;
   }
   &__arrow {
-    cursor: pointer;
-    width: 15px;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @include responsive(mobile) {
+      width: 15px;
+    }
+    & > img {
+      cursor: pointer;
       width: 15px;
     }
   }
   &__img {
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,32 +58,32 @@
     &.slide-right {
       animation: 0.8s right-slide;
     }
-    & div {
+    & > div {
       & .img-container {
         overflow: hidden;
         width: 340px;
         height: 510px;
         margin-bottom: 20px;
-        @include responsive(tablet) {
-
-        }
-        @include responsive(mobile) {
-          
-        }
-      }
-      & img {
-        width: 100%;
-        height: 100%;
-        transition: all 0.3s;
-        cursor: pointer;
-        &:hover {
-          scale: 1.1;
+        @include responsive(desktop) {
+          width: 100%;
+          height: 400px;
         }
         @include responsive(tablet) {
-
+          width: 100%;
+          height: 220px;
         }
         @include responsive(mobile) {
-
+          width: 100%;
+          height: auto;
+        }
+        & > img {
+          width: 100%;
+          height: 100%;
+          transition: all 0.3s;
+          cursor: pointer;
+          &:hover {
+            scale: 1.1;
+          }
         }
       }
       & .description {
@@ -87,6 +95,14 @@
         display: flex;
         letter-spacing: 0.12em;
         text-transform: uppercase;
+        @include responsive(tablet) {
+          font-size: 12px;
+          letter-spacing: 0.11em;
+        }
+        @include responsive(mobile) {
+          font-size: 11px;
+          letter-spacing: 0.1em;
+        }
       }
     }
   }

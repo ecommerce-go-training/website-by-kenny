@@ -61,15 +61,15 @@ function Footer() {
         <div className='footer__about'>
           <p className='title'>about</p>
           <Stack col>
-            <Link to='/'>brand</Link>
-            <Link to='/'>store locator</Link>
+            <Link to='/brand'>brand</Link>
+            <Link to='/store'>store locator</Link>
           </Stack>
         </div>
         <div className='footer__customer'>
           <p className='title'>customer care</p>
           <Stack col>
             <Link to='/'>faq</Link>
-            <Link to='/'>sizing</Link>
+            <Link to='/size'>sizing</Link>
             <Link to='/'>shipping & returns</Link>
             <Link to='/'>terms & conditions</Link>
             <Link to='/'>privacy policy</Link>
@@ -105,25 +105,25 @@ function Footer() {
         style={{ display: mobileCheck ? 'flex' : 'none' }}
       >
         <Collapse label='FOLLOW US'>
-          <p>FACEBOOK</p>
-          <p>INSTAGRAM</p>
-          <p>PINTEREST</p>
-          <p>TIKTOK</p>
+          <Link to='/'>FACEBOOK</Link>
+          <Link to='/'>INSTAGRAM</Link>
+          <Link to='/'>PINTEREST</Link>
+          <Link to='/'>TIKTOK</Link>
         </Collapse>
         <div className='line'></div>
         <Collapse label='ABOUT'>
-          <p>BRAND</p>
-          <p>STORE LOCATOR</p>
+          <Link to='/brand'>BRAND</Link>
+          <Link to='/store'>STORE LOCATOR</Link>
         </Collapse>
         <div className='line'></div>
         <Collapse label={'CUSTOMER CARE'}>
-          <p>FAQ</p>
-          <p>SIZING</p>
-          <p>SHIPPING & RETURNS</p>
-          <p>TERMS & CONDITIONS</p>
-          <p>PRIVACY POLICY</p>
-          <p>GARMENT CARE</p>
-          <p>MAKE A RETURN</p>
+          <Link to='/'>FAQ</Link>
+          <Link to='/size'>SIZING</Link>
+          <Link to='/'>SHIPPING & RETURNS</Link>
+          <Link to='/'>TERMS & CONDITIONS</Link>
+          <Link to='/'>PRIVACY POLICY</Link>
+          <Link to='/'>GARMENT CARE</Link>
+          <Link to='/'>MAKE A RETURN</Link>
         </Collapse>
         <div className='line'></div>
         <div className='mobile-footer__info'>

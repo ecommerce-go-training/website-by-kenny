@@ -20,47 +20,89 @@
     position: relative;
     margin-top: 30px;
     z-index: 0;
-    & img {
-      width: 100vw;  
-      max-width: 100%;
-      object-fit: contain;
+    &-img {
+      width: 100%;
+      overflow: hidden;
+      @include responsive(mobile) {
+        height: 70vh;
+      }
+      & > img {
+        width: 100vw;  
+        max-width: 100%;
+        object-fit: fit;
+        @include responsive(mobile) {
+          height: 100%;
+          transform: scaleX(2);
+        }
+      }
     }
     &-intro {
       position: absolute;
       width: 100%;
       bottom: 60px;
-      & .title, & .description, & a {
-        color: $white;
-        font-family: 'Sofia Pro';
-        font-style: normal;
-        text-align: center;
+      @include responsive(tablet) {
+        bottom: 25px;
       }
-      & .title {
-        font-weight: 500;
-        font-size: 40px;
-        line-height: 120%;
-        letter-spacing: 0.15em;
-        text-transform: capitalize;
+      @include responsive(mobile) {
+        bottom: 15px;
       }
-      & .description {
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 150%;
-        letter-spacing: 0.05em;
-        margin: 50px 0px;
-        @include responsive(mobile) {
-          display: none;
+      & > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+        & .title, & .description, & a {
+          color: $white;
+          font-family: 'Sofia Pro';
+          font-style: normal;
+          text-align: center;
         }
-      }
-      & a {
-        text-decoration: none;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 128%;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        padding-bottom: 1px;
-        border-bottom: 1px solid $white;
+        & .title {
+          font-weight: 500;
+          font-size: 40px;
+          line-height: 120%;
+          letter-spacing: 0.15em;
+          text-transform: capitalize;
+          @include responsive(tablet) {
+            font-size: 30px;
+          }
+          @include responsive(mobile) {
+            font-size: 20px;
+            margin-bottom: 5px;
+          }
+        }
+        & .description {
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 150%;
+          letter-spacing: 0.05em;
+          margin: 50px 0px;
+          @include responsive(tablet) {
+            margin: 25px;
+            font-size: 12px;
+          }
+          @include responsive(mobile) {
+            display: none;
+          }
+        }
+        & a {
+          text-decoration: none;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 128%;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          padding-bottom: 1px;
+          border-bottom: 1px solid $white;
+          @include responsive(tablet) {
+            font-size: 14px;
+          }
+          @include responsive(mobile) {
+            font-size: 10px;
+            padding-bottom: 0.5px;
+          }
+        }
       }
     }
   }
@@ -69,6 +111,14 @@
     display: flex;
     flex-direction: column;
     gap: 70px;
+    @include responsive(tablet) {
+
+    }
+    @include responsive(mobile) {
+      margin-top: 30px;
+      margin-bottom: 20px;
+      gap: 30px;
+    }
     & .switch {
       text-decoration: none;
       font-weight: 400;
@@ -79,17 +129,28 @@
       color: $very-light-grey;
       cursor: pointer;
       @include responsive(tablet) {
-        color: green;
+        font-size: 14px;
       }
       @include responsive(mobile) {
-
+        font-size: 12px;
       }
     }
   }
   &__doublebg {
+    box-sizing: border-box;
     display: flex;
-    & img {
-      width: 100%;
+    width: 100%;
+    @include responsive(mobile) {
+      padding: 0 10px;
+      flex-direction: column;
+      gap: 30px;
+    }
+    & > img {
+      width: 50%;
+      @include responsive(mobile) {
+        width: 100%;
+        height: auto;
+      }
     }
   }
   &__follow {
@@ -107,15 +168,25 @@
     &:hover {
       opacity: 0.8;
     }
+    @include responsive(mobile) {
+      display: none;
+    }
   }
   &__social {
+    width: 100%;
     display: flex;
     margin-bottom: 70px;
     & > div {
-      flex: 1;
+      width: 20%;
       height: 330px;
       overflow: hidden;
-      & img {
+      @include responsive(tablet) {
+        height: auto;
+      }
+      @include responsive(mobile) {
+        display: none;
+      }
+      & > img {
         width: 100%;
         height: 100%;
         transition: 0.2s all;

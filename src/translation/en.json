@@ -1,5 +1,31 @@
 {
-  "Greet": "Hello",
-  "Description": "Roses are red, violets are blue",
-  "Poet": "Let me love you"
+  "Components": {
+
+    "Header": {
+      "new arrivals": "new arrivals",
+      "shop winter": "Shop winter",
+      "shop": "shop",
+      "about": "about",
+      "fall winter": "fall winter",
+      "account": "Account",
+      "log in": "Log in"
+    }
+  },
+  "Pages": {
+
+    "Home": {
+      "description1": "The Resort 2021 collection is a love letter to our youth. Discover the",
+      "description2": "beauty of blooming flowers under the blue sky and sunny",
+      "explore": "explore the collection"
+    },
+
+    "SignIn": {
+      "title": "sign in",
+      "email": "email",
+      "password": "password",
+      "resetPsw": "Forgot your password ?",
+      "submit": "submit",
+      "signup": "sign up"
+    }
+  }
 }

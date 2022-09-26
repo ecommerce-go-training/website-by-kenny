@@ -22,9 +22,9 @@ function Slider({ imgList, shiftImg }) {
 
   useEffect(() => {
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 1300) setImgToShow(3);
+      if (window.innerWidth < 900) setImgToShow(3);
       if (window.innerWidth < 738) setImgToShow(1);
-      else setImgToShow(4);
+      if (window.innerWidth > 900) setImgToShow(4);
     });
   });
 
@@ -56,17 +56,12 @@ function Slider({ imgList, shiftImg }) {
     .slice(currentIndex, currentIndex + imgToShow)
     .concat(res.slice(imgList.length - (currentIndex + imgToShow)));
 
-  console.log('direction', direction);
-
   return (
   //mathrandom to trigger css animation each time compoent rerender
     <div key={Math.random()} className='slider'>
-      <img
-        className='slider__arrow'
-        onClick={handleLeft}
-        src={leftArrow}
-        alt='left arrow'
-      />
+      <div className='slider__arrow'>
+        <img onClick={handleLeft} src={leftArrow} alt='left arrow' />
+      </div>
       <div className={slide} ref={sliderRef}>
         {result.slice(0, imgToShow).map((item, index) => (
           <div key={index}>
@@ -78,12 +73,9 @@ function Slider({ imgList, shiftImg }) {
           </div>
         ))}
       </div>
-      <img
-        className='slider__arrow'
-        onClick={handleRight}
-        src={rightArrow}
-        alt='right arrow'
-      />
+      <div className='slider__arrow'>
+        <img onClick={handleRight} src={rightArrow} alt='right arrow' />
+      </div>
     </div>
   );
 }

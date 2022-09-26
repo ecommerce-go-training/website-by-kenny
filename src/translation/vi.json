@@ -1,5 +1,31 @@
 {
-  "Greet": "Xin chao",
-  "Description": "Hoa Hong mau do, hoa violet mau xanh",
-  "Poet": "Yeu toi diiiii"
+  "Components": {
+
+    "Header": {
+      "new arrivals": "hàng mới về",
+      "shop winter": "đồ mùa đông",
+      "shop": "cửa hàng",
+      "about": "thông tin",
+      "fall winter": "thu đông",
+      "account": "Tài Khoản",
+      "log in": "Đăng nhập"
+    }
+  },
+  "Pages": {
+
+    "Home": {
+      "description1": "Bộ sưu tập nghỉ dưỡng 2021 là một lá thư tình gửi đến tuối trẻ của chúng ta",
+      "description2": "Hãy khám phá vẻ đẹp của những bông hoa đang nở dưới ánh bầu trời xanh và nắng",
+      "explore": "khám phá bộ sưu tầm"
+    },
+
+    "SignIn": {
+      "title": "Đăng nhập",
+      "email": "email",
+      "password": "Mật khẩu",
+      "resetPsw": "Quên mật khẩu ?",
+      "submit": "Xác nhận",
+      "signup": "Đăng kí"
+    }
+  }
 }

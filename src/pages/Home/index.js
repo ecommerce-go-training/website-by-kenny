@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 
 import React, { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Stack from 'components/Stack';
@@ -31,6 +33,7 @@ import {
 import './style.scss';
 
 function Home() {
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Home' });
   const navigate = useNavigate();
   const imgList = [
     beachEdit1,
@@ -45,32 +48,28 @@ function Home() {
 
   const [active, setActive] = useState(true);
   const toggleOn = classNames({
-    active  : active,
-    inactive: !active,
+    active: active,
   });
   const toggleOff = classNames({
-    active  : !active,
-    inactive: active,
+    active: !active,
   });
-
-  console.log('home render');
 
   return (
     <div>
       <Header />
       <div className='home'>
         <div className='home__background'>
-          <img src={background} alt='background img' />
+          <div className='home__background-img'>
+            <img src={background} alt='background img' />
+          </div>
           <div className='home__background-intro'>
-            <Stack col center>
+            <div>
               <p className='title'>&#39;ÉLEMUSH AURA&#39;</p>
               <p className='description'>
-								The Resort 2021 collection is a love letter to our youth.
-								Discover the <br />
-								beauty of blooming flowers under the blue sky and sunny
+                {t('description1')} <br /> {t('description2')}
               </p>
-              <Link to='/'>explore the collection</Link>
-            </Stack>
+              <Link to='/'>{t('explore')}</Link>
+            </div>
           </div>
         </div>
         <div className='home__slider'>
@@ -79,13 +78,13 @@ function Home() {
               onClick={() => setActive(true)}
               className={classNames('switch', toggleOn)}
             >
-							shop new arrivals
+              {window.innerWidth < 737 ? 'new arrivals' : 'shop new arrivals'}
             </p>
             <p
               onClick={() => setActive(false)}
               className={classNames('switch', toggleOff)}
             >
-							shop best seller
+              {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
           <Slider imgList={imgList} />

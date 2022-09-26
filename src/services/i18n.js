@@ -2,21 +2,21 @@ import i18n from 'i18next';
 
 import { initReactI18next } from 'react-i18next';
 
-import { English, Vietnamese } from 'translation';
+import { en, vi } from 'translation';
 
 const resources = {
   en: {
-    translation: English,
+    translation: en,
   },
   vi: {
-    translation: Vietnamese,
+    translation: vi,
   },
 };
 
 i18n.use(initReactI18next).init({
   resources,
   lng          : 'en',
-  keySeparator : false,
+  //keySeparator : false,
   interpolation: {
     escapeValue: false,
   },
