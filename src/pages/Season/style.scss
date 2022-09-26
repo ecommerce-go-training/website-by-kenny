@@ -94,77 +94,134 @@
       }
     }
   }
-  &__doubleBg {
+  &__inequalDoubleBg {
+    width: 100%;
     display: flex;
-    & .imgLeft {
-      & > p {
-        text-transform: uppercase;
-      }
+    height: 960px;
+    @include responsive(tablet) {
+      height: 700px;
     }
-    & .imgLeft, .imgRight {
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-      & > p {
-        height: 200px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 120px;
-        font-size: 16px;
-        @include responsive(tablet) {
-          height: 150px;
-          padding: 0 40px;
-          font-size: 13px;
-        }
-        @include responsive(mobile) {
-          display: none;
-        }
+    & > img {
+      width: 65%;
+      height: 100%;
+    }
+    &-info {
+      position: relative;
+      width: 35%;
+      height: 100%;
+      & > img {
+        width: 100%;
+        height: 100%;
       }
       & > div {
-        position: relative;
-        width: 100%;
-        height: 1100px;
+        background-color: $transparent;
+        box-sizing: border-box;
+        position: absolute;
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+        bottom: 31%;
+        left: 20%;
         @include responsive(tablet) {
-          height: 800px;
+          width: 80%;
+          left: 10%;
+          bottom: 20%;
         }
-        @include responsive(mobile) {
-          display: none;
+        & .discover-button {
+          width: 50%;
         }
-        & > a {
-          position: absolute;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          bottom: 60px;
-          right: 0;
-          left: 0;
-          text-decoration: none;
-          color: $black;
-          font-size: 12px;
-          line-height: 100%;
-          letter-spacing: 0.15em;
+        & > p:first-child {
+          color: $white;
+          font-size: 50px;
+          line-height: 120%;
           text-transform: uppercase;
           @include responsive(tablet) {
+            font-size: 30px;
+          }
+        }
+        & > p:nth-child(2) {
+          color: $white;
+          font-size: 12px;
+          line-height: 145%;
+          letter-spacing: 0.05em;
+          margin-bottom: 30px;
+          @include responsive(tablet) {
             font-size: 11px;
-            bottom: 50px;
-          }
-          @include responsive(mobile) {
-            display: none;
-          }
-          &:hover {
-            color: $white;
-          }
-          & > img {
-            width: 30px;
+            margin-bottom: 10px;
           }
         }
-        & > img {
-          width: 100%;
-          height: 100%;
+      }
+    }
+  }
+  &__comeJoin {
+    text-align: center;
+    padding: 80px 0;
+    font-size: 18px;
+    line-height: 120%;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $black;
+  }
+  &__social {
+    display: flex;
+    & > div {
+      width: 20%;
+      height: 320px;
+      overflow: hidden;
+      @include responsive(tablet) {
+        height: auto;
+      }
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: fit;
+        transition: 0.3s all;
+        transition-delay: 0.1s;
+        cursor: pointer;
+        &:hover {
+          scale: 1.1;
         }
+      }
+    }
+  }
+  &__signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 115px 0;
+    gap: 30px;
+    @include responsive(tablet) {
+      padding: 70px 0;
+      gap: 25px;
+    }
+    & > p:first-child {
+      font-size: 20px;
+      line-height: 120%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: $black;
+      @include responsive(tablet) {
+        font-size: 18px;
+      }
+    }
+    & > p:nth-child(2) {
+      font-size: 15px;
+      line-height: 120%;
+      letter-spacing: 0.05em;
+      color: $black;
+      @include responsive(tablet) {
+        font-size: 13px;
+      }
+    }
+    & > div {
+      width: 15%;
+      & .signup-label {
+        font-size: 15px;
+        line-height: 120%;
+        text-align: center;
+        text-transform: uppercase;
+        color: $white;
       }
     }
   }
