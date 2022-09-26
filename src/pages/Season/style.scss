@@ -1,0 +1,171 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables.scss';  
+
+.season {
+  box-sizing: border-box;
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 400;
+  &__bg {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    margin-top: 30px;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    & > img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    &-intro {
+      background-color: $transparent;
+      width: 23%;
+      right: 18vw;
+      color: $white;  
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      @include responsive(tablet) {
+        width: 50%;
+        right: 8vw;
+        bottom: 10vh;
+      }
+      @include responsive(mobile) {
+        gap: 0;
+        width: 100%;
+        bottom: 2vh;
+        right: 0;
+        left: 0;
+      }
+      & > p:first-child {
+        text-transform: uppercase;
+        font-size: 16px;
+        line-height: 128%;
+        letter-spacing: 0.15em;
+        @include responsive(tablet) {
+          font-size: 14px;
+        }
+        @include responsive(mobile) {
+          font-size: 12px;
+        }
+      }
+      & > p:nth-child(2) {
+        text-transform: uppercase;
+        font-size: 50px;
+        line-height: 120%;
+        @include responsive(tablet) {
+          font-size: 30px;
+        }
+        @include responsive(mobile) {
+          font-size: 20px;
+        }
+      }
+      & > p:nth-child(3) {
+        text-align: center;
+        font-size: 12px;
+        line-height: 145%;
+        letter-spacing: 0.05em;
+        @include responsive(tablet) {
+          font-size: 11px;
+        }
+        @include responsive(mobile) {
+          display: none;
+        }
+      } 
+      & > div {
+        margin-top: 10px;
+        width: 45%;
+        @include responsive(mobile) {
+          margin-top: 5px;
+          width: 30%;
+        }
+      }
+    }
+  }
+  &__doubleBg {
+    display: flex;
+    & .imgLeft {
+      & > p {
+        text-transform: uppercase;
+      }
+    }
+    & .imgLeft, .imgRight {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      & > p {
+        height: 200px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 120px;
+        font-size: 16px;
+        @include responsive(tablet) {
+          height: 150px;
+          padding: 0 40px;
+          font-size: 13px;
+        }
+        @include responsive(mobile) {
+          display: none;
+        }
+      }
+      & > div {
+        position: relative;
+        width: 100%;
+        height: 1100px;
+        @include responsive(tablet) {
+          height: 800px;
+        }
+        @include responsive(mobile) {
+          display: none;
+        }
+        & > a {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          bottom: 60px;
+          right: 0;
+          left: 0;
+          text-decoration: none;
+          color: $black;
+          font-size: 12px;
+          line-height: 100%;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          @include responsive(tablet) {
+            font-size: 11px;
+            bottom: 50px;
+          }
+          @include responsive(mobile) {
+            display: none;
+          }
+          &:hover {
+            color: $white;
+          }
+          & > img {
+            width: 30px;
+          }
+        }
+        & > img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

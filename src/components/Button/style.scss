@@ -14,7 +14,17 @@
   letter-spacing: 0.15em;
   cursor: pointer;
   width: 100%;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  &.smallPad {
+    padding: 10px 5px 5px 5px;
+  }
+  &.whiteBg {
+    background-color: $white;
+    color: $black;
+  }
   &:hover {
     opacity: 0.8;
   }

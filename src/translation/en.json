@@ -28,6 +28,17 @@
       "signup": "sign up"
     },
 
+    "Season": {
+      "smallTitle": "fall/winter 2022",
+      "bigTitle": "fall winter",
+      "intro": "The Resort 2021 collection is a love letter to our youth. Discover the beauty of blooming flowers under the blue sky and sunny",
+      "headerLeft": "fall/winter 21 E",
+      "footerRight": "This season is the first time we've brought our nostalgia into it with nature, friends, and flowers. We miss the feeling of lying on the hillside, listening to the waves, and feeling our souls soften through the sunset. ",
+      "newMiniDress": "new in minidress",
+      "newTop": "new in top",
+      "shopTheLook": "shop the look"
+    },
+
     "CustomerSupport": {
       "Faq": {
         "question1": "WHAT CURRENCY IS USED ONLINE?",
