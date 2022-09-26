@@ -1,0 +1,26 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
+.mobileTitle {
+  display: none;
+  text-transform: uppercase;
+  font-family: 'Sofia Pro';
+  margin-bottom: 20px !important;
+  @include responsive(mobile) {
+    display: block;
+  }
+  &-title {
+    text-align: center;
+    font-size: 28px !important;
+    margin-bottom: 20px;
+  }
+  &-path {
+    margin: 0 !important;
+    padding-left: 20px !important;
+    font-size: 12px !important;
+    color: $very-light-grey !important;
+    & > span {
+      color: $black !important;
+    }
+  }
+}

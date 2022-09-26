@@ -1,4 +1,5 @@
-@import 'assets/scss/mixins.scss';
+@import 'assets/scss/mixins';
+@import 'assets/scss/variables';
 
 .collapse {
   box-sizing: border-box;
@@ -8,19 +9,23 @@
     padding: 0px;
   }
   &__title {
+    text-transform: uppercase;
     position: relative;
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 26px;
     letter-spacing: 0.05em;
     display: flex;
     align-items: center;
     gap: 5px;
     margin-bottom: 15px;
     cursor: pointer;
+    @include responsive(tablet) {
+      font-size: 24px;
+    }
     @include responsive(mobile) {
-      font-size: 14px;
+      font-size: 16px;
     }
     & > img {
       position: relative;
@@ -37,6 +42,22 @@
     display: none;
     @include responsive(mobile) {
       display: block;
+    }
+  }
+  &.line {
+    padding: 10px 20px;
+    width: 90%;
+    border-bottom: 0.25px dashed $very-light-grey;
+    @include responsive(mobile) {
+      width: 100%;
+    }
+  }
+  &.lineTop {
+    padding: 20px 10px 5px 20px;
+    margin-top: 0;
+    border-top: 0.25px dashed $very-light-grey;
+    @include responsive(mobile) {
+      width: 100%;
     }
   }
 }

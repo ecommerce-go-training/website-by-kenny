@@ -1,0 +1,62 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
+.shipbill {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    align-self: center;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $black;
+    height: 1px;
+    margin-bottom: 20px;
+    &.disable {
+      display: none;
+    }
+    & > div {
+      padding: 0 7vw;
+      background-color: white;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 100%;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: $black;
+    }
+  }
+  &__bill {
+    box-sizing: border-box;
+    background-color: $blur-very-light-grey;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      font-family: 'Sofia Pro';
+      font-style: normal;
+      font-weight: 400;
+      & .shipbill__bill-header {
+        font-size: 11px;
+        line-height: 150%;
+        color: $dark-grey;
+      }
+      & .shipbill__bill-info {
+        width: 50%;
+        font-size: 14px;
+        line-height: 128%;
+        letter-spacing: 0.15em;
+        color: $black;
+      }
+    }
+  }
+}

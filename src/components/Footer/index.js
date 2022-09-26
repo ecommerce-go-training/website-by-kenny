@@ -68,13 +68,13 @@ function Footer() {
         <div className='footer__customer'>
           <p className='title'>customer care</p>
           <Stack col>
-            <Link to='/'>faq</Link>
+            <Link to='/customerSupport'>faq</Link>
             <Link to='/size'>sizing</Link>
-            <Link to='/'>shipping & returns</Link>
-            <Link to='/'>terms & conditions</Link>
-            <Link to='/'>privacy policy</Link>
-            <Link to='/'>garment care</Link>
-            <Link to='/'>make a return</Link>
+            <Link to='/customerSupport'>shipping & returns</Link>
+            <Link to='/customerSupport'>terms & conditions</Link>
+            <Link to='/customerSupport'>privacy policy</Link>
+            <Link to='/customerSupport'>garment care</Link>
+            <Link to='/customerSupport'>make a return</Link>
           </Stack>
         </div>
         <div className='footer__contact'>
@@ -104,27 +104,33 @@ function Footer() {
         direction='column'
         style={{ display: mobileCheck ? 'flex' : 'none' }}
       >
-        <Collapse label='FOLLOW US'>
-          <Link to='/'>FACEBOOK</Link>
-          <Link to='/'>INSTAGRAM</Link>
-          <Link to='/'>PINTEREST</Link>
-          <Link to='/'>TIKTOK</Link>
-        </Collapse>
+        <div className='mobile-footer-collapse'>
+          <Collapse label='FOLLOW US'>
+            <Link to='/'>FACEBOOK</Link>
+            <Link to='/'>INSTAGRAM</Link>
+            <Link to='/'>PINTEREST</Link>
+            <Link to='/'>TIKTOK</Link>
+          </Collapse>
+        </div>
         <div className='line'></div>
-        <Collapse label='ABOUT'>
-          <Link to='/brand'>BRAND</Link>
-          <Link to='/store'>STORE LOCATOR</Link>
-        </Collapse>
+        <div className='mobile-footer-collapse'>
+          <Collapse label='ABOUT'>
+            <Link to='/brand'>BRAND</Link>
+            <Link to='/store'>STORE LOCATOR</Link>
+          </Collapse>
+        </div>
         <div className='line'></div>
-        <Collapse label={'CUSTOMER CARE'}>
-          <Link to='/'>FAQ</Link>
-          <Link to='/size'>SIZING</Link>
-          <Link to='/'>SHIPPING & RETURNS</Link>
-          <Link to='/'>TERMS & CONDITIONS</Link>
-          <Link to='/'>PRIVACY POLICY</Link>
-          <Link to='/'>GARMENT CARE</Link>
-          <Link to='/'>MAKE A RETURN</Link>
-        </Collapse>
+        <div className='mobile-footer-collapse'>
+          <Collapse label={'CUSTOMER CARE'}>
+            <Link to='/'>FAQ</Link>
+            <Link to='/size'>SIZING</Link>
+            <Link to='/'>SHIPPING & RETURNS</Link>
+            <Link to='/'>TERMS & CONDITIONS</Link>
+            <Link to='/'>PRIVACY POLICY</Link>
+            <Link to='/'>GARMENT CARE</Link>
+            <Link to='/'>MAKE A RETURN</Link>
+          </Collapse>
+        </div>
         <div className='line'></div>
         <div className='mobile-footer__info'>
           <Link to='/'>

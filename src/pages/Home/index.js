@@ -9,6 +9,7 @@ import Stack from 'components/Stack';
 import Button from 'components/Button';
 import Header from 'components/Header';
 import Slider from 'components/Slider';
+import Slider2 from 'components/sliderv2';
 import Footer from 'components/Footer';
 
 import {
@@ -87,7 +88,7 @@ function Home() {
               {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
-          <Slider imgList={imgList} />
+          <Slider2 imgList={imgList} />
         </div>
         <div className='home__doublebg'>
           <img src={subBg1} alt='Knitwear bg img' />
