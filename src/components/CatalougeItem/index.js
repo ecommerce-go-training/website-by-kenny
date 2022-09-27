@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { plus } from 'assets/images';
 
 import './style.scss';
 
 function CatalougeItem({ data }) {
+  const navigate = useNavigate();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.CatalougeItem',
   });
@@ -15,7 +17,11 @@ function CatalougeItem({ data }) {
     <div className='cataItem'>
       <div className='img-container'>
         <div className='item-img'>
-          <img src={data.img} alt='Item image' />
+          <img
+            onClick={() => navigate('/details')}
+            src={data.img}
+            alt='Item image'
+          />
         </div>
         <div className='item-add'>
           <div>
