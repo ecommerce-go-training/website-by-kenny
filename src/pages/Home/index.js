@@ -107,19 +107,19 @@ function Home() {
         </Link>
         <div className='home__social'>
           <div>
-            <img src={model1} alt='model info' />
+            <img src={riderOoo} alt='model info' />
           </div>
           <div>
             <img src={riderBuild} alt='model info' />
           </div>
           <div>
-            <img src={riderOoo} alt='model info' />
-          </div>
-          <div>
-            <img src={riderW} alt='model info' />
+            <img src={model1} alt='model info' />
           </div>
           <div>
             <img src={model2} alt='model info' />
+          </div>
+          <div>
+            <img src={riderW} alt='model info' />
           </div>
         </div>
         <div className='home__signup'>
