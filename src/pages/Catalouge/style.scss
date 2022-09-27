@@ -1,0 +1,22 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
+.catalouge {
+  width: 100vw;
+  max-width: 100%;
+  margin-top: 130px;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  @include responsive(mobile) {
+    margin-top: 100px;
+  }
+  &__filter {
+    flex: 1;
+    background-color: green;
+  }
+  &__items {
+    flex: 3;
+    background-color: blue;
+  }
+}

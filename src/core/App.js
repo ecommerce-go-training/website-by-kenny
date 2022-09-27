@@ -8,8 +8,9 @@ import Brand from 'pages/Brand';
 import Season from 'pages/Season';
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
-import Resetpsw from 'pages/Resetpassword';
 import Store from 'pages/Store';
+import Catalouge from 'pages/Catalouge';
+import Resetpsw from 'pages/Resetpassword';
 import ScrollToTop from 'components/ScrollToTop';
 import Size from 'pages/CustomerSupport/SizeGuide';
 import CustomerSupport from 'pages/CustomerSupport';
@@ -34,6 +35,7 @@ function App() {
               <Route path='/size' element={<Size />} />
               <Route path='/season' element={<Season />} />
               <Route path='/customerSupport' element={<CustomerSupport />} />
+              <Route path='/catalouge' element={<Catalouge />} />
             </Routes>
           </ScrollToTop>
         </Router>
