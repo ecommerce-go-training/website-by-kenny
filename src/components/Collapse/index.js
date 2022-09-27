@@ -9,8 +9,8 @@ import { plus, minus } from 'assets/images/index';
 
 import './style.scss';
 
-function Collapse({ label, children, mobile, line, lineTop }) {
-  const [toggle, setToggle] = useState(true);
+function Collapse({ label, children, mobile, line, lineTop, filterCollapse }) {
+  const [toggle, setToggle] = useState(filterCollapse ? false : true);
   const handleClick = () => {
     setToggle(!toggle);
   };
@@ -19,15 +19,19 @@ function Collapse({ label, children, mobile, line, lineTop }) {
     mobile  : mobile,
     line    : line,
     lineTop : lineTop,
+    normal  : filterCollapse,
   });
 
   return (
     <div className={classes}>
-      <label className='collapse__title' onClick={handleClick}>
+      <label
+        className={classNames('collapse__title', { small: filterCollapse })}
+        onClick={handleClick}
+      >
         <img src={toggle ? plus : minus} alt='plus, minus icon' />
         {label}
       </label>
-      <Stack col disable={toggle}>
+      <Stack col colWrap={filterCollapse} disable={toggle}>
         {children}
       </Stack>
     </div>
@@ -35,17 +39,19 @@ function Collapse({ label, children, mobile, line, lineTop }) {
 }
 
 Collapse.defaultProps = {
-  label  : 'Add label',
-  mobile : false,
-  line   : false,
-  lineTop: false,
+  label         : 'Add label',
+  mobile        : false,
+  line          : false,
+  lineTop       : false,
+  filterCollapse: false,
 };
 
 Collapse.proptypes = {
-  label  : PropTypes.string,
-  mobile : PropTypes.bool,
-  line   : PropTypes.bool,
-  lineTop: PropTypes.bool,
+  label         : PropTypes.string,
+  mobile        : PropTypes.bool,
+  line          : PropTypes.bool,
+  lineTop       : PropTypes.bool,
+  filterCollapse: PropTypes.bool,
 };
 
 export default memo(Collapse);

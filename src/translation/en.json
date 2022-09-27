@@ -24,7 +24,7 @@
       "jumpsuits": "jumpsuits",
       "two piece sets": "two piece sets",
       "sales": "sale",
-      "collection": "collections",
+      "collections": "collections",
       "essentials edit": "essentials edit",
       "spring summer": "spring summer 2021",
       "fall winter" : "fall winter 2020",
@@ -53,8 +53,14 @@
       "best sellers": "best sellers",
       "price highest": "price highest",
       "price lowest": "price lowest"
+    },
+
+    "CatalougeItem" : {
+      "quick add": "quick add",
+      "$" : "$"
     }
   },
+  
   "Pages": {
 
     "Home": {
