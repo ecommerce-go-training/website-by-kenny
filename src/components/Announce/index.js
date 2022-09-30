@@ -7,29 +7,24 @@ import { ONE_SECOND } from 'utils/constants';
 
 import './style.scss';
 
-function Announce({ disable }) {
-  const classes = classNames({
-    announce: true,
-    active  : disable,
-  });
-
-  const [info, setInfo] = useState('free shipping in vietnam');
+function Announce({ disable = false }) {
+  const [label, setLabel] = useState('free shipping in vietnam');
 
   useEffect(() => {
-    const interval1 = setInterval(() => {
-      setInfo('free shipping for international orders over 500$');
+    const showInternationalShipping = setInterval(() => {
+      setLabel('free shipping for international orders over 500$');
     }, ONE_SECOND * 4);
 
-    const interval2 = setInterval(() => {
-      setInfo('free shipping in vietnam');
+    const ShowVietnamShipping = setInterval(() => {
+      setLabel('free shipping in vietnam');
     }, ONE_SECOND * 8);
 
-    return () => clearInterval(interval1, interval2);
+    return () => clearInterval(showInternationalShipping, ShowVietnamShipping);
   }, []);
 
   return (
-    <div className={classes}>
-      <p>{info}</p>
+    <div className={classNames('announce', { active: disable })}>
+      <p>{label}</p>
     </div>
   );
 }

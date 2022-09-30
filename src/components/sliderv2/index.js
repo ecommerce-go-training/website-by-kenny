@@ -29,7 +29,7 @@ function Slider2({ imgList }) {
             <div className='slider__item-img'>
               <img
                 onClick={() =>
-                  navigate('details', {
+                  navigate('/details', {
                     state: {
                       img        : item,
                       name       : item.name || 'add name',

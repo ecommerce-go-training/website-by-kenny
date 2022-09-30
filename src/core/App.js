@@ -1,3 +1,4 @@
+import 'services/i18n';
 import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
@@ -24,7 +25,7 @@ import 'assets/scss/global.scss';
 function App() {
   return (
     <Provider store={store}>
-      <Suspense fallback='loading'>
+      <Suspense fallback={<p>Loading</p>}>
         <Router>
           <ScrollToTop>
             <Routes>
