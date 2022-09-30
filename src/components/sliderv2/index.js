@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import React, { useRef } from 'react';
 
 import { plus, leftArrow, rightArrow } from 'assets/images';
@@ -6,6 +7,7 @@ import { plus, leftArrow, rightArrow } from 'assets/images';
 import './style.scss';
 
 function Slider2({ imgList }) {
+  const navigate = useNavigate();
   const sliderItem = useRef(null);
 
   const handleClick = () => {
@@ -25,7 +27,23 @@ function Slider2({ imgList }) {
         {imgList.map((item, index) => (
           <div key={index} className='slider__item'>
             <div className='slider__item-img'>
-              <img src={item} alt='item img' />
+              <img
+                onClick={() =>
+                  navigate('details', {
+                    state: {
+                      img        : item,
+                      name       : item.name || 'add name',
+                      price      : item.price || 'add price',
+                      catalouge  : item.catalouge || 'add catalouge',
+                      description: item.description || 'add des',
+                      care       : item.care || 'add garment care',
+                      details    : item.details || 'add item details',
+                    },
+                  })
+                }
+                src={item}
+                alt='item img'
+              />
               <div>
                 <img src={plus} alt='icon img' />
                 <p>more info</p>

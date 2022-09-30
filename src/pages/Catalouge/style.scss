@@ -13,6 +13,13 @@
   }
   &__filter {
     flex: 1;
+    & .filter__items {
+      width: max-content;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
   &__items {
     flex: 3;

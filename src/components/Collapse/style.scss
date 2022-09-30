@@ -11,6 +11,7 @@
     padding: 0px;
   }
   &__title {
+    width: max-content;
     text-transform: uppercase;
     position: relative;
     font-family: 'Sofia Pro';
@@ -75,5 +76,12 @@
   &.normal {
     padding: 0 !important;
     margin-top: 0 !important;
+  }
+  &.smallLabel {
+    margin: 0;
+    padding: 10px;
+    & > label {
+      font-size: 16px;
+    }
   }
 }

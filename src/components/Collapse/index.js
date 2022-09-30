@@ -9,17 +9,26 @@ import { plus, minus } from 'assets/images/index';
 
 import './style.scss';
 
-function Collapse({ label, children, mobile, line, lineTop, filterCollapse }) {
+function Collapse({
+  label,
+  children,
+  mobile,
+  line,
+  lineTop,
+  filterCollapse,
+  smallLabel,
+}) {
   const [toggle, setToggle] = useState(filterCollapse ? false : true);
   const handleClick = () => {
     setToggle(!toggle);
   };
   const classes = classNames({
-    collapse: true,
-    mobile  : mobile,
-    line    : line,
-    lineTop : lineTop,
-    normal  : filterCollapse,
+    collapse  : true,
+    mobile    : mobile,
+    line      : line,
+    lineTop   : lineTop,
+    normal    : filterCollapse,
+    smallLabel: smallLabel,
   });
 
   return (
@@ -44,6 +53,7 @@ Collapse.defaultProps = {
   line          : false,
   lineTop       : false,
   filterCollapse: false,
+  small         : false,
 };
 
 Collapse.proptypes = {
@@ -52,6 +62,7 @@ Collapse.proptypes = {
   line          : PropTypes.bool,
   lineTop       : PropTypes.bool,
   filterCollapse: PropTypes.bool,
+  small         : PropTypes.bool,
 };
 
 export default memo(Collapse);

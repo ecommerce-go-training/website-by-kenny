@@ -18,7 +18,19 @@ function CatalougeItem({ data }) {
       <div className='img-container'>
         <div className='item-img'>
           <img
-            onClick={() => navigate('/details')}
+            onClick={() =>
+              navigate('/details', {
+                state: {
+                  img        : data.img,
+                  name       : data.name || 'add name',
+                  price      : data.price || 'add price',
+                  catalouge  : data.catalouge || 'add catalouge',
+                  description: data.description || 'add des',
+                  care       : data.care || 'add garment care',
+                  details    : data.details || 'add item details',
+                },
+              })
+            }
             src={data.img}
             alt='Item image'
           />

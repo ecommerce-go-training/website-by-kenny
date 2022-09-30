@@ -10,7 +10,7 @@ import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 import Store from 'pages/Store';
 import Catalouge from 'pages/Catalouge';
-import ItemDetails from 'pages/ItemDetail';
+import ItemDetails from 'pages/ItemDetails';
 import Resetpsw from 'pages/Resetpassword';
 import ScrollToTop from 'components/ScrollToTop';
 import Size from 'pages/CustomerSupport/SizeGuide';

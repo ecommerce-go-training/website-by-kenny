@@ -13,6 +13,27 @@ function Filter() {
     keyPrefix: 'Components.Filter',
   });
 
+  const colorFilter = [
+    t('beige'),
+    t('blue'),
+    t('black'),
+    t('brown'),
+    t('green'),
+    t('red'),
+    t('metallic'),
+    t('white'),
+    t('cream'),
+    t('pink'),
+    t('orange'),
+    t('yellow'),
+    t('lilac'),
+    t('floral'),
+  ];
+
+  const sizeFilter = [t('freesize'), 'XS', 'S', 'M', 'L', 'XL'];
+
+  console.log(colorFilter);
+
   return (
     <div className='filter'>
       <div className='filter__categories'>
@@ -39,28 +60,16 @@ function Filter() {
         <p className='filter-title'>{t('filter')}</p>
         <div>
           <Collapse filterCollapse label={t('color')}>
-            <p>{t('beige')}</p>
-            <p>{t('blue')}</p>
-            <p>{t('black')}</p>
-            <p>{t('brown')}</p>
-            <p>{t('green')}</p>
-            <p>{t('red')}</p>
-            <p>{t('metallic')}</p>
-            <p>{t('white')}</p>
-            <p>{t('cream')}</p>
-            <p>{t('pink')}</p>
-            <p>{t('orange')}</p>
-            <p>{t('yellow')}</p>
-            <p>{t('lilac')}</p>
-            <p>{t('floral')}</p>
+            {colorFilter.map((item, index) => (
+              <p className='filter__items' key={index}>
+                {item}
+              </p>
+            ))}
           </Collapse>
           <Collapse filterCollapse label={t('size')}>
-            <p>{t('freesize')}</p>
-            <p>XS</p>
-            <p>S</p>
-            <p>M</p>
-            <p>L</p>
-            <p>XL</p>
+            {sizeFilter.map((item, index) => (
+              <p key={index}>{item}</p>
+            ))}
           </Collapse>
           <p>{t('clear filters')}</p>
           <Button smallPad>apply</Button>
