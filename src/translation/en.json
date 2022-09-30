@@ -185,6 +185,11 @@
     },
 
     "CustomerSupport": {
+      "faq": "faq",
+      "ship": "shipping & returns",
+      "terms": "terms & conditions",
+      "policy": "privacy policy",
+      "garment": "garment care",
       "Faq": {
         "question1": "WHAT CURRENCY IS USED ONLINE?",
         "answ1": "All prices are charged in USD and VNĐ.",
@@ -315,6 +320,16 @@
         "agreementDes": "This Terms of Sale and Use of Website Agreement together with the other policies on this website are the entire agreement between us (Elemush) and the user (yourself).",
         "governingLaw": "governing law",
         "governingLawDes": "The laws of the Vietnam will govern these Terms of Use and any dispute of any sort that might arise, without regard to principles of conflict of law.\n\nThe Web Site is provided from Vietnam and all servers that make it available reside in the Social Republic of Vietnam.  The laws of other countries may differ regarding the access and use of the Web Site.  We make no representations regarding the legality of this Web Site in any other country and it is your responsibility to ensure that your use complies with all applicable laws outside of the Social Republic of Vietnam."
+      },
+      "Size": {
+        "description": "If your measurements are not consistent with a single column, use your waist measurement to determine your ideal size.",
+        "sizeConversation": "sizing conversation",
+        "bust": "bust",
+        "bustDes": "Measure around the fullest part of your chest, keeping the tape level to the floor",
+        "waist": "waist",
+        "waistDes": "Measure around your natural waistline (the smallest part of your waist)",
+        "hips": "hips",
+        "hipsDes": "Measure aroud the fullest part of your hips. Slim-hipped ladies can take this measurement from 20cm/8in below the waistline"
       }
     },
 

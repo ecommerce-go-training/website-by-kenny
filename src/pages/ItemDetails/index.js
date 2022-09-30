@@ -123,7 +123,7 @@ function ItemDetails() {
       </div>
       <div className='moreItem'>
         <p>{t('more')}</p>
-        <Slider2 imgList={moreItem} />
+        <Slider2 images={moreItem} />
       </div>
     </div>
   );

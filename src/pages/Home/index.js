@@ -88,7 +88,7 @@ function Home() {
               {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
-          <Slider2 imgList={images} />
+          <Slider2 images={images} />
         </div>
         <div className='home__doublebg'>
           <img src={subBg1} alt='Knitwear bg img' />
@@ -100,7 +100,7 @@ function Home() {
               {t('theBeachEdit')}
             </p>
           </Stack>
-          <Slider imgList={images} shiftImg={4} />
+          <Slider images={images} shiftImg={4} />
         </div>
         <Link to='/' className='home__follow'>
           {t('follow')} @ÉLEMUSH.XO
