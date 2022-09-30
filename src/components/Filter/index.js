@@ -32,14 +32,12 @@ function Filter() {
 
   const sizeFilter = [t('freesize'), 'XS', 'S', 'M', 'L', 'XL'];
 
-  console.log(colorFilter);
-
   return (
     <div className='filter'>
       <div className='filter__categories'>
         <p className='filter-title'>{t('categories')}</p>{' '}
-        <Link to='/'>{t('new arrivals')}</Link>
-        <Link to='/'>{t('back in stock')}</Link>
+        <Link to='/'>{t('newArrivals')}</Link>
+        <Link to='/'>{t('backInStock')}</Link>
         <Link to='/'>{t('dresses')}</Link>
         <Link to='/'>{t('tops')}</Link>
         <Link to='/'>{t('skirts')}</Link>
@@ -47,14 +45,14 @@ function Filter() {
         <Link to='/'>{t('pants')}</Link>
         <Link to='/'>{t('jackets')}</Link>
         <Link to='/'>{t('jumpsuits')}</Link>
-        <Link to='/'>{t('two piece sets')}</Link>
+        <Link to='/'>{t('twoPieceSets')}</Link>
         <Link to='/'>{t('sales')}</Link>
       </div>
       <div className='filter__collections'>
         <p className='filter-title'>{t('collections')}</p>
-        <Link to='/'>{t('essentials edit')}</Link>
-        <Link to='/'>{t('spring summer')}</Link>
-        <Link to='/'>{t('fall winter')}</Link>
+        <Link to='/'>{t('essentialsEdit')}</Link>
+        <Link to='/'>{t('springSummer')}</Link>
+        <Link to='/'>{t('fallWinter')}</Link>
       </div>
       <div className='filter__filter'>
         <p className='filter-title'>{t('filter')}</p>
@@ -71,17 +69,17 @@ function Filter() {
               <p key={index}>{item}</p>
             ))}
           </Collapse>
-          <p>{t('clear filters')}</p>
-          <Button smallPad>apply</Button>
+          <p>{t('clearFilters')}</p>
+          <Button smallPad>{t('apply')}</Button>
         </div>
       </div>
       <div className='filter__sort'>
         <p className='filter-title'>{t('sort')}</p>
         <div>
           <p>{t('newest')}</p>
-          <p>{t('best sellers')}</p>
-          <p>{t('price highest')}</p>
-          <p>{t('price lowest')}</p>
+          <p>{t('bestSellers')}</p>
+          <p>{t('priceHighest')}</p>
+          <p>{t('priceLowest')}</p>
         </div>
       </div>
     </div>

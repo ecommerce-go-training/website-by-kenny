@@ -99,7 +99,7 @@ function ItemDetails() {
             </div>
           </div>
           <Button>
-            <p>{t('add to cart')}</p>
+            <p>{t('addToCart')}</p>
           </Button>
           <div className='details__info-faq'>
             <Collapse smallLabel label='product details'>
@@ -107,7 +107,7 @@ function ItemDetails() {
             </Collapse>
             <Collapse smallLabel label='size & fit'>
               <p className='info-item'>
-                {t('find your size')} <Link to='size'>sizing</Link>
+                {t('findYourSize')} <Link to='size'>sizing</Link>
               </p>
             </Collapse>
             <Collapse smallLabel label='shipping & returns'>

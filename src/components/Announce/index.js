@@ -2,25 +2,29 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import React, { useState, useEffect, memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ONE_SECOND } from 'utils/constants';
 
 import './style.scss';
 
 function Announce({ disable = false }) {
-  const [label, setLabel] = useState('free shipping in vietnam');
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Components.Announce',
+  });
+  const [label, setLabel] = useState(t('freeShipInVietnam'));
 
   useEffect(() => {
     const showInternationalShipping = setInterval(() => {
-      setLabel('free shipping for international orders over 500$');
+      setLabel(t('internationalShip'));
     }, ONE_SECOND * 4);
 
     const ShowVietnamShipping = setInterval(() => {
-      setLabel('free shipping in vietnam');
+      setLabel(t('freeShipInVietnam'));
     }, ONE_SECOND * 8);
 
     return () => clearInterval(showInternationalShipping, ShowVietnamShipping);
-  }, []);
+  }, [t]);
 
   return (
     <div className={classNames('announce', { active: disable })}>

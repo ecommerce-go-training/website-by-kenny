@@ -44,11 +44,11 @@ function Header({ disable, disableAnnounce, login, store }) {
       <div className={classes}>
         <div className='header__nav'>
           <div className='header__nav-link'>
-            <Link to='/catalouge'>{t('new arrivals')}</Link>
+            <Link to='/catalouge'>{t('newArrivals')}</Link>
             <Link to={login ? '/season' : '/store'}>
-              {login ? t('shop winter') : t('shop')}
+              {login ? t('shopWinter') : t('shop')}
             </Link>
-            <Link to='/season'>{login ? t('about') : t('fall winter')}</Link>
+            <Link to='/season'>{login ? t('about') : t('fallWinter')}</Link>
             <div onClick={() => alert('pop later')} className='triple-line'>
               <div className='line'></div>
               <div className='line'></div>
@@ -68,7 +68,7 @@ function Header({ disable, disableAnnounce, login, store }) {
             src={bg || login || store ? searchBlack : search}
             alt='search img'
           />
-          <Link to='/signIn'>{login ? t('account') : t('log in')}</Link>
+          <Link to='/sign-in'>{login ? t('account') : t('logIn')}</Link>
           <img
             src={bg || login || store ? (login ? blackCart : cartBlack) : cart}
             alt='cart img'

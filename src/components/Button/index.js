@@ -5,7 +5,14 @@ import React, { memo } from 'react';
 
 import './style.scss';
 
-function Button({ type, handleClick, children, disable, whiteBg, smallPad }) {
+function Button({
+  type = 'button',
+  handleClick,
+  children,
+  disable = false,
+  whiteBg = false,
+  smallPad = false,
+}) {
   return (
     <button
       disabled={disable}

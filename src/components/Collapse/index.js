@@ -22,17 +22,18 @@ function Collapse({
   const handleClick = () => {
     setToggle(!toggle);
   };
-  const classes = classNames({
-    collapse  : true,
-    mobile    : mobile,
-    line      : line,
-    lineTop   : lineTop,
-    normal    : filterCollapse,
-    smallLabel: smallLabel,
-  });
 
   return (
-    <div className={classes}>
+    <div
+      className={classNames({
+        collapse  : true,
+        mobile    : mobile,
+        line      : line,
+        lineTop   : lineTop,
+        normal    : filterCollapse,
+        smallLabel: smallLabel,
+      })}
+    >
       <label
         className={classNames('collapse__title', { small: filterCollapse })}
         onClick={handleClick}

@@ -1,8 +1,8 @@
-import classNames from 'classnames';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Stack from 'components/Stack';
 import Collapse from 'components/Collapse';
@@ -20,25 +20,15 @@ import {
 import './style.scss';
 
 function Footer() {
-  const [mobileCheck, setMobileCheck] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < 738) setMobileCheck(true);
-      else setMobileCheck(false);
-    });
-  });
-
-  const classes = classNames({
-    footer : true,
-    disable: mobileCheck,
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Components.Footer',
   });
 
   return (
     <div>
-      <div className={classes}>
+      <div className={'footer'}>
         <div className='footer__follow'>
-          <p className='title'>follow us</p>
+          <p className='title'>{t('follow')}</p>
           <Stack col spacing={0}>
             <Link to='/'>
               <img className='social' src={facebook} alt='facebook icon' />
@@ -56,29 +46,29 @@ function Footer() {
               <img className='social' src={tiktok} alt='tiktok icon' /> tiktok
             </Link>
           </Stack>
-          <p className='copyright'>© 2020 Élemush All Rights Reserved.</p>
+          <p className='copyright'>{t('copyRight')}</p>
         </div>
         <div className='footer__about'>
-          <p className='title'>about</p>
+          <p className='title'>{t('about')}</p>
           <Stack col>
-            <Link to='/brand'>brand</Link>
-            <Link to='/store'>store locator</Link>
+            <Link to='/brand'>{t('brand')}</Link>
+            <Link to='/store'>{t('storeLocator')}</Link>
           </Stack>
         </div>
         <div className='footer__customer'>
-          <p className='title'>customer care</p>
+          <p className='title'>{t('customerCare')}</p>
           <Stack col>
-            <Link to='/customerSupport'>faq</Link>
-            <Link to='/size'>sizing</Link>
-            <Link to='/customerSupport'>shipping & returns</Link>
-            <Link to='/customerSupport'>terms & conditions</Link>
-            <Link to='/customerSupport'>privacy policy</Link>
-            <Link to='/customerSupport'>garment care</Link>
-            <Link to='/customerSupport'>make a return</Link>
+            <Link to='/customer-support'>{t('faq')}</Link>
+            <Link to='/size'>{t('size')}</Link>
+            <Link to='/customer-support'>{t('shipping')}</Link>
+            <Link to='/customer-support'>{t('terms')}</Link>
+            <Link to='/customer-support'>{t('policy')}</Link>
+            <Link to='/customer-support'>{t('garment')}</Link>
+            <Link to='/customer-support'>{t('return')}</Link>
           </Stack>
         </div>
         <div className='footer__contact'>
-          <p className='title'>contact us</p>
+          <p className='title'>{t('contact')}</p>
           <div className='footer__contact-mail'>
             <Link to='/'>
               <img className='contact' src={phone} alt='phone icon' /> + 84 986
@@ -86,24 +76,14 @@ function Footer() {
             </Link>
             <div className='info'>
               <img className='contact' src={mail} alt='mail icon' />
-              <p>
-								customer services <br />
-								CONTACT@ELEMUSH.COM
-              </p>
-              <p>
-								whosesales & pressed <br />
-								TEAM@ELEMUSH.COM
-              </p>
+              <p>{t('customerService')}</p>
+              <p>{t('whosesalse')}</p>
             </div>
             <img src={certificate} alt='certificate img' />
           </div>
         </div>
       </div>
-      <div
-        className='mobile-footer'
-        direction='column'
-        style={{ display: mobileCheck ? 'flex' : 'none' }}
-      >
+      <div className='mobile-footer' direction='column'>
         <div className='mobile-footer-collapse'>
           <Collapse label='FOLLOW US'>
             <Link to='/'>FACEBOOK</Link>
@@ -115,20 +95,20 @@ function Footer() {
         <div className='line'></div>
         <div className='mobile-footer-collapse'>
           <Collapse label='ABOUT'>
-            <Link to='/brand'>BRAND</Link>
-            <Link to='/store'>STORE LOCATOR</Link>
+            <Link to='/brand'>{t('brand')}</Link>
+            <Link to='/store'>{t('storeLocator')}</Link>
           </Collapse>
         </div>
         <div className='line'></div>
         <div className='mobile-footer-collapse'>
           <Collapse label={'CUSTOMER CARE'}>
-            <Link to='/'>FAQ</Link>
-            <Link to='/size'>SIZING</Link>
-            <Link to='/'>SHIPPING & RETURNS</Link>
-            <Link to='/'>TERMS & CONDITIONS</Link>
-            <Link to='/'>PRIVACY POLICY</Link>
-            <Link to='/'>GARMENT CARE</Link>
-            <Link to='/'>MAKE A RETURN</Link>
+            <Link to='/'>{t('faq')}</Link>
+            <Link to='/size'>{t('size')}</Link>
+            <Link to='/'>{t('shipping')}</Link>
+            <Link to='/'>{t('terms')}</Link>
+            <Link to='/'>{t('terms')}</Link>
+            <Link to='/'>{t('policy')}</Link>
+            <Link to='/'>{t('return')}</Link>
           </Collapse>
         </div>
         <div className='line'></div>
@@ -139,18 +119,10 @@ function Footer() {
           </Link>
           <div>
             <img className='contact' src={mail} alt='mail icon' />
-            <p>
-              {' '}
-              <b>customer services</b> <br />
-              <br /> CONTACT@ELEMUSH.COM
-            </p>
-            <p>
-              {' '}
-              <b>whosesales & pressed</b> <br />
-              <br /> TEAM@ELEMUSH.COM
-            </p>
+            <p>{t('customerService')}</p>
+            <p>{t('whosesalse')}</p>
           </div>
-          <p className='copyright'>© 2020 Élemush All Rights Reserved.</p>
+          <p className='copyright'>{t('copyRight')}</p>
         </div>
       </div>
     </div>

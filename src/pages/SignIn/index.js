@@ -18,11 +18,11 @@ function SignIn() {
   });
   const navigate = useNavigate();
   const {
+    watch,
+    reset,
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    reset,
   } = useForm({
     mode    : 'all',
     resolver: yupResolver(signInVal),
@@ -70,11 +70,10 @@ function SignIn() {
               <p>{t('submit')}</p>
             </Button>
           </div>
-          {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
         </form>
         <div className='forgot'>
-          <Link to='/resetPassword'>{t('resetPsw')}</Link>
-          <Link to='/signUp'>{t('signup')}</Link>
+          <Link to='/reset-password'>{t('resetPsw')}</Link>
+          <Link to='/sign-up'>{t('signup')}</Link>
         </div>
       </div>
     </div>

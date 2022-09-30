@@ -19,14 +19,18 @@ function DoubleBg({
   rightBot,
   upperCase,
 }) {
-  const upper = classNames({
-    upper: upperCase,
-  });
-
   return (
     <div className='season__doubleBg'>
       <div className='imgLeft'>
-        {desLeft && !leftBot && <p className={upper}>{desLeft}</p>}
+        {desLeft && !leftBot && (
+          <p
+            className={classNames({
+              upper: upperCase,
+            })}
+          >
+            {desLeft}
+          </p>
+        )}
         <div>
           <img src={imgLeft} alt='' />
           <Link to='/'>
