@@ -2,6 +2,7 @@
 @import 'assets/scss/variables';
 
 .cataItem {
+  box-sizing: border-box;
   position: relative;
   width: 550px;
   height: auto;
@@ -11,6 +12,10 @@
   @include responsive(tablet) {
     width: 65vw;
   }
+  @include responsive(mobile) {
+    margin-bottom: 15px;
+    width: 45vw;
+  }
   & .img-container {
     position: relative;
     & .item-img {
@@ -19,6 +24,9 @@
       overflow: hidden;
       @include responsive(tablet) {
         height: auto;
+      }
+      @include responsive(mobile) {
+        height: 80vw;
       }
       & > img {
         width: 100%;
@@ -83,6 +91,9 @@
       margin-top: 10px;
       display: flex;
       flex-direction: column;
+      @include responsive(mobile) {
+        margin-top: 5px;
+      }
       & > div {
         display: flex;
         justify-content: space-between;
@@ -95,6 +106,10 @@
         letter-spacing: 0.12em;
         text-transform: uppercase;
         color: #000000;
+        @include responsive(mobile) {
+          letter-spacing: 0.05em;
+          font-size: 10px;
+        }
       }
       & > p:last-child {
         color: $grey;

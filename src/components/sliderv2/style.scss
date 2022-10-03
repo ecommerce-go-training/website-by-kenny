@@ -41,6 +41,10 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
+        @include responsive(tablet) {
+          width: 50vw;
+          height: 500px;
+        }
         @include responsive(mobile) {
           width: 90vw;
           height: 450px;

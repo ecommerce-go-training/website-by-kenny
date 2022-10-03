@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 import Button from 'components/Button';
 import Collapse from 'components/Collapse';
+import Checkbox from 'components/Checkbox';
 
 import { Link } from 'react-router-dom';
 
@@ -12,6 +14,9 @@ function Filter() {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Filter',
   });
+
+  const [color, setColor] = useState([]);
+  const [size, setSize] = useState([]);
 
   const colorFilter = [
     t('beige'),
@@ -31,6 +36,18 @@ function Filter() {
   ];
 
   const sizeFilter = [t('freesize'), 'XS', 'S', 'M', 'L', 'XL'];
+
+  const handleFilter = (func, arr, index) => {
+    if (arr.includes(index)) {
+      func([
+        ...arr.slice(0, arr.indexOf(index)),
+        ...arr.slice(arr.indexOf(index) + 1, arr.length),
+      ]);
+    } else func((prev) => [...prev, index]);
+  };
+
+  console.log(color);
+  console.log(size);
 
   return (
     <div className='filter'>
@@ -59,14 +76,32 @@ function Filter() {
         <div>
           <Collapse filterCollapse label={t('color')}>
             {colorFilter.map((item, index) => (
-              <p className='filter__items' key={index}>
-                {item}
-              </p>
+              <div key={index}>
+                <p
+                  onClick={() => handleFilter(setColor, color, index)}
+                  className={classNames('filter__items')}
+                >
+                  <span>
+                    <Checkbox filter toggle={color.includes(index)} />
+                  </span>
+                  {item}
+                </p>
+              </div>
             ))}
           </Collapse>
           <Collapse filterCollapse label={t('size')}>
             {sizeFilter.map((item, index) => (
-              <p key={index}>{item}</p>
+              <div key={index}>
+                <p
+                  onClick={() => handleFilter(setSize, size, index)}
+                  className={classNames('filter__items')}
+                >
+                  <span>
+                    <Checkbox filter toggle={size.includes(index)} />
+                  </span>
+                  {item}
+                </p>
+              </div>
             ))}
           </Collapse>
           <p>{t('clearFilters')}</p>
