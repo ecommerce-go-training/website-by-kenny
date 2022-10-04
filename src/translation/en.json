@@ -334,8 +334,22 @@
     },
 
     "ItemDetails": {
+      "Form": {
+        "title": "waitlist",
+        "description": "Please enter your information to begin",
+        "submit": "submit",
+        "thank": "thank you !",
+        "notification1": "You’ve subscribed to product updates for",
+        "notification2": "and you will be notified via email when the product comes back in stock.",
+        "goodbye": "See you soon on Elemush.com",
+        "firstName": "firstName",
+        "lastName": "lastName",
+        "email": "email",
+        "country": "country"
+      },
       "$" : "$",
       "addToCart": "add to cart",
+      "waitList": "waitlist",
       "findYourSize": "Find your size: ",
       "more": "you may also like",
       "shipping": "Free shipping within Vietnam.\n\nDelivery outside of Vietnam:\n• Standard shipping - $20\n• Express shipping - $30\n• Free standard shipping on orders over $500\n\nEasy 14 days returns from delivery date. No return available for sale products. \nRead more"

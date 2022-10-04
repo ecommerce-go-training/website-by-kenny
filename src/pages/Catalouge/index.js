@@ -23,6 +23,7 @@ function Catalouge() {
       catalouge: 'New Arrival',
       details  : 'Hello darkness my old friend, i come to talk with you again',
       care     : 'Dry clean only',
+      quantity : 0,
     },
     {
       img        : cataWhiteDress,
@@ -31,8 +32,9 @@ function Catalouge() {
       catalouge  : 'Best sellers',
       description:
 				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details: 'Hello darkness my old friend, i come to talk with you again',
-      care   : 'Dry clean only',
+      details : 'Hello darkness my old friend, i come to talk with you again',
+      care    : 'Dry clean only',
+      quantity: 5,
     },
     {
       img        : cataPinkDress,
@@ -41,8 +43,9 @@ function Catalouge() {
       catalouge  : 'Shorts',
       description:
 				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details: 'Hello darkness my old friend, i come to talk with you again',
-      care   : 'Dry clean only',
+      details : 'Hello darkness my old friend, i come to talk with you again',
+      care    : 'Dry clean only',
+      quantity: 9,
     },
     {
       img        : cataPurpleDress,
@@ -51,8 +54,9 @@ function Catalouge() {
       catalouge  : 'Sale',
       description:
 				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details: 'Hello darkness my old friend, i come to talk with you again',
-      care   : 'Dry clean only',
+      details : 'Hello darkness my old friend, i come to talk with you again',
+      care    : 'Dry clean only',
+      quantity: 0,
     },
     {
       img        : riderW,
@@ -61,8 +65,9 @@ function Catalouge() {
       catalouge  : 'Sale',
       description:
 				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details: 'Hello darkness my old friend, i come to talk with you again',
-      care   : 'Dry clean only',
+      details : 'Hello darkness my old friend, i come to talk with you again',
+      care    : 'Dry clean only',
+      quantity: 5,
     },
     {
       img        : riderOoo,
@@ -71,8 +76,9 @@ function Catalouge() {
       catalouge  : 'Sale',
       description:
 				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details: 'Hello darkness my old friend, i come to talk with you again',
-      care   : 'Dry clean only',
+      details : 'Hello darkness my old friend, i come to talk with you again',
+      care    : 'Dry clean only',
+      quantity: 0,
     },
     {
       img        : riderBuild,
@@ -81,8 +87,9 @@ function Catalouge() {
       catalouge  : 'Sale',
       description:
 				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details: 'Hello darkness my old friend, i come to talk with you again',
-      care   : 'Dry clean only',
+      details : 'Hello darkness my old friend, i come to talk with you again',
+      care    : 'Dry clean only',
+      quantity: 5,
     },
   ];
 

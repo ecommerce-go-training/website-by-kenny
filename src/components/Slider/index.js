@@ -85,7 +85,7 @@ Slider.defaultProps = {
 };
 
 Slider.propTypes = {
-  imgList : PropTypes.array.isRequired,
+  images  : PropTypes.array.isRequired,
   shiftImg: PropTypes.number,
 };
 

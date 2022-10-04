@@ -7,6 +7,7 @@ import Button from 'components/Button';
 import Collapse from 'components/Collapse';
 import Slider2 from 'components/Sliderv2';
 import Slider3, { Slider3Item } from 'components/Sliderv3';
+import WaitlistForm from './WaitlistForm';
 
 import {
   cataBackDress,
@@ -23,11 +24,12 @@ import './style.scss';
 
 function ItemDetails() {
   const { state } = useLocation();
-  const [size, setSize] = useState(0);
-  const { img, name, price, catalouge, description, details, care } = state;
+  const { img, name, price, catalouge, description, details, care, quantity } =
+		state;
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ItemDetails',
   });
+
   const moreItem = [
     cataBackDress,
     cataPinkDress,
@@ -38,6 +40,11 @@ function ItemDetails() {
     backDress,
     orangeDress,
   ];
+
+  const [size, setSize] = useState(0);
+  const [toggleWaitForm, setToggleWaitForm] = useState(false);
+
+  const handleWaitForm = () => setToggleWaitForm(!toggleWaitForm);
 
   return (
     <div>
@@ -121,9 +128,15 @@ function ItemDetails() {
               <input type='color' id='color1' defaultValue='#E3EBF2' />
             </div>
           </div>
-          <Button>
-            <p>{t('addToCart')}</p>
+          <Button handleClick={quantity ? null : handleWaitForm}>
+            <p>{quantity ? t('addToCart') : t('waitList')}</p>
           </Button>
+          {toggleWaitForm && (
+            <WaitlistForm
+              imageName={name}
+              closeForm={() => setToggleWaitForm(false)}
+            />
+          )}
           <div className='details__info-faq'>
             <Collapse smallLabel label='product details'>
               <p className='info-item'>{details}</p>

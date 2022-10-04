@@ -79,8 +79,8 @@ Input.propTypes = {
   label      : PropTypes.string,
   type       : PropTypes.oneOf(['text', 'password', 'email']),
   register   : PropTypes.func,
-  error      : PropTypes.bool,
-  centerError: PropTypes.string,
+  error      : PropTypes.string,
+  centerError: PropTypes.bool,
   name       : PropTypes.string.isRequired,
   inputCheck : PropTypes.string,
 };
