@@ -14,13 +14,13 @@ function Search({ toggle, setToggle }) {
     keyPrefix: 'Components.Search',
   });
 
-  const classes = classNames({
-    search: true,
-    active: toggle,
-  });
-
   return (
-    <div className={classes}>
+    <div
+      className={classNames({
+        search: true,
+        active: toggle,
+      })}
+    >
       <div className='search__input'>
         <input type='text' />
         <img className='search-icon' src={searchBlack} alt='search icon' />
@@ -34,11 +34,11 @@ function Search({ toggle, setToggle }) {
       <div className='search__quick-nav'>
         <p>{t('quickLink')}</p>
         <div>
-          <Link to='/'>{t('dress')}</Link>
-          <Link to='/'>{t('top')}</Link>
-          <Link to='/'>{t('pant')}</Link>
-          <Link to='/'>{t('store')}</Link>
-          <Link to='/'>{t('ship')}</Link>
+          <Link to='/catalouge'>{t('dress')}</Link>
+          <Link to='/catalouge'>{t('top')}</Link>
+          <Link to='/catalouge'>{t('pant')}</Link>
+          <Link to='/store'>{t('store')}</Link>
+          <Link to='/customer-support'>{t('ship')}</Link>
         </div>
       </div>
     </div>

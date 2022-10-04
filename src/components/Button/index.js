@@ -12,12 +12,17 @@ function Button({
   disable = false,
   whiteBg = false,
   smallPad = false,
+  border = false,
 }) {
   return (
     <button
       disabled={disable}
       type={type}
-      className={classNames('button', { whiteBg: whiteBg, smallPad: smallPad })}
+      className={classNames('button', {
+        whiteBg : whiteBg,
+        smallPad: smallPad,
+        border  : border,
+      })}
       onClick={handleClick}
     >
       {children}
@@ -31,6 +36,7 @@ Button.defaultProps = {
   disable    : false,
   whiteBg    : false,
   smallPad   : false,
+  border     : false,
 };
 
 Button.propTypes = {
@@ -39,6 +45,7 @@ Button.propTypes = {
   disable    : PropTypes.bool,
   whiteBg    : PropTypes.bool,
   smallPad   : PropTypes.bool,
+  border     : PropTypes.bool,
 };
 
 export default memo(Button);

@@ -4,12 +4,12 @@
 .catalouge {
   width: 100vw;
   max-width: 100%;
-  margin-top: 130px;
+  padding-top: 110px;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
   @include responsive(mobile) {
-    margin-top: 70px;
+    padding-top: 70px;
     flex-direction: column;
   }
   &__filter {
