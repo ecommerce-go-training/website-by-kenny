@@ -9,8 +9,8 @@ import Stack from 'components/Stack';
 import Button from 'components/Button';
 import Header from 'components/Header';
 import Slider from 'components/Slider';
-import Slider2 from 'components/sliderv2';
 import Footer from 'components/Footer';
+import Slider2 from 'components/Sliderv2';
 
 import {
   riderW,

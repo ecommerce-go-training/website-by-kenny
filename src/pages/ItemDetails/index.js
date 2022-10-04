@@ -5,7 +5,8 @@ import { Link, useLocation } from 'react-router-dom';
 import Header from 'components/Header';
 import Button from 'components/Button';
 import Collapse from 'components/Collapse';
-import Slider2 from 'components/sliderv2';
+import Slider2 from 'components/Sliderv2';
+import Slider3, { Slider3Item } from 'components/Sliderv3';
 
 import {
   cataBackDress,
@@ -42,6 +43,28 @@ function ItemDetails() {
     <div>
       <Header login disableAnnounce />
       <div className='details'>
+        <Slider3>
+          <Slider3Item>
+            <div>
+              <img src={img} alt='dress image' />
+            </div>
+          </Slider3Item>
+          <Slider3Item>
+            <div>
+              <img src={img} alt='dress image' />
+            </div>
+          </Slider3Item>
+          <Slider3Item>
+            <div>
+              <img src={img} alt='dress image' />
+            </div>
+          </Slider3Item>
+          <Slider3Item>
+            <div>
+              <img src={img} alt='dress image' />
+            </div>
+          </Slider3Item>
+        </Slider3>
         <div className='details__img'>
           <div>
             <img src={img} alt='testing img' />
@@ -95,7 +118,7 @@ function ItemDetails() {
             </div>
             <div>
               <p>color</p>
-              <input type='color' id='color1' value='#E3EBF2' />
+              <input type='color' id='color1' defaultValue='#E3EBF2' />
             </div>
           </div>
           <Button>

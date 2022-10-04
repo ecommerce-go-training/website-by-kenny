@@ -15,7 +15,7 @@
   &__filter {
     flex: 1;
     @include responsive(mobile) {
-      background-color: green;
+      padding: 0 3vw;
     }
   }
   &__items {

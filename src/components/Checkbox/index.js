@@ -32,7 +32,7 @@ Checkbox.defaultProps = {
   toggle: false,
 };
 
-Checkbox.PropTypes = {
+Checkbox.propTypes = {
   filter: PropTypes.bool,
   toggle: PropTypes.bool,
 };

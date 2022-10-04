@@ -63,7 +63,7 @@ function Slider2({ images }) {
 }
 
 Slider2.propTypes = {
-  imgList: PropTypes.array.isRequired,
+  images: PropTypes.array.isRequired,
 };
 
 export default Slider2;

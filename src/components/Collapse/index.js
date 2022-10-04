@@ -17,6 +17,8 @@ function Collapse({
   lineTop,
   filterCollapse,
   smallLabel,
+  filter,
+  lineSolid,
 }) {
   const [toggle, setToggle] = useState(filterCollapse ? false : true);
   const handleClick = () => {
@@ -26,12 +28,14 @@ function Collapse({
   return (
     <div
       className={classNames({
-        collapse  : true,
-        mobile    : mobile,
-        line      : line,
-        lineTop   : lineTop,
-        normal    : filterCollapse,
-        smallLabel: smallLabel,
+        collapse      : true,
+        mobile        : mobile,
+        line          : line,
+        lineTop       : lineTop,
+        normal        : filterCollapse,
+        smallLabel    : smallLabel,
+        collapseFilter: filter,
+        lineSolid     : lineSolid,
       })}
     >
       <label
@@ -55,6 +59,8 @@ Collapse.defaultProps = {
   lineTop       : false,
   filterCollapse: false,
   small         : false,
+  filter        : false,
+  lineSolid     : false,
 };
 
 Collapse.proptypes = {
@@ -64,6 +70,8 @@ Collapse.proptypes = {
   lineTop       : PropTypes.bool,
   filterCollapse: PropTypes.bool,
   small         : PropTypes.bool,
+  filter        : PropTypes.bool,
+  lineSolid     : PropTypes.bool,
 };
 
 export default memo(Collapse);

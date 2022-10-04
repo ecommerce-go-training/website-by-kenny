@@ -51,6 +51,9 @@
       align-items: center;
       gap: 20px;
       cursor: pointer;
+      @include responsive(mobile) {
+        display: none;
+      }
       &:hover {
         opacity: 1;
       }
@@ -59,6 +62,9 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
+        @include responsive(mobile) {
+          gap: 5px;
+        }
         cursor: pointer;
         & > p {
           font-size: 10px;
@@ -66,6 +72,9 @@
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: $black;
+          @include responsive(mobile) {
+            font-size: 10px;
+          }
         }
         & > img {
           position: relative;

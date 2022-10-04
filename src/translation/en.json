@@ -61,7 +61,7 @@
       "essentialsEdit": "essentials edit",
       "springSummer": "spring summer 2021",
       "fallWinter" : "fall winter 2020",
-      "filter": "filter",
+      "filter": "filters",
       "color": "color",
       "beige": "beige",
       "blue": "blue",
@@ -89,7 +89,7 @@
     },
 
     "CatalougeItem" : {
-      "quick add": "quickAdd",
+      "quickAdd": "quick add",
       "$" : "$"
     }
   },
