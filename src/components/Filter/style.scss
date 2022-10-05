@@ -113,8 +113,12 @@
           &.size-filter {
             height: 100px;
           }
-          & p {
+          & > div {
+            display: flex;
             width: 80px;
+            gap: 5px;
+          }
+          & p {
             cursor: pointer;
             position: relative;
             font-size: 10px;
@@ -250,6 +254,11 @@
         gap: 10px 40px;
         &.size-filter {
           height: 100px;
+        }
+        & > div {
+          display: flex;
+          width: 80px;
+          gap: 5px;
         }
         & p {
           width: 80px;
