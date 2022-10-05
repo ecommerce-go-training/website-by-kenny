@@ -2,9 +2,15 @@
 @import 'assets/scss/variables';
 
 .faq {
+  white-space: preline;
   width: 100%;
   &-item {
+    white-space: preline;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
     margin-left: 30px;
+    height: auto;
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
