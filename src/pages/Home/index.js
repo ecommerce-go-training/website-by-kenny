@@ -125,7 +125,7 @@ function Home() {
           <p className='title'>{t('signUpUpdate')}</p>
           <p className='description'>{t('description3')}</p>
           <div className='home__signup-button'>
-            <Button handleClick={() => navigate('/signUp')}>
+            <Button handleClick={() => navigate('/sign-up')}>
               {t('signUp')}
             </Button>
           </div>

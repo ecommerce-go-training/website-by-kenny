@@ -13,12 +13,18 @@
     flex-direction: column;
   }
   &__filter {
+    box-sizing: border-box;
     flex: 1;
+    padding-left: 100px;
+    @include responsive(tablet) {
+      padding-left: 5vw;
+    }
     @include responsive(mobile) {
       padding: 0 3vw;
     }
   }
   &__items {
+    box-sizing: border-box;
     flex: 3;
     display: flex;
     flex-wrap: wrap;

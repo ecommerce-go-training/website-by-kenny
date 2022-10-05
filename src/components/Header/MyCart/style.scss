@@ -12,6 +12,15 @@
   right: -50vw;
   transition: 0.5s all;
   padding: 0px 60px;
+  @include responsive(tablet) {
+    width: 50vw;
+    padding: 0 30px;
+  }
+  @include responsive(mobile) {
+    width: 100vw;
+    right: -100vw;
+    padding: 0 15px;
+  }
   &-title {
     display: flex;
     justify-content: space-between;
@@ -24,6 +33,12 @@
       text-transform: capitalize;
       color: $black;
       margin-top: 80px;
+      @include responsive(tablet) {
+        font-size: 40px;
+      }
+      @include responsive(mobile) {
+        font-size: 35px;
+      }
     }
     & > div {
       position: relative;
@@ -31,6 +46,12 @@
       margin-top: 30px;
       width: 20px;
       height: 20px;
+      @include responsive(tablet) {
+        left: 10px;
+      }
+      @include responsive(mobile) {
+        left: 0px;
+      }
       & > img {
         width: 100%;
         height: 100%;
@@ -47,6 +68,12 @@
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    @include responsive(tablet) {
+      margin-top: 20px;
+    }
+    @include responsive(mobile) {
+      margin-top: 10px;
+    }
     &::-webkit-scrollbar {
       display: none;
     }
@@ -64,9 +91,21 @@
       &:first-child {
         right: 15px;
         background-color: $white;
+        @include responsive(tablet) {
+          right: 10px;
+        }
+        @include responsive(mobile) {
+          right: 5px;
+        }
       }
       &:last-child {
         left: 15px;
+        @include responsive(tablet) {
+          left: 10px;
+        }
+        @include responsive(mobile) {
+          left: 5px;
+        }
         & .button-info {
           color: $white;
           box-sizing: border-box;
@@ -77,5 +116,8 @@
   &.active {
     box-shadow: -5px 0 5px -5px $grey;
     transform: translateX(-50vw);
+    @include responsive(mobile) {
+      transform: translateX(-100vw);
+    }
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Button from 'components/Button';
@@ -23,6 +24,7 @@ import {
 import './style.scss';
 
 function Season() {
+  const navigate = useNavigate();
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Season' });
   return (
     <div>
@@ -50,7 +52,7 @@ function Season() {
           imgRightLink={t('newTop')}
           desRight={t('desRight1')}
           rightBot
-          upperCase='top-left'
+          upperCase
         />
         <DoubleBg
           imgLeft={whiteDress}
@@ -105,7 +107,7 @@ function Season() {
           <p>{t('signup')}</p>
           <p>{t('promo')}</p>
           <div>
-            <Button smallPad>
+            <Button smallPad handleClick={() => navigate('/sign-up')}>
               <p className='signup-label'>sign up</p>
             </Button>
           </div>

@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
-import Button from 'components/Button';
-import Collapse from 'components/Collapse';
 import Checkbox from 'components/Checkbox';
-
-import { Link } from 'react-router-dom';
 
 import { plus, minus } from 'assets/images';
 
@@ -36,11 +32,35 @@ function Filter() {
 
   const sizeFilter = [t('freesize'), 'XS', 'S', 'M', 'L', 'XL'];
 
+  const categoriesList = [
+    t('newArrivals'),
+    t('backInStock'),
+    t('dresses'),
+    t('tops'),
+    t('skirts'),
+    t('shorts'),
+    t('pants'),
+    t('jackets'),
+    t('jumpsuits'),
+    t('twoPieceSets'),
+    t('sales'),
+  ];
+
+  const sortList = [
+    t('newest'),
+    t('bestSellers'),
+    t('priceHighest'),
+    t('priceLowest'),
+  ];
+
   const [color, setColor] = useState([]);
   const [size, setSize] = useState([]);
-  const [filterToggle, setFilterToggle] = useState(false);
-  const [sortToggle, setSortToggle] = useState(false);
-  const [sortFilter, setSortFilter] = useState(0);
+  const [categorySelect, setCategorySelect] = useState(0);
+  const [sortSelect, setSortSelect] = useState(0);
+  const [toggleColor, setToggleColor] = useState(false);
+  const [toggleSize, setToggleSize] = useState(false);
+  const [toggleFilter, setToggleFilter] = useState(false);
+  const [toggleSort, setToggleSort] = useState(false);
 
   const handleFilter = (func, arr, index) => {
     if (arr.includes(index)) {
@@ -51,194 +71,179 @@ function Filter() {
     } else func((prev) => [...prev, index]);
   };
 
-  const handleClear = () => {
+  const handleClearFilter = () => {
     setColor([]);
     setSize([]);
   };
 
-  const handleSortFilter = (order) => {
-    setSortFilter(order);
-  };
-
   return (
-    <div>
-      <div className='filter'>
-        <div className='filter__categories'>
-          <p className='filter-title'>{t('categories')}</p>{' '}
-          <Link to='/'>{t('newArrivals')}</Link>
-          <Link to='/'>{t('backInStock')}</Link>
-          <Link to='/'>{t('dresses')}</Link>
-          <Link to='/'>{t('tops')}</Link>
-          <Link to='/'>{t('skirts')}</Link>
-          <Link to='/'>{t('shorts')}</Link>
-          <Link to='/'>{t('pants')}</Link>
-          <Link to='/'>{t('jackets')}</Link>
-          <Link to='/'>{t('jumpsuits')}</Link>
-          <Link to='/'>{t('twoPieceSets')}</Link>
-          <Link to='/'>{t('sales')}</Link>
-        </div>
-        <div className='filter__collections'>
-          <p className='filter-title'>{t('collections')}</p>
-          <Link to='/'>{t('essentialsEdit')}</Link>
-          <Link to='/'>{t('springSummer')}</Link>
-          <Link to='/'>{t('fallWinter')}</Link>
-        </div>
-        <div className='filter__filter'>
-          <p className='filter-title'>{t('filter')}</p>
-          <div>
-            <Collapse filterCollapse label={t('color')}>
-              {colorFilter.map((item, index) => (
-                <div key={index}>
+    <div className='filter'>
+      <div className='filter-categories'>
+        <p className='title'>{t('categories')}</p>
+        {categoriesList.map((item, index) => (
+          <p
+            key={index}
+            className={classNames({ active: categorySelect === index })}
+            onClick={() => setCategorySelect(index)}
+          >
+            {item}
+          </p>
+        ))}
+      </div>
+      <div className='filter-collections'>
+        <p className='title'>{t('collections')}</p>
+        <p>{t('essentialsEdit')}</p>
+        <p>{t('springSummer')}</p>
+        <p>{t('fallWinter')}</p>
+      </div>
+      <div className='filter-filtering'>
+        <p className='title'>{t('filter')}</p>
+        <div className='filter-filtering-type'>
+          <div className='type-filter'>
+            <div className='label' onClick={() => setToggleColor(!toggleColor)}>
+              <img src={toggleColor ? plus : minus} alt='icon image' />
+              <p>{t('color')}</p>
+            </div>
+            {!toggleColor && (
+              <div className='items'>
+                {colorFilter.map((item, index) => (
                   <div
                     onClick={() => handleFilter(setColor, color, index)}
-                    className={classNames('filter__items')}
+                    key={index}
                   >
                     <span>
                       <Checkbox filter toggle={color.includes(index)} />
                     </span>
                     <p>{item}</p>
                   </div>
-                </div>
-              ))}
-            </Collapse>
-            <Collapse filterCollapse label={t('size')}>
-              {sizeFilter.map((item, index) => (
-                <div key={index}>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className='type-filter'>
+            <div className='label' onClick={() => setToggleSize(!toggleSize)}>
+              <img src={toggleSize ? plus : minus} alt='icon image' />
+              <p>{t('size')}</p>
+            </div>
+            {!toggleSize && (
+              <div className='items size-filter'>
+                {sizeFilter.map((item, index) => (
                   <div
                     onClick={() => handleFilter(setSize, size, index)}
-                    className={classNames('filter__items')}
+                    key={index}
                   >
                     <span>
                       <Checkbox filter toggle={size.includes(index)} />
                     </span>
                     <p>{item}</p>
                   </div>
-                </div>
-              ))}
-            </Collapse>
-            <p onClick={handleClear}>{t('clearFilters')}</p>
-            <Button smallPad>{t('apply')}</Button>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-        <div className='filter__sort'>
-          <p className='filter-title'>{t('sort')}</p>
-          <div>
-            <p>{t('newest')}</p>
-            <p>{t('bestSellers')}</p>
-            <p>{t('priceHighest')}</p>
-            <p>{t('priceLowest')}</p>
-          </div>
+
+          {(!toggleSize || !toggleColor) && (
+            <div className='handle-filter'>
+              <p onClick={handleClearFilter}>{t('clearFilters')}</p>
+              <div className='button'>{t('apply')}</div>
+            </div>
+          )}
         </div>
       </div>
+
+      <div className='filter-sort'>
+        <p className='title'>{t('sort')}</p>
+        <div>
+          {sortList.map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
+        </div>
+      </div>
+
       <div className='filter-mobile'>
-        <div className='filter-mobile-filters'>
+        <div className='filter-mobile-nav'>
           <p>{t('newArrivals')}</p>
-          <div className='filters-nav'>
-            <div>
-              <p onClick={() => setFilterToggle(!filterToggle)}>
-                <img
-                  src={minus}
-                  style={{ display: filterToggle ? '' : 'none' }}
-                  alt='icon image'
-                />
-                <img
-                  src={plus}
-                  style={{ display: filterToggle ? 'none' : '' }}
-                  alt='icon image'
-                />
-                {t('filter')}
-              </p>
+          <div className='filter-mobile-nav-option'>
+            <div
+              className='label'
+              onClick={() => setToggleFilter(!toggleFilter)}
+            >
+              <img src={!toggleFilter ? plus : minus} alt='icon image' />
+              <p>{t('filter')}</p>
             </div>
-            <div>
-              <p onClick={() => setSortToggle(!sortToggle)}>
-                <img
-                  src={minus}
-                  style={{ display: sortToggle ? '' : 'none' }}
-                  alt='icon image'
-                />
-                <img
-                  src={plus}
-                  style={{ display: sortToggle ? 'none' : '' }}
-                  alt='icon image'
-                />
-                {t('sort')}
-              </p>
+            <div className='label' onClick={() => setToggleSort(!toggleSort)}>
+              <img src={!toggleSort ? plus : minus} alt='icon image' />
+              <p>{t('sort')}</p>
             </div>
           </div>
         </div>
-        <div className='filter-mobile-section'>
-          {filterToggle && (
-            <div className='filter__filter'>
-              <div>
-                <Collapse filterCollapse label={t('color')}>
+        {toggleFilter && (
+          <div>
+            <div className='type-filter'>
+              <div
+                className='label'
+                onClick={() => setToggleColor(!toggleColor)}
+              >
+                <img src={!toggleColor ? plus : minus} alt='icon image' />
+                <p>{t('color')}</p>
+              </div>
+              {toggleColor && (
+                <div className='items'>
                   {colorFilter.map((item, index) => (
-                    <div key={index}>
-                      <div
-                        onClick={() => handleFilter(setColor, color, index)}
-                        className={classNames('filter__items')}
-                      >
-                        <span>
-                          <Checkbox filter toggle={color.includes(index)} />
-                        </span>
-                        <p>{item}</p>
-                      </div>
+                    <div
+                      onClick={() => handleFilter(setColor, color, index)}
+                      key={index}
+                    >
+                      <span>
+                        <Checkbox filter toggle={color.includes(index)} />
+                      </span>
+                      <p>{item}</p>
                     </div>
                   ))}
-                </Collapse>
-                <Collapse filterCollapse label={t('size')}>
-                  {sizeFilter.map((item, index) => (
-                    <div key={index}>
-                      <div
-                        onClick={() => handleFilter(setSize, size, index)}
-                        className={classNames('filter__items')}
-                      >
-                        <span>
-                          <Checkbox filter toggle={size.includes(index)} />
-                        </span>
-                        <p>{item}</p>
-                      </div>
-                    </div>
-                  ))}
-                </Collapse>
-                <p onClick={handleClear}>{t('clearFilters')}</p>
-                <div>
-                  <Button smallPad>{t('apply')}</Button>
                 </div>
-              </div>
+              )}
             </div>
-          )}
+            <div className='line'></div>
+            <div className='type-filter'>
+              <div className='label' onClick={() => setToggleSize(!toggleSize)}>
+                <img src={!toggleSize ? plus : minus} alt='icon image' />
+                <p>{t('size')}</p>
+              </div>
+              {toggleSize && (
+                <div className='items size-filter'>
+                  {sizeFilter.map((item, index) => (
+                    <div
+                      onClick={() => handleFilter(setSize, size, index)}
+                      key={index}
+                    >
+                      <span>
+                        <Checkbox filter toggle={size.includes(index)} />
+                      </span>
+                      <p>{item}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
-          {sortToggle && (
-            <div className='filter-sort'>
-              <div>
+        {toggleSort && (
+          <div className='sort-mobile'>
+            <div>
+              {sortList.map((item, index) => (
                 <p
-                  className={classNames({ active: sortFilter === 0 })}
-                  onClick={() => handleSortFilter(0)}
+                  key={index}
+                  className={classNames({ active: sortSelect === index })}
+                  onClick={() => setSortSelect(index)}
                 >
-                  {t('newest')}
+                  {item}
                 </p>
-                <p
-                  className={classNames({ active: sortFilter === 1 })}
-                  onClick={() => handleSortFilter(1)}
-                >
-                  {t('bestSellers')}
-                </p>
-                <p
-                  className={classNames({ active: sortFilter === 2 })}
-                  onClick={() => handleSortFilter(2)}
-                >
-                  {t('priceHighest')}
-                </p>
-                <p
-                  className={classNames({ active: sortFilter === 3 })}
-                  onClick={() => handleSortFilter(3)}
-                >
-                  {t('priceLowest')}
-                </p>
-              </div>
+              ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
