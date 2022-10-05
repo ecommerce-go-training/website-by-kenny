@@ -124,6 +124,14 @@
       "description2": "Our new era is marked by a new concept store with endless inspiration from fairy tales. We believe fashion is a miracle of this world by creating beautiful things and conveying civilized stories. Discover our store to not only dress in Elemush, but also to feel its elegance."
     },
 
+    "Cart": {
+      "cart": "cart",
+      "items": "items",
+      "checkOut": "proceed to \ncheckout",
+      "total": "total",
+      "unit": "$"
+    },
+
     "Brand": {
       "brand": "brand",
       "ourStory": "our story",

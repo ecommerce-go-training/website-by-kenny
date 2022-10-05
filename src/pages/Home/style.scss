@@ -1,5 +1,5 @@
-@import 'assets/scss/mixins.scss';
-@import 'assets/scss/variables.scss';  
+@import 'assets/scss/mixins';
+@import 'assets/scss/variables';  
 
 .home {
   white-space: pre-line;
@@ -10,12 +10,6 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  @include responsive(tablet) {
-    
-  }
-  @include responsive(mobile) {
-
-  }
   &__background {
     width: 100%;
     position: relative;

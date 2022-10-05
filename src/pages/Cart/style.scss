@@ -1,0 +1,65 @@
+@import 'assets/scss/mixins';
+@import 'assets/scss/variables';  
+
+.cart {
+  white-space: pre-line;
+  box-sizing: border-box;
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  height: 150vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+  &-container {
+    width: 40%;
+    height: 90%;
+    font-family: 'Sofia Pro';
+    font-style: normal;
+    font-weight: 400;
+    & > p {
+      font-size: 16px;
+      line-height: 128%;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      & > span {
+        text-transform: none;
+        font-size: 15px;
+        line-height: 140%;
+        letter-spacing: 0.05em;
+        color: $very-light-grey;
+      }
+    }
+    & .cart-item {
+      margin-top: 30px;
+      height: 80%;
+      border-top: 1px solid $very-light-grey;
+      border-bottom: 1px solid $very-light-grey;
+    }
+    & .cart-checkout {
+      margin-top: 70px;
+      display: flex;
+      flex-direction: column;
+      & > p {
+        font-size: 16px;
+        line-height: 128%;
+        text-align: center;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        & > span {
+          font-size: 30px;
+        }
+      }
+      & > div {
+        align-self: center;
+        width: 45%;
+      }
+    }
+  }
+}

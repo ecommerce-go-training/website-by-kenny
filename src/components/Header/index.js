@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState, memo } from 'react';
 
-import Cart from './Cart';
+import MyCart from './MyCart';
 import Search from './Search';
 import Announce from './Announce';
 import MobileNav from './MobileNav';
@@ -38,7 +38,7 @@ function Header({ disable, disableAnnounce, login, store }) {
       <Announce disable={disableAnnounce} />
       <Search toggle={toggleSearch} setToggle={setToggleSearch} />
       <MobileNav toggle={toggleNavMobile} setToggle={setToggleNavMobile} />
-      <Cart toggle={toggleCart} setToggle={setToggleCart} />
+      <MyCart toggle={toggleCart} setToggle={setToggleCart} />
       <div
         className={classNames({
           header        : true,
