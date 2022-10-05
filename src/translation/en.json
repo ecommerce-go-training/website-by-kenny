@@ -95,6 +95,11 @@
     "CatalougeItem" : {
       "quickAdd": "quick add",
       "$" : "$"
+    },
+
+    "CartItem": {
+      "remove": "remove",
+      "unit": "$"
     }
   },
   
