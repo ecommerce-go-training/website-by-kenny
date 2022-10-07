@@ -3,6 +3,7 @@
 
 .checkout-item-image {
   display: flex;
+  margin-bottom: 20px;
   & .item-img {
     position: relative;
     width: 70px;
@@ -25,7 +26,10 @@
   & .item-info {
     box-sizing: border-box;
     padding-top: 15px;
-    & > p {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    & p {
       font-family: 'Sofia Pro';
       font-style: normal;
       font-weight: 400;
@@ -34,7 +38,7 @@
       letter-spacing: 0.05em;
       color: $black;
     }
-    & > p:last-child {
+    & > div > p:last-child {
       color: $grey;
     }
   }

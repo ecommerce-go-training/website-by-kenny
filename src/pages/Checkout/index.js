@@ -14,6 +14,8 @@ import {
   pinkDress,
   whiteDressCart,
   orangeDressCart,
+  question,
+  mail,
 } from 'assets/images';
 
 import './style.scss';
@@ -141,7 +143,7 @@ function Checkout() {
                 register={register}
                 error={errors.postalCode?.message}
                 label={t('postalCode')}
-                name='postaCode'
+                name='postalCode'
                 inputCheck={watch('postalCode')}
                 greyBg
               />
@@ -178,9 +180,47 @@ function Checkout() {
             <Item key={index} data={item} />
           ))}
         </div>
-        <div className='checkout-item-discount'></div>
-        <div className='checkout-item-total'></div>
-        <div className='checkout-item-contact'></div>
+        <div className='checkout-item-discount'>
+          <div>
+            <Input
+              register={register}
+              error={errors.discount?.message}
+              label={t('discount')}
+              name='discount'
+              inputCheck={watch('discount')}
+              greyBg
+            />
+          </div>
+          <div>
+            <Button discount disable={!watch('discount')}>
+              <p>{t('apply')}</p>
+            </Button>
+          </div>
+        </div>
+        <div className='checkout-item-subtotal'>
+          <div>
+            <p>{t('subtotal')}</p>
+            <p>{t('unit')}250.00</p>
+          </div>
+          <div>
+            <p>{t('shipping')}</p>
+            <p>{t('calcNextStep')}</p>
+          </div>
+        </div>
+        <div className='checkout-item-total'>
+          <p>{t('total')}</p>
+          <p>{t('unit')}2500.00</p>
+        </div>
+        <div className='checkout-item-contact'>
+          <div>
+            <img src={question} alt='icon image' />
+            <p>{t('needHelp')}</p>
+          </div>
+          <div>
+            <img src={mail} alt='icon img' />
+            <p>{t('customerService')}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

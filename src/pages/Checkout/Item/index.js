@@ -8,12 +8,14 @@ function Item({ data }) {
         <img src={data.image} alt='dress image' />
       </div>
       <div className='item-info'>
-        <p>{data.name}</p>
-        <p>
-          {data.color} / {data.size}
-        </p>
+        <div>
+          <p>{data.name}</p>
+          <p>
+            {data.color} / {data.size}
+          </p>
+        </div>
+        <p>USD ${data.price}</p>
       </div>
-      <div className='item-price'></div>
     </div>
   );
 }

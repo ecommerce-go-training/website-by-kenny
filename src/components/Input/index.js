@@ -51,6 +51,7 @@ function Input({
           name={label}
           onFocus={() => setAim(true)}
           onBlur={() => (inputCheck ? setAim(true) : setAim(false))}
+          id={label}
         />
         <span className={showPsw}>
           <img

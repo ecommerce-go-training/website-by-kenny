@@ -69,7 +69,7 @@
         align-items: center;
         gap: 10px;
         margin-top: 45px;
-        margin-bottom: 40px;
+        margin-bottom: 100px;
         & > input[type="checkbox"] {
           position: relative;
           width: 25px;
@@ -84,6 +84,7 @@
         }
         &.second {
           margin-top: 20px;
+          margin-bottom: 40px;
         }
       }
       & .form-info {
@@ -133,10 +134,102 @@
     }
   }
   &-item {
-    background-color: $white-smoke;
+    background-color: $dark-white-smoke;
     flex: 1;
     padding: 75px 0 0 50px;
     display: flex;
     flex-direction: column;
+    &-images {
+      width: 70%;
+      border-bottom: 1px solid $very-light-grey;
+    }
+    &-discount {
+      width: 70%;
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid $very-light-grey;
+      & > div:first-child {
+        flex: 3;
+      }
+      & > div:nth-child(2) {
+        flex: 1;
+        height: 100%;
+      }
+    }
+    &-subtotal {
+      width: 70%;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid $very-light-grey;
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        & > p {
+          font-family: 'Sofia Pro';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 140%;
+          letter-spacing: 0.05em;
+          color: $black;
+        }
+      }
+      & > div:last-child > p:last-child {
+        color: $grey;
+      }
+    }
+    &-total {
+      margin-top: 30px;
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+      & > p {
+        font-size: 20px;
+        line-height: 140%;
+        letter-spacing: 0.01em;
+        color: $black;
+      }
+    }
+    &-contact {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 80px;
+      gap: 30px;
+      & > div {
+        width: 100%;
+        display: flex;
+        gap: 15px;
+      }
+      & > div:first-child {
+        & > p {
+          font-size: 13px;
+          line-height: 150%;
+          letter-spacing: 0.05em;
+          color: #000000;
+        }
+        & > img {
+          width: 15px;
+          height: 15px;
+        }
+      }
+      & > div:nth-child(2) {
+        & > p {
+          font-size: 13px;
+          line-height: 150%;
+          letter-spacing: 0.05em;
+          color: #000000;
+        }
+        & > img {
+          width: 15px;
+          height: 10px;
+        }
+      }
+    }
   }
 }

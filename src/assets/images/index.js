@@ -62,6 +62,7 @@ import nextArrow from './icons/nextArrow.png';
 import rightArrow from './icons/rightArrow.png';
 import searchBlack from './icons/searchBlack.png';
 import successMail from './icons/successMail.png';
+import question from './icons/question.png';
 
 import cataBackDress from './catalouge/backDress.png';
 import cataPinkDress from './catalouge/pinkDress.png';
@@ -115,6 +116,7 @@ export {
   pinkDress,
   pinterest,
   plus,
+  question,
   riderBuild,
   riderOoo,
   riderW,

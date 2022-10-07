@@ -156,7 +156,15 @@
       "shippingAddress": "Shipping address",
       "saveInfo": "Save this information for next time",
       "return": "return to bag",
-      "continue": "continue to shipping"
+      "continue": "continue to shipping",
+      "apply": "apply",
+      "discount": "discount",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "unit": "USD $",
+      "calcNextStep": "calculated at next step",
+      "total": "Total",
+      "needHelp": "Need Help? Contact our support from below"
     },
 
     "Brand": {
