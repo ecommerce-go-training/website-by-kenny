@@ -1,0 +1,142 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/mixins';
+
+.checkout {
+  white-space: pre-line;
+  position: relative;
+  display: flex;
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 400;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  & .form-label {
+    font-size: 20px;
+    line-height: 140%;
+    display: flex;
+    letter-spacing: 0.01em;
+    color: $black;
+  }
+  &-info {
+    box-sizing: border-box;
+    flex: 1;
+    padding: 45px 75px 0 90px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    &-title {
+      text-decoration: none;
+      color: $black;
+      font-weight: 600;
+      line-height: 120%;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 35px;
+      margin-bottom: 40px;
+    }
+    & > p:nth-child(2) {
+      margin-bottom: 40px;
+      font-size: 12px;
+      line-height: 300%;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: $black;
+      & > span {
+        color: $very-light-grey;
+      }
+    }
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      & > p:last-child {
+        font-size: 15px;
+        & > a {
+          text-decoration: none;
+          color: $black;
+          font-weight: bold;
+        }
+      }
+    }
+    & > form {
+      margin-top: 30px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid $very-light-grey;
+      & .form-check {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 45px;
+        margin-bottom: 40px;
+        & > input[type="checkbox"] {
+          position: relative;
+          width: 25px;
+          height: 25px;
+          accent-color: black;
+          bottom: 1px;
+        } 
+        & > p {
+          font-size: 13px;
+          line-height: 150%;
+          color: $black;
+        }
+        &.second {
+          margin-top: 20px;
+        }
+      }
+      & .form-info {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        gap: 15px 0;
+        & > div {
+          display: flex;
+          gap: 0 15px;
+        }
+      }
+      & .form-navigate {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & > div:first-child {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          & > img {
+            position: relative;
+            width: 10px;
+            height: auto;
+            bottom: 3px;
+            cursor: pointer;
+          }
+          & > p {
+            font-size: 12px;
+            line-height: 100%;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: $black;
+            cursor: pointer;
+          }
+        }
+        & > div:last-child {
+          width: 40%;
+          & p {
+            line-height: 150%;
+            width: 150px;
+          }
+        }
+      }
+    }
+  }
+  &-item {
+    background-color: $white-smoke;
+    flex: 1;
+    padding: 75px 0 0 50px;
+    display: flex;
+    flex-direction: column;
+  }
+}

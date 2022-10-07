@@ -12,9 +12,6 @@ import Footer from 'components/Footer';
 import Slider2 from 'components/Sliderv2';
 
 import {
-  riderW,
-  riderOoo,
-  riderBuild,
   subBg1,
   subBg2,
   model1,
@@ -106,10 +103,10 @@ function Home() {
         </Link>
         <div className='home__social'>
           <div>
-            <img src={riderOoo} alt='model info' />
+            <img src={model1} alt='model info' />
           </div>
           <div>
-            <img src={riderBuild} alt='model info' />
+            <img src={model2} alt='model info' />
           </div>
           <div>
             <img src={model1} alt='model info' />
@@ -118,7 +115,7 @@ function Home() {
             <img src={model2} alt='model info' />
           </div>
           <div>
-            <img src={riderW} alt='model info' />
+            <img src={model1} alt='model info' />
           </div>
         </div>
         <div className='home__signup'>

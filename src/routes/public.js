@@ -5,6 +5,7 @@ import Store from 'pages/Store';
 import Season from 'pages/Season';
 import SignUp from 'pages/SignUp';
 import SignIn from 'pages/SignIn';
+import Checkout from 'pages/Checkout';
 import Catalouge from 'pages/Catalouge';
 import ItemDetails from 'pages/ItemDetails';
 import Resetpsw from 'pages/Resetpassword';
@@ -59,6 +60,10 @@ const publicRoutes = [
   {
     path     : '/my-cart',
     component: Cart,
+  },
+  {
+    path     : '/checkout',
+    component: Checkout,
   },
 ];
 

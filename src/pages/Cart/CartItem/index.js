@@ -1,8 +1,13 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { xmark, more } from 'assets/images';
 
 import './style.scss';
 
 function CartItem({ data }) {
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cart' });
+
   return (
     <div className='cart-items'>
       <div className='cart-items-img'>
@@ -15,19 +20,19 @@ function CartItem({ data }) {
         </div>
         <p>USD ${data.price}</p>
         <div>
-          <p>COLOR: </p>
+          <p>{t('color')}: </p>
           <div>
             <p>{data.color}</p> <img src={more} alt='more icon' />
           </div>
         </div>
         <div>
-          <p>SIZE: </p>
+          <p>{t('size')}: </p>
           <div>
             <p>{data.size}</p> <img src={more} alt='more icon' />
           </div>
         </div>
         <div>
-          <p>QUANTITY: </p>
+          <p>{t('quantity')}: </p>
           <div>
             <p>{data.quantity}</p> <img src={more} alt='more icon' />
           </div>

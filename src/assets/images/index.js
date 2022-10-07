@@ -52,6 +52,7 @@ import openEye from './icons/eyeOpen.png';
 import success from './icons/success.png';
 import facebook from './icons/facebook.png';
 import closeEye from './icons/eyeClose.png';
+import backArrow from './icons/backArrow.png';
 import blackCart from './icons/blackCart.png';
 import instagram from './icons/instagram.png';
 import pinterest from './icons/pinterest.png';
@@ -68,6 +69,7 @@ import cataWhiteDress from './catalouge/whiteDress.png';
 import cataPurpleDress from './catalouge/purpleDress.png';
 
 export {
+  backArrow,
   backDress,
   backDressMobile,
   background,

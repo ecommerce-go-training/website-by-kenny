@@ -79,7 +79,7 @@ function MyCart({ toggle, setToggle, price }) {
           </Button>
         </div>
         <div>
-          <Button border>
+          <Button border handleClick={() => navigate('/checkout')}>
             <div className='button-info'>
               <p>{t('checkOut')} </p>
               {price && <p>price</p>}

@@ -7,9 +7,9 @@ import {
   cataPinkDress,
   cataPurpleDress,
   cataWhiteDress,
-  riderBuild,
-  riderOoo,
-  riderW,
+  whiteDress,
+  greenDress,
+  orangeDress,
 } from 'assets/images';
 
 import './style.scss';
@@ -59,8 +59,8 @@ function Catalouge() {
       quantity: 0,
     },
     {
-      img        : riderW,
-      name       : 'Kamenrider W',
+      img        : orangeDress,
+      name       : 'Dress Orange',
       price      : 20,
       catalouge  : 'Sale',
       description:
@@ -70,8 +70,8 @@ function Catalouge() {
       quantity: 5,
     },
     {
-      img        : riderOoo,
-      name       : 'Kamenrider OOO',
+      img        : greenDress,
+      name       : 'Dressing OOO',
       price      : 20,
       catalouge  : 'Sale',
       description:
@@ -81,8 +81,8 @@ function Catalouge() {
       quantity: 0,
     },
     {
-      img        : riderBuild,
-      name       : 'Kamenrider Build',
+      img        : whiteDress,
+      name       : 'Builtin Dress',
       price      : 20,
       catalouge  : 'Sale',
       description:

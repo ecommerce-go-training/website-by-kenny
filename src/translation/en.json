@@ -134,7 +134,29 @@
       "items": "items",
       "checkOut": "proceed to \ncheckout",
       "total": "total",
-      "unit": "$"
+      "unit": "$",
+      "color": "color",
+      "size": "size",
+      "quantity": "quantity"
+    },
+
+    "Checkout": {
+      "contact": "Contact information",
+      "already": "Already have an account? ",
+      "logIn": "Log in",
+      "firstName": "firstName",
+      "lastName": "lastName",
+      "email": "email",
+      "address": "address",
+      "city": "city",
+      "countryReg": "countryReg",
+      "postalCode": "postalCode",
+      "phone": "phone",
+      "notify": "Keep me up to date on news and exclusive offers",
+      "shippingAddress": "Shipping address",
+      "saveInfo": "Save this information for next time",
+      "return": "return to bag",
+      "continue": "continue to shipping"
     },
 
     "Brand": {
