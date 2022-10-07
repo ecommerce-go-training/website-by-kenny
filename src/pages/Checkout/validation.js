@@ -9,7 +9,7 @@ const checkoutVal = yup.object().shape({
   countryReg: yup.string().required(),
   postalCode: yup.string().required(),
   phone     : yup.string().required(),
-  discount  : yup.string().min(4).max(12),
+  discount  : yup.string().max(12),
 });
 
 export default checkoutVal;

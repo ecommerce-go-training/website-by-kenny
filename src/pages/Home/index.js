@@ -65,7 +65,7 @@ function Home() {
               <p className='description'>
                 {t('description1')} <br /> {t('description2')}
               </p>
-              <Link to='/'>{t('explore')}</Link>
+              <Link to='/catalouge'>{t('explore')}</Link>
             </div>
           </div>
         </div>

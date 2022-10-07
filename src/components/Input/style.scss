@@ -79,6 +79,9 @@
         height: 60px;
         padding: 20px 0 0px 10px;
         background-color: $white-smoke;
+        &:focus {
+          border: 1px solid $raven;
+        }
       }
       &:focus {
         border-bottom: 1px solid $black;
