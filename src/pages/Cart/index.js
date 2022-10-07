@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import Button from 'components/Button';
+import CartItem from './CartItem';
+
+import { pinkDress, whiteDressCart, orangeDressCart } from 'assets/images';
 
 import './style.scss';
 
@@ -11,6 +14,33 @@ function MyCart() {
 
   const totalItem = 0;
   const totalPrice = 0;
+
+  const images = [
+    {
+      image   : pinkDress,
+      name    : 'Pink Dress',
+      color   : 'Pink',
+      size    : 'M',
+      quantity: 1,
+      price   : 100,
+    },
+    {
+      image   : whiteDressCart,
+      name    : 'White Dress',
+      color   : 'White',
+      size    : 'L',
+      quantity: 1,
+      price   : 200,
+    },
+    {
+      image   : orangeDressCart,
+      name    : 'Orange Dress',
+      color   : 'Orange',
+      size    : 'S',
+      quantity: 3,
+      price   : 150,
+    },
+  ];
 
   return (
     <div>
@@ -23,7 +53,11 @@ function MyCart() {
               {totalItem} {t('items')}
             </span>
           </p>
-          <div className='cart-item'></div>
+          <div className='cart-item'>
+            {images.map((item, index) => (
+              <CartItem key={index} data={item} />
+            ))}
+          </div>
           <div className='cart-checkout'>
             <p>
               {t('total')}: &nbsp;{' '}
