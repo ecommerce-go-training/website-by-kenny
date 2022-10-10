@@ -8,7 +8,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Stack from 'components/Stack';
 import Button from 'components/Button';
 import Header from 'components/Header';
-import Slider from 'components/Slider';
 import Footer from 'components/Footer';
 import Slider2 from 'components/Sliderv2';
 
@@ -100,7 +99,7 @@ function Home() {
               {t('theBeachEdit')}
             </p>
           </Stack>
-          <Slider images={images} shiftImg={4} />
+          <Slider2 images={images} />
         </div>
         <Link to='/' className='home__follow'>
           {t('follow')} @ÉLEMUSH.XO
@@ -126,7 +125,7 @@ function Home() {
           <p className='title'>{t('signUpUpdate')}</p>
           <p className='description'>{t('description3')}</p>
           <div className='home__signup-button'>
-            <Button handleClick={() => navigate('/signUp')}>
+            <Button handleClick={() => navigate('/sign-up')}>
               {t('signUp')}
             </Button>
           </div>

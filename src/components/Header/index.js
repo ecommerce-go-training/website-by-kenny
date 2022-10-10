@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState, memo } from 'react';
 
-import Search from 'components/Search';
-import Announce from 'components/Announce';
+import MyCart from './MyCart';
+import Search from './Search';
+import Announce from './Announce';
+import MobileNav from './MobileNav';
 
 import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
@@ -18,6 +20,9 @@ function Header({ disable, disableAnnounce, login, store }) {
   });
   const [bg, setBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
+  const [toggleNavMobile, setToggleNavMobile] = useState(false);
+  const [toggleCart, setToggleCart] = useState(false);
+
   const changeBackground = () => {
     if (window.scrollY >= 100) setBg(true);
     else setBg(false);
@@ -28,20 +33,22 @@ function Header({ disable, disableAnnounce, login, store }) {
     window.addEventListener('scroll', changeBackground);
   });
 
-  const classes = classNames({
-    header        : true,
-    disable       : disable,
-    move          : bg,
-    stand         : !bg,
-    'login-header': login,
-    'store-header': store,
-  });
-
   return (
     <div>
       <Announce disable={disableAnnounce} />
       <Search toggle={toggleSearch} setToggle={setToggleSearch} />
-      <div className={classes}>
+      <MobileNav toggle={toggleNavMobile} setToggle={setToggleNavMobile} />
+      <MyCart toggle={toggleCart} setToggle={setToggleCart} />
+      <div
+        className={classNames({
+          header        : true,
+          disable       : disable,
+          move          : bg,
+          stand         : !bg,
+          'login-header': login,
+          'store-header': store,
+        })}
+      >
         <div className='header__nav'>
           <div className='header__nav-link'>
             <Link to='/catalouge'>{t('newArrivals')}</Link>
@@ -49,7 +56,10 @@ function Header({ disable, disableAnnounce, login, store }) {
               {login ? t('shopWinter') : t('shop')}
             </Link>
             <Link to='/season'>{login ? t('about') : t('fallWinter')}</Link>
-            <div onClick={() => alert('pop later')} className='triple-line'>
+            <div
+              onClick={() => setToggleNavMobile(true)}
+              className='triple-line'
+            >
               <div className='line'></div>
               <div className='line'></div>
               <div className='line'></div>
@@ -70,6 +80,7 @@ function Header({ disable, disableAnnounce, login, store }) {
           />
           <Link to='/sign-in'>{login ? t('account') : t('logIn')}</Link>
           <img
+            onClick={() => setToggleCart(true)}
             src={bg || login || store ? (login ? blackCart : cartBlack) : cart}
             alt='cart img'
           />

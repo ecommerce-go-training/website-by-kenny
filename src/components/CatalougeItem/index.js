@@ -28,6 +28,7 @@ function CatalougeItem({ data }) {
                   description: data.description || 'add des',
                   care       : data.care || 'add garment care',
                   details    : data.details || 'add item details',
+                  quantity   : data.quantity || 0,
                 },
               })
             }

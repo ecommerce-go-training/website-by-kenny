@@ -1,9 +1,10 @@
+import Cart from 'pages/Cart';
 import Home from 'pages/Home';
-import SignIn from 'pages/SignIn';
 import Brand from 'pages/Brand';
+import Store from 'pages/Store';
 import Season from 'pages/Season';
 import SignUp from 'pages/SignUp';
-import Store from 'pages/Store';
+import SignIn from 'pages/SignIn';
 import Catalouge from 'pages/Catalouge';
 import ItemDetails from 'pages/ItemDetails';
 import Resetpsw from 'pages/Resetpassword';
@@ -54,6 +55,10 @@ const publicRoutes = [
   {
     path     : '/details:id',
     component: ItemDetails,
+  },
+  {
+    path     : '/my-cart',
+    component: Cart,
   },
 ];
 
