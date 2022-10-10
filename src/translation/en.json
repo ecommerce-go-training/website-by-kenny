@@ -172,7 +172,25 @@
       "change": "Change",
       "shipMethod": "Shipping method",
       "serviceDHL": "DHL Express Service",
-      "contPayment": "Continue to payment"
+      "contPayment": "Continue to payment",
+      "method": "Method",
+      "payment": "Payment",
+      "paymentDes": "All transactions are secure and encrypted.",
+      "pay": "Pay now",
+      "billAddress": "Billing address",
+      "billAddressDes": "Select the address that matches your card or payment method.",
+      "creditCard": "Credit card",
+      "cardNumber": "cardNumber",
+      "cardExpire": "cardExpire",
+      "cardSecCode": "cardSecCode",
+      "cardName": "cardName",
+      "sameShip": "Same as shipping address",
+      "differentShip": "Use a different billing address",
+      "term": "By ticking, you agree to the following terms of sale. Items purchased during a promotional event or is a sale item can only be returned for a store credit or exchange. Click here to read full returns policy.",
+      "userAgree": "I agree to to pay for all import duty charges, customs and local sales taxes levied by the country I am shipping to.",
+      "paypalDes": "After clicking “Complete order”, you will be redirected to PayPal to complete your purchase securely.",
+      "showOrder": "Show order summary"
+      
     },
 
     "Brand": {

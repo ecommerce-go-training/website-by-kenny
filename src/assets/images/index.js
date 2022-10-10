@@ -42,16 +42,22 @@ import plus from './icons/plus.png';
 import mail from './icons/mail.png';
 import cart from './icons/cart.png';
 import more from './icons/more.png';
-import xmark from './icons/blackX.png';
-import whiteX from './icons/whiteX.png';
+import visa from './icons/visa.png';
 import minus from './icons/minus.png';
 import phone from './icons/phone.png';
+import xmark from './icons/blackX.png';
+import paypal from './icons/paypal.png';
+import whiteX from './icons/whiteX.png';
 import search from './icons/search.png';
 import tiktok from './icons/tiktok.png';
 import openEye from './icons/eyeOpen.png';
 import success from './icons/success.png';
+import blueCart from './icons/blueCart.png';
 import facebook from './icons/facebook.png';
 import closeEye from './icons/eyeClose.png';
+import question from './icons/question.png';
+import blueArrowDown from './icons/blueArrowDown.png';
+import blueArrowUp from './icons/blueArrowUp.png';
 import backArrow from './icons/backArrow.png';
 import blackCart from './icons/blackCart.png';
 import instagram from './icons/instagram.png';
@@ -62,7 +68,7 @@ import nextArrow from './icons/nextArrow.png';
 import rightArrow from './icons/rightArrow.png';
 import searchBlack from './icons/searchBlack.png';
 import successMail from './icons/successMail.png';
-import question from './icons/question.png';
+import paypalRedirect from './icons/paypalRedirect.png';
 
 import cataBackDress from './catalouge/backDress.png';
 import cataPinkDress from './catalouge/pinkDress.png';
@@ -79,6 +85,9 @@ export {
   beachEdit3,
   beachEdit4,
   blackCart,
+  blueArrowDown,
+  blueArrowUp,
+  blueCart,
   cart,
   cartBlack,
   cataBackDress,
@@ -112,6 +121,8 @@ export {
   orangeDress,
   orangeDressCart,
   ourStories,
+  paypal,
+  paypalRedirect,
   phone,
   pinkDress,
   pinterest,
@@ -131,6 +142,7 @@ export {
   success,
   successMail,
   tiktok,
+  visa,
   whiteDress,
   whiteDressCart,
   whiteX,

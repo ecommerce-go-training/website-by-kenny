@@ -9,6 +9,10 @@
     width: 70px;
     height: 92px;
     margin-right: 20px;
+    @include responsive(mobile) {
+      width: 35px;
+      height: 50px;
+    }
     & > p {
       position: absolute;
       right: -10px;
@@ -17,6 +21,15 @@
       color: $white;
       padding: 5px 10px;
       border-radius: 50%;
+      font-size: 11px;
+      letter-spacing: 0.01em;
+      color: $white;
+      @include responsive(mobile) {
+        right: -9px;
+        top: -8px;
+        padding: 5px;
+        font-size: 11px;
+      }
     }
     & > img {
       width: 100%;
