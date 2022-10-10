@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from 'components/Input';
 import Header from 'components/Header';
 import Button from 'components/Button';
-import Checkbox from 'components/checkbox';
+import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
 
 import './style.scss';

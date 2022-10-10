@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-function Stack({ children, row, col, disable, spacing, center }) {
+function Stack({ children, row, col, disable, spacing, center, colWrap }) {
   const classes = classNames({
     stack  : true,
     row    : row,
@@ -12,6 +12,7 @@ function Stack({ children, row, col, disable, spacing, center }) {
     disable: disable,
     center : center,
     spacing: spacing,
+    colWrap: colWrap,
   });
 
   return <div className={classes}>{children}</div>;

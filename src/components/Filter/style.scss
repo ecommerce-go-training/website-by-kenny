@@ -1,0 +1,137 @@
+@import 'assets/scss/variables';
+@import 'assets/scss/mixins';
+
+.filter {
+  width: 100%;
+  padding: 0 100px;
+  font-family: 'Sofia Pro';
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  @include responsive(tablet) {
+    padding: 0 30px;
+  }
+  & a {
+    text-decoration: none;
+    width: max-content;
+    color: $black;
+    font-size: 12px;
+    line-height: 300%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    @include responsive(tablet) {
+      font-size: 10px;
+      line-height: 280%;
+    }
+  }
+  & .filter-title {
+    margin-bottom: 30px;
+    color: $very-light-grey;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    @include responsive(tablet) {
+      margin-bottom: 20px;
+      font-size: 11px;
+    }
+  }
+  &__categories {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    @include responsive(tablet) {
+      margin-bottom: 30px;
+    }
+    & > a:last-child {
+      color: red;
+    }
+  }
+  &__collections {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    @include responsive(tablet) {
+      margin-bottom: 30px;
+    }
+  }
+  &__filter {
+    width: 100%;
+    height: auto;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
+    @include responsive(tablet) {
+      margin-bottom: 40px;
+      gap: 15px;
+    }
+    & > div {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      & > div:first-child {
+        width: 100%;
+        max-height: 200px;
+        margin-bottom: 35px;
+      }
+      & > div:nth-child(2) {
+        width: 100%;
+        max-height: 100px;
+        @include responsive(tablet) {
+          max-height: 90px;
+        }
+      }
+      & p {
+        font-size: 10px;
+        line-height: 140%;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        @include responsive(tablet) {
+          font-size: 9px;
+        }
+      }
+      & > p { 
+        align-self: center;
+        width: max-content;
+        text-decoration: underline;
+        font-size: 13px;
+        line-height: 140%;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $black;
+        cursor: pointer;
+        margin: 30px 0;
+        @include responsive(tablet) {
+          font-size: 10px;
+        }
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  &__sort {
+    display: flex;
+    gap: 28px;
+    @include responsive(tablet) {
+      gap: 23px;
+    }
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      & p {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: $black;
+        @include responsive(tablet) {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

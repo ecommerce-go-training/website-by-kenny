@@ -2,11 +2,17 @@
 
 .stack {
   display: flex;
+  width: 100%;
+  height: 100%;
   &.row {
     flex-direction: row;
   }
   &.col {
     flex-direction: column;
+  }
+  &.colWrap {
+    gap: 15px;
+    flex-wrap: wrap;
   }
   &.center {
     align-items: center;
@@ -23,15 +29,6 @@
   }
   &.disable {
     display: none;
-  }
-  & > p {
-    font-family: 'Sofia Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 300%;
-    color: black;
-    margin-left: 20px;
   }
 }
 // for storybook only

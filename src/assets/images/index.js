@@ -57,6 +57,11 @@ import rightArrow from './icons/rightArrow.png';
 import searchBlack from './icons/searchBlack.png';
 import successMail from './icons/successMail.png';
 
+import cataBackDress from './catalouge/backDress.png';
+import cataPinkDress from './catalouge/pinkDress.png';
+import cataWhiteDress from './catalouge/whiteDress.png';
+import cataPurpleDress from './catalouge/purpleDress.png';
+
 export {
   backDress,
   backDressMobile,
@@ -68,6 +73,10 @@ export {
   blackCart,
   cart,
   cartBlack,
+  cataBackDress,
+  cataPinkDress,
+  cataPurpleDress,
+  cataWhiteDress,
   certificate,
   closeEye,
   facebook,

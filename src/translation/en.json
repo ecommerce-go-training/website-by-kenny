@@ -9,8 +9,58 @@
       "fall winter": "fall winter",
       "account": "Account",
       "log in": "Log in"
+    },
+
+    "Filter": {
+      "categories": "categories",
+      "new arrivals": "new arrivals",
+      "back in stock": "back in stock",
+      "dresses": "dresses",
+      "tops": "tops",
+      "skirts": "skirst",
+      "shorts": "shorts",
+      "pants": "pants",
+      "jackets": "jackets",
+      "jumpsuits": "jumpsuits",
+      "two piece sets": "two piece sets",
+      "sales": "sale",
+      "collections": "collections",
+      "essentials edit": "essentials edit",
+      "spring summer": "spring summer 2021",
+      "fall winter" : "fall winter 2020",
+      "filter": "filter",
+      "color": "color",
+      "beige": "beige",
+      "blue": "blue",
+      "black": "black",
+      "brown": "brown",
+      "green": "green",
+      "red": "red",
+      "metallic": "metallic",
+      "white": "white",
+      "cream": "cream",
+      "pink": "pink",
+      "orange": "orange",
+      "yellow": "yellow",
+      "lilac": "lilac",
+      "floral": "floral",
+      "size": "size",
+      "freesize": "freesize",
+      "clear filters": "clear filters",
+      "apply": "apply",
+      "sort": "sort",
+      "newest": "newest in",
+      "best sellers": "best sellers",
+      "price highest": "price highest",
+      "price lowest": "price lowest"
+    },
+
+    "CatalougeItem" : {
+      "quick add": "quick add",
+      "$" : "$"
     }
   },
+  
   "Pages": {
 
     "Home": {
@@ -60,7 +110,7 @@
         "question4": "HOW DO I KNOW IF MY ORDER HAS BEEN SHIPPED?",
         "answ4": "We will send you a 'shipping confirmation' email as soon as your order has been sent. This email will also contain your tracking number.",
         "question5": "CAN I CHANGE MY DELIVERY ADDRESS?",
-        "answ5": "Provided the item has not been collected by our courier, we will do our best to update your preferred address, but we cannot guarantee. Please contact us as soon as possible at contact@dearjose.com. Once the item is shipped, unfortunately we are unable to change the delivery address at that point.",
+        "answ5": "Provided the item has not been collected by our courier, we will do our best to update your preferred address, but we cannot guarantee. Please contact us as soon as possible at contact@elemush.com. Once the item is shipped, unfortunately we are unable to change the delivery address at that point.",
         "question6": "DO I HAVE TO PAY FOR MY RETURN?",
         "answ6": "Yes, customers are responsible for the cost of shipping returns back to us.",
         "question7": "WHAT I DO IF I RECEIVE A FAULTY ITEM?",
@@ -178,6 +228,15 @@
         "governingLaw": "governing law",
         "governingLawDes": "The laws of the Vietnam will govern these Terms of Use and any dispute of any sort that might arise, without regard to principles of conflict of law.\n\nThe Web Site is provided from Vietnam and all servers that make it available reside in the Social Republic of Vietnam.  The laws of other countries may differ regarding the access and use of the Web Site.  We make no representations regarding the legality of this Web Site in any other country and it is your responsibility to ensure that your use complies with all applicable laws outside of the Social Republic of Vietnam."
       }
+    },
+
+    "ItemDetails": {
+      "$" : "$",
+      "add to cart": "add to cart",
+      "find your size": "Find your size: ",
+      "more": "you may also like",
+      "shipping": "Free shipping within Vietnam.\n\nDelivery outside of Vietnam:\n• Standard shipping - $20\n• Express shipping - $30\n• Free standard shipping on orders over $500\n\nEasy 14 days returns from delivery date. No return available for sale products. \nRead more"
     }
+
   }
 }

@@ -44,7 +44,7 @@ function Header({ disable, disableAnnounce, login, store }) {
       <div className={classes}>
         <div className='header__nav'>
           <div className='header__nav-link'>
-            <Link to='/'>{t('new arrivals')}</Link>
+            <Link to='/catalouge'>{t('new arrivals')}</Link>
             <Link to={login ? '/season' : '/store'}>
               {login ? t('shop winter') : t('shop')}
             </Link>
