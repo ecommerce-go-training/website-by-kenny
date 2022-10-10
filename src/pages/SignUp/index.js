@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Input from 'components/Input';
@@ -13,12 +14,14 @@ import signUpVal from './validation';
 import './style.scss';
 
 function SignUp() {
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.SignUp' });
+
   const {
+    watch,
+    reset,
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-    reset,
   } = useForm({
     mode    : 'all',
     resolver: yupResolver(signUpVal),
@@ -34,8 +37,8 @@ function SignUp() {
       <Header disableAnnounce login />
       <div className='signup__container'>
         <form className='signup' onSubmit={handleSubmit(formSubmit)}>
-          <label>create an account</label>
-          <p>Please register your details below to create an account</p>
+          <label>{t('label')}</label>
+          <p>{t('description')}</p>
           <Input
             register={register}
             error={errors.firstName?.message}
@@ -74,23 +77,20 @@ function SignUp() {
           />
           <div className='signup__checkbox'>
             <Checkbox>
-              <p>
-								Sign me up to reveive updates on new arrivals, events,
-								promotions and much more!
-              </p>
+              <p>{t('receiveNews')}</p>
             </Checkbox>
           </div>
           <p className='agree'>
-						By signing up you agree to Elemush &nbsp;
-            <Link to='/privacy'>Terms of Service</Link> &nbsp; and &nbsp;
-            <Link to='/privacy'>Privacy Policy</Link>
+            {t('userAgree')} Elemush &nbsp;
+            <Link to='/privacy'>{t('terms')}</Link> &nbsp; and &nbsp;
+            <Link to='/privacy'>{t('privacy')}</Link>
           </p>
           <div className='signup__button'>
             <Button type='submit'>
-              <p>Create</p>
+              <p>{t('create')}</p>
             </Button>
           </div>
-          <Link to='/signIn'>I have an account</Link>
+          <Link to='/sign-in'>{t('haveAccount')}</Link>
         </form>
       </div>
     </div>

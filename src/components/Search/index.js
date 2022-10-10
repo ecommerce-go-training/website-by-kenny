@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { searchBlack, xmark } from 'assets/images';
 
 import './style.scss';
 
 function Search({ toggle, setToggle }) {
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Components.Search',
+  });
+
   const classes = classNames({
     search: true,
     active: toggle,
@@ -27,13 +32,13 @@ function Search({ toggle, setToggle }) {
         />
       </div>
       <div className='search__quick-nav'>
-        <p>quick links</p>
+        <p>{t('quickLink')}</p>
         <div>
-          <Link to='/'>dresses</Link>
-          <Link to='/'>tops</Link>
-          <Link to='/'>pants</Link>
-          <Link to='/'>store</Link>
-          <Link to='/'>shipping</Link>
+          <Link to='/'>{t('dress')}</Link>
+          <Link to='/'>{t('top')}</Link>
+          <Link to='/'>{t('pant')}</Link>
+          <Link to='/'>{t('store')}</Link>
+          <Link to='/'>{t('ship')}</Link>
         </div>
       </div>
     </div>

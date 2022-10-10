@@ -7,7 +7,7 @@ import { leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-function Slider({ imgList, shiftImg }) {
+function Slider({ images, shiftImg }) {
   // desktop  4, tablet 3, mobile 1
   const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,7 +31,7 @@ function Slider({ imgList, shiftImg }) {
   const handleLeft = () => {
     sliderRef.current.style.animation = '0.8s left-slide';
     setCurrentIndex(
-      currentIndex === 0 ? imgList.length - shiftImg : currentIndex - shiftImg
+      currentIndex === 0 ? images.length - shiftImg : currentIndex - shiftImg
     );
     setDirection(true);
     console.log(sliderRef.current.style);
@@ -39,22 +39,22 @@ function Slider({ imgList, shiftImg }) {
 
   const handleRight = () => {
     setCurrentIndex(
-      currentIndex === imgList.length - shiftImg ? 0 : currentIndex + shiftImg
+      currentIndex === images.length - shiftImg ? 0 : currentIndex + shiftImg
     );
     setDirection(false);
   };
 
-  if (currentIndex + imgToShow > imgList.length) {
-    res = [...imgList];
-    const difference = currentIndex + imgToShow - imgList.length;
+  if (currentIndex + imgToShow > images.length) {
+    res = [...images];
+    const difference = currentIndex + imgToShow - images.length;
     for (let i = 0; i < difference; i++) {
       res.push(res.shift());
     }
   }
 
-  const result = imgList
+  const result = images
     .slice(currentIndex, currentIndex + imgToShow)
-    .concat(res.slice(imgList.length - (currentIndex + imgToShow)));
+    .concat(res.slice(images.length - (currentIndex + imgToShow)));
 
   return (
   //mathrandom to trigger css animation each time compoent rerender

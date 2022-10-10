@@ -2,33 +2,66 @@
   "Components": {
 
     "Header": {
-      "new arrivals": "new arrivals",
-      "shop winter": "Shop winter",
+      "newArrivals": "new arrivals",
+      "shopWinter": "Shop winter",
       "shop": "shop",
       "about": "about",
-      "fall winter": "fall winter",
+      "fallWinter": "fall winter",
       "account": "Account",
-      "log in": "Log in"
+      "logIn": "Log in"
+    },
+
+    "Search": {
+      "quickLink": "quick link",
+      "dress": "dresses",
+      "top": "tops",
+      "pant": "pants",
+      "store": "store",
+      "ship": "shipping"
+    },
+
+    "Footer": {
+      "follow": "follow us",
+      "copyRight": "© 2020 Élemush All Rights Reserved.",
+      "about": "about",
+      "brand": "brand",
+      "storeLocator": "store locator",
+      "customerCare": "customer care",
+      "faq": "faq",
+      "size": "sizing",
+      "shipping": "shipping & returns",
+      "terms": "terms & conditions",
+      "policy": "privacy policy",
+      "garment": "garment care",
+      "return": "make a return",
+      "contact": "contact us",
+      "customerService": "customer services \n\nCONTACT@ELEMUSH.COM",
+      "whosesalse": "whosesales & pressed \n\nTEAM@ELEMUSH.COM"
+    },
+
+    "Announce": {
+      "freeShipInVietnam": "free shipping in vietnam",
+      "internationalShip": "free shipping for international orders over 500$"
     },
 
     "Filter": {
       "categories": "categories",
-      "new arrivals": "new arrivals",
-      "back in stock": "back in stock",
+      "newArrivals": "new arrivals",
+      "backInStock": "back in stock",
       "dresses": "dresses",
       "tops": "tops",
-      "skirts": "skirst",
+      "skirts": "skirts",
       "shorts": "shorts",
       "pants": "pants",
       "jackets": "jackets",
       "jumpsuits": "jumpsuits",
-      "two piece sets": "two piece sets",
+      "twoPieceSets": "two piece sets",
       "sales": "sale",
       "collections": "collections",
-      "essentials edit": "essentials edit",
-      "spring summer": "spring summer 2021",
-      "fall winter" : "fall winter 2020",
-      "filter": "filter",
+      "essentialsEdit": "essentials edit",
+      "springSummer": "spring summer 2021",
+      "fallWinter" : "fall winter 2020",
+      "filter": "filters",
       "color": "color",
       "beige": "beige",
       "blue": "blue",
@@ -46,17 +79,17 @@
       "floral": "floral",
       "size": "size",
       "freesize": "freesize",
-      "clear filters": "clear filters",
+      "clearFilters": "clear filters",
       "apply": "apply",
       "sort": "sort",
       "newest": "newest in",
-      "best sellers": "best sellers",
-      "price highest": "price highest",
-      "price lowest": "price lowest"
+      "bestSellers": "best sellers",
+      "priceHighest": "price highest",
+      "priceLowest": "price lowest"
     },
 
     "CatalougeItem" : {
-      "quick add": "quick add",
+      "quickAdd": "quick add",
       "$" : "$"
     }
   },
@@ -66,7 +99,46 @@
     "Home": {
       "description1": "The Resort 2021 collection is a love letter to our youth. Discover the",
       "description2": "beauty of blooming flowers under the blue sky and sunny",
-      "explore": "explore the collection"
+      "explore": "explore the collection",
+      "theBeachEdit": "the beach edit",
+      "follow": "follow US",
+      "signUpUpdate": "sign up for update",
+      "signUp": "sign up",
+      "description3": "Sign-up to receive 10% off your first purchase as well as the \nlatest updates on new arrivals, exclusive promotions and events."
+    },
+
+    "Store": {
+      "ourStore": "our store",
+      "stockist": "stockists",
+      "description": "Our new era is marked by a new concept store with limitless inspiration from stories. Our duty is bringing a miracle to this world by creating beautiful dresses and conveying civilized stories. Discover our store to not only dress in Elemush, but also to feel its elegance.",
+      "viewMap": "view the map here",
+      "openHr": "Opening hours: ",
+      "monday": "Monday",
+      "friday": "Friday",
+      "sunday": "Sunday",
+      "contact": "contact",
+      "description2": "Our new era is marked by a new concept store with endless inspiration from fairy tales. We believe fashion is a miracle of this world by creating beautiful things and conveying civilized stories. Discover our store to not only dress in Elemush, but also to feel its elegance."
+    },
+
+    "Brand": {
+      "brand": "brand",
+      "ourStory": "our story",
+      "the": "the",
+      "modern": "modern",
+      "romantic": "romantic",
+      "women": "women",
+      "description": "A women’s ready-to-wear label by Gun Phan. He serves as Founder and Creative Director with a focus to meet the wardrobe needs of women all over the world. The brand name is sweet like an elegance mushrrom, sending rich and evocative messages through clothing. \n\nAfter graduating in Industrial Design, Gun became an accessory designer and freelance creative director. He founded Elemush in 2018 with the desire to change the style of young Vietnamese women. The design is aimed at femininity, softness with romantic poetic spirit. \n\nArtfully crafted and beautifully designed, each garment and accessory breathes new life into the ever-evolving female wardrobe. Our silhouettes are defined by fluidity, and remain wearable through the changing of trends and seasons. We are detailed and thoughtful in our manufacturing to ensure our clothes are not only affordable, but can withstand the test of time."
+    },
+
+    "SignUp": {
+      "label": "create an account",
+      "description": "Please register your details below to create an account",
+      "receiveNews": "Sign me up to reveive updates on new arrivals, events,\npromotions and much more!",
+      "userAgree": "By signing up you agree to",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "create": "create",
+      "haveAccount": "I have an account"
     },
 
     "SignIn": {
@@ -76,6 +148,22 @@
       "resetPsw": "Forgot your password ?",
       "submit": "submit",
       "signup": "sign up"
+    },
+
+    "ResetPassword" : {
+      "title": "Reset your password",
+      "description": "Please enter your email address and click on submit. We will send you an email contaninng a link that you can click to create a new password.",
+      "submit": "Submit",
+      "backToSignIn": "Back to sign in",
+      "description2": "Please check your mail box and click in the recevied link to reset your new password",
+      "didntReceive": "Didn't receive the code ?",
+      "resend": "Resend",
+      "createNewPassword": "Create new password",
+      "description3": "Enter a new password for",
+      "resetPassword": "Reset Password",
+      "description4": "You can now sign in with your new password",
+      "success": "password changed !",
+      "signIn": "sign in"
     },
 
     "Season": {
@@ -97,6 +185,11 @@
     },
 
     "CustomerSupport": {
+      "faq": "faq",
+      "ship": "shipping & returns",
+      "terms": "terms & conditions",
+      "policy": "privacy policy",
+      "garment": "garment care",
       "Faq": {
         "question1": "WHAT CURRENCY IS USED ONLINE?",
         "answ1": "All prices are charged in USD and VNĐ.",
@@ -227,13 +320,23 @@
         "agreementDes": "This Terms of Sale and Use of Website Agreement together with the other policies on this website are the entire agreement between us (Elemush) and the user (yourself).",
         "governingLaw": "governing law",
         "governingLawDes": "The laws of the Vietnam will govern these Terms of Use and any dispute of any sort that might arise, without regard to principles of conflict of law.\n\nThe Web Site is provided from Vietnam and all servers that make it available reside in the Social Republic of Vietnam.  The laws of other countries may differ regarding the access and use of the Web Site.  We make no representations regarding the legality of this Web Site in any other country and it is your responsibility to ensure that your use complies with all applicable laws outside of the Social Republic of Vietnam."
+      },
+      "Size": {
+        "description": "If your measurements are not consistent with a single column, use your waist measurement to determine your ideal size.",
+        "sizeConversation": "sizing conversation",
+        "bust": "bust",
+        "bustDes": "Measure around the fullest part of your chest, keeping the tape level to the floor",
+        "waist": "waist",
+        "waistDes": "Measure around your natural waistline (the smallest part of your waist)",
+        "hips": "hips",
+        "hipsDes": "Measure aroud the fullest part of your hips. Slim-hipped ladies can take this measurement from 20cm/8in below the waistline"
       }
     },
 
     "ItemDetails": {
       "$" : "$",
-      "add to cart": "add to cart",
-      "find your size": "Find your size: ",
+      "addToCart": "add to cart",
+      "findYourSize": "Find your size: ",
       "more": "you may also like",
       "shipping": "Free shipping within Vietnam.\n\nDelivery outside of Vietnam:\n• Standard shipping - $20\n• Express shipping - $30\n• Free standard shipping on orders over $500\n\nEasy 14 days returns from delivery date. No return available for sale products. \nRead more"
     }

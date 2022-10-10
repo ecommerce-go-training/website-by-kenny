@@ -9,8 +9,8 @@ import Stack from 'components/Stack';
 import Button from 'components/Button';
 import Header from 'components/Header';
 import Slider from 'components/Slider';
-import Slider2 from 'components/sliderv2';
 import Footer from 'components/Footer';
+import Slider2 from 'components/Sliderv2';
 
 import {
   riderW,
@@ -36,7 +36,7 @@ import './style.scss';
 function Home() {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Home' });
   const navigate = useNavigate();
-  const imgList = [
+  const images = [
     beachEdit1,
     beachEdit2,
     beachEdit3,
@@ -88,7 +88,7 @@ function Home() {
               {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
-          <Slider2 imgList={imgList} />
+          <Slider2 images={images} />
         </div>
         <div className='home__doublebg'>
           <img src={subBg1} alt='Knitwear bg img' />
@@ -97,13 +97,13 @@ function Home() {
         <div className='home__slider'>
           <Stack row center spacing>
             <p className='switch active' to='/'>
-							the beach edit
+              {t('theBeachEdit')}
             </p>
           </Stack>
-          <Slider imgList={imgList} shiftImg={4} />
+          <Slider images={images} shiftImg={4} />
         </div>
         <Link to='/' className='home__follow'>
-					follow US @ÉLEMUSH.XO
+          {t('follow')} @ÉLEMUSH.XO
         </Link>
         <div className='home__social'>
           <div>
@@ -123,13 +123,12 @@ function Home() {
           </div>
         </div>
         <div className='home__signup'>
-          <p className='title'>sign up for update</p>
-          <p className='description'>
-						Sign-up to receive 10% off your first purchase as well as the <br />
-						latest updates on new arrivals, exclusive promotions and events.
-          </p>
+          <p className='title'>{t('signUpUpdate')}</p>
+          <p className='description'>{t('description3')}</p>
           <div className='home__signup-button'>
-            <Button handleClick={() => navigate('/signUp')}>sign up</Button>
+            <Button handleClick={() => navigate('/signUp')}>
+              {t('signUp')}
+            </Button>
           </div>
         </div>
       </div>

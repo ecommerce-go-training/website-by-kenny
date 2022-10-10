@@ -7,9 +7,6 @@
   box-sizing: border-box;
   padding: 20px;
   margin-top: 20px;
-  @include responsive(mobile) {
-    padding: 0px;
-  }
   &__title {
     width: max-content;
     text-transform: uppercase;
@@ -29,6 +26,7 @@
     }
     @include responsive(mobile) {
       font-size: 16px;
+      margin-bottom: 10px;
     }
     & > img {
       position: relative;
@@ -65,6 +63,10 @@
       width: 100%;
     }
   }
+  &.lineSolid {
+    padding-top: 30px !important;
+    border-top: 0.25px solid $raven;
+  }
   &.lineTop {
     padding: 20px 10px 5px 20px;
     margin-top: 0;
@@ -80,8 +82,25 @@
   &.smallLabel {
     margin: 0;
     padding: 10px;
+    @include responsive(tablet) {
+      padding: 5px;
+    }
+    @include responsive(mobile) {
+      padding: 4px;
+      margin: 5px 0;
+    }
     & > label {
       font-size: 16px;
+      @include responsive(tablet) {
+        font-size: 14px;
+      }
+      @include responsive(mobile) {
+        font-size: 12px;
+      }
     }
+  }
+  &.collapseFilter {
+    margin: 0;
+    padding: 0;
   }
 }

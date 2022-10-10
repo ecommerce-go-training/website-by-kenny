@@ -38,7 +38,8 @@ import backDressMobile from './season/backDressMobile.jpg';
 import plus from './icons/plus.png';
 import mail from './icons/mail.png';
 import cart from './icons/cart.png';
-import xmark from './icons/xmark.png';
+import xmark from './icons/blackX.png';
+import whiteX from './icons/whiteX.png';
 import minus from './icons/minus.png';
 import phone from './icons/phone.png';
 import search from './icons/search.png';
@@ -120,5 +121,6 @@ export {
   successMail,
   tiktok,
   whiteDress,
+  whiteX,
   xmark,
 };

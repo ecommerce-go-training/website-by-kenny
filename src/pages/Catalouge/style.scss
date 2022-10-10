@@ -9,16 +9,13 @@
   flex-direction: row;
   box-sizing: border-box;
   @include responsive(mobile) {
-    margin-top: 100px;
+    margin-top: 70px;
+    flex-direction: column;
   }
   &__filter {
     flex: 1;
-    & .filter__items {
-      width: max-content;
-      cursor: pointer;
-      &:hover {
-        opacity: 0.8;
-      }
+    @include responsive(mobile) {
+      padding: 0 3vw;
     }
   }
   &__items {
@@ -29,6 +26,12 @@
     @include responsive(tablet) {
       flex: 2;
       gap: 50px;
+    }
+    @include responsive(mobile) {
+      justify-content: space-between;
+      overflow: hidden;
+      padding: 0 3vw;   
+      gap: 0;
     }
   }
 }

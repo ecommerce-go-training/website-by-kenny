@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -16,13 +17,16 @@ import './style.scss';
 
 function Resetpsw() {
   const navigate = useNavigate();
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Pages.ResetPassword',
+  });
   const [page, setPage] = useState(1);
 
   const {
-    register,
-    handleSubmit,
     reset,
     watch,
+    register,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     mode    : 'all',
@@ -38,8 +42,6 @@ function Resetpsw() {
     reset();
   };
 
-  console.log(watch('email'));
-
   return (
     <div>
       <Header disableAnnounce login />
@@ -48,12 +50,8 @@ function Resetpsw() {
           {page === 1 && (
             <section className='page1' style={{ display: '' }}>
               <div className='page1__intro'>
-                <p className='title'>Reset your password</p>
-                <p className='description'>
-									Please enter your email address and click on submit. We will
-									send you an email contaninng a link that you can click to
-									create a new password.
-                </p>
+                <p className='title'>{t('title')}</p>
+                <p className='description'>{t('description')}</p>
               </div>
               <Input
                 register={register}
@@ -69,10 +67,10 @@ function Resetpsw() {
                   handleClick={handleClick}
                   type='button'
                 >
-                  <p>Submit</p>
+                  <p>{t('submit')}</p>
                 </Button>
               </div>
-              <Link to='/signIn'>Back to sign in</Link>
+              <Link to='/sign-in'>{t('backToSignIn')}</Link>
             </section>
           )}
 
@@ -80,10 +78,7 @@ function Resetpsw() {
             <section className='page2'>
               <div className='page2__intro'>
                 <p className='title'>Check your Email</p>
-                <p className='description'>
-									Please check your mail box and click in the recevied link to
-									reset your new password
-                </p>
+                <p className='description'>{t('description2')}</p>
               </div>
               <img src={successMail} alt='Mail success img' />
               <Input
@@ -100,12 +95,12 @@ function Resetpsw() {
                   handleClick={handleClick}
                   type='button'
                 >
-                  <p>Submit</p>
+                  <p>{t('submit')}</p>
                 </Button>
               </div>
               <p>
-								Didn&#39;t receive the code?{' '}
-                <span onClick={() => setPage(1)}>Resend</span>
+                {t('didntReceive')}
+                <span onClick={() => setPage(1)}>{t('resend')}</span>
               </p>
             </section>
           )}
@@ -113,10 +108,8 @@ function Resetpsw() {
           {page === 3 && (
             <section className='page3'>
               <div className='page3__intro'>
-                <p className='title'>Create new password</p>
-                <p className='description'>
-									Enter a new password for abc@gmail.com
-                </p>
+                <p className='title'>{t('createNewPassword')}</p>
+                <p className='description'>{t('description3')} abc@gmail.com</p>
               </div>
               <Input
                 register={register}
@@ -149,15 +142,14 @@ function Resetpsw() {
           {page === 4 && (
             <section className='page4'>
               <img src={success} alt='success' />
-              <p className='title'>password changed !</p>
-              <p className='description'>
-								You can now sign in with your new password
-              </p>
-              <Button handleClick={() => navigate('/signIn')}>sign in</Button>
+              <p className='title'>{t('success')}</p>
+              <p className='description'>{t('description4')}</p>
+              <Button handleClick={() => navigate('/signIn')}>
+                {t('signIn')}
+              </Button>
             </section>
           )}
         </form>
-        {/*<p>{JSON.stringify(watch())}</p>*/}
       </div>
     </div>
   );

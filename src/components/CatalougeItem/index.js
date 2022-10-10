@@ -19,7 +19,7 @@ function CatalougeItem({ data }) {
         <div className='item-img'>
           <img
             onClick={() =>
-              navigate('/details', {
+              navigate('/details:id', {
                 state: {
                   img        : data.img,
                   name       : data.name || 'add name',
@@ -38,7 +38,7 @@ function CatalougeItem({ data }) {
         <div className='item-add'>
           <div>
             <img src={plus} alt='icon image' />
-            <p>{t('quick add')}:</p>
+            <p>{t('quickAdd')}:</p>
           </div>
           <p className={size === 0 ? 'active' : ''} onClick={() => setSize(0)}>
 						XS

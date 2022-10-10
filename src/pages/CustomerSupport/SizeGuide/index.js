@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -11,9 +12,13 @@ import { sizeGuide } from 'assets/images';
 import './style.scss';
 
 function Size() {
-  const [page, setPage] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Pages.CustomerSupport.Size',
+  });
+
+  const [page, setPage] = useState(0);
 
   return (
     <div>
@@ -28,10 +33,7 @@ function Size() {
               {location.pathname}
             </span>
           </p>
-          <p className='description'>
-						If your measurements are not consistent with a single column, use
-						your waist measurement to determine your ideal size.
-          </p>
+          <p className='description'>{t('description')}</p>
           <div className='nav'>
             <p
               className={page === 0 ? 'active' : ''}
@@ -167,25 +169,16 @@ function Size() {
           </div>
           <div className='explanation'>
             <div>
-              <h1>bust</h1>
-              <p>
-								Measure around the fullest part of your chest, keeping the tape
-								level to the floor
-              </p>
+              <h1>{t('bust')}</h1>
+              <p>{t('bustDes')}</p>
             </div>
             <div>
-              <h1>waist</h1>
-              <p>
-								Measure around your natural waistline (the smallest part of your
-								waist)
-              </p>
+              <h1>{t('waist')}</h1>
+              <p>{t('waistDes')}</p>
             </div>
             <div>
-              <h1>hips</h1>
-              <p>
-								Measure aroud the fullest part of your hips. Slim-hipped ladies
-								can take this measurement from 20cm/8in below the waistline
-              </p>
+              <h1>{t('hips')}</h1>
+              <p>{t('hipsDes')}</p>
             </div>
           </div>
         </div>

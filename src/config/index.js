@@ -1,32 +1,23 @@
-//import Slider from 'components/Slider';
-//import Slider2 from 'components/sliderv2';
-import ItemDetails from 'pages/ItemDetail';
+import Slider3, { Slider3Item } from 'components/Sliderv3';
 
-/* eslint-disable */
-//import {
-//	beachEdit1,
-//	beachEdit2,
-//	beachEdit3,
-//	beachEdit4,
-//	newArrival1,
-//	newArrival2,
-//	newTop,
-//	newTop2,
-//} from 'assets/images';
+import { beachEdit1, beachEdit2, beachEdit3, beachEdit4 } from 'assets/images';
 
 function Test() {
-	//const imgList = [
-	//	beachEdit1,
-	//	beachEdit2,
-	//	beachEdit3,
-	//	beachEdit4,
-	//	newArrival1,
-	//	newArrival2,
-	//	newTop,
-	//	newTop2,
-	//];
+  const data = [beachEdit1, beachEdit2, beachEdit3, beachEdit4];
 
-	return <ItemDetails />;
+  return (
+    <div>
+      <Slider3>
+        {data.map((item, index) => (
+          <Slider3Item key={index}>
+            <div>
+              <img src={item} alt='dress image' />
+            </div>
+          </Slider3Item>
+        ))}
+      </Slider3>
+    </div>
+  );
 }
 
 export default Test;

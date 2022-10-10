@@ -95,9 +95,7 @@ function Catalouge() {
         </div>
         <div className='catalouge__items'>
           {data.map((item, index) => (
-            <div key={index}>
-              <CatalougeItem data={item} />
-            </div>
+            <CatalougeItem key={index} data={item} />
           ))}
         </div>
       </div>

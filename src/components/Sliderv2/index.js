@@ -6,7 +6,7 @@ import { plus, leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-function Slider2({ imgList }) {
+function Slider2({ images }) {
   const navigate = useNavigate();
   const sliderItem = useRef(null);
 
@@ -24,12 +24,12 @@ function Slider2({ imgList }) {
         <img onClick={handleClick} src={leftArrow} alt='left arrow img' />
       </div>
       <div className='slider' ref={sliderItem}>
-        {imgList.map((item, index) => (
+        {images.map((item, index) => (
           <div key={index} className='slider__item'>
             <div className='slider__item-img'>
               <img
                 onClick={() =>
-                  navigate('/details', {
+                  navigate('/details:id', {
                     state: {
                       img        : item,
                       name       : item.name || 'add name',
@@ -63,7 +63,7 @@ function Slider2({ imgList }) {
 }
 
 Slider2.propTypes = {
-  imgList: PropTypes.array.isRequired,
+  images: PropTypes.array.isRequired,
 };
 
 export default Slider2;
