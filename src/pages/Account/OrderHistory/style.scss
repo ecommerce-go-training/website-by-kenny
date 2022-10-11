@@ -21,8 +21,17 @@
     align-items: center;
     &__form {
       background-color: $white;
+      position: relative;
       width: 600px;
       height: 620px;
+      & > img {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: 22px;
+        top: 22px;
+        cursor: pointer;
+      }
     }
   }
   &__id {

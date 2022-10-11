@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Button from 'components/Button';
 import Item from 'pages/Checkout/Item';
 
-import { returnOrder } from 'assets/images';
+import { returnOrder, xmark } from 'assets/images';
 
 import './style.scss';
 
@@ -19,7 +19,7 @@ const OrderHistory = ({ data }) => {
   };
 
   const handleClick = () => {
-    setToggleReturnOrder(true);
+    setToggleReturnOrder(!toggleReturnOrder);
   };
 
   return (
@@ -27,7 +27,7 @@ const OrderHistory = ({ data }) => {
       {toggleReturnOrder && (
         <div className='return-order'>
           <form className='return-order__form'>
-            <h1>Hello</h1>
+            <img onClick={handleClick} src={xmark} alt='close icon' />
           </form>
         </div>
       )}
