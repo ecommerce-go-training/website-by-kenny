@@ -50,14 +50,13 @@ import paypal from './icons/paypal.png';
 import whiteX from './icons/whiteX.png';
 import search from './icons/search.png';
 import tiktok from './icons/tiktok.png';
+import returnOrder from './icons/return.png';
 import openEye from './icons/eyeOpen.png';
 import success from './icons/success.png';
 import blueCart from './icons/blueCart.png';
 import facebook from './icons/facebook.png';
 import closeEye from './icons/eyeClose.png';
 import question from './icons/question.png';
-import blueArrowDown from './icons/blueArrowDown.png';
-import blueArrowUp from './icons/blueArrowUp.png';
 import backArrow from './icons/backArrow.png';
 import blackCart from './icons/blackCart.png';
 import instagram from './icons/instagram.png';
@@ -66,9 +65,12 @@ import cartBlack from './icons/cartBlack.png';
 import leftArrow from './icons/leftArrow.png';
 import nextArrow from './icons/nextArrow.png';
 import rightArrow from './icons/rightArrow.png';
+import blueArrowUp from './icons/blueArrowUp.png';
 import searchBlack from './icons/searchBlack.png';
 import successMail from './icons/successMail.png';
+import blueArrowDown from './icons/blueArrowDown.png';
 import paypalRedirect from './icons/paypalRedirect.png';
+import discountArrow from './icons/discountArrow.png';
 
 import cataBackDress from './catalouge/backDress.png';
 import cataPinkDress from './catalouge/pinkDress.png';
@@ -96,6 +98,7 @@ export {
   cataWhiteDress,
   certificate,
   closeEye,
+  discountArrow,
   facebook,
   frontDress,
   greenDress,
@@ -128,6 +131,7 @@ export {
   pinterest,
   plus,
   question,
+  returnOrder,
   riderBuild,
   riderOoo,
   riderW,

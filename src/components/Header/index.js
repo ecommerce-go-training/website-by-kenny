@@ -31,7 +31,10 @@ function Header({ disable, disableAnnounce, login, store }) {
   useEffect(() => {
     changeBackground();
     window.addEventListener('scroll', changeBackground);
-  });
+    return () => {
+      window.removeEventListener('scroll', changeBackground);
+    };
+  }, []);
 
   return (
     <div>
@@ -78,7 +81,9 @@ function Header({ disable, disableAnnounce, login, store }) {
             src={bg || login || store ? searchBlack : search}
             alt='search img'
           />
-          <Link to='/sign-in'>{login ? t('account') : t('logIn')}</Link>
+          <Link to={login ? '/account' : '/sign-in'}>
+            {login ? t('account') : t('logIn')}
+          </Link>
           <img
             onClick={() => setToggleCart(true)}
             src={bg || login || store ? (login ? blackCart : cartBlack) : cart}

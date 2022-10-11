@@ -5,12 +5,14 @@ import Store from 'pages/Store';
 import Season from 'pages/Season';
 import SignUp from 'pages/SignUp';
 import SignIn from 'pages/SignIn';
+import Account from 'pages/Account';
 import Checkout from 'pages/Checkout';
 import Catalouge from 'pages/Catalouge';
 import ItemDetails from 'pages/ItemDetails';
 import Resetpsw from 'pages/Resetpassword';
 import Size from 'pages/CustomerSupport/SizeGuide';
 import CustomerSupport from 'pages/CustomerSupport';
+import PaymentSuccess from 'pages/Checkout/Success';
 
 const publicRoutes = [
   {
@@ -64,6 +66,14 @@ const publicRoutes = [
   {
     path     : '/checkout',
     component: Checkout,
+  },
+  {
+    path     : '/payment-success',
+    component: PaymentSuccess,
+  },
+  {
+    path     : '/account',
+    component: Account,
   },
 ];
 

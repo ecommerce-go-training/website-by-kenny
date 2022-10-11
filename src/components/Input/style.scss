@@ -48,6 +48,9 @@
       line-height: 140%;
       letter-spacing: 0.02em;
       color: $very-light-grey;
+      @include responsive(mobile) {
+        font-size: 13px;
+      }
       &.checkout {
         left: 10px;
         top: 25px;

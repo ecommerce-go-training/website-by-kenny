@@ -26,6 +26,7 @@ import {
   blueCart,
   blueArrowDown,
   blueArrowUp,
+  discountArrow,
 } from 'assets/images';
 
 import './style.scss';
@@ -86,7 +87,7 @@ function Checkout() {
   };
 
   const formSubmit = () => {
-    navigate('/');
+    navigate('/payment-success');
   };
 
   return (
@@ -113,10 +114,63 @@ function Checkout() {
             </p>
           </div>
           {toggleSummary && (
-            <div className='summary-bill'>
-              {images.map((item, index) => (
-                <Item key={index} data={item} />
-              ))}
+            <div>
+              <div className='summary-bill'>
+                {images.map((item, index) => (
+                  <Item key={index} data={item} />
+                ))}
+              </div>
+              <div className='summary-discount'>
+                <div>
+                  <Input
+                    register={register}
+                    error={errors.discountMobile?.message}
+                    label={t('discount')}
+                    name='discountMobile'
+                    inputCheck={watch('discountMobile')}
+                    greyBg
+                  />
+                </div>
+                <div>
+                  <Button
+                    discount
+                    disable={
+                      !watch('discountMobile') || errors.discount?.message
+                    }
+                  >
+                    <img src={discountArrow} alt='icon image' />
+                  </Button>
+                </div>
+              </div>
+              <div className='summary-subtotal'>
+                <div>
+                  <p>{t('subtotal')}</p>
+                  <p>
+                    {Intl.NumberFormat('vi-VIET', {
+                      style   : 'currency',
+                      currency: 'VND',
+                    }).format(250)}
+                  </p>
+                </div>
+                <div>
+                  <p>{t('shipping')}</p>
+                  <p>
+                    {Intl.NumberFormat('vi-VIET', {
+                      style   : 'currency',
+                      currency: 'VND',
+                    }).format(250)}
+                  </p>
+                </div>
+              </div>
+              <div className='summary-total'>
+                <p>{t('total')}</p>
+                <p>
+                  {Intl.NumberFormat('vi-VIET', {
+                    style   : 'currency',
+                    currency: 'VND',
+                  }).format(500)}
+                </p>
+              </div>
             </div>
           )}
         </div>

@@ -48,7 +48,7 @@ function Input({
           {...register(name)}
           className={classNames({ input: true, greyBg: greyBg })}
           type={inputType}
-          name={label}
+          name={name}
           onFocus={() => setAim(true)}
           onBlur={() => (inputCheck ? setAim(true) : setAim(false))}
           id={label}

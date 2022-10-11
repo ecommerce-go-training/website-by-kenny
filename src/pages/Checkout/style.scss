@@ -72,6 +72,7 @@
       }
       @include responsive(mobile) {
         margin: 0;
+        margin-top: 20px;
         font-size: 11px;
       }
       & > span {
@@ -88,6 +89,7 @@
       }
       @include responsive(mobile) {
         padding-bottom: 20px;
+        margin-top: 10px;
         border: none;
       }
       & .form-header {
@@ -492,10 +494,15 @@
       @include responsive(mobile) {
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding: 15px;
+        margin: -15px;
+        margin-top: 0px;
         border: 1px solid $whisper;
         & .summary {
           display: flex;
+          margin: -15px;
+          padding: 15px;
+          border: 1px solid $whisper;
           justify-content: space-between;
           align-items: center;
           & > div {
@@ -518,6 +525,44 @@
               color: $cornflower-blue;
             }
           }
+        }
+        & .summary-bill {
+          margin-top: 30px;
+        }
+        & .summary-discount {
+          display: flex;
+          padding: 20px 0;
+          border-top: 1px solid $very-light-grey;
+          border-bottom: 1px solid $very-light-grey;
+          gap: 10px;
+          & img {
+            width: 20px;
+          }
+          & > div:first-child {
+            width: 70%;
+          }
+          & > div:nth-child(2) {
+            height: 100%;
+            width: 30%;
+          }
+        }
+        & .summary-subtotal {
+          margin-top: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          padding-bottom: 25px;
+          border-bottom: 1px solid $very-light-grey;
+          & > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+        & .summary-total {
+          margin-top: 20px;
+          display: flex;
+          justify-content: space-between;
         }
       }
     }

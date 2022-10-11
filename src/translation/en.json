@@ -39,8 +39,8 @@
       "garment": "garment care",
       "return": "make a return",
       "contact": "contact us",
-      "customerService": "customer services \n\nCONTACT@ELEMUSH.COM",
-      "whosesalse": "whosesales & pressed \n\nTEAM@ELEMUSH.COM"
+      "customerService": "customer services \nCONTACT@ELEMUSH.COM",
+      "whosesalse": "whosesales & pressed \nTEAM@ELEMUSH.COM"
     },
 
     "Announce": {
@@ -116,6 +116,29 @@
       "description3": "Sign-up to receive 10% off your first purchase as well as the \nlatest updates on new arrivals, exclusive promotions and events."
     },
 
+    "Account": {
+      "ordersReturn": "orders & return",
+      "addressBook":"address book",
+      "newsLetter":"newsletter",
+      "changeLanguage": "change language",
+      "logout": "log out",
+      "order": "order",
+      "return": "make a return",
+      "status": "status:",
+      "trackOrder": "track order",
+      "details": "details",
+      "articles": "articles",
+      "sendBack": "If your purchase isn't quite right, you have 30 days to send it back to us. Please contact our Customer Service for assistance.",
+      "subtotal": "subtotal",
+      "shipping": "shipping",
+      "total": "total",
+      "payMethod": "payment method",
+      "deliverMethod": "delivery method",
+      "billTo": "billed to",
+      "shipTo": "shipped to",
+      "pdf": "pdf invoice"
+    },
+
     "Store": {
       "ourStore": "our store",
       "stockist": "stockists",
@@ -144,21 +167,21 @@
       "contact": "Contact information",
       "already": "Already have an account? ",
       "logIn": "Log in",
-      "firstName": "firstName",
-      "lastName": "lastName",
-      "email": "email",
-      "address": "address",
-      "city": "city",
-      "countryReg": "countryReg",
-      "postalCode": "postalCode",
-      "phone": "phone",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "address": "Address",
+      "city": "City",
+      "countryReg": "Country/Region",
+      "postalCode": "Postal code",
+      "phone": "Phone number",
       "notify": "Keep me up to date on news and exclusive offers",
       "shippingAddress": "Shipping address",
       "saveInfo": "Save this information for next time",
       "return": "return to bag",
       "continue": "continue to shipping",
       "apply": "apply",
-      "discount": "discount",
+      "discount": "Gift card or discount code",
       "subtotal": "Subtotal",
       "shipping": "Shipping",
       "unit": "USD $",
@@ -189,7 +212,10 @@
       "term": "By ticking, you agree to the following terms of sale. Items purchased during a promotional event or is a sale item can only be returned for a store credit or exchange. Click here to read full returns policy.",
       "userAgree": "I agree to to pay for all import duty charges, customs and local sales taxes levied by the country I am shipping to.",
       "paypalDes": "After clicking “Complete order”, you will be redirected to PayPal to complete your purchase securely.",
-      "showOrder": "Show order summary"
+      "showOrder": "Show order summary",
+      "thank": "THANK YOU!\nYOUR ORDER IS COMPLETED.",
+      "confirmEmail": "We send an email to confirm your order details.",
+      "orderNumber": "YOUR ORDER NUMBER"
       
     },
 
