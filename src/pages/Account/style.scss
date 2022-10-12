@@ -80,7 +80,8 @@
   &__content {
     width: 75%;
     @include responsive(mobile) {
-      display: none;
+      margin-top: 20px;
+      width: 100%;
     }
     &__order {
       height: 100%;
@@ -92,11 +93,17 @@
         gap: 50px;
         width: 95%;
       }
+      @include responsive(mobile) {
+        width: 100%;
+      }
     }
     &__address {
       width: 60%;
       @include responsive(tablet) {
         width: 95%;
+      }
+      @include responsive(mobile) {
+        width: 100%;
       }
       & > p {
         font-size: 13px;
@@ -131,6 +138,10 @@
             display: flex;
             flex-direction: column;
             padding: 40px 45px 0 45px;
+            @include responsive(mobile) {
+              width: 60vw;
+              height: 140px;
+            }
             & > p {
               font-size: 15px;
               line-height: 140%;
@@ -138,10 +149,16 @@
               letter-spacing: 0.05em;
               color: $black;
               margin-bottom: 40px;
+              @include responsive(mobile) {
+                margin-bottom: 20px;
+              }
             }
             & > div {
               display: flex;
               gap: 30px;
+              @include responsive(mobile) {
+                gap: 5px;
+              }
             }
           }
         }
@@ -153,6 +170,9 @@
         margin-bottom: 30px;
         @include responsive(tablet) {
           padding: 20px 65px  20px 25px;
+        }
+        @include responsive(mobile) {
+          padding: 20px 10px;
         }
         & > p {
           font-size: 16px;
@@ -171,13 +191,24 @@
           margin-top: 40px;
           display: flex;
           flex-direction: column;
+          @include responsive(mobile) {
+            gap: 5px;
+            margin-top: 20px;
+          }
           & .double-input {
             display: flex;
             gap: 40px;
+            @include responsive(mobile) {
+              flex-direction: column;
+              gap: 0;
+            }
           }
           & .form-button {
             width: 40%;
             align-self: center;
+            @include responsive(mobile) {
+              width: 100%;
+            }
           }
         }
       }
@@ -238,6 +269,9 @@
       @include responsive(tablet) {
         width: 75%;
       }
+      @include responsive(mobile) {
+        width: 100%;
+      }
       & > p:first-child {
         font-size: 20px;
         line-height: 140%;
@@ -247,6 +281,10 @@
         margin-bottom: 45px;
         @include responsive(tablet) {
           margin-bottom: 30px;
+        }
+        @include responsive(mobile) {
+          text-align: center;
+          margin-bottom: 20px;
         }
       }
       & > p:nth-child(2) {
@@ -258,13 +296,20 @@
         @include responsive(tablet) {
           margin-bottom: 20px;
         }
+        @include responsive(mobile) {
+          margin-bottom: 20px;
+        }
       }
       & .accept {
         display: flex;
         gap: 10px;
         margin-bottom: 70px;
+        align-items: center;
         @include responsive(tablet) {
           margin-bottom: 40px;
+        }
+        @include responsive(mobile) {
+          margin-bottom: 20px;
         }
         & > p {
           font-size: 15px;
@@ -277,16 +322,26 @@
           accent-color: $black;
           width: 20px;
           height: 20px;
+          @include responsive(mobile) {
+            width: 30px;
+            height: 30px;
+          }
         }
       }
       & > div {
         width: 50%;
+        @include responsive(mobile) {
+          width: 100%;
+        }
       }
     }
     &__changeLang {
       width: 60%;
       @include responsive(tablet) {
         width: 95%;
+      }
+      @include responsive(mobile) {
+        width: 100%;
       }
     }
   }

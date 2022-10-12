@@ -13,7 +13,7 @@ import signUpVal from './validation';
 
 import './style.scss';
 
-function SignUp() {
+const SignUp = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.SignUp' });
 
   const {
@@ -95,6 +95,6 @@ function SignUp() {
       </div>
     </div>
   );
-}
+};
 
 export default SignUp;

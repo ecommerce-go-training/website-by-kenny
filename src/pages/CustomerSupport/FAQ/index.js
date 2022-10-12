@@ -5,7 +5,7 @@ import MobileTitle from 'components/MobileTitle';
 
 import './style.scss';
 
-function Faq() {
+const Faq = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.CustomerSupport.Faq',
   });
@@ -57,6 +57,6 @@ function Faq() {
       </Collapse>
     </div>
   );
-}
+};
 
 export default Faq;

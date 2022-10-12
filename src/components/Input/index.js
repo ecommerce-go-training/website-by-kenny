@@ -7,7 +7,7 @@ import { closeEye, openEye } from 'assets/images';
 
 import './style.scss';
 
-function Input({
+const Input = ({
   register,
   error,
   centerError,
@@ -16,7 +16,7 @@ function Input({
   type,
   inputCheck,
   greyBg,
-}) {
+}) => {
   const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
   const [aim, setAim] = useState(false);
@@ -67,7 +67,7 @@ function Input({
       <p className={errorClass}>{error}</p>
     </div>
   );
-}
+};
 
 Input.defaultProps = {
   label      : 'Add something',

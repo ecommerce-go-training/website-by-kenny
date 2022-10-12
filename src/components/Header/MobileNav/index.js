@@ -8,7 +8,7 @@ import { xmark } from 'assets/images';
 
 import './style.scss';
 
-function MobileNav({ toggle, setToggle }) {
+const MobileNav = ({ toggle, setToggle }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
@@ -34,6 +34,6 @@ function MobileNav({ toggle, setToggle }) {
       </div>
     </div>
   );
-}
+};
 
 export default MobileNav;

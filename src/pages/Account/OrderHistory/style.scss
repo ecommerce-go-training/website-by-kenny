@@ -11,6 +11,9 @@
   @include responsive(tablet) {
     padding-bottom: 30px;
   }
+  @include responsive(mobile) {
+    padding-bottom: 30px;
+  }
   & .return-order {
     background-color: rgba($black, 0.5);
     z-index: 2;
@@ -122,6 +125,9 @@
     @include responsive(tablet) {
       margin-bottom: 20px;
     }
+    @include responsive(mobile) {
+      margin-bottom: 20px;
+    }
     & img {
       position: relative;
       width: 25px;
@@ -129,6 +135,10 @@
       top: 3px;
       right: 10px;
       @include responsive(tablet) {
+        width: 20px;
+        height: 20px;
+      }
+      @include responsive(mobile) {
         width: 20px;
         height: 20px;
       }
@@ -143,6 +153,9 @@
       color: $black;
       @include responsive(tablet) {
         font-size: 16px;
+      }
+      @include responsive(mobile) {
+        font-size: 14px;
       }
     }
     & > p:nth-child(2) {
@@ -161,6 +174,9 @@
     @include responsive(tablet) {
       margin-bottom: 20px;
     }
+    @include responsive(mobile) {
+      margin-bottom: 20px;
+    }
   }
   &__button {
     width: 60%;
@@ -169,6 +185,10 @@
     @include responsive(tablet) {
       width: 70%;
       gap: 20px;
+    }
+    @include responsive(mobile) {
+      width: 100%;
+      gap: 5px
     }
     & > div {
       flex: 1;
@@ -179,13 +199,19 @@
     @include responsive(tablet) {
       margin-top: 40px;
     }
+    @include responsive(mobile) {
+      margin-top: 20px;
+    }
     & > p:first-child {
       font-size: 11px;   
       color: $black;
       text-transform: uppercase;
       margin-bottom: 20px;
       @include responsive(tablet) {
-        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      @include responsive(mobile) {
+        margin-bottom: 10px;
       }
     }
     & > p:nth-child(2) {
@@ -196,6 +222,9 @@
       @include responsive(tablet) {
         margin-bottom: 40px;
       }
+      @include responsive(mobile) {
+        margin-bottom: 20px;
+      }
     }
     & .order-price {  
       margin-top: 30px;
@@ -205,6 +234,11 @@
       gap: 30px;
       border-bottom: 1px solid $black;
       border-top: 1px solid $black;
+      @include responsive(mobile) {
+        margin-top: 20px;
+        padding: 20px 0;
+        gap: 15px;
+      }
       & > div {
         display: flex;
         justify-content: space-between;
@@ -228,6 +262,9 @@
     & .shipping-method {
       margin-top: 30px;
       display: flex;
+      @include responsive(mobile) {
+        margin-top: 20px;
+      }
       & > div {
         flex: 1;
         & > p:first-child {
@@ -238,6 +275,9 @@
           @include responsive(tablet) {
             margin-bottom: 25px;
           }
+          @include responsive(mobile) {
+            margin-bottom: 10px;
+          }
         }
         & > p:nth-child(2) {
           font-size: 15px;
@@ -246,6 +286,9 @@
           margin-bottom: 75px;
           @include responsive(tablet) {
             margin-bottom: 45px;
+          }
+          @include responsive(mobile) {
+            margin-bottom: 30px;
           }
         }
         & > p:nth-child(3) {
@@ -256,6 +299,9 @@
           margin-bottom: 30px;
           @include responsive(tablet) {
             margin-bottom: 20px;
+          }
+          @include responsive(mobile) {
+            margin-bottom: 25px;
           }
         }
         & > p:nth-child(4) {
@@ -276,11 +322,18 @@
             width: 80%;
             margin-bottom: 30px;
           }
+          @include responsive(mobile) {
+            width: 85%;
+            margin-bottom: 30px;
+          }
         }
         & > div {
           width: 60%;
           @include responsive(tablet) {
             width: 70%;
+          }
+          @include responsive(mobile) {
+            width: 200%;
           }
         }
       }

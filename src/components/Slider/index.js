@@ -7,7 +7,7 @@ import { leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-function Slider({ images, shiftImg }) {
+const Slider = ({ images, shiftImg }) => {
   // desktop  4, tablet 3, mobile 1
   const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -78,7 +78,7 @@ function Slider({ images, shiftImg }) {
       </div>
     </div>
   );
-}
+};
 
 Slider.defaultProps = {
   shiftImg: 1,

@@ -5,7 +5,7 @@ import MobileTitle from 'components/MobileTitle';
 
 import './style.scss';
 
-function Policy() {
+const Policy = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.CustomerSupport.Policy',
   });
@@ -51,6 +51,6 @@ function Policy() {
       </Collapse>
     </div>
   );
-}
+};
 
 export default Policy;

@@ -12,7 +12,7 @@ import signInVal from './validation';
 
 import './style.scss';
 
-function SignIn() {
+const SignIn = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.SignIn',
   });
@@ -73,6 +73,6 @@ function SignIn() {
       </div>
     </div>
   );
-}
+};
 
 export default SignIn;

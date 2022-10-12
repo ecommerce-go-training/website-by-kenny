@@ -7,7 +7,7 @@ import { minus, plus } from 'assets/images';
 
 import './style.scss';
 
-function CartItem({ data }) {
+const CartItem = ({ data }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.CartItem',
   });
@@ -54,7 +54,7 @@ function CartItem({ data }) {
       </div>
     </div>
   );
-}
+};
 
 CartItem.propTypes = {
   data: PropTypes.object.isRequired,

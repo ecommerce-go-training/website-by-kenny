@@ -29,7 +29,7 @@ import {
 
 import './style.scss';
 
-function Home() {
+const Home = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Home' });
   const navigate = useNavigate();
   const images = [
@@ -131,6 +131,6 @@ function Home() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Home;

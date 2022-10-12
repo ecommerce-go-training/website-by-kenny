@@ -8,7 +8,7 @@ import { plus, minus } from 'assets/images';
 
 import './style.scss';
 
-function Filter() {
+const Filter = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Filter',
   });
@@ -247,6 +247,6 @@ function Filter() {
       </div>
     </div>
   );
-}
+};
 
 export default Filter;

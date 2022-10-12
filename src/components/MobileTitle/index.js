@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-function MobileTitle({ label }) {
+const MobileTitle = ({ label }) => {
   return (
     <div className='mobileTitle'>
       <h3 className='mobileTitle-title'>{label}</h3>
@@ -11,7 +11,7 @@ function MobileTitle({ label }) {
       </p>
     </div>
   );
-}
+};
 
 MobileTitle.defaultProps = {
   label: 'Add label',

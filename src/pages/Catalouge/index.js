@@ -14,7 +14,7 @@ import {
 
 import './style.scss';
 
-function Catalouge() {
+const Catalouge = () => {
   const data = [
     {
       img      : cataBackDress,
@@ -108,6 +108,6 @@ function Catalouge() {
       </div>
     </div>
   );
-}
+};
 
 export default Catalouge;

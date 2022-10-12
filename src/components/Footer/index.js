@@ -20,7 +20,7 @@ import {
 
 import './style.scss';
 
-function Footer({ paymentSuccess }) {
+const Footer = ({ paymentSuccess }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Footer',
   });
@@ -109,13 +109,13 @@ function Footer({ paymentSuccess }) {
             <div className='line'></div>
             <div className='mobile-footer-collapse'>
               <Collapse label={'CUSTOMER CARE'}>
-                <Link to='/'>{t('faq')}</Link>
+                <Link to='/customer-support'>{t('faq')}</Link>
                 <Link to='/size'>{t('size')}</Link>
-                <Link to='/'>{t('shipping')}</Link>
-                <Link to='/'>{t('terms')}</Link>
-                <Link to='/'>{t('terms')}</Link>
-                <Link to='/'>{t('policy')}</Link>
-                <Link to='/'>{t('return')}</Link>
+                <Link to='/customer-support'>{t('shipping')}</Link>
+                <Link to='/customer-support'>{t('terms')}</Link>
+                <Link to='/customer-support'>{t('terms')}</Link>
+                <Link to='/customer-support'>{t('policy')}</Link>
+                <Link to='/customer-support'>{t('return')}</Link>
               </Collapse>
             </div>
             <div className='line'></div>
@@ -136,7 +136,7 @@ function Footer({ paymentSuccess }) {
       </div>
     </div>
   );
-}
+};
 
 Footer.defaultProps = {
   paymentSuccess: false,

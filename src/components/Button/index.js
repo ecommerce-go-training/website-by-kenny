@@ -5,7 +5,7 @@ import React, { memo } from 'react';
 
 import './style.scss';
 
-function Button({
+const Button = ({
   type = 'button',
   handleClick,
   children,
@@ -15,7 +15,7 @@ function Button({
   border = false,
   discount = false,
   greyBorder = false,
-}) {
+}) => {
   return (
     <button
       disabled={disable}
@@ -33,7 +33,7 @@ function Button({
       {children}
     </button>
   );
-}
+};
 
 Button.defaultProps = {
   type       : 'button',

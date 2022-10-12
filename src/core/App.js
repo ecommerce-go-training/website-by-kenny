@@ -10,7 +10,7 @@ import { publicRoutes } from 'routes';
 
 import 'assets/scss/global.scss';
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <Suspense fallback={<p>Loading</p>}>
@@ -30,6 +30,6 @@ function App() {
       </Suspense>
     </Provider>
   );
-}
+};
 
 export default App;

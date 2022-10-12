@@ -8,7 +8,7 @@ import { whiteX } from 'assets/images';
 
 import './style.scss';
 
-function Checkbox({ children, filter, toggle }) {
+const Checkbox = ({ children, filter, toggle }) => {
   return (
     <div>
       {!filter && (
@@ -25,7 +25,7 @@ function Checkbox({ children, filter, toggle }) {
       )}
     </div>
   );
-}
+};
 
 Checkbox.defaultProps = {
   filter: false,

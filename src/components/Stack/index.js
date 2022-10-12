@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-function Stack({ children, row, col, disable, spacing, center, colWrap }) {
+const Stack = ({ children, row, col, disable, spacing, center, colWrap }) => {
   const classes = classNames({
     stack  : true,
     row    : row,
@@ -16,7 +16,7 @@ function Stack({ children, row, col, disable, spacing, center, colWrap }) {
   });
 
   return <div className={classes}>{children}</div>;
-}
+};
 
 Stack.defaultProps = {
   row: true,

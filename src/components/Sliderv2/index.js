@@ -6,7 +6,7 @@ import { plus, leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-function Slider2({ images }) {
+const Slider2 = ({ images }) => {
   const navigate = useNavigate();
   const sliderItem = useRef(null);
 
@@ -60,7 +60,7 @@ function Slider2({ images }) {
       </div>
     </div>
   );
-}
+};
 
 Slider2.propTypes = {
   images: PropTypes.array.isRequired,

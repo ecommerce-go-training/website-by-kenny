@@ -22,7 +22,7 @@ import {
 
 import './style.scss';
 
-function ItemDetails() {
+const ItemDetails = () => {
   const { state } = useLocation();
   const { img, name, price, catalouge, description, details, care, quantity } =
 		state;
@@ -163,6 +163,6 @@ function ItemDetails() {
       </div>
     </div>
   );
-}
+};
 
 export default ItemDetails;
