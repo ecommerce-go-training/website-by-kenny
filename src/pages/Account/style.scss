@@ -11,11 +11,37 @@
   font-family: 'Sofia Pro';
   font-style: normal;
   font-weight: 400;
+  @include responsive(tablet) {
+    padding-top: 110px;
+  }
+  @include responsive(mobile) {
+    padding: 80px 15px;
+    display: flex;
+    flex-direction: column;
+  }
   &__nav {
-    background-color: white;
+    background-color: $white;
     box-sizing: border-box;
     width: 25%;
     padding-left: 100px;
+    @include responsive(tablet) {
+      padding-left: 5vw;
+    }
+    @include responsive(mobile) {
+      width: 100%;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed $very-light-grey;
+      padding-bottom: 20px;
+    }
+    & > div {
+      display: none;
+      @include responsive(mobile) {
+        display: inline;
+      }
+    }
     & > p {
       user-select: none;
       margin-bottom: 30px;
@@ -27,23 +53,241 @@
       border-bottom: 1px solid $white;
       width: max-content;
       cursor: pointer;
+      @include responsive(tablet) {
+        margin-bottom: 20px;
+      }
+      @include responsive(mobile) {
+        text-align: center;
+        margin: 0;
+        padding-bottom: 3px;
+        font-size: 9px;
+      }
       &.active {
         border-bottom: 1px solid $black;
       }
       &:last-child {
         border: none;
         margin-top: 50px;
+        @include responsive(tablet) {
+          margin-top: 40px;
+        }
+        @include responsive(mobile) {
+          margin-top: 0;
+        }
       }
     }
   }
   &__content {
     width: 75%;
+    @include responsive(mobile) {
+      display: none;
+    }
     &__order {
       height: 100%;
       width: 70%;
       display: flex;
       flex-direction: column;
       gap: 60px;
+      @include responsive(tablet) {
+        gap: 50px;
+        width: 95%;
+      }
+    }
+    &__address {
+      width: 60%;
+      @include responsive(tablet) {
+        width: 95%;
+      }
+      & > p {
+        font-size: 13px;
+        line-height: 150%;
+        text-align: justify;
+        letter-spacing: 0.05em;
+        color: $black;
+        margin-bottom: 20px;
+        @include responsive(tablet) {
+          margin-bottom: 15px;
+        }
+      }
+      & .delete-address-confirm {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        &-wrapper {
+          background-color: rgba($grey, 0.5);
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          & > div {
+            position: absolute;
+            background-color: $white;
+            width: 480px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 45px 0 45px;
+            & > p {
+              font-size: 15px;
+              line-height: 140%;
+              text-align: center;
+              letter-spacing: 0.05em;
+              color: $black;
+              margin-bottom: 40px;
+            }
+            & > div {
+              display: flex;
+              gap: 30px;
+            }
+          }
+        }
+      }
+      & .address-form {
+        padding: 30px 65px 30px 25px;
+        border: 1px solid $silver;
+        user-select: none;
+        margin-bottom: 30px;
+        @include responsive(tablet) {
+          padding: 20px 65px  20px 25px;
+        }
+        & > p {
+          font-size: 16px;
+          line-height: 128%;
+          text-align: justify;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: $black;
+          cursor: pointer;
+          width: max-content;
+          @include responsive(tablet) {
+            font-size: 14px;
+          }
+        }
+        & > form {
+          margin-top: 40px;
+          display: flex;
+          flex-direction: column;
+          & .double-input {
+            display: flex;
+            gap: 40px;
+          }
+          & .form-button {
+            width: 40%;
+            align-self: center;
+          }
+        }
+      }
+      & .user-address {
+        padding-bottom: 30px;
+        border-bottom: 1px solid $black;
+        margin-bottom: 30px;
+        @include responsive(tablet) {
+          padding-bottom: 10px;
+        }
+        & > p {
+          font-size: 13px;
+          line-height: 150%;
+          letter-spacing: 0.05em;
+          color: $grey;
+          @include responsive(tablet) {
+            font-size: 12px;
+            line-height: 130%;
+          }
+        }
+        & > div {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          & > p {
+            font-size: 16px;
+            line-height: 128%;
+            text-align: justify;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: $black;
+            @include responsive(tablet) {
+              font-size: 15px;
+            }
+            &:nth-child(2) {
+              position: relative;
+              cursor: pointer;
+              font-size: 15px;
+              line-height: 120%;
+              letter-spacing: 0.1em;
+            }
+          }
+          & img {
+            position: relative;
+            width: 15px;
+            height: 15px;
+            top: 1px;
+            @include responsive(tablet) {
+              width: 13px;
+              height: 13px;
+            }
+          }
+        }
+      }
+    }
+    &__newsletter {
+      width: 40%;
+      @include responsive(tablet) {
+        width: 75%;
+      }
+      & > p:first-child {
+        font-size: 20px;
+        line-height: 140%;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: $black;
+        margin-bottom: 45px;
+        @include responsive(tablet) {
+          margin-bottom: 30px;
+        }
+      }
+      & > p:nth-child(2) {
+        font-size: 13px;
+        line-height: 150%;
+        letter-spacing: 0.05em;
+        color: $black;
+        margin-bottom: 30px;
+        @include responsive(tablet) {
+          margin-bottom: 20px;
+        }
+      }
+      & .accept {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 70px;
+        @include responsive(tablet) {
+          margin-bottom: 40px;
+        }
+        & > p {
+          font-size: 15px;
+          line-height: 140%;
+          text-transform: capitalize;
+          letter-spacing: 0.05em;
+          color: $black;
+        }
+        & > input {
+          accent-color: $black;
+          width: 20px;
+          height: 20px;
+        }
+      }
+      & > div {
+        width: 50%;
+      }
+    }
+    &__changeLang {
+      width: 60%;
+      @include responsive(tablet) {
+        width: 95%;
+      }
     }
   }
 }

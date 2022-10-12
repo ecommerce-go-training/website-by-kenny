@@ -50,6 +50,7 @@ import paypal from './icons/paypal.png';
 import whiteX from './icons/whiteX.png';
 import search from './icons/search.png';
 import tiktok from './icons/tiktok.png';
+import trashCan from './icons/trashCan.png';
 import returnOrder from './icons/return.png';
 import openEye from './icons/eyeOpen.png';
 import success from './icons/success.png';
@@ -146,6 +147,7 @@ export {
   success,
   successMail,
   tiktok,
+  trashCan,
   visa,
   whiteDress,
   whiteDressCart,
