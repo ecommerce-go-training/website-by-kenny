@@ -99,7 +99,7 @@ function Resetpsw() {
                 </Button>
               </div>
               <p>
-                {t('didntReceive')}
+                {t('didntReceive')} &nbsp;
                 <span onClick={() => setPage(1)}>{t('resend')}</span>
               </p>
             </section>
@@ -144,7 +144,7 @@ function Resetpsw() {
               <img src={success} alt='success' />
               <p className='title'>{t('success')}</p>
               <p className='description'>{t('description4')}</p>
-              <Button handleClick={() => navigate('/signIn')}>
+              <Button handleClick={() => navigate('/sign-in')}>
                 {t('signIn')}
               </Button>
             </section>

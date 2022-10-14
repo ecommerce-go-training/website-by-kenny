@@ -17,13 +17,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 15px 0 10px 0;
   &.border {
     box-sizing: border-box;
     border: 1px solid $black;
   }
   &.smallPad {
     padding: 10px 5px 5px 5px;
+  }
+  &.discount {
+    box-sizing: border-box;
+    padding: 20px 0;
+  }
+  &.blur {
+    opacity: 0.4;
+    &:hover {
+      opacity: 0.4;
+    }
   }
   &.whiteBg {
     background-color: $white;

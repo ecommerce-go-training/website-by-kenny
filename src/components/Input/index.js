@@ -15,6 +15,7 @@ function Input({
   label,
   type,
   inputCheck,
+  greyBg,
 }) {
   const [togglePsw, setTogglePsw] = useState(true);
   const [inputType, setInputType] = useState(type);
@@ -29,6 +30,7 @@ function Input({
   const up = classNames({
     label    : true,
     'move-up': inputCheck || aim ? true : false,
+    checkout : greyBg,
   });
 
   const errorClass = classNames({
@@ -44,11 +46,12 @@ function Input({
         </label>
         <input
           {...register(name)}
-          className='input'
+          className={classNames({ input: true, greyBg: greyBg })}
           type={inputType}
-          name={label}
+          name={name}
           onFocus={() => setAim(true)}
           onBlur={() => (inputCheck ? setAim(true) : setAim(false))}
+          id={label}
         />
         <span className={showPsw}>
           <img
@@ -73,6 +76,7 @@ Input.defaultProps = {
   error      : '',
   centerError: false,
   inputCheck : '',
+  greyBg     : false,
 };
 
 Input.propTypes = {
@@ -83,6 +87,7 @@ Input.propTypes = {
   centerError: PropTypes.bool,
   name       : PropTypes.string.isRequired,
   inputCheck : PropTypes.string,
+  greyBg     : PropTypes.bool,
 };
 
 export default memo(Input);

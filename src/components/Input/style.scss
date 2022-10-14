@@ -35,7 +35,9 @@
   &-item {
     position: relative;
     & .label {
+      cursor: text;
       position: absolute;
+      width: max-content;
       opacity: 0.8;
       top: 9px;
       left: 0;
@@ -46,10 +48,20 @@
       line-height: 140%;
       letter-spacing: 0.02em;
       color: $very-light-grey;
+      @include responsive(mobile) {
+        font-size: 13px;
+      }
+      &.checkout {
+        left: 10px;
+        top: 25px;
+      }
       &.move-up {
         top: -15px;
         color: $black;
         font-size: 14px;
+        &.checkout {
+          top: 5px;
+        }
       }
     }
     & .input {
@@ -65,6 +77,15 @@
       padding: 6px 0;
       width: 100%;
       background-color: $transparent;
+      &.greyBg {
+        box-sizing: border-box;
+        height: 60px;
+        padding: 20px 0 0px 10px;
+        background-color: $white-smoke;
+        &:focus {
+          border: 1px solid $raven;
+        }
+      }
       &:focus {
         border-bottom: 1px solid $black;
       }

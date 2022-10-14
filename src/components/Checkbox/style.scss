@@ -16,6 +16,7 @@
 }
 
 .filter-checkbox {
+  box-sizing: border-box;
   position: relative;
   display: none !important;
   background-color: $white;

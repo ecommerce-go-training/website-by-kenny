@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +20,7 @@ import {
 
 import './style.scss';
 
-function Footer() {
+function Footer({ paymentSuccess }) {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Footer',
   });
@@ -84,34 +85,42 @@ function Footer() {
         </div>
       </div>
       <div className='mobile-footer' direction='column'>
-        <div className='mobile-footer-collapse'>
-          <Collapse label='FOLLOW US'>
-            <Link to='/'>FACEBOOK</Link>
-            <Link to='/'>INSTAGRAM</Link>
-            <Link to='/'>PINTEREST</Link>
-            <Link to='/'>TIKTOK</Link>
-          </Collapse>
-        </div>
-        <div className='line'></div>
-        <div className='mobile-footer-collapse'>
-          <Collapse label='ABOUT'>
-            <Link to='/brand'>{t('brand')}</Link>
-            <Link to='/store'>{t('storeLocator')}</Link>
-          </Collapse>
-        </div>
-        <div className='line'></div>
-        <div className='mobile-footer-collapse'>
-          <Collapse label={'CUSTOMER CARE'}>
-            <Link to='/'>{t('faq')}</Link>
-            <Link to='/size'>{t('size')}</Link>
-            <Link to='/'>{t('shipping')}</Link>
-            <Link to='/'>{t('terms')}</Link>
-            <Link to='/'>{t('terms')}</Link>
-            <Link to='/'>{t('policy')}</Link>
-            <Link to='/'>{t('return')}</Link>
-          </Collapse>
-        </div>
-        <div className='line'></div>
+        {!paymentSuccess && (
+          <div>
+            <div
+              className={classNames('mobile-footer-collapse', {
+                hide: paymentSuccess,
+              })}
+            >
+              <Collapse label='FOLLOW US'>
+                <Link to='/'>FACEBOOK</Link>
+                <Link to='/'>INSTAGRAM</Link>
+                <Link to='/'>PINTEREST</Link>
+                <Link to='/'>TIKTOK</Link>
+              </Collapse>
+            </div>
+            <div className='line'></div>
+            <div className='mobile-footer-collapse'>
+              <Collapse label='ABOUT'>
+                <Link to='/brand'>{t('brand')}</Link>
+                <Link to='/store'>{t('storeLocator')}</Link>
+              </Collapse>
+            </div>
+            <div className='line'></div>
+            <div className='mobile-footer-collapse'>
+              <Collapse label={'CUSTOMER CARE'}>
+                <Link to='/'>{t('faq')}</Link>
+                <Link to='/size'>{t('size')}</Link>
+                <Link to='/'>{t('shipping')}</Link>
+                <Link to='/'>{t('terms')}</Link>
+                <Link to='/'>{t('terms')}</Link>
+                <Link to='/'>{t('policy')}</Link>
+                <Link to='/'>{t('return')}</Link>
+              </Collapse>
+            </div>
+            <div className='line'></div>
+          </div>
+        )}
         <div className='mobile-footer__info'>
           <Link to='/'>
             <img className='contact' src={phone} alt='phone icon' />+ 84 986 491
@@ -130,11 +139,11 @@ function Footer() {
 }
 
 Footer.defaultProps = {
-  disable: false,
+  paymentSuccess: false,
 };
 
 Footer.propTypes = {
-  disable: PropTypes.bool,
+  paymentSuccess: PropTypes.bool,
 };
 
 export default Footer;

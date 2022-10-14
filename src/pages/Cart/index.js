@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Footer from 'components/Footer';
@@ -11,7 +12,7 @@ import './style.scss';
 
 function MyCart() {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cart' });
-
+  const navigate = useNavigate();
   const totalItem = 0;
   const totalPrice = 0;
 
@@ -66,7 +67,9 @@ function MyCart() {
               </span>
             </p>
             <div>
-              <Button>{t('checkOut')}</Button>
+              <Button handleClick={() => navigate('/checkout')}>
+                {t('checkOut')}
+              </Button>
             </div>
           </div>
         </div>

@@ -13,6 +13,7 @@ function Button({
   whiteBg = false,
   smallPad = false,
   border = false,
+  discount = false,
 }) {
   return (
     <button
@@ -22,6 +23,8 @@ function Button({
         whiteBg : whiteBg,
         smallPad: smallPad,
         border  : border,
+        discount: discount,
+        blur    : disable,
       })}
       onClick={handleClick}
     >
@@ -37,6 +40,7 @@ Button.defaultProps = {
   whiteBg    : false,
   smallPad   : false,
   border     : false,
+  discount   : false,
 };
 
 Button.propTypes = {
@@ -46,6 +50,7 @@ Button.propTypes = {
   whiteBg    : PropTypes.bool,
   smallPad   : PropTypes.bool,
   border     : PropTypes.bool,
+  discount   : PropTypes.bool,
 };
 
 export default memo(Button);
