@@ -10,6 +10,7 @@ import Header from 'components/Header';
 import Button from 'components/Button';
 import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
+import Footer from 'components/Footer';
 
 import './style.scss';
 
@@ -93,6 +94,7 @@ const SignUp = () => {
           <Link to='/sign-in'>{t('haveAccount')}</Link>
         </form>
       </div>
+      <Footer lineTop />
     </div>
   );
 };

@@ -7,9 +7,16 @@
   font-family: 'Sofia Pro';
   font-style: normal;
   font-weight: 400;
-  & .active {
-    padding-bottom: 5px;
-    border-bottom: 1px solid $black;
+  &.shopNav {
+    display: flex;
+    justify-content: space-between;
+    & .shop-nav-link {
+      position: relative;
+      bottom: 12px;
+    }
+    & .title {
+      margin-bottom: 20px;
+    }
   }
   & .title {
     cursor: default;
@@ -40,6 +47,8 @@
       text-transform: uppercase;
       color: $black;
       cursor: pointer;
+      border-bottom: 1px solid white;
+      padding-bottom: 5px;
       &:hover {
         opacity: 0.8;
       }
@@ -340,5 +349,11 @@
         }
       }
     }
+  }
+  & .active {
+    border-bottom: 1px solid $black;
+  }
+  & .disable {
+    display: none;
   }
 }

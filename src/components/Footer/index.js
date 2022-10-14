@@ -20,14 +20,14 @@ import {
 
 import './style.scss';
 
-const Footer = ({ paymentSuccess }) => {
+const Footer = ({ paymentSuccess, lineTop }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Footer',
   });
 
   return (
     <div>
-      <div className={'footer'}>
+      <div className={classNames('footer')}>
         <div className='footer__follow'>
           <p className='title'>{t('follow')}</p>
           <Stack col spacing={0}>
@@ -84,7 +84,10 @@ const Footer = ({ paymentSuccess }) => {
           </div>
         </div>
       </div>
-      <div className='mobile-footer' direction='column'>
+      <div
+        className={classNames('mobile-footer', { lineTop: lineTop })}
+        direction='column'
+      >
         {!paymentSuccess && (
           <div>
             <div

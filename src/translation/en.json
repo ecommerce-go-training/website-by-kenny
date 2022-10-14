@@ -12,7 +12,8 @@
       "myCart": "my cart",
       "viewCart": "view cart",
       "checkOut": "check out",
-      "$": "$"
+      "$": "$",
+      "sale": "sale"
     },
 
     "Search": {
@@ -318,6 +319,7 @@
       "terms": "terms & conditions",
       "policy": "privacy policy",
       "garment": "garment care",
+      "sizing": "sizing",
       "Faq": {
         "question1": "WHAT CURRENCY IS USED ONLINE?",
         "answ1": "All prices are charged in USD and VNĐ.",

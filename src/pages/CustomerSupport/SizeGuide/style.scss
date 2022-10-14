@@ -4,12 +4,10 @@
 .size {
   position: relative;
   box-sizing: border-box;
-  width: 100vw;
-  max-width: 100%;
-  padding: 150px 300px 120px 250px;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   @include responsive(tablet) {
     padding: 150px 30px;
   }
@@ -17,10 +15,13 @@
     padding: 30px 20px;
   }
   & > div {
-    flex: 2;
+    width: 40%;
     font-family: 'Sofia Pro';
     font-style: normal;
     font-weight: 400;
+    @include responsive(mobile) {
+      width: 100%;
+    }
     & .path {
       display: none;
       & > span {
@@ -196,8 +197,8 @@
     }
   }
   & > img {
-    flex: 1;
-    height: 1000px;
+    width: 600px;
+    height: 1035px;
     @include responsive(tablet) {
       width: 50%;
       hegith: 500px;

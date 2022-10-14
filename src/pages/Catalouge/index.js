@@ -1,5 +1,6 @@
 import Header from 'components/Header';
 import Filter from 'components/Filter';
+import Footer from 'components/Footer';
 import CatalougeItem from 'components/CatalougeItem';
 
 import {
@@ -106,6 +107,7 @@ const Catalouge = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

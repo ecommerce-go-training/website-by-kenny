@@ -138,22 +138,30 @@ const ItemDetails = () => {
             />
           )}
           <div className='details__info-faq'>
-            <Collapse smallLabel label='product details'>
-              <p className='info-item'>{details}</p>
-            </Collapse>
-            <Collapse smallLabel label='size & fit'>
-              <p className='info-item'>
-                {t('findYourSize')} <Link to='size'>sizing</Link>
-              </p>
-            </Collapse>
-            <Collapse smallLabel label='shipping & returns'>
-              <p className='info-item'>
-                {t('shipping')} <Link to='/faq'>shipping & returns</Link>
-              </p>
-            </Collapse>
-            <Collapse smallLabel label='garment care'>
-              {care}
-            </Collapse>
+            <div>
+              <Collapse smallLabel label='product details'>
+                <p className='info-item'>{details}</p>
+              </Collapse>
+            </div>
+            <div>
+              <Collapse smallLabel label='size & fit'>
+                <p className='info-item'>
+                  {t('findYourSize')} <Link to='size'>sizing</Link>
+                </p>
+              </Collapse>
+            </div>
+            <div>
+              <Collapse smallLabel label='shipping & returns'>
+                <p className='info-item'>
+                  {t('shipping')} <Link to='/faq'>shipping & returns</Link>
+                </p>
+              </Collapse>
+            </div>
+            <div>
+              <Collapse smallLabel label='garment care'>
+                {care}
+              </Collapse>
+            </div>
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ const Search = ({ toggle, setToggle }) => {
         <div>
           <Link to='/catalouge'>{t('dress')}</Link>
           <Link to='/catalouge'>{t('top')}</Link>
-          <Link to='/catalouge'>{t('pant')}</Link>
+          <Link to='/catalouge/pant'>{t('pant')}</Link>
           <Link to='/store'>{t('store')}</Link>
           <Link to='/customer-support'>{t('ship')}</Link>
         </div>

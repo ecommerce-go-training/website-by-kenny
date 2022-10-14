@@ -9,6 +9,7 @@ import MyCart from './MyCart';
 import Search from './Search';
 import Announce from './Announce';
 import MobileNav from './MobileNav';
+import Filter from 'components/Filter';
 
 import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
@@ -18,10 +19,12 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
+
   const [bg, setBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleNavMobile, setToggleNavMobile] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
+  const [toggleShop, setToggleShop] = useState(false);
 
   const changeBackground = () => {
     if (window.scrollY >= 100) setBg(true);
@@ -43,6 +46,14 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
       <MobileNav toggle={toggleNavMobile} setToggle={setToggleNavMobile} />
       <MyCart toggle={toggleCart} setToggle={setToggleCart} />
       <div
+        className={classNames('quick-shop-nav', {
+          toggleShop: toggleShop,
+          moveup    : login,
+        })}
+      >
+        <Filter shop />
+      </div>
+      <div
         className={classNames({
           header        : true,
           disable       : disable,
@@ -55,10 +66,13 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
         <div className='header__nav'>
           <div className='header__nav-link'>
             <Link to='/catalouge'>{t('newArrivals')}</Link>
-            <Link to={login ? '/season' : '/store'}>
-              {login ? t('shopWinter') : t('shop')}
-            </Link>
-            <Link to='/season'>{login ? t('about') : t('fallWinter')}</Link>
+            <p
+              className='header-shop'
+              onClick={() => setToggleShop(!toggleShop)}
+            >
+              {t('shop')}
+            </p>
+            <Link to='/catalouge'>{t('sale')}</Link>
             <div
               onClick={() => setToggleNavMobile(true)}
               className='triple-line'
