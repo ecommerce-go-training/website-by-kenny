@@ -12,7 +12,7 @@ import Terms from './Terms&Conditions';
 
 import './style.scss';
 
-function CustomerSupport() {
+const CustomerSupport = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.CustomerSupport',
   });
@@ -70,6 +70,6 @@ function CustomerSupport() {
       </div>
     </div>
   );
-}
+};
 
 export default CustomerSupport;

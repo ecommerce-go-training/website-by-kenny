@@ -6,7 +6,7 @@ import MobileTitle from 'components/MobileTitle';
 
 import './style.scss';
 
-function Garment() {
+const Garment = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.CustomerSupport.Garment',
   });
@@ -96,6 +96,6 @@ function Garment() {
       </Collapse>
     </div>
   );
-}
+};
 
 export default Garment;

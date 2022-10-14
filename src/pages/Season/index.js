@@ -23,7 +23,7 @@ import {
 
 import './style.scss';
 
-function Season() {
+const Season = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Season' });
   return (
@@ -116,6 +116,6 @@ function Season() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Season;

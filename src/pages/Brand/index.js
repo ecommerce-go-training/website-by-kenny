@@ -10,7 +10,7 @@ import { ourStories } from 'assets/images';
 
 import './style.scss';
 
-function Brand() {
+const Brand = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Brand' });
 
   const classes = classNames({
@@ -56,6 +56,6 @@ function Brand() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Brand;

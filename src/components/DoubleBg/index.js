@@ -8,7 +8,7 @@ import { nextArrow } from 'assets/images';
 
 import './style.scss';
 
-function DoubleBg({
+const DoubleBg = ({
   desLeft,
   imgLeft,
   imgLeftLink,
@@ -18,7 +18,7 @@ function DoubleBg({
   leftBot,
   rightBot,
   upperCase,
-}) {
+}) => {
   return (
     <div className='season__doubleBg'>
       <div className='imgLeft'>
@@ -53,7 +53,7 @@ function DoubleBg({
       </div>
     </div>
   );
-}
+};
 
 DoubleBg.defaultProps = {
   desLeft     : null,

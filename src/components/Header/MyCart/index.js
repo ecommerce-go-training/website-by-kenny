@@ -17,7 +17,7 @@ import {
 
 import './style.scss';
 
-function MyCart({ toggle, setToggle, price }) {
+const MyCart = ({ toggle, setToggle, price }) => {
   const tempData = [
     {
       image   : backDress,
@@ -89,6 +89,6 @@ function MyCart({ toggle, setToggle, price }) {
       </div>
     </div>
   );
-}
+};
 
 export default MyCart;

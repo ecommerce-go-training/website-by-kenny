@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-function Shipbill({ label, disableTitle, serviceName, deliveryTime, cost }) {
+const Shipbill = ({ label, disableTitle, serviceName, deliveryTime, cost }) => {
   const classes = classNames({
     shipbill__title: true,
     disable        : disableTitle,
@@ -30,7 +30,7 @@ function Shipbill({ label, disableTitle, serviceName, deliveryTime, cost }) {
       </div>
     </div>
   );
-}
+};
 
 Shipbill.defaultProps = {
   label       : 'Add label',

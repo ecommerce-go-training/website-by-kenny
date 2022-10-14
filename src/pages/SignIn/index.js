@@ -12,8 +12,8 @@ import signInVal from './validation';
 
 import './style.scss';
 
-function SignIn() {
-  const { t, i18n } = useTranslation('translation', {
+const SignIn = () => {
+  const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.SignIn',
   });
   const navigate = useNavigate();
@@ -44,12 +44,7 @@ function SignIn() {
       <Header disableAnnounce login />
       <div className='container'>
         <form className='login' onSubmit={handleSubmit(formSubmit)}>
-          <label
-            onClick={() => i18n.changeLanguage('vi')}
-            onDoubleClick={() => i18n.changeLanguage('en')}
-          >
-            {t('title')}
-          </label>
+          <label>{t('title')}</label>
           <Input
             register={register}
             error={errors.email?.message}
@@ -78,6 +73,6 @@ function SignIn() {
       </div>
     </div>
   );
-}
+};
 
 export default SignIn;

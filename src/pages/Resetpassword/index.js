@@ -15,7 +15,7 @@ import { successMail, success } from 'assets/images';
 
 import './style.scss';
 
-function Resetpsw() {
+const Resetpsw = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ResetPassword',
@@ -153,6 +153,6 @@ function Resetpsw() {
       </div>
     </div>
   );
-}
+};
 
 export default Resetpsw;

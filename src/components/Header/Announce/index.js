@@ -8,7 +8,7 @@ import { ONE_SECOND } from 'utils/constants';
 
 import './style.scss';
 
-function Announce({ disable = false }) {
+const Announce = ({ disable = false }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Announce',
   });
@@ -31,7 +31,7 @@ function Announce({ disable = false }) {
       <p>{label}</p>
     </div>
   );
-}
+};
 
 Announce.defaultProps = {
   disable: false,

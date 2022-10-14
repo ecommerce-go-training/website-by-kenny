@@ -9,7 +9,7 @@ import { plus, minus } from 'assets/images/index';
 
 import './style.scss';
 
-function Collapse({
+const Collapse = ({
   label,
   children,
   mobile,
@@ -19,7 +19,7 @@ function Collapse({
   smallLabel,
   filter,
   lineSolid,
-}) {
+}) => {
   const [toggle, setToggle] = useState(filterCollapse ? false : true);
   const handleClick = () => {
     setToggle(!toggle);
@@ -50,7 +50,7 @@ function Collapse({
       </Stack>
     </div>
   );
-}
+};
 
 Collapse.defaultProps = {
   label         : 'Add label',

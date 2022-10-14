@@ -11,7 +11,7 @@ import { stockist, hcmShowroom, hnShowroom } from 'assets/images';
 
 import './style.scss';
 
-function Store() {
+const Store = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Store' });
   const [page, setPage] = useState(0);
 
@@ -159,6 +159,6 @@ function Store() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Store;

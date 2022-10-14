@@ -6,7 +6,7 @@ import { plus } from 'assets/images';
 
 import './style.scss';
 
-function CatalougeItem({ data }) {
+const CatalougeItem = ({ data }) => {
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.CatalougeItem',
@@ -66,6 +66,6 @@ function CatalougeItem({ data }) {
       </div>
     </div>
   );
-}
+};
 
 export default CatalougeItem;

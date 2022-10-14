@@ -13,7 +13,7 @@ import { xmark, success } from 'assets/images';
 
 import './style.scss';
 
-function WaitlistForm({ closeForm, imageName }) {
+const WaitlistForm = ({ closeForm, imageName }) => {
   const {
     reset,
     watch,
@@ -109,6 +109,6 @@ function WaitlistForm({ closeForm, imageName }) {
       </form>
     </div>
   );
-}
+};
 
 export default WaitlistForm;

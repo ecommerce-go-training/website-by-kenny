@@ -10,7 +10,7 @@ import { pinkDress, whiteDressCart, orangeDressCart } from 'assets/images';
 
 import './style.scss';
 
-function MyCart() {
+const MyCart = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cart' });
   const navigate = useNavigate();
   const totalItem = 0;
@@ -77,6 +77,6 @@ function MyCart() {
       <Footer />
     </div>
   );
-}
+};
 
 export default MyCart;

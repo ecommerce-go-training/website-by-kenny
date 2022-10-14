@@ -11,7 +11,7 @@ import { sizeGuide } from 'assets/images';
 
 import './style.scss';
 
-function Size() {
+const Size = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
@@ -187,6 +187,6 @@ function Size() {
       <Footer />
     </div>
   );
-}
+};
 
 export default Size;

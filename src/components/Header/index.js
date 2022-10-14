@@ -14,7 +14,7 @@ import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
 import './style.scss';
 
-function Header({ disable, disableAnnounce, login, store }) {
+const Header = ({ disable, disableAnnounce, login, store }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
@@ -93,7 +93,7 @@ function Header({ disable, disableAnnounce, login, store }) {
       </div>
     </div>
   );
-}
+};
 
 Header.defaultProps = {
   disable        : false,

@@ -6,7 +6,7 @@ import MobileTitle from 'components/MobileTitle';
 
 import './style.scss';
 
-function Shipping() {
+const Shipping = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.CustomerSupport.Shipping',
   });
@@ -98,6 +98,6 @@ function Shipping() {
       </div>
     </div>
   );
-}
+};
 
 export default Shipping;

@@ -1,34 +1,105 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import Button from 'components/Button';
+import Input from 'components/Input';
 import Item from 'pages/Checkout/Item';
 
-import { returnOrder } from 'assets/images';
+import returnVal from './validation';
+
+import { returnOrder, xmark, success } from 'assets/images';
 
 import './style.scss';
 
 const OrderHistory = ({ data }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Account' });
+  const {
+    watch,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode    : 'all',
+    resolver: yupResolver(returnVal),
+  });
 
   const [showDetails, setShowDetails] = useState(false);
   const [toggleReturnOrder, setToggleReturnOrder] = useState(false);
+  const [showSuccessForm, setShowSuccessForm] = useState(false);
 
   const handleShowDetails = () => {
     setShowDetails(!showDetails);
   };
 
   const handleClick = () => {
-    setToggleReturnOrder(true);
+    setToggleReturnOrder(!toggleReturnOrder);
+    setShowSuccessForm(false);
+    reset();
+  };
+
+  const formSubmit = (data) => {
+    setShowSuccessForm(!showSuccessForm);
+    alert(data);
+    reset();
   };
 
   return (
     <div className='order-history'>
       {toggleReturnOrder && (
         <div className='return-order'>
-          <form className='return-order__form'>
-            <h1>Hello</h1>
-          </form>
+          {!showSuccessForm && (
+            <form
+              onSubmit={handleSubmit(formSubmit)}
+              className='return-order__form'
+            >
+              <img onClick={handleClick} src={xmark} alt='close icon' />
+              <p>{t('return')}</p>
+              <p>{t('enterDetails')}</p>
+              <Input
+                register={register}
+                error={errors.orderNumber?.message}
+                label={t('orderNumber')}
+                name='orderNumber'
+                inputCheck={watch('orderNumber')}
+              />
+              <Input
+                register={register}
+                error={errors.email?.message}
+                label={t('email')}
+                name='email'
+                inputCheck={watch('email')}
+              />
+              <Input
+                register={register}
+                error={errors.returnReason?.message}
+                label={t('returnReason')}
+                name='returnReason'
+                inputCheck={watch('returnReason')}
+              />
+              <Input
+                register={register}
+                error={errors.link?.message}
+                label={t('link')}
+                name='link'
+                inputCheck={watch('link')}
+              />
+              <p>{t('linkPaste')}</p>
+              <Button type='submit'>
+                <p>{t('startReturn')}</p>
+              </Button>
+            </form>
+          )}
+          {showSuccessForm && (
+            <div className='return-order__success'>
+              <p onClick={handleClick}>{t('close')}</p>
+              <img src={success} alt='success icon' />
+              <p>{t('requestSubmit')}</p>
+              <p>{t('response')}</p>
+            </div>
+          )}
         </div>
       )}
       <div className='order-history__id'>

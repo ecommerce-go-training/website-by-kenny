@@ -31,7 +31,7 @@ import {
 
 import './style.scss';
 
-function Checkout() {
+const Checkout = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Checkout' });
   const {
@@ -597,6 +597,6 @@ function Checkout() {
       </div>
     </div>
   );
-}
+};
 
 export default Checkout;

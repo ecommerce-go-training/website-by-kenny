@@ -5,7 +5,7 @@ import { xmark, more } from 'assets/images';
 
 import './style.scss';
 
-function CartItem({ data }) {
+const CartItem = ({ data }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cart' });
 
   return (
@@ -40,6 +40,6 @@ function CartItem({ data }) {
       </div>
     </div>
   );
-}
+};
 
 export default CartItem;

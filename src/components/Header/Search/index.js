@@ -9,7 +9,7 @@ import { searchBlack, xmark } from 'assets/images';
 
 import './style.scss';
 
-function Search({ toggle, setToggle }) {
+const Search = ({ toggle, setToggle }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Search',
   });
@@ -43,7 +43,7 @@ function Search({ toggle, setToggle }) {
       </div>
     </div>
   );
-}
+};
 
 Search.defaultProps = {
   toggle   : false,

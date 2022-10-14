@@ -4,7 +4,7 @@ import MobileTitle from 'components/MobileTitle';
 
 import './style.scss';
 
-function Terms() {
+const Terms = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.CustomerSupport.Terms',
   });
@@ -43,6 +43,6 @@ function Terms() {
       <p className='terms-des'>{t('governingLawDes')}</p>
     </div>
   );
-}
+};
 
 export default Terms;
