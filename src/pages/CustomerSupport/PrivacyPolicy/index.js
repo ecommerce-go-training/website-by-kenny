@@ -14,15 +14,10 @@ const Policy = () => {
     <div className='policy'>
       <MobileTitle label={'Privacy Policy'} />
       <p className='policy-intro'>
-				Elemush website (www.elemush.com) places cookies on your computer or
-				handheld device, which is normal practice for all websites.
+        {t('intro')}
         <br />
         <br />
-				Elemush does not disclose personal information to third parties without
-				your consent. Any changes to Elemush&#39;s privacy policy will be
-				displayed here. This Privacy Policy describes how your personal
-				information is collected, used, and shared when you visit or make a
-				purchase from elemush.com (the “Site”).
+        {t('introCont')}
       </p>
       <Collapse line label={t('question1')}>
         <p className='policy-item'>{t('answ1')}</p>
