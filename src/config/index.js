@@ -2,6 +2,8 @@ import Slider3, { Slider3Item } from 'components/Sliderv3';
 
 import { beachEdit1, beachEdit2, beachEdit3, beachEdit4 } from 'assets/images';
 
+import { registerAccount } from '../services/api';
+
 function Test() {
   const data = [beachEdit1, beachEdit2, beachEdit3, beachEdit4];
 
@@ -12,6 +14,7 @@ function Test() {
           <Slider3Item key={index}>
             <div>
               <img src={item} alt='dress image' />
+              <p onClick={registerAccount}>Click me</p>
             </div>
           </Slider3Item>
         ))}

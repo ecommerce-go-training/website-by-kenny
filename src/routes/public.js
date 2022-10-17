@@ -13,6 +13,7 @@ import Resetpsw from 'pages/Resetpassword';
 import Size from 'pages/CustomerSupport/SizeGuide';
 import CustomerSupport from 'pages/CustomerSupport';
 import PaymentSuccess from 'pages/Checkout/Success';
+import PageNotFound from 'components/PageNotFound';
 
 const publicRoutes = [
   {
@@ -56,6 +57,10 @@ const publicRoutes = [
     component: Catalouge,
   },
   {
+    path     : '/catalouge/:type',
+    component: Catalouge,
+  },
+  {
     path     : '/details:id',
     component: ItemDetails,
   },
@@ -74,6 +79,10 @@ const publicRoutes = [
   {
     path     : '/account',
     component: Account,
+  },
+  {
+    path     : '*',
+    component: PageNotFound,
   },
 ];
 

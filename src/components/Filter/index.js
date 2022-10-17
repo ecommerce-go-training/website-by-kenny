@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Checkbox from 'components/Checkbox';
@@ -13,6 +14,8 @@ const Filter = ({ shop = false }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Filter',
   });
+
+  const { type } = useParams();
 
   const colorFilter = [
     t('beige'),
@@ -77,27 +80,36 @@ const Filter = ({ shop = false }) => {
     setSize([]);
   };
 
+  console.log(type);
+
   return (
     <div className={classNames('filter', { shopNav: shop })}>
       <div className='filter-categories'>
         <p className='title'>{t('categories')}</p>
         {categoriesList.map((item, index) => (
-          <p
+          <Link
+            to={`/catalouge/${type}`}
             key={index}
             className={classNames('shop-nav-link', {
-              active: categorySelect === index,
+              active: !shop && categorySelect === index,
             })}
             onClick={() => setCategorySelect(index)}
           >
             {item}
-          </p>
+          </Link>
         ))}
       </div>
       <div className='filter-collections'>
         <p className='title'>{t('collections')}</p>
-        <p>{t('essentialsEdit')}</p>
-        <p>{t('springSummer')}</p>
-        <p>{t('fallWinter')}</p>
+        <Link className='shop-nav-link' to='/'>
+          {t('essentialsEdit')}
+        </Link>
+        <Link className='shop-nav-link' to='/'>
+          {t('springSummer')}
+        </Link>
+        <Link className='shop-nav-link' to='/'>
+          {t('fallWinter')}
+        </Link>
       </div>
       <div className={classNames('filter-filtering', { disable: shop })}>
         <p className='title'>{t('filter')}</p>

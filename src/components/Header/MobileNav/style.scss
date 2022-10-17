@@ -50,7 +50,8 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    & > a {
+    & > a, p {
+      width: max-content;
       text-decoration: none;
       font-family: 'Sofia Pro';
       font-style: normal;
@@ -64,6 +65,28 @@
     & > a:last-child {
       text-decoration: none;
       margin-top: 60px;
+    }
+  }
+  & .shop-nav {
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      & > p {
+        font-family: 'Sofia Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0.15em;
+      }
+      & > img {
+        position: relative;
+        bottom: 2px;
+        cursor: pointer;
+        width: 40px;
+      }
     }
   }
 }

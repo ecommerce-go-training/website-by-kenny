@@ -35,6 +35,9 @@
     @include responsive(tablet) {
       left: 4px;
     }
+    @include responsive(mobile) {
+      left: 4px;
+    }
   }
   &.on {
     display: block !important;

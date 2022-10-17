@@ -12,6 +12,8 @@ import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
 import Footer from 'components/Footer';
 
+import { registerAccount } from 'services/api';
+
 import './style.scss';
 
 const SignUp = () => {
@@ -19,18 +21,19 @@ const SignUp = () => {
 
   const {
     watch,
-    reset,
     register,
     handleSubmit,
+    reset,
+    getValues,
     formState: { errors },
   } = useForm({
     mode    : 'all',
     resolver: yupResolver(signUpVal),
   });
 
-  const formSubmit = (data) => {
-    alert(JSON.stringify(data));
-    reset();
+  const formSubmit = () => {
+    const data = getValues();
+    registerAccount(data, reset);
   };
 
   return (
@@ -43,42 +46,42 @@ const SignUp = () => {
           <Input
             register={register}
             error={errors.firstName?.message}
-            label='firstName'
+            label={t('firstName')}
             name='firstName'
             inputCheck={watch('firstName')}
           />
           <Input
             register={register}
             error={errors.lastName?.message}
-            label='lastName'
+            label={t('lastName')}
             name='lastName'
             inputCheck={watch('lastName')}
           />
           <Input
             register={register}
             error={errors.phone?.message}
-            label='phone'
+            label={t('phone')}
             name='phone'
             inputCheck={watch('phone')}
           />
           <Input
             register={register}
             error={errors.email?.message}
-            label='email'
+            label={t('email')}
             name='email'
             inputCheck={watch('email')}
           />
           <Input
             register={register}
             error={errors.password?.message}
-            label='password'
+            label={t('password')}
             name='password'
             type='password'
             inputCheck={watch('password')}
           />
           <div className='signup__checkbox'>
             <Checkbox>
-              <p>{t('receiveNews')}</p>
+              <p className='receive-news'>{t('receiveNews')}</p>
             </Checkbox>
           </div>
           <p className='agree'>

@@ -267,7 +267,12 @@
       "terms": "Terms of Service",
       "privacy": "Privacy Policy",
       "create": "create",
-      "haveAccount": "I have an account"
+      "haveAccount": "I have an account",
+      "firstName": "first Name",
+      "lastName": "last Name",
+      "email": "email",
+      "phone": "Phone Number",
+      "password": "password"
     },
 
     "SignIn": {
