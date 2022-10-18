@@ -3,27 +3,30 @@ import Env from 'config/env';
 
 const api = axios.create({
   baseURL: Env.API_URL,
-});
-
-const authApi = axios.create({
-  baseURL: Env.API_URL,
   headers: {
-    accessToken: 'conbocuoi',
+    Accept        : 'application/json',
+    'Content-Type': 'application/json',
   },
 });
 
-authApi.interceptors.request.use(
-  (config) => config,
-  (error) => error
-);
-
-authApi.interceptors.response.use(
-  (config) => config,
-  (error) => {
-    if (error.response.status === 404) {
-      window.location.href = '/sign-in';
+api.interceptors.request.use(
+  (config) => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
 );
 
-export { api, authApi };
+api.interceptors.response.use(
+  (response) => response,
+  ({ message, response: { data, status } }) =>
+  // eslint-disable-next-line prefer-promise-reject-errors
+    Promise.reject({ message, data, status })
+);
+
+export { api };

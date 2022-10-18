@@ -50,7 +50,9 @@ const Input = ({
           type={inputType}
           name={name}
           onFocus={() => setAim(true)}
-          onBlur={() => (inputCheck ? setAim(true) : setAim(false))}
+          onBlur={() =>
+            inputCheck && inputCheck.length === 0 ? setAim(true) : setAim(false)
+          }
           id={label}
         />
         <span className={showPsw}>

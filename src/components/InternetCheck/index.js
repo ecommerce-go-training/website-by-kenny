@@ -6,14 +6,14 @@ const InternetCheck = ({ children }) => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   useEffect(() => {
-    const handleStatusChange = () => {
+    const notifyChange = () => {
       setIsOnline(navigator.onLine);
     };
-    window.addEventListener('online', handleStatusChange);
-    window.addEventListener('offline', handleStatusChange);
+    window.addEventListener('online', notifyChange);
+    window.addEventListener('offline', notifyChange);
     return () => {
-      window.removeEventListener('online', handleStatusChange);
-      window.removeEventListener('offline', handleStatusChange);
+      window.removeEventListener('online', notifyChange);
+      window.removeEventListener('offline', notifyChange);
     };
   }, [isOnline]);
 

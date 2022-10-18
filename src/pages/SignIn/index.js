@@ -4,6 +4,11 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { login } from 'global/redux/auth/slice';
+
+import { loginUser } from 'global/redux/auth/request';
+import { saveLoginToken } from 'utils/helpers';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -18,6 +23,8 @@ const SignIn = () => {
     keyPrefix: 'Pages.SignIn',
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const {
     watch,
     reset,
@@ -35,8 +42,11 @@ const SignIn = () => {
     }
   });
 
-  const formSubmit = (data) => {
-    alert(JSON.stringify(data));
+  const formSubmit = async (data) => {
+    let res = await loginUser(data);
+    saveLoginToken(res.data.data.accessToken);
+    dispatch(login(res.data.data));
+    localStorage.setItem('isLogin', true);
     reset();
   };
 

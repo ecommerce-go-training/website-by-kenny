@@ -18,12 +18,10 @@ const registerUser = async (data, reset) => {
 
 const loginUser = async (data) => {
   try {
-    await api.post('/login', {
+    return await api.post('/login', {
       email   : data.email,
       password: data.password,
     });
-    alert('Login success');
-    window.location.href = '/';
   } catch (error) {
     console.log(error);
   }
