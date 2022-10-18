@@ -43,7 +43,7 @@ const Store = () => {
                 onClick={() => setPage(2)}
                 className={page === 2 ? 'active' : ''}
               >
-                {t('stockists')}
+                {t('stockist')}
               </p>
             </div>
           </div>

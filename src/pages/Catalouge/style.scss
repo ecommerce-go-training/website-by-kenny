@@ -29,15 +29,19 @@
     display: flex;
     flex-wrap: wrap;
     gap: 100px;
+    margin-bottom: 50px;
     @include responsive(tablet) {
       flex: 2;
       gap: 50px;
     }
     @include responsive(mobile) {
       justify-content: space-between;
+      margin-bottom: 0;
       overflow: hidden;
-      padding: 0 3vw;   
+      padding: 0 3vw;
+      padding-bottom: 40px;   
       gap: 0;
+      border-bottom: 1px dashed $grey;
     }
   }
 }

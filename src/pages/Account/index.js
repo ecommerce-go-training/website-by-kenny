@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Header from 'components/Header';
 import OrderHistory from './OrderHistory';
 import Input from 'components/Input';
+import Footer from 'components/Footer';
 import Button from 'components/Button';
 
 import addressVal from './validation';
@@ -376,6 +377,7 @@ const Account = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

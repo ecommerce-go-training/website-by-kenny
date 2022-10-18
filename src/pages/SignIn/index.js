@@ -9,6 +9,7 @@ import Input from 'components/Input';
 import Header from 'components/Header';
 import Button from 'components/Button';
 import signInVal from './validation';
+import Footer from 'components/Footer';
 
 import './style.scss';
 
@@ -71,6 +72,7 @@ const SignIn = () => {
           <Link to='/sign-up'>{t('signup')}</Link>
         </div>
       </div>
+      <Footer lineTop />
     </div>
   );
 };

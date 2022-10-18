@@ -72,6 +72,7 @@ import successMail from './icons/successMail.png';
 import blueArrowDown from './icons/blueArrowDown.png';
 import paypalRedirect from './icons/paypalRedirect.png';
 import discountArrow from './icons/discountArrow.png';
+import backLongArrow from './icons/backLongArrow.png';
 
 import cataBackDress from './catalouge/backDress.png';
 import cataPinkDress from './catalouge/pinkDress.png';
@@ -82,6 +83,7 @@ export {
   backArrow,
   backDress,
   backDressMobile,
+  backLongArrow,
   background,
   beachEdit1,
   beachEdit2,

@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import Collapse from 'components/Collapse';
 
 import { sizeGuide } from 'assets/images';
@@ -22,7 +20,6 @@ const Size = () => {
 
   return (
     <div>
-      <Header store />
       <div className='size'>
         <div>
           <p className='title'>size guide</p>
@@ -184,7 +181,6 @@ const Size = () => {
         </div>
         <img src={sizeGuide} alt='size guide' />
       </div>
-      <Footer />
     </div>
   );
 };

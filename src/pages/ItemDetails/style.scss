@@ -152,6 +152,7 @@
       margin-top: 20px;
       display: flex;
       flex-direction: column;
+      height: auto;
       & .info-item {
         font-size: 13px;
         line-height: 150%;
@@ -190,7 +191,7 @@
 }
 
 #color1 {
-  -webkit-appearance: none;
+  cursor: pointer;
   padding: 0;
   border: none;
   border-radius: 50%;

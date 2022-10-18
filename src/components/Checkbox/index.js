@@ -20,7 +20,9 @@ const Checkbox = ({ children, filter, toggle }) => {
 
       {filter && (
         <div className={classNames('filter-checkbox', { on: toggle })}>
-          <img src={whiteX} alt='x img' />
+          <div>
+            <img src={whiteX} alt='x img' />
+          </div>
         </div>
       )}
     </div>

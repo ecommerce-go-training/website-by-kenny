@@ -19,7 +19,7 @@ const Brand = () => {
 
   return (
     <div>
-      <Header store />
+      <Header login />
       <div className={classes}>
         <div className='brand__left'>
           <div className='brand__left-nav'>

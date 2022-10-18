@@ -48,5 +48,10 @@
   }
   &__info {
     flex: 5;
+    margin-bottom: 50px;
+    @include responsive(mobile) {
+      margin-bottom: 0;
+      border-bottom: 1px dashed $grey;
+    }
   }
 }

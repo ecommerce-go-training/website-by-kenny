@@ -6,6 +6,8 @@
   padding: 0 15vw;
   height: 45vh;
   margin-top: 30px;
+  width: 100vw;
+  max-width: 100%;
   border-top: 1px solid #C8C8C8;
   display: flex;
   justify-content: space-between;
@@ -187,6 +189,9 @@
       display: none;
     }
   }
+  &.lineTop {
+    border-top: 1px dashed $very-light-grey;
+  }
   & a {
     color: $black;
     text-decoration: none;
@@ -203,7 +208,7 @@
     margin-right: 5px;
   }
   .line {
-    border: 1px dashed #C8C8C8;
+    border: 1px dashed $very-light-grey;
   }
   &__info {
     padding: 80px 50px;
