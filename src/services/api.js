@@ -5,11 +5,6 @@ const api = axios.create({
   baseURL: Env.API_URL,
 });
 
-api.interceptors.resquest.use(
-  () => console.log('Print 1st then reg'),
-  (error) => console.log(error)
-);
-
 const authApi = axios.create({
   baseURL: Env.API_URL,
   headers: {
