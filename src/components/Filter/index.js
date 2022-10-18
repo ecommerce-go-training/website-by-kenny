@@ -80,8 +80,6 @@ const Filter = ({ shop = false }) => {
     setSize([]);
   };
 
-  console.log(type);
-
   return (
     <div className={classNames('filter', { shopNav: shop })}>
       <div className='filter-categories'>

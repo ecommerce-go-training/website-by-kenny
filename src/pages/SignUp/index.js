@@ -12,6 +12,8 @@ import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
 import Footer from 'components/Footer';
 
+import { registerUser } from 'global/redux/auth/request';
+
 import './style.scss';
 
 const SignUp = () => {
@@ -21,6 +23,8 @@ const SignUp = () => {
     watch,
     register,
     handleSubmit,
+    reset,
+    getValues,
     formState: { errors },
   } = useForm({
     mode    : 'all',
@@ -28,7 +32,8 @@ const SignUp = () => {
   });
 
   const formSubmit = () => {
-    alert('Submitted');
+    const data = getValues();
+    registerUser(data, reset);
   };
 
   return (
