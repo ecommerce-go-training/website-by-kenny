@@ -12,8 +12,6 @@ import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
 import Footer from 'components/Footer';
 
-import { registerAccount } from 'services/api';
-
 import './style.scss';
 
 const SignUp = () => {
@@ -23,8 +21,6 @@ const SignUp = () => {
     watch,
     register,
     handleSubmit,
-    reset,
-    getValues,
     formState: { errors },
   } = useForm({
     mode    : 'all',
@@ -32,8 +28,7 @@ const SignUp = () => {
   });
 
   const formSubmit = () => {
-    const data = getValues();
-    registerAccount(data, reset);
+    alert('Submitted');
   };
 
   return (
