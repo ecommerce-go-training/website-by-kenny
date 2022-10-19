@@ -60,7 +60,7 @@ const Footer = ({ paymentSuccess, lineTop }) => {
           <p className='title'>{t('customerCare')}</p>
           <Stack col>
             <Link to='/customer-support'>{t('faq')}</Link>
-            <Link to='/size'>{t('size')}</Link>
+            <Link to='/customer-support'>{t('size')}</Link>
             <Link to='/customer-support'>{t('shipping')}</Link>
             <Link to='/customer-support'>{t('terms')}</Link>
             <Link to='/customer-support'>{t('policy')}</Link>
@@ -113,7 +113,7 @@ const Footer = ({ paymentSuccess, lineTop }) => {
             <div className='mobile-footer-collapse'>
               <Collapse label={'CUSTOMER CARE'}>
                 <Link to='/customer-support'>{t('faq')}</Link>
-                <Link to='/size'>{t('size')}</Link>
+                <Link to='/customer-support'>{t('size')}</Link>
                 <Link to='/customer-support'>{t('shipping')}</Link>
                 <Link to='/customer-support'>{t('terms')}</Link>
                 <Link to='/customer-support'>{t('terms')}</Link>
