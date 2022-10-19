@@ -16,6 +16,8 @@ import Button from 'components/Button';
 import signInVal from './validation';
 import Footer from 'components/Footer';
 
+//import { isLogin } from 'utils/helpers';
+
 import './style.scss';
 
 const SignIn = () => {
@@ -46,6 +48,7 @@ const SignIn = () => {
     let res = await loginUser(data);
     saveLoginToken(res.data.data.accessToken);
     dispatch(login(res.data.data));
+    alert('Login success');
     localStorage.setItem('isLogin', true);
     reset();
   };

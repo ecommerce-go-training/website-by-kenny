@@ -3,7 +3,9 @@ const saveLoginToken = (token) => {
 };
 
 const removeLoginToken = () => {
-  localStorage.getItem('token', null);
+  localStorage.removeItem('token');
 };
 
-export { removeLoginToken, saveLoginToken };
+const isLogin = localStorage.getItem('isLogin');
+
+export { isLogin, removeLoginToken, saveLoginToken };

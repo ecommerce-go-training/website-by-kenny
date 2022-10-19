@@ -62,7 +62,8 @@
       text-transform: uppercase;
       color: $black;
     }
-    & > a:last-child {
+    & > p:last-child {
+      cursor: pointer;
       text-decoration: none;
       margin-top: 60px;
     }

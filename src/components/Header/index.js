@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState, memo } from 'react';
+import { useSelector } from 'react-redux';
 
 import MyCart from './MyCart';
 import Search from './Search';
@@ -19,6 +20,9 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
+
+  const isLogin = localStorage.getItem('isLogin');
+  const userName = useSelector((state) => state.auth.userInfo.firstName);
 
   const [bg, setBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
@@ -95,8 +99,8 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
             src={bg || login || store ? searchBlack : search}
             alt='search img'
           />
-          <Link to={login ? '/account' : '/sign-in'}>
-            {login ? t('account') : t('logIn')}
+          <Link to={isLogin ? '/account' : '/sign-in'}>
+            {login ? t('account') : isLogin ? userName : t('login')}
           </Link>
           <img
             onClick={() => setToggleCart(true)}

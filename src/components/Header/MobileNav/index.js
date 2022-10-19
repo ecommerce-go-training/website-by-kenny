@@ -3,6 +3,9 @@ import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from 'global/redux/auth/slice';
 
 import Filter from 'components/Filter';
 
@@ -14,11 +17,23 @@ const MobileNav = ({ toggle, setToggle }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLogin = localStorage.getItem('isLogin');
 
   const [toggleShop, setToggleShop] = useState(false);
 
   const handleToggleShop = () => {
     setToggleShop(!toggleShop);
+  };
+
+  const handleLogout = () => {
+    const isLogin = localStorage.getItem('isLogin');
+    if (isLogin === 'true') {
+      localStorage.removeItem('isLogin');
+      localStorage.removeItem('token');
+      dispatch(logout());
+    } else navigate('/sign-in');
   };
 
   return (
@@ -45,7 +60,7 @@ const MobileNav = ({ toggle, setToggle }) => {
             <p onClick={handleToggleShop}>{t('shop')}</p>
             <Link to='/season'>{t('shopWinter')}</Link>
             <Link to='/account'>{t('account')}</Link>
-            <Link to='/sign-in'>{t('logIn')}</Link>
+            <p onClick={handleLogout}>{isLogin ? t('logout') : t('login')}</p>
           </div>
         </div>
       )}
