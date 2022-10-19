@@ -12,6 +12,7 @@ import { store, persistor } from './store';
 import { privateRoutes, publicRoutes } from 'routes';
 
 import 'assets/scss/global.scss';
+import 'assets/scss/normalize.scss';
 
 const App = () => {
   return (
