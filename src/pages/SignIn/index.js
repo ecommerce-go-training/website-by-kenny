@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { login } from 'global/redux/auth/slice';
+import { toast, ToastContainer } from 'react-toastify';
 
+import { login } from 'global/redux/auth/slice';
 import { loginUser } from 'global/redux/auth/request';
-import { saveLoginToken } from 'utils/helpers';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -18,6 +17,7 @@ import Footer from 'components/Footer';
 import Loading from 'components/Loading';
 
 import './style.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
   const { t } = useTranslation('translation', {
@@ -25,6 +25,8 @@ const SignIn = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const showErrorNoti = (message) => toast.error(message);
 
   const {
     watch,
@@ -47,8 +49,7 @@ const SignIn = () => {
 
   const formSubmit = async (data) => {
     setLoading(true);
-    let res = await loginUser(data, setLoading);
-    saveLoginToken(res.data.data.accessToken);
+    let res = await loginUser(data, setLoading, showErrorNoti);
     dispatch(login(res.data.data));
     localStorage.setItem('isLogin', true);
     reset();
@@ -56,6 +57,13 @@ const SignIn = () => {
 
   return (
     <div>
+      <ToastContainer
+        autoClose={2000}
+        closeButton={true}
+        position='top-right'
+        theme='light'
+        hideProgressBar
+      />
       <Header disableAnnounce login />
       <div className='container'>
         <form className='login' onSubmit={handleSubmit(formSubmit)}>

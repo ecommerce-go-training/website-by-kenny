@@ -37,17 +37,50 @@ const Filter = ({ shop = false }) => {
   const sizeFilter = [t('freesize'), 'XS', 'S', 'M', 'L', 'XL'];
 
   const categoriesList = [
-    t('newArrivals'),
-    t('backInStock'),
-    t('dresses'),
-    t('tops'),
-    t('skirts'),
-    t('shorts'),
-    t('pants'),
-    t('jackets'),
-    t('jumpsuits'),
-    t('twoPieceSets'),
-    t('sales'),
+    {
+      label: t('newArrivals'),
+      value: 'new-arrivals',
+    },
+    {
+      label: t('backInStock'),
+      value: 'back-in-stock',
+    },
+    {
+      label: t('dresses'),
+      value: 'dresses',
+    },
+    {
+      label: t('tops'),
+      value: 'tops',
+    },
+    {
+      label: t('skirts'),
+      value: 'skirts',
+    },
+    {
+      label: t('shorts'),
+      value: 'shorts',
+    },
+    {
+      label: t('pants'),
+      value: 'pants',
+    },
+    {
+      label: t('jackets'),
+      value: 'jackets',
+    },
+    {
+      label: t('jumpsuits'),
+      value: 'jumpsuits',
+    },
+    {
+      label: t('twoPieceSets'),
+      value: 'two-piece-sets',
+    },
+    {
+      label: t('sales'),
+      value: 'sales',
+    },
   ];
 
   const sortList = [
@@ -80,20 +113,22 @@ const Filter = ({ shop = false }) => {
     setSize([]);
   };
 
+  console.log(type);
+
   return (
     <div className={classNames('filter', { shopNav: shop })}>
       <div className='filter-categories'>
         <p className='title'>{t('categories')}</p>
         {categoriesList.map((item, index) => (
           <Link
-            to={`/catalouge/${type}`}
+            to={`/catalouge/${item.value}`}
             key={index}
             className={classNames('shop-nav-link', {
               active: !shop && categorySelect === index,
             })}
             onClick={() => setCategorySelect(index)}
           >
-            {item}
+            {item.label}
           </Link>
         ))}
       </div>

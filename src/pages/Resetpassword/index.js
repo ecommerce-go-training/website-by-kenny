@@ -4,16 +4,25 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { toast, ToastContainer } from 'react-toastify';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
 import Button from 'components/Button';
+import Loading from 'components/Loading';
+
+import {
+  changePassword,
+  sendResetPasswordCode,
+  sendResetPasswordMail,
+} from 'global/redux/auth/request';
 
 import resetVal from './validation';
 
 import { successMail, success } from 'assets/images';
 
 import './style.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Resetpsw = () => {
   const navigate = useNavigate();
@@ -21,11 +30,14 @@ const Resetpsw = () => {
     keyPrefix: 'Pages.ResetPassword',
   });
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const showErrorNoti = (message) => toast.error(message);
 
   const {
     reset,
     watch,
     register,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -33,17 +45,53 @@ const Resetpsw = () => {
     resolver: yupResolver(resetVal),
   });
 
-  const handleClick = () => {
-    setPage((prev) => prev + 1);
+  const handleClick = async () => {
+    setLoading(true);
+    if (page === 1)
+      await sendResetPasswordMail(
+        getValues('email'),
+        setLoading,
+        setPage,
+        showErrorNoti
+      );
+    if (page === 2)
+      await sendResetPasswordCode(
+        {
+          email: getValues('email'),
+          code : getValues('code'),
+        },
+        setLoading,
+        setPage,
+        showErrorNoti
+      );
+    if (page === 3) {
+      await changePassword(
+        {
+          email          : getValues('email'),
+          code           : getValues('code'),
+          newPassword    : getValues('password'),
+          confirmPassword: getValues('confirmPassword'),
+        },
+        setLoading,
+        setPage,
+        showErrorNoti
+      );
+    }
   };
 
-  const formSubmit = (data) => {
-    alert(JSON.stringify(data));
+  const formSubmit = () => {
     reset();
   };
 
   return (
     <div>
+      <ToastContainer
+        autoClose={2000}
+        closeButton={true}
+        position='top-right'
+        theme='light'
+        hideProgressBar
+      />
       <Header disableAnnounce login />
       <div className='container'>
         <form onSubmit={handleSubmit(formSubmit)}>
@@ -66,8 +114,9 @@ const Resetpsw = () => {
                   disable={watch('email') && !errors.email ? false : true}
                   handleClick={handleClick}
                   type='button'
+                  login
                 >
-                  <p>{t('submit')}</p>
+                  {loading ? <Loading /> : <p>{t('submit')}</p>}
                 </Button>
               </div>
               <Link to='/sign-in'>{t('backToSignIn')}</Link>
@@ -94,8 +143,9 @@ const Resetpsw = () => {
                   disable={watch('code') && !errors.code ? false : true}
                   handleClick={handleClick}
                   type='button'
+                  login
                 >
-                  <p>{t('submit')}</p>
+                  {loading ? <Loading /> : <p>{t('submit')}</p>}
                 </Button>
               </div>
               <p>
@@ -124,7 +174,7 @@ const Resetpsw = () => {
                 error={errors.confirmPassword && 'Does not match'}
                 label='confirmPassword'
                 name='confirmPassword'
-                type='text'
+                type='password'
                 inputCheck={watch('confirmPassword')}
               />
               <div className='page3__button'>
@@ -132,8 +182,9 @@ const Resetpsw = () => {
                   disable={watch('password') && !errors.password ? false : true}
                   handleClick={handleClick}
                   type='submit'
+                  login
                 >
-                  <p>Reset Password</p>
+                  {loading ? <Loading /> : <p>{t('resetPassword')}</p>}
                 </Button>
               </div>
             </section>

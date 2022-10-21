@@ -4,6 +4,7 @@ const initialState = {
   userInfo       : {},
   userAccessToken: null,
   error          : null,
+  code           : null,
 };
 
 const authSlice = createSlice({
@@ -23,6 +24,12 @@ const authSlice = createSlice({
     },
     logout: () => {
       return initialState;
+    },
+    sendResetCode: (state, action) => {
+      return {
+        ...state,
+        code: action.payload.code,
+      };
     },
   },
 });

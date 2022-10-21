@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import { toast, ToastContainer } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
 import './style.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const InternetCheck = ({ children }) => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [firstRendered, setFirstRendered] = useState(false);
 
   const onlineNoti = () =>
     toast.success('Your internet connection was restored');
@@ -14,7 +15,13 @@ const InternetCheck = ({ children }) => {
 
   useEffect(() => {
     const notifyChange = () => {
+      setFirstRendered(true);
       setIsOnline(navigator.onLine);
+      if (navigator.onLine) {
+        onlineNoti();
+      } else {
+        offlineNoti();
+      }
     };
     window.addEventListener('online', notifyChange);
     window.addEventListener('offline', notifyChange);
@@ -22,19 +29,25 @@ const InternetCheck = ({ children }) => {
       window.removeEventListener('online', notifyChange);
       window.removeEventListener('offline', notifyChange);
     };
-  }, [isOnline]);
+  }, []);
+
+  console.log(isOnline);
 
   return (
-    <div className='internet-check'>
-      <ToastContainer
-        autoClose={5000}
-        closeButton={true}
-        position='bottom-left'
-        theme='dark'
-      />
-      {isOnline ? onlineNoti() : offlineNoti()}
-      {children}
-    </div>
+    <>
+      {firstRendered && (
+        <div className='internet-check'>
+          <ToastContainer
+            autoClose={5000}
+            closeButton={true}
+            position='bottom-left'
+            theme='dark'
+            hideProgressBar
+          />
+          {children}
+        </div>
+      )}
+    </>
   );
 };
 
