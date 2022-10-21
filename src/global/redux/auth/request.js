@@ -9,21 +9,21 @@ const registerUser = async (data, reset) => {
       lastName   : data.lastName,
       phoneNumber: data.phone,
     });
-    alert('Register Success');
     reset();
   } catch (error) {
     console.log(error);
   }
 };
 
-const loginUser = async (data) => {
+const loginUser = async (data, setLoading) => {
   try {
     return await api.post('/login', {
       email   : data.email,
       password: data.password,
     });
   } catch (error) {
-    console.log(error);
+    setLoading(false);
+    alert(error.message);
   }
 };
 

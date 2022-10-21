@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
+import { toast, ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 import './style.scss';
 
 const InternetCheck = ({ children }) => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  const onlineNoti = () =>
+    toast.success('Your internet connection was restored');
+  const offlineNoti = () => toast.error('You are currently offline');
 
   useEffect(() => {
     const notifyChange = () => {
@@ -19,7 +26,13 @@ const InternetCheck = ({ children }) => {
 
   return (
     <div className='internet-check'>
-      {isOnline ? <h1>Online</h1> : <h1>Offline</h1>}
+      <ToastContainer
+        autoClose={5000}
+        closeButton={true}
+        position='bottom-left'
+        theme='dark'
+      />
+      {isOnline ? onlineNoti() : offlineNoti()}
       {children}
     </div>
   );

@@ -18,6 +18,10 @@
   justify-content: center;
   align-items: center;
   padding: 15px 0 10px 0;
+  overflow: hidden;
+  &.loginBtn {
+    height: 50px;
+  }
   &.border {
     box-sizing: border-box;
     border: 1px solid $black;

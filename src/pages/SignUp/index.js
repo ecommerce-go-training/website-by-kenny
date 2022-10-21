@@ -31,7 +31,7 @@ const SignUp = () => {
     resolver: yupResolver(signUpVal),
   });
 
-  const formSubmit = () => {
+  const formSubmit = async () => {
     const data = getValues();
     registerUser(data, reset);
   };

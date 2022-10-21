@@ -79,6 +79,8 @@ import cataPinkDress from './catalouge/pinkDress.png';
 import cataWhiteDress from './catalouge/whiteDress.png';
 import cataPurpleDress from './catalouge/purpleDress.png';
 
+import loadingIcon from './icons/Loading.png';
+
 export {
   backArrow,
   backDress,
@@ -109,6 +111,7 @@ export {
   hnShowroom,
   instagram,
   leftArrow,
+  loadingIcon,
   mail,
   minus,
   mobileBg,

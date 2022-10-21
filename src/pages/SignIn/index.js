@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -15,8 +15,7 @@ import Header from 'components/Header';
 import Button from 'components/Button';
 import signInVal from './validation';
 import Footer from 'components/Footer';
-
-//import { isLogin } from 'utils/helpers';
+import Loading from 'components/Loading';
 
 import './style.scss';
 
@@ -38,6 +37,8 @@ const SignIn = () => {
     resolver: yupResolver(signInVal),
   });
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (localStorage.getItem('isLogin') === 'true') {
       navigate('/');
@@ -45,10 +46,10 @@ const SignIn = () => {
   });
 
   const formSubmit = async (data) => {
-    let res = await loginUser(data);
+    setLoading(true);
+    let res = await loginUser(data, setLoading);
     saveLoginToken(res.data.data.accessToken);
     dispatch(login(res.data.data));
-    alert('Login success');
     localStorage.setItem('isLogin', true);
     reset();
   };
@@ -75,8 +76,8 @@ const SignIn = () => {
             inputCheck={watch('password')}
           />
           <div className='login__button'>
-            <Button type='submit'>
-              <p>{t('submit')}</p>
+            <Button login type='submit'>
+              {loading ? <Loading /> : <p>{t('submit')}</p>}
             </Button>
           </div>
         </form>
