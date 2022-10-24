@@ -34,9 +34,9 @@ const Search = ({ toggle, setToggle }) => {
       <div className='search__quick-nav'>
         <p>{t('quickLink')}</p>
         <div>
-          <Link to='/catalouge'>{t('dress')}</Link>
-          <Link to='/catalouge'>{t('top')}</Link>
-          <Link to='/catalouge/pant'>{t('pant')}</Link>
+          <Link to='/catalouge/dresses'>{t('dress')}</Link>
+          <Link to='/catalouge/top'>{t('top')}</Link>
+          <Link to='/catalouge/pants'>{t('pant')}</Link>
           <Link to='/store'>{t('store')}</Link>
           <Link to='/customer-support'>{t('ship')}</Link>
         </div>

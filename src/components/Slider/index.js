@@ -34,7 +34,6 @@ const Slider = ({ images, shiftImg }) => {
       currentIndex === 0 ? images.length - shiftImg : currentIndex - shiftImg
     );
     setDirection(true);
-    console.log(sliderRef.current.style);
   };
 
   const handleRight = () => {

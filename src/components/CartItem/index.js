@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { useTranslation } from 'react-i18next';
+
+import { formatCurrency } from 'utils/helpers';
 
 import { minus, plus } from 'assets/images';
 
 import './style.scss';
 
-const CartItem = ({ data }) => {
+const CartItem = ({ data, handleRemove }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.CartItem',
   });
-
   const [quantity, setQuantity] = useState(data.quantity);
 
   return (
@@ -38,15 +38,11 @@ const CartItem = ({ data }) => {
               />
             </div>
           </div>
-          <p>
-            {data.price} {t('unit')}
-          </p>
+          <p>{formatCurrency(data.price)}</p>
         </div>
         <div className='item-total'>
-          <p>
-            {data.price * quantity} {t('unit')}
-          </p>
-          <p>{t('remove')}</p>
+          <p>{formatCurrency(data.price * quantity)}</p>
+          <p onClick={handleRemove}>{t('remove')}</p>
         </div>
       </div>
       <div className='cart-item-img'>

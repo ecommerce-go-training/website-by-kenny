@@ -33,6 +33,7 @@ const MobileNav = ({ toggle, setToggle }) => {
       localStorage.removeItem('isLogin');
       localStorage.removeItem('token');
       dispatch(logout());
+      setToggle(!toggle);
     } else navigate('/sign-in');
   };
 

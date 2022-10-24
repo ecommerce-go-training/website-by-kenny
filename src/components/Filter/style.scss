@@ -7,11 +7,16 @@
   font-family: 'Sofia Pro';
   font-style: normal;
   font-weight: 400;
+  & a {
+    &:focus {
+      outline: 0;
+    }
+  }
   &.shopNav {
     display: flex;
     justify-content: space-between;
     & .filter-categories, & .filter-collections {
-      & > a, p {
+      & > a {
         &:hover {
           border-bottom: 1px solid $black;
         }

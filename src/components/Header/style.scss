@@ -129,18 +129,43 @@
       margin-right: 10px;
     }
     & .search-img {
+      width: 20px;
       position: relative;
       right: 8vw;
+      cursor: pointer;
       @include responsive(mobile) {
         right: 0;
       }
     }
-    & > img {
-      cursor: pointer;
+    & > div {
+      position: relative;
+      display: flex;
       width: 20px;
-      height: auto;
-      @include responsive(mobile) {
-        width: 15px;
+      & > p {
+        position: absolute;
+        font-family: 'Sofia Pro';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 100%;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: $white;
+        top: 13px;
+        left: 7px;
+        cursor: pointer;
+        @include responsive(mobile) {
+          top: 10px;
+        }
+      }
+      & > img {
+        cursor: pointer;
+        width: 100%;
+        height: auto;
+        @include responsive(mobile) {
+          position: relative;
+          bottom: 3px;
+        }
       }
     }
     & > a {
@@ -183,7 +208,7 @@
 .move {
   box-shadow: 0 5px 5px -5px $grey;
   background-color: $white;
-  & a, &.logo, .header-shop {
+  & a, &.logo, .header-shop, .item-quantity {
     color: $black;
   }
   & .line {
@@ -193,7 +218,7 @@
 
 .stand {
   background-color: $transparent;
-  & a, &.logo, .header-shop {
+  & a, &.logo, .header-shop, .item-quantity {
     color: $white;
   }
   & .line {

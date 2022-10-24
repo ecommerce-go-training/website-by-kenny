@@ -1,9 +1,8 @@
+import React, { useEffect, useState, memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import React, { useEffect, useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import MyCart from './MyCart';
@@ -23,16 +22,17 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
 
   const isLogin = localStorage.getItem('isLogin');
   const userName = useSelector((state) => state.auth.userInfo.firstName);
+  const cartItem = useSelector((state) => state.cart.cartItem);
 
-  const [bg, setBg] = useState(false);
+  const [moveBg, setMoveBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleNavMobile, setToggleNavMobile] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
   const [toggleShop, setToggleShop] = useState(false);
 
   const changeBackground = () => {
-    if (window.scrollY >= 100) setBg(true);
-    else setBg(false);
+    if (window.scrollY >= 100) setMoveBg(true);
+    else setMoveBg(false);
   };
 
   useEffect(() => {
@@ -61,15 +61,15 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
         className={classNames({
           header        : true,
           disable       : disable,
-          move          : bg,
-          stand         : !bg,
+          move          : moveBg,
+          stand         : !moveBg,
           'login-header': login,
           'store-header': store,
         })}
       >
         <div className='header__nav'>
           <div className='header__nav-link'>
-            <Link to='/catalouge'>{t('newArrivals')}</Link>
+            <Link to='/catalouge/new-arrivals'>{t('newArrivals')}</Link>
             <p
               className='header-shop'
               onClick={() => setToggleShop(!toggleShop)}
@@ -96,17 +96,25 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
           <img
             onClick={() => setToggleSearch(true)}
             className='search-img'
-            src={bg || login || store ? searchBlack : search}
+            src={moveBg || login || store ? searchBlack : search}
             alt='search img'
           />
           <Link to={isLogin ? '/account' : '/sign-in'}>
             {login ? t('account') : isLogin ? userName : t('login')}
           </Link>
-          <img
-            onClick={() => setToggleCart(true)}
-            src={bg || login || store ? (login ? blackCart : cartBlack) : cart}
-            alt='cart img'
-          />
+          <div onClick={() => setToggleCart(true)}>
+            {!login && <p className='item-quantity'>{cartItem.length}</p>}
+            <img
+              src={
+                moveBg || login || store
+                  ? login
+                    ? blackCart
+                    : cartBlack
+                  : cart
+              }
+              alt='cart img'
+            />
+          </div>
         </div>
       </div>
     </div>

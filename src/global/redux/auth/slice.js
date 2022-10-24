@@ -12,7 +12,6 @@ const authSlice = createSlice({
   initialState: initialState,
   reducers    : {
     login: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         userInfo       : action.payload.userInfo,
@@ -24,12 +23,6 @@ const authSlice = createSlice({
     },
     logout: () => {
       return initialState;
-    },
-    sendResetCode: (state, action) => {
-      return {
-        ...state,
-        code: action.payload.code,
-      };
     },
   },
 });

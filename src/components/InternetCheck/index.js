@@ -6,7 +6,6 @@ import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 const InternetCheck = ({ children }) => {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [firstRendered, setFirstRendered] = useState(false);
 
   const onlineNoti = () =>
@@ -16,7 +15,6 @@ const InternetCheck = ({ children }) => {
   useEffect(() => {
     const notifyChange = () => {
       setFirstRendered(true);
-      setIsOnline(navigator.onLine);
       if (navigator.onLine) {
         onlineNoti();
       } else {
@@ -30,8 +28,6 @@ const InternetCheck = ({ children }) => {
       window.removeEventListener('offline', notifyChange);
     };
   }, []);
-
-  console.log(isOnline);
 
   return (
     <>
