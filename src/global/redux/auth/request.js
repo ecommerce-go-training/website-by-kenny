@@ -20,7 +20,7 @@ const registerUser = async (data, reset, setLoading) => {
     showSuccessNoti('Register Success');
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
@@ -34,7 +34,7 @@ const loginUser = async (data, setLoading) => {
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
@@ -54,7 +54,7 @@ const sendResetPasswordMail = async (
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
@@ -75,7 +75,7 @@ const sendResetPasswordCode = async (
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
@@ -93,7 +93,7 @@ const changePassword = async (data, setLoading, setPage, showErrorNoti) => {
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
