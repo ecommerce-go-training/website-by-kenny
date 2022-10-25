@@ -6,14 +6,22 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import { logout } from 'global/redux/auth/slice';
+import {
+  getUserAddress,
+  updateUserAdress,
+  deleteUserAddress,
+  editAddress,
+} from 'global/redux/user/request';
 
 import Header from 'components/Header';
 import OrderHistory from './OrderHistory';
 import Input from 'components/Input';
 import Footer from 'components/Footer';
 import Button from 'components/Button';
+import Loading from 'components/Loading';
 
 import addressVal from './validation';
 
@@ -37,17 +45,21 @@ const Account = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     mode    : 'all',
     resolver: yupResolver(addressVal),
   });
+  const [loading, setLoading] = useState(false);
 
   const [selectNav, setSelectNav] = useState(0);
   const [toggleAddAddress, setToggleAddAddress] = useState(false);
   const [userAddress, setUserAddress] = useState([]);
   const [deleteAddressConfirm, setDeleteAddressConfirm] = useState(false);
   const [choosenLang, setChoosenLang] = useState(null);
+  const [editForm, setEditForm] = useState(false);
+  const [addressId, setAddressId] = useState('');
 
   const languages = [
     {
@@ -159,8 +171,56 @@ const Account = () => {
     },
   ];
 
-  const handleClickNav = (e) => {
+  const switchNav = (e) => {
     setSelectNav(e);
+  };
+
+  const toggleAddForm = () => {
+    setToggleAddAddress(!toggleAddAddress);
+  };
+
+  //const formSubmit = (data) => {
+  //  updateUserAdress(data, reset, setLoading, setToggleAddAddress);
+  //};
+
+  const formSubmit = (data) => {
+    editForm
+      ? editAddress(
+        addressId,
+        data,
+        setLoading,
+        reset,
+        setToggleAddAddress,
+        setEditForm
+			  )
+      : updateUserAdress(data, reset, setLoading, setToggleAddAddress);
+  };
+
+  const handleDeleteAddress = async (id) => {
+    await deleteUserAddress(id, setLoading);
+    setDeleteAddressConfirm(false);
+  };
+
+  const handleEditAddress = async (data) => {
+    toggleAddForm();
+    setEditForm(!editForm);
+    setAddressId(data.id);
+    if (!editForm) {
+      setValue('firstName', data.firstName);
+      setValue('lastName', data.lastName);
+      setValue('address', data.street);
+      setValue('city', data.city);
+      setValue('country', data.country);
+      setValue('postalCode', data.postalCode);
+      setValue('phone', data.phoneNumber);
+    } else {
+      reset();
+    }
+  };
+
+  const handleSelectLang = (e) => {
+    setChoosenLang(e);
+    i18n.changeLanguage(e.value);
   };
 
   const handleLogout = () => {
@@ -170,69 +230,52 @@ const Account = () => {
     navigate('/');
   };
 
-  const handleAdd = () => {
-    setToggleAddAddress(!toggleAddAddress);
-  };
-
-  const addressAddFormSubmit = (data) => {
-    setUserAddress((prev) => [...prev, data]);
-    alert('Add success');
-    setToggleAddAddress(!toggleAddAddress);
-    reset();
-  };
-
-  const handleDeleteAddress = (removeIndex) => {
-    const newUserAddress = userAddress.filter(
-      (item, index) => index !== removeIndex
-    );
-    setUserAddress(newUserAddress);
-    setDeleteAddressConfirm(!deleteAddressConfirm);
-  };
-
-  const handleCancelDeleteAddress = () => {
-    setDeleteAddressConfirm(!deleteAddressConfirm);
-  };
-
-  const handleSelectLang = (e) => {
-    setChoosenLang(e);
-    i18n.changeLanguage(e.value);
-  };
-
   useEffect(() => {
     if (localStorage.getItem('isLogin' !== 'true')) {
       navigate('/');
     }
   });
 
+  useEffect(() => {
+    getUserAddress(setUserAddress);
+  }, [userAddress]);
+
   return (
     <div className='account-container'>
+      <ToastContainer
+        autoClose={2000}
+        closeButton={true}
+        position='top-right'
+        theme='light'
+        hideProgressBar
+      />
       <Header catalouge />
       <div className='account'>
         <div className='account__nav'>
           <p
             className={classNames({ active: selectNav === 0 })}
-            onClick={() => handleClickNav(0)}
+            onClick={() => switchNav(0)}
           >
             {t('ordersReturn')}
           </p>
           <div>|</div>
           <p
             className={classNames({ active: selectNav === 1 })}
-            onClick={() => handleClickNav(1)}
+            onClick={() => switchNav(1)}
           >
             {t('addressBook')}
           </p>
           <div>|</div>
           <p
             className={classNames({ active: selectNav === 2 })}
-            onClick={() => handleClickNav(2)}
+            onClick={() => switchNav(2)}
           >
             {t('newsLetter')}
           </p>
           <div>|</div>
           <p
             className={classNames({ active: selectNav === 3 })}
-            onClick={() => handleClickNav(3)}
+            onClick={() => switchNav(3)}
           >
             {t('changeLanguage')}
           </p>
@@ -259,14 +302,15 @@ const Account = () => {
                           <p>{t('consider')}</p>
                           <div>
                             <Button
-                              handleClick={() => handleDeleteAddress(index)}
+                              login
+                              handleClick={() => handleDeleteAddress(item.id)}
                             >
-                              <p>{t('yes')}</p>
+                              {loading ? <Loading /> : <p>{t('yes')}</p>}
                             </Button>
                             <Button
                               whiteBg
                               greyBorder
-                              handleClick={handleCancelDeleteAddress}
+                              handleClick={() => setDeleteAddressConfirm(false)}
                             >
                               <p>{t('cancel')}</p>
                             </Button>
@@ -280,28 +324,33 @@ const Account = () => {
                       {item.firstName} {item.lastName}
                     </p>
                     <p>
-                      {t('edit')} | &nbsp;
+                      <span
+                        onClick={() => handleEditAddress(item)}
+                        className='editButton'
+                      >
+                        {t('edit')}
+                      </span>{' '}
+											&nbsp; | &nbsp;
                       <img
-                        onClick={() =>
-                          setDeleteAddressConfirm(!deleteAddressConfirm)
-                        }
+                        className='trashCan'
+                        onClick={() => setDeleteAddressConfirm(true)}
                         src={trashCan}
                         alt='icon image'
                       />
                     </p>
                   </div>
-                  <p>{item.address}</p>
+                  <p>{item.street}</p>
                   <p>
                     {item.city}, {item.postalCode}
                   </p>
                   <p>{item.country}</p>
-                  <p>{item.phone}</p>
+                  <p>+ {item.phoneNumber}</p>
                 </div>
               ))}
               <div className='address-form'>
-                <p onClick={handleAdd}>{t('newAddress')}</p>
+                <p onClick={toggleAddForm}>{t('newAddress')}</p>
                 {toggleAddAddress && (
-                  <form onSubmit={handleSubmit(addressAddFormSubmit)}>
+                  <form onSubmit={handleSubmit(formSubmit)}>
                     <Input
                       register={register}
                       error={errors.firstName?.message}
@@ -354,8 +403,14 @@ const Account = () => {
                       inputCheck={watch('phone')}
                     />
                     <div className='form-button'>
-                      <Button discount type='submit'>
-                        <p>{t('save')}</p>
+                      <Button discount login type='submit'>
+                        {loading ? (
+                          <Loading />
+                        ) : editForm ? (
+                          <p>{t('edit')}</p>
+                        ) : (
+                          <p>{t('save')}</p>
+                        )}
                       </Button>
                     </div>
                   </form>

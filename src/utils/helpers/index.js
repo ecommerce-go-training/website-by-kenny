@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 const saveLoginToken = (token) => {
   localStorage.setItem('token', token);
 };
@@ -14,4 +16,13 @@ const formatCurrency = (number) => {
   return currency.format(number);
 };
 
-export { formatCurrency, removeLoginToken, saveLoginToken };
+const showErrorNoti = (message) => toast.error(message);
+const showSuccessNoti = (message) => toast.success(message);
+
+export {
+  formatCurrency,
+  removeLoginToken,
+  saveLoginToken,
+  showErrorNoti,
+  showSuccessNoti,
+};
