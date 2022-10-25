@@ -250,3 +250,16 @@
     background-color: $black;
   }
 }
+
+.catalouge-header {
+  margin-top: 30px;
+  position: fixed;
+  top: -30px;
+  background-color: $white;
+  & a, &.logo, .header-shop, .item-quantity {
+    color: $black;
+  }
+  & .line {
+    background-color: $black;
+  }
+}

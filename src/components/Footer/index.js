@@ -59,13 +59,13 @@ const Footer = ({ paymentSuccess, lineTop }) => {
         <div className='footer__customer'>
           <p className='title'>{t('customerCare')}</p>
           <Stack col>
-            <Link to='/customer-support'>{t('faq')}</Link>
-            <Link to='/customer-support'>{t('size')}</Link>
-            <Link to='/customer-support'>{t('shipping')}</Link>
-            <Link to='/customer-support'>{t('terms')}</Link>
-            <Link to='/customer-support'>{t('policy')}</Link>
-            <Link to='/customer-support'>{t('garment')}</Link>
-            <Link to='/customer-support'>{t('return')}</Link>
+            <Link to='/customer-support/faq'>{t('faq')}</Link>
+            <Link to='/customer-support/size'>{t('size')}</Link>
+            <Link to='/customer-support/shipping'>{t('shipping')}</Link>
+            <Link to='/customer-support/terms'>{t('terms')}</Link>
+            <Link to='/customer-support/policy'>{t('policy')}</Link>
+            <Link to='/customer-support/garment'>{t('garment')}</Link>
+            <Link to='/account'>{t('return')}</Link>
           </Stack>
         </div>
         <div className='footer__contact'>
@@ -112,13 +112,13 @@ const Footer = ({ paymentSuccess, lineTop }) => {
             <div className='line'></div>
             <div className='mobile-footer-collapse'>
               <Collapse label={'CUSTOMER CARE'}>
-                <Link to='/customer-support'>{t('faq')}</Link>
-                <Link to='/customer-support'>{t('size')}</Link>
-                <Link to='/customer-support'>{t('shipping')}</Link>
-                <Link to='/customer-support'>{t('terms')}</Link>
-                <Link to='/customer-support'>{t('terms')}</Link>
-                <Link to='/customer-support'>{t('policy')}</Link>
-                <Link to='/customer-support'>{t('return')}</Link>
+                <Link to='/customer-support/faq'>{t('faq')}</Link>
+                <Link to='/customer-support/size'>{t('size')}</Link>
+                <Link to='/customer-support/shipping'>{t('shipping')}</Link>
+                <Link to='/customer-support/terms'>{t('terms')}</Link>
+                <Link to='/customer-support/policy'>{t('policy')}</Link>
+                <Link to='/customer-support/garment'>{t('garment')}</Link>
+                <Link to='/account'>{t('return')}</Link>
               </Collapse>
             </div>
             <div className='line'></div>

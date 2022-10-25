@@ -4,19 +4,19 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Input from 'components/Input';
 import Item from './Item';
 import Button from 'components/Button';
 
+import { formatCurrency } from 'utils/helpers';
+
 import checkoutVal from './validation';
 
 import {
   backArrow,
-  pinkDress,
-  whiteDressCart,
-  orangeDressCart,
   question,
   mail,
   phone,
@@ -33,6 +33,7 @@ import './style.scss';
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const cartItem = useSelector((state) => state.cart);
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Checkout' });
   const {
     watch,
@@ -49,33 +50,6 @@ const Checkout = () => {
   const [paymentOption, setpaymentOption] = useState(1);
   const [billOption, setBillOption] = useState(1);
   const [toggleSummary, setToggleSummary] = useState(false);
-
-  const images = [
-    {
-      image   : pinkDress,
-      name    : 'Pink Dress',
-      color   : 'Pink',
-      size    : 'M',
-      quantity: 1,
-      price   : 100,
-    },
-    {
-      image   : whiteDressCart,
-      name    : 'White Dress',
-      color   : 'White',
-      size    : 'L',
-      quantity: 1,
-      price   : 200,
-    },
-    {
-      image   : orangeDressCart,
-      name    : 'Orange Dress',
-      color   : 'Orange',
-      size    : 'S',
-      quantity: 3,
-      price   : 150,
-    },
-  ];
 
   const handleClick = () => {
     setFormStep((prev) => prev + 1);
@@ -116,7 +90,7 @@ const Checkout = () => {
           {toggleSummary && (
             <div>
               <div className='summary-bill'>
-                {images.map((item, index) => (
+                {cartItem.cartItem.map((item, index) => (
                   <Item key={index} data={item} />
                 ))}
               </div>
@@ -165,10 +139,11 @@ const Checkout = () => {
               <div className='summary-total'>
                 <p>{t('total')}</p>
                 <p>
-                  {Intl.NumberFormat('vi-VIET', {
-                    style   : 'currency',
-                    currency: 'VND',
-                  }).format(500)}
+                  {formatCurrency(
+                    cartItem.cartItem
+                      .map((item) => item.price * item.quantity)
+                      .reduce((item, sum) => item + sum, 0)
+                  )}
                 </p>
               </div>
             </div>
@@ -541,7 +516,7 @@ const Checkout = () => {
       </div>
       <div className='checkout-item'>
         <div className='checkout-item-images'>
-          {images.map((item, index) => (
+          {cartItem.cartItem.map((item, index) => (
             <Item key={index} data={item} />
           ))}
         </div>
@@ -577,7 +552,13 @@ const Checkout = () => {
         </div>
         <div className='checkout-item-total'>
           <p>{t('total')}</p>
-          <p>{t('unit')}2500.00</p>
+          <p>
+            {formatCurrency(
+              cartItem.cartItem
+                .map((item) => item.price * item.quantity)
+                .reduce((item, sum) => item + sum, 0)
+            )}
+          </p>
         </div>
         <div className='checkout-item-contact'>
           <div>

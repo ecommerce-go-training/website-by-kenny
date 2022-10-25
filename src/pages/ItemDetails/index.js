@@ -48,7 +48,7 @@ const ItemDetails = () => {
 
   return (
     <div>
-      <Header login disableAnnounce />
+      <Header catalouge disableAnnounce />
       <div className='details'>
         <Slider3>
           <Slider3Item>

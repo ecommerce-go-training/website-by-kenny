@@ -206,7 +206,7 @@ const Account = () => {
 
   return (
     <div className='account-container'>
-      <Header login />
+      <Header catalouge />
       <div className='account'>
         <div className='account__nav'>
           <p

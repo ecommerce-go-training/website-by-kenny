@@ -1,4 +1,4 @@
-import Cart from 'pages/Cart';
+import MyCart from 'pages/MyCart';
 import Home from 'pages/Home';
 import Brand from 'pages/Brand';
 import Store from 'pages/Store';
@@ -48,7 +48,7 @@ const publicRoutes = [
     component: Season,
   },
   {
-    path     : '/customer-support',
+    path     : '/customer-support/:type',
     component: CustomerSupport,
   },
   {
@@ -65,7 +65,7 @@ const publicRoutes = [
   },
   {
     path     : '/my-cart',
-    component: Cart,
+    component: MyCart,
   },
   {
     path     : '/checkout',

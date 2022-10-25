@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import MyCart from './MyCart';
+import QuickCart from './QuickCart';
 import Search from './Search';
 import Announce from './Announce';
 import MobileNav from './MobileNav';
@@ -15,7 +15,7 @@ import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
 import './style.scss';
 
-const Header = ({ disable, disableAnnounce, login, store }) => {
+const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
@@ -48,7 +48,7 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
       <Announce disable={disableAnnounce} />
       <Search toggle={toggleSearch} setToggle={setToggleSearch} />
       <MobileNav toggle={toggleNavMobile} setToggle={setToggleNavMobile} />
-      <MyCart toggle={toggleCart} setToggle={setToggleCart} />
+      <QuickCart toggle={toggleCart} setToggle={setToggleCart} />
       <div
         className={classNames('quick-shop-nav', {
           toggleShop: toggleShop,
@@ -59,12 +59,13 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
       </div>
       <div
         className={classNames({
-          header        : true,
-          disable       : disable,
-          move          : moveBg,
-          stand         : !moveBg,
-          'login-header': login,
-          'store-header': store,
+          header            : true,
+          disable           : disable,
+          move              : moveBg,
+          stand             : !moveBg,
+          'login-header'    : login,
+          'store-header'    : store,
+          'catalouge-header': catalouge,
         })}
       >
         <div className='header__nav'>
@@ -96,7 +97,7 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
           <img
             onClick={() => setToggleSearch(true)}
             className='search-img'
-            src={moveBg || login || store ? searchBlack : search}
+            src={moveBg || login || store || catalouge ? searchBlack : search}
             alt='search img'
           />
           <Link to={isLogin ? '/account' : '/sign-in'}>
@@ -106,7 +107,7 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
             {!login && <p className='item-quantity'>{cartItem.length}</p>}
             <img
               src={
-                moveBg || login || store
+                moveBg || login || store || catalouge
                   ? login
                     ? blackCart
                     : cartBlack
@@ -126,6 +127,7 @@ Header.defaultProps = {
   disableAnnounce: false,
   login          : false,
   store          : false,
+  catalouge      : false,
 };
 
 Header.propTypes = {
@@ -133,6 +135,7 @@ Header.propTypes = {
   store          : PropTypes.bool,
   disable        : PropTypes.bool,
   disableAnnounce: PropTypes.bool,
+  catalouge      : PropTypes.bool,
 };
 
 export default memo(Header);

@@ -14,7 +14,7 @@ import { xmark } from 'assets/images';
 
 import './style.scss';
 
-const MyCart = ({ toggle, setToggle, price }) => {
+const QuickCart = ({ toggle, setToggle, price }) => {
   const cartItemData = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const MyCart = ({ toggle, setToggle, price }) => {
           <CartItem
             key={index}
             data={item}
-            handleRemove={() => dispatch(removeItem(index))}
+            handleRemove={() => dispatch(removeItem(item.id))}
           />
         ))}
       </div>
@@ -63,4 +63,4 @@ const MyCart = ({ toggle, setToggle, price }) => {
   );
 };
 
-export default MyCart;
+export default QuickCart;

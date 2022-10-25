@@ -5,6 +5,7 @@ import { backDress, whiteDress, greenDress, orangeDress } from 'assets/images';
 const initialState = {
   cartItem: [
     {
+      id      : 1,
       image   : backDress,
       name    : 'Back Dress',
       size    : 'M',
@@ -12,6 +13,7 @@ const initialState = {
       quantity: 1,
     },
     {
+      id      : 2,
       image   : greenDress,
       name    : 'Green Dress',
       size    : 'S',
@@ -19,6 +21,7 @@ const initialState = {
       quantity: 3,
     },
     {
+      id      : 3,
       image   : whiteDress,
       name    : 'White Dress',
       size    : 'XL',
@@ -26,6 +29,7 @@ const initialState = {
       quantity: 6,
     },
     {
+      id      : 4,
       image   : orangeDress,
       name    : 'Orange Dress',
       size    : 'XXL',
@@ -33,29 +37,65 @@ const initialState = {
       quantity: 3,
     },
   ],
+  totalPrice: 0,
 };
 
 const cartSlice = createSlice({
   name        : 'cart',
   initialState: initialState,
   reducers    : {
-    addItem: (state, action) => {
+    addItemToCart: (state, action) => {
       return {
         ...state,
         cartItem: action.payload,
       };
     },
     removeItem: (state, action) => {
-      console.log('remove item');
-      const newCartItem = [...state.cartItem];
-      newCartItem.splice(action.payload, 1);
+      const newCartItem = state.cartItem.filter(
+        (item) => item.id !== action.payload
+      );
       return {
         ...state,
-        cartItem: newCartItem,
+        cartItem: [...newCartItem],
+      };
+    },
+    addItemQuantity: (state, action) => {
+      let newItem = state.cartItem.map((item) => {
+        if (item.id === action.payload) {
+          let addQuantity = {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+          return addQuantity;
+        } else {
+          return item;
+        }
+      });
+      return {
+        ...state,
+        cartItem: [...newItem],
+      };
+    },
+    minusItemQuantity: (state, action) => {
+      let newItem = state.cartItem.map((item) => {
+        if (item.id === action.payload) {
+          let minusQuantity = {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+          return minusQuantity;
+        } else {
+          return item;
+        }
+      });
+      return {
+        ...state,
+        cartItem: [...newItem],
       };
     },
   },
 });
 
-export const { addItem, removeItem } = cartSlice.actions;
+export const { addItemToCart, addItemQuantity, removeItem, minusItemQuantity } =
+	cartSlice.actions;
 export default cartSlice.reducer;
