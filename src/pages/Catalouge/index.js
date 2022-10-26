@@ -94,6 +94,15 @@ const Catalouge = () => {
     },
   ];
 
+  //const [ data, setData ] = useState([]);
+  //const [ loading, setLoading ] = useState(false);
+  //const [ currentPage, setCurrentPage ] = useState(1);
+  //const [ itemPerPage, setItemPerPage ] = useState(10);
+
+  //const indexOfLastItem = currentPage * itemPerPage;
+  //const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  //const currentItemShow = data.slice(indexOfFirstItem, indexOfLastItem);
+
   return (
     <div>
       <Header catalouge disableAnnounce />
