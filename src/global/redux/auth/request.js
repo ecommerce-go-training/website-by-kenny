@@ -1,9 +1,5 @@
 import { api } from 'services/api';
-import { saveLoginToken } from 'utils/helpers';
-import { toast } from 'react-toastify';
-
-const showErrorNoti = (message) => toast.error(message);
-const showSuccessNoti = (message) => toast.success(message);
+import { saveLoginToken, showErrorNoti, showSuccessNoti } from 'utils/helpers';
 
 const registerUser = async (data, reset, setLoading) => {
   try {
