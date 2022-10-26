@@ -92,7 +92,6 @@ const Filter = ({ shop = false }) => {
 
   const [color, setColor] = useState([]);
   const [size, setSize] = useState([]);
-  const [categorySelect, setCategorySelect] = useState(0);
   const [sortSelect, setSortSelect] = useState(0);
   const [toggleColor, setToggleColor] = useState(false);
   const [toggleSize, setToggleSize] = useState(false);
@@ -113,8 +112,6 @@ const Filter = ({ shop = false }) => {
     setSize([]);
   };
 
-  console.log(type);
-
   return (
     <div className={classNames('filter', { shopNav: shop })}>
       <div className='filter-categories'>
@@ -124,9 +121,8 @@ const Filter = ({ shop = false }) => {
             to={`/catalouge/${item.value}`}
             key={index}
             className={classNames('shop-nav-link', {
-              active: !shop && categorySelect === index,
+              active: !shop && item.value === type,
             })}
-            onClick={() => setCategorySelect(index)}
           >
             {item.label}
           </Link>

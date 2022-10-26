@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
+
 import { logout } from 'global/redux/auth/slice';
 
 import Header from 'components/Header';
@@ -23,10 +25,10 @@ import {
 } from 'assets/images';
 
 import './style.scss';
-import { navigate } from '@storybook/addon-links';
 
 const Account = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation('translation', {
     keyPrefix: 'Pages.Account',
   });
@@ -196,9 +198,15 @@ const Account = () => {
     i18n.changeLanguage(e.value);
   };
 
+  useEffect(() => {
+    if (localStorage.getItem('isLogin' !== 'true')) {
+      navigate('/');
+    }
+  });
+
   return (
     <div className='account-container'>
-      <Header login />
+      <Header catalouge />
       <div className='account'>
         <div className='account__nav'>
           <p

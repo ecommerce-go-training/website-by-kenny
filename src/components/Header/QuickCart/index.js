@@ -3,52 +3,20 @@ import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from 'components/Button';
 import CartItem from 'components/CartItem';
 
-import {
-  xmark,
-  backDress,
-  whiteDress,
-  greenDress,
-  orangeDress,
-} from 'assets/images';
+import { removeItem } from 'global/redux/cart/slice';
+
+import { xmark } from 'assets/images';
 
 import './style.scss';
 
-const MyCart = ({ toggle, setToggle, price }) => {
-  const tempData = [
-    {
-      image   : backDress,
-      name    : 'Back Dress',
-      size    : 'M',
-      price   : 1230,
-      quantity: 1,
-    },
-    {
-      image   : greenDress,
-      name    : 'Green Dress',
-      size    : 'S',
-      price   : 12320,
-      quantity: 3,
-    },
-    {
-      image   : whiteDress,
-      name    : 'White Dress',
-      size    : 'XL',
-      price   : 130,
-      quantity: 6,
-    },
-    {
-      image   : orangeDress,
-      name    : 'Orange Dress',
-      size    : 'XXL',
-      price   : 45,
-      quantity: 3,
-    },
-  ];
-
+const QuickCart = ({ toggle, setToggle, price }) => {
+  const cartItemData = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
@@ -68,8 +36,12 @@ const MyCart = ({ toggle, setToggle, price }) => {
         </div>
       </div>
       <div className='my-cart-item'>
-        {tempData.map((item, index) => (
-          <CartItem key={index} data={item} />
+        {cartItemData.cartItem.map((item, index) => (
+          <CartItem
+            key={index}
+            data={item}
+            handleRemove={() => dispatch(removeItem(item.id))}
+          />
         ))}
       </div>
       <div className='my-cart-button'>
@@ -91,4 +63,4 @@ const MyCart = ({ toggle, setToggle, price }) => {
   );
 };
 
-export default MyCart;
+export default QuickCart;

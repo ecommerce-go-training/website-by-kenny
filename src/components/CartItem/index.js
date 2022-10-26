@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
+import { formatCurrency } from 'utils/helpers';
+import {
+  addItemQuantity,
+  minusItemQuantity,
+  removeItem,
+} from 'global/redux/cart/slice';
 
 import { minus, plus } from 'assets/images';
 
 import './style.scss';
 
-const CartItem = ({ data }) => {
+const CartItem = ({ data, handleRemove }) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.CartItem',
   });
-
-  const [quantity, setQuantity] = useState(data.quantity);
 
   return (
     <div className='cart-item'>
@@ -24,29 +30,31 @@ const CartItem = ({ data }) => {
           <div>
             <div>
               <img
-                onClick={() => setQuantity((prev) => prev - 1)}
+                onClick={() => {
+                  if (data.quantity > 1) {
+                    dispatch(minusItemQuantity(data.id));
+                  } else {
+                    dispatch(removeItem(data.id));
+                  }
+                }}
                 src={minus}
                 alt='minus icon'
               />
             </div>
-            <p>{quantity}</p>
+            <p>{data.quantity}</p>
             <div>
               <img
-                onClick={() => setQuantity((prev) => prev + 1)}
+                onClick={() => dispatch(addItemQuantity(data.id))}
                 src={plus}
                 alt='plus icon'
               />
             </div>
           </div>
-          <p>
-            {data.price} {t('unit')}
-          </p>
+          <p>{formatCurrency(data.price)}</p>
         </div>
         <div className='item-total'>
-          <p>
-            {data.price * quantity} {t('unit')}
-          </p>
-          <p>{t('remove')}</p>
+          <p>{formatCurrency(data.price * data.quantity)}</p>
+          <p onClick={handleRemove}>{t('remove')}</p>
         </div>
       </div>
       <div className='cart-item-img'>

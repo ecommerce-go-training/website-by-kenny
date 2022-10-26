@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Faq from './FAQ';
 import Size from './SizeGuide';
@@ -14,64 +14,65 @@ import Footer from 'components/Footer';
 import './style.scss';
 
 const CustomerSupport = () => {
+  const navigate = useNavigate();
+  const { type } = useParams();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.CustomerSupport',
   });
-  const [page, setPage] = useState(0);
 
   const handleClick = (page) => {
-    setPage(page);
+    navigate(`/customer-support/${page}`);
   };
 
   return (
     <div>
-      <Header disableAnnounce login />
+      <Header disableAnnounce catalouge />
       <div className='customerSupport'>
         <div className='customerSupport__nav'>
           <p
-            onClick={() => handleClick(0)}
-            className={classNames({ active: page === 0 })}
+            onClick={() => handleClick('faq')}
+            className={classNames({ active: type === 'faq' })}
           >
             {t('faq')}
           </p>
           <p
-            onClick={() => handleClick(1)}
-            className={classNames({ active: page === 1 })}
+            onClick={() => handleClick('size')}
+            className={classNames({ active: type === 'size' })}
           >
             {t('sizing')}
           </p>
           <p
-            onClick={() => handleClick(2)}
-            className={classNames({ active: page === 2 })}
+            onClick={() => handleClick('shipping')}
+            className={classNames({ active: type === 'shipping' })}
           >
             {t('ship')}
           </p>
           <p
-            onClick={() => handleClick(3)}
-            className={classNames({ active: page === 3 })}
+            onClick={() => handleClick('terms')}
+            className={classNames({ active: type === 'terms' })}
           >
             {t('terms')}
           </p>
           <p
-            onClick={() => handleClick(4)}
-            className={classNames({ active: page === 4 })}
+            onClick={() => handleClick('policy')}
+            className={classNames({ active: type === 'policy' })}
           >
             {t('policy')}
           </p>
           <p
-            onClick={() => handleClick(5)}
-            className={classNames({ active: page === 5 })}
+            onClick={() => handleClick('garment')}
+            className={classNames({ active: type === 'garment' })}
           >
             {t('garment')}
           </p>
         </div>
         <div className='customerSupport__info'>
-          {page === 0 && <Faq />}
-          {page === 1 && <Size />}
-          {page === 2 && <Shipping />}
-          {page === 3 && <Terms />}
-          {page === 4 && <Policy />}
-          {page === 5 && <Garment />}
+          {type === 'faq' && <Faq />}
+          {type === 'size' && <Size />}
+          {type === 'shipping' && <Shipping />}
+          {type === 'terms' && <Terms />}
+          {type === 'policy' && <Policy />}
+          {type === 'garment' && <Garment />}
         </div>
       </div>
       <Footer />

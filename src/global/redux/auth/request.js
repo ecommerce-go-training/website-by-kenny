@@ -1,8 +1,13 @@
 import { api } from 'services/api';
 import { saveLoginToken } from 'utils/helpers';
+import { toast } from 'react-toastify';
 
-const registerUser = async (data, reset) => {
+const showErrorNoti = (message) => toast.error(message);
+const showSuccessNoti = (message) => toast.success(message);
+
+const registerUser = async (data, reset, setLoading) => {
   try {
+    setLoading(true);
     await api.post('/register', {
       email      : data.email,
       password   : data.password,
@@ -10,13 +15,16 @@ const registerUser = async (data, reset) => {
       lastName   : data.lastName,
       phoneNumber: data.phone,
     });
+    setLoading(false);
     reset();
+    showSuccessNoti('Register Success');
   } catch (error) {
-    console.log(error);
+    setLoading(false);
+    showErrorNoti(error.data.message);
   }
 };
 
-const loginUser = async (data, setLoading, showErrorNoti) => {
+const loginUser = async (data, setLoading) => {
   try {
     const res = await api.post('/login', {
       email   : data.email,
@@ -26,7 +34,7 @@ const loginUser = async (data, setLoading, showErrorNoti) => {
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
@@ -46,7 +54,7 @@ const sendResetPasswordMail = async (
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
@@ -67,7 +75,7 @@ const sendResetPasswordCode = async (
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 
@@ -85,7 +93,7 @@ const changePassword = async (data, setLoading, setPage, showErrorNoti) => {
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.message);
+    showErrorNoti(error.data.message);
   }
 };
 

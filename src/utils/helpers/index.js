@@ -6,4 +6,12 @@ const removeLoginToken = () => {
   localStorage.removeItem('token');
 };
 
-export { removeLoginToken, saveLoginToken };
+const formatCurrency = (number) => {
+  const currency = new Intl.NumberFormat(undefined, {
+    currency: 'USD',
+    style   : 'currency',
+  });
+  return currency.format(number);
+};
+
+export { formatCurrency, removeLoginToken, saveLoginToken };

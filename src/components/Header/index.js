@@ -1,12 +1,11 @@
+import React, { useEffect, useState, memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import React, { useEffect, useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 
-import MyCart from './MyCart';
+import QuickCart from './QuickCart';
 import Search from './Search';
 import Announce from './Announce';
 import MobileNav from './MobileNav';
@@ -16,23 +15,24 @@ import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
 import './style.scss';
 
-const Header = ({ disable, disableAnnounce, login, store }) => {
+const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
 
   const isLogin = localStorage.getItem('isLogin');
   const userName = useSelector((state) => state.auth.userInfo.firstName);
+  const cartItem = useSelector((state) => state.cart.cartItem);
 
-  const [bg, setBg] = useState(false);
+  const [moveBg, setMoveBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleNavMobile, setToggleNavMobile] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
   const [toggleShop, setToggleShop] = useState(false);
 
   const changeBackground = () => {
-    if (window.scrollY >= 100) setBg(true);
-    else setBg(false);
+    if (window.scrollY >= 100) setMoveBg(true);
+    else setMoveBg(false);
   };
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
       <Announce disable={disableAnnounce} />
       <Search toggle={toggleSearch} setToggle={setToggleSearch} />
       <MobileNav toggle={toggleNavMobile} setToggle={setToggleNavMobile} />
-      <MyCart toggle={toggleCart} setToggle={setToggleCart} />
+      <QuickCart toggle={toggleCart} setToggle={setToggleCart} />
       <div
         className={classNames('quick-shop-nav', {
           toggleShop: toggleShop,
@@ -59,17 +59,18 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
       </div>
       <div
         className={classNames({
-          header        : true,
-          disable       : disable,
-          move          : bg,
-          stand         : !bg,
-          'login-header': login,
-          'store-header': store,
+          header            : true,
+          disable           : disable,
+          move              : moveBg,
+          stand             : !moveBg,
+          'login-header'    : login,
+          'store-header'    : store,
+          'catalouge-header': catalouge,
         })}
       >
         <div className='header__nav'>
           <div className='header__nav-link'>
-            <Link to='/catalouge'>{t('newArrivals')}</Link>
+            <Link to='/catalouge/new-arrivals'>{t('newArrivals')}</Link>
             <p
               className='header-shop'
               onClick={() => setToggleShop(!toggleShop)}
@@ -96,17 +97,25 @@ const Header = ({ disable, disableAnnounce, login, store }) => {
           <img
             onClick={() => setToggleSearch(true)}
             className='search-img'
-            src={bg || login || store ? searchBlack : search}
+            src={moveBg || login || store || catalouge ? searchBlack : search}
             alt='search img'
           />
           <Link to={isLogin ? '/account' : '/sign-in'}>
             {login ? t('account') : isLogin ? userName : t('login')}
           </Link>
-          <img
-            onClick={() => setToggleCart(true)}
-            src={bg || login || store ? (login ? blackCart : cartBlack) : cart}
-            alt='cart img'
-          />
+          <div onClick={() => setToggleCart(true)}>
+            {!login && <p className='item-quantity'>{cartItem.length}</p>}
+            <img
+              src={
+                moveBg || login || store || catalouge
+                  ? login
+                    ? blackCart
+                    : cartBlack
+                  : cart
+              }
+              alt='cart img'
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -118,6 +127,7 @@ Header.defaultProps = {
   disableAnnounce: false,
   login          : false,
   store          : false,
+  catalouge      : false,
 };
 
 Header.propTypes = {
@@ -125,6 +135,7 @@ Header.propTypes = {
   store          : PropTypes.bool,
   disable        : PropTypes.bool,
   disableAnnounce: PropTypes.bool,
+  catalouge      : PropTypes.bool,
 };
 
 export default memo(Header);

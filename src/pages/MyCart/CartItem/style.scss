@@ -6,6 +6,9 @@
   display: flex;
   border-bottom: 1px solid $very-light-grey;
   gap: 20px;
+  &:last-child {
+    border-bottom: none;
+  }
   &-img {
     width: 180px;
     height: 280px;

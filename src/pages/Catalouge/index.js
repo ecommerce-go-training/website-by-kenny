@@ -96,7 +96,7 @@ const Catalouge = () => {
 
   return (
     <div>
-      <Header login disableAnnounce />
+      <Header catalouge disableAnnounce />
       <div className='catalouge'>
         <div className='catalouge__filter'>
           <Filter />

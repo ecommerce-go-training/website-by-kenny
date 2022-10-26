@@ -1,11 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { formatCurrency } from 'utils/helpers';
+
 import { xmark, more } from 'assets/images';
 
 import './style.scss';
 
-const CartItem = ({ data }) => {
+const CartItem = ({ data, handleRemove }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cart' });
 
   return (
@@ -16,9 +18,9 @@ const CartItem = ({ data }) => {
       <div className='cart-items-info'>
         <div>
           <p>{data.name}</p>
-          <img src={xmark} alt='close-delete icon' />
+          <img onClick={handleRemove} src={xmark} alt='close-delete icon' />
         </div>
-        <p>USD ${data.price}</p>
+        <p>{formatCurrency(data.price)}</p>
         <div>
           <p>{t('color')}: </p>
           <div>

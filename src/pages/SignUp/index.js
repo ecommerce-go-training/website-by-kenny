@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ToastContainer } from 'react-toastify';
+
+import { registerUser } from 'global/redux/auth/request';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -11,14 +14,14 @@ import Button from 'components/Button';
 import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
 import Footer from 'components/Footer';
-
-import { registerUser } from 'global/redux/auth/request';
+import Loading from 'components/Loading';
 
 import './style.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.SignUp' });
-
+  const [loading, setLoading] = useState(false);
   const {
     watch,
     register,
@@ -33,11 +36,18 @@ const SignUp = () => {
 
   const formSubmit = async () => {
     const data = getValues();
-    registerUser(data, reset);
+    registerUser(data, reset, setLoading);
   };
 
   return (
     <div>
+      <ToastContainer
+        autoClose={2000}
+        closeButton={true}
+        position='top-right'
+        theme='light'
+        hideProgressBar
+      />
       <Header disableAnnounce login />
       <div className='signup__container'>
         <form className='signup' onSubmit={handleSubmit(formSubmit)}>
@@ -90,8 +100,8 @@ const SignUp = () => {
             <Link to='/privacy'>{t('privacy')}</Link>
           </p>
           <div className='signup__button'>
-            <Button type='submit'>
-              <p>{t('create')}</p>
+            <Button login type='submit'>
+              {loading ? <Loading /> : <p>{t('create')}</p>}
             </Button>
           </div>
           <Link to='/sign-in'>{t('haveAccount')}</Link>
