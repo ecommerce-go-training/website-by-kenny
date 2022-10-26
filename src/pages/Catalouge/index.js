@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import Header from 'components/Header';
 import Filter from 'components/Filter';
 import Footer from 'components/Footer';
@@ -12,6 +14,8 @@ import {
   greenDress,
   orangeDress,
 } from 'assets/images';
+
+import Pagination from 'components/Pagination';
 
 import './style.scss';
 
@@ -94,14 +98,14 @@ const Catalouge = () => {
     },
   ];
 
-  //const [ data, setData ] = useState([]);
-  //const [ loading, setLoading ] = useState(false);
-  //const [ currentPage, setCurrentPage ] = useState(1);
-  //const [ itemPerPage, setItemPerPage ] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemPerPage] = useState(3);
 
-  //const indexOfLastItem = currentPage * itemPerPage;
-  //const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  //const currentItemShow = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const currentItemShow = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleSwitchPage = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -111,12 +115,19 @@ const Catalouge = () => {
           <Filter />
         </div>
         <div className='catalouge__items'>
-          {data.map((item, index) => (
-            <CatalougeItem key={index} data={item} />
-          ))}
+          <div>
+            {currentItemShow.map((item, index) => (
+              <CatalougeItem key={index} data={item} />
+            ))}
+          </div>
+          <Pagination
+            itemPerPage={itemPerPage}
+            totalItemLength={data.length}
+            handleSwitchPage={handleSwitchPage}
+          />
         </div>
       </div>
-      <Footer />
+      <Footer lineTop />
     </div>
   );
 };

@@ -1,0 +1,30 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
+.pagination {
+  align-self: center;
+  @include responsive(mobile) {
+    margin-bottom: 30px;
+  }
+  & > ul {
+    display: flex;
+    gap: 15px;
+    & > li {
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid $black;
+      list-style: none;
+      cursor: pointer;
+      &:hover {
+        border: 1px solid $grey;
+        background-color: $grey;
+        color: $white;
+      }
+      &.active {
+        border: 1px solid $grey;
+        background-color: $grey;
+        color: $white;
+      }
+    }
+  }
+}
