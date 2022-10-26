@@ -99,7 +99,7 @@ const Catalouge = () => {
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage] = useState(3);
+  const [itemPerPage] = useState(4);
 
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
