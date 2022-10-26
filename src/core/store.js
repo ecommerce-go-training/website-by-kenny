@@ -1,17 +1,30 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import storage from 'redux-persist/lib/storage';
 
 import authReducer from 'global/redux/auth/slice';
-import counterReducer from 'global/redux/counter/slice';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, authReducer);
 
 const store = configureStore(
   {
     reducer: {
-      counter: counterReducer,
-      auth   : authReducer,
+      auth: persistedReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   },
   composeWithDevTools()
 );
 
-export { store };
+const persistor = persistStore(store);
+
+export { persistor, store };

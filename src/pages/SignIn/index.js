@@ -1,23 +1,33 @@
-import React, { useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+
+import { login } from 'global/redux/auth/slice';
+import { loginUser } from 'global/redux/auth/request';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
 import Button from 'components/Button';
 import signInVal from './validation';
 import Footer from 'components/Footer';
+import Loading from 'components/Loading';
 
 import './style.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.SignIn',
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const showErrorNoti = (message) => toast.error(message);
+
   const {
     watch,
     reset,
@@ -29,19 +39,31 @@ const SignIn = () => {
     resolver: yupResolver(signInVal),
   });
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (localStorage.getItem('isLogin') === 'true') {
       navigate('/');
     }
   });
 
-  const formSubmit = (data) => {
-    alert(JSON.stringify(data));
+  const formSubmit = async (data) => {
+    setLoading(true);
+    let res = await loginUser(data, setLoading, showErrorNoti);
+    dispatch(login(res.data.data));
+    localStorage.setItem('isLogin', true);
     reset();
   };
 
   return (
     <div>
+      <ToastContainer
+        autoClose={2000}
+        closeButton={true}
+        position='top-right'
+        theme='light'
+        hideProgressBar
+      />
       <Header disableAnnounce login />
       <div className='container'>
         <form className='login' onSubmit={handleSubmit(formSubmit)}>
@@ -62,8 +84,8 @@ const SignIn = () => {
             inputCheck={watch('password')}
           />
           <div className='login__button'>
-            <Button type='submit'>
-              <p>{t('submit')}</p>
+            <Button login type='submit'>
+              {loading ? <Loading /> : <p>{t('submit')}</p>}
             </Button>
           </div>
         </form>

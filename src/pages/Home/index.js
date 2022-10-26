@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Stack from 'components/Stack';
 import Button from 'components/Button';
@@ -50,6 +51,10 @@ const Home = () => {
   const toggleOff = classNames({
     active: !active,
   });
+
+  const auth = useSelector((state) => state.auth);
+
+  console.log(auth);
 
   return (
     <div>

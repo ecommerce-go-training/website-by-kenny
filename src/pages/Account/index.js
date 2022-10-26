@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+import { logout } from 'global/redux/auth/slice';
 
 import Header from 'components/Header';
 import OrderHistory from './OrderHistory';
@@ -22,9 +23,10 @@ import {
 } from 'assets/images';
 
 import './style.scss';
+import { navigate } from '@storybook/addon-links';
 
 const Account = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { t, i18n } = useTranslation('translation', {
     keyPrefix: 'Pages.Account',
   });
@@ -160,6 +162,9 @@ const Account = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('isLogin');
+    localStorage.removeItem('token');
+    dispatch(logout());
     navigate('/');
   };
 

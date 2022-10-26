@@ -25,9 +25,9 @@ const Size = () => {
           <p className='title'>size guide</p>
           <p className='path'>
 						HOME{' '}
-            <span onClick={() => navigate(location.pathname)}>
+            <span onClick={() => navigate(location?.pathname)}>
               {' '}
-              {location.pathname}
+              {location?.pathname}
             </span>
           </p>
           <p className='description'>{t('description')}</p>

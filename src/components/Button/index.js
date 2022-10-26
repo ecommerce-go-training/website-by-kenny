@@ -15,6 +15,7 @@ const Button = ({
   border = false,
   discount = false,
   greyBorder = false,
+  login = false,
 }) => {
   return (
     <button
@@ -27,6 +28,7 @@ const Button = ({
         discount  : discount,
         blur      : disable,
         greyBorder: greyBorder,
+        loginBtn  : login,
       })}
       onClick={handleClick}
     >
@@ -44,6 +46,7 @@ Button.defaultProps = {
   border     : false,
   discount   : false,
   greyBorder : false,
+  login      : false,
 };
 
 Button.propTypes = {
@@ -55,6 +58,7 @@ Button.propTypes = {
   border     : PropTypes.bool,
   discount   : PropTypes.bool,
   greyBorder : PropTypes.bool,
+  login      : PropTypes.bool,
 };
 
 export default memo(Button);
