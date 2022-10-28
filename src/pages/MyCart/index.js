@@ -43,6 +43,7 @@ const MyCart = () => {
               {t('total')}: &nbsp;{' '}
               <span>
                 {formatCurrency(
+                  'USD',
                   cartItem.cartItem
                     .map((item) => item.price * item.quantity)
                     .reduce((item, sum) => item + sum, 0)

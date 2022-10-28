@@ -140,6 +140,7 @@ const Checkout = () => {
                 <p>{t('total')}</p>
                 <p>
                   {formatCurrency(
+                    t('unit'),
                     cartItem.cartItem
                       .map((item) => item.price * item.quantity)
                       .reduce((item, sum) => item + sum, 0)
@@ -554,6 +555,7 @@ const Checkout = () => {
           <p>{t('total')}</p>
           <p>
             {formatCurrency(
+              t('unit'),
               cartItem.cartItem
                 .map((item) => item.price * item.quantity)
                 .reduce((item, sum) => item + sum, 0)

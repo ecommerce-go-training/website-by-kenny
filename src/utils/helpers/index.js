@@ -4,9 +4,9 @@ const saveLoginToken = (token) => localStorage.setItem('token', token);
 
 const removeLoginToken = () => localStorage.removeItem('token');
 
-const formatCurrency = (number) => {
+const formatCurrency = (currencyUnit, number) => {
   const currency = new Intl.NumberFormat(undefined, {
-    currency: 'USD',
+    currency: currencyUnit,
     style   : 'currency',
   });
   return currency.format(number);

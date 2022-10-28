@@ -101,7 +101,7 @@
 
     "CartItem": {
       "remove": "remove",
-      "unit": "$"
+      "unit": "USD"
     }
   },
   
@@ -188,7 +188,7 @@
       "items": "items",
       "checkOut": "proceed to \ncheckout",
       "total": "total",
-      "unit": "$",
+      "unit": "USD",
       "color": "color",
       "size": "size",
       "quantity": "quantity"
@@ -215,7 +215,7 @@
       "discount": "Gift card or discount code",
       "subtotal": "Subtotal",
       "shipping": "Shipping",
-      "unit": "USD $",
+      "unit": "USD",
       "calcNextStep": "calculated at next step",
       "total": "Total",
       "needHelp": "Need Help? Contact our support from below",

@@ -100,7 +100,7 @@
 
     "CartItem": {
       "remove": "Xóa",
-      "unit": "$"
+      "unit": "VND"
     }
   },
   
@@ -187,7 +187,7 @@
       "items": "Sản phẩm",
       "checkOut": "Tiếp tục \nThanh toán",
       "total": "Tổng thu",
-      "unit": "$",
+      "unit": "VND",
       "color": "Màu sắc",
       "size": "Kích cỡ",
       "quantity": "Số lượng"

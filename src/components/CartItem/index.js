@@ -50,10 +50,10 @@ const CartItem = ({ data, handleRemove }) => {
               />
             </div>
           </div>
-          <p>{formatCurrency(data.price)}</p>
+          <p>{formatCurrency(t('unit'), data.price)}</p>
         </div>
         <div className='item-total'>
-          <p>{formatCurrency(data.price * data.quantity)}</p>
+          <p>{formatCurrency(t('unit'), data.price * data.quantity)}</p>
           <p onClick={handleRemove}>{t('remove')}</p>
         </div>
       </div>

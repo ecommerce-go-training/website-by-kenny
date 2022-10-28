@@ -20,7 +20,7 @@ const CartItem = ({ data, handleRemove }) => {
           <p>{data.name}</p>
           <img onClick={handleRemove} src={xmark} alt='close-delete icon' />
         </div>
-        <p>{formatCurrency(data.price)}</p>
+        <p>{formatCurrency(t('unit'), data.price)}</p>
         <div>
           <p>{t('color')}: </p>
           <div>
