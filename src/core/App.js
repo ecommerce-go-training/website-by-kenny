@@ -19,6 +19,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <ToastContainer
+        enableMultiContainer
+        containerId={'top-right'}
         autoClose={2000}
         closeButton={true}
         position='top-right'

@@ -1,8 +1,10 @@
 import { toast } from 'react-toastify';
+import { StorageKey } from 'utils/constants';
 
-const saveLoginToken = (token) => localStorage.setItem('token', token);
+const saveLoginToken = (token) =>
+  localStorage.setItem(StorageKey.accessToken, token);
 
-const removeLoginToken = () => localStorage.removeItem('token');
+const removeLoginToken = () => localStorage.removeItem(StorageKey.accessToken);
 
 const formatCurrency = (currencyUnit, number) => {
   const currency = new Intl.NumberFormat(undefined, {
@@ -12,6 +14,7 @@ const formatCurrency = (currencyUnit, number) => {
   return currency.format(number);
 };
 
-const showNoti = (type, message) => toast?.[type](message);
+const showNoti = (type, message, position = 'top-right') =>
+  toast?.[type](message, { containerId: position });
 
 export { formatCurrency, removeLoginToken, saveLoginToken, showNoti };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+
+import { showNoti } from 'utils/helpers';
 
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,17 +10,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const InternetCheck = ({ children }) => {
   const [firstRendered, setFirstRendered] = useState(false);
 
-  const onlineNoti = () =>
-    toast.success('Your internet connection was restored');
-  const offlineNoti = () => toast.error('You are currently offline');
-
   useEffect(() => {
+    setFirstRendered(true);
     const notifyChange = () => {
-      setFirstRendered(true);
       if (navigator.onLine) {
-        onlineNoti();
+        showNoti(
+          'success',
+          'Your internet connection was restored',
+          'bottom-left'
+        );
       } else {
-        offlineNoti();
+        showNoti('error', 'You are currently offline', 'bottom-left');
       }
     };
     window.addEventListener('online', notifyChange);
@@ -34,6 +36,8 @@ const InternetCheck = ({ children }) => {
       {firstRendered && (
         <div className='internet-check'>
           <ToastContainer
+            enableMultiContainer
+            containerId={'bottom-left'}
             autoClose={5000}
             closeButton={true}
             position='bottom-left'
