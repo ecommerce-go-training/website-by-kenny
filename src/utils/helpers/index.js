@@ -12,16 +12,6 @@ const formatCurrency = (number) => {
   return currency.format(number);
 };
 
-const showErrorNoti = (message) => toast.error(message);
-const showSuccessNoti = (message) => toast.success(message);
-
 const showNoti = (type, message) => toast?.[type](message);
 
-export {
-  formatCurrency,
-  removeLoginToken,
-  saveLoginToken,
-  showErrorNoti,
-  showNoti,
-  showSuccessNoti,
-};
+export { formatCurrency, removeLoginToken, saveLoginToken, showNoti };

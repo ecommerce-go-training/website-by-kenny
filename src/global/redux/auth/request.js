@@ -1,5 +1,5 @@
 import { api } from 'services/api';
-import { saveLoginToken, showErrorNoti, showSuccessNoti } from 'utils/helpers';
+import { saveLoginToken, showNoti } from 'utils/helpers';
 
 const registerUser = async (data, reset, setLoading) => {
   try {
@@ -13,10 +13,10 @@ const registerUser = async (data, reset, setLoading) => {
     });
     setLoading(false);
     reset();
-    showSuccessNoti('Register Success');
+    showNoti('success', 'Register Success');
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.data.message);
+    showNoti('error', error.data.message);
   }
 };
 
@@ -30,16 +30,11 @@ const loginUser = async (data, setLoading) => {
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.data.message);
+    showNoti('error', error.data.message);
   }
 };
 
-const sendResetPasswordMail = async (
-  data,
-  setLoading,
-  setPage,
-  showErrorNoti
-) => {
+const sendResetPasswordMail = async (data, setLoading, setPage, showNoti) => {
   try {
     setLoading(true);
     const res = await api.post('/forget-password', {
@@ -50,16 +45,11 @@ const sendResetPasswordMail = async (
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.data.message);
+    showNoti('error', error.data.message);
   }
 };
 
-const sendResetPasswordCode = async (
-  data,
-  setLoading,
-  setPage,
-  showErrorNoti
-) => {
+const sendResetPasswordCode = async (data, setLoading, setPage, showNoti) => {
   try {
     setLoading(true);
     const res = await api.put('/verify-password-reset-code', {
@@ -71,11 +61,11 @@ const sendResetPasswordCode = async (
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.data.message);
+    showNoti('error', error.data.message);
   }
 };
 
-const changePassword = async (data, setLoading, setPage, showErrorNoti) => {
+const changePassword = async (data, setLoading, setPage, showNoti) => {
   try {
     setLoading(true);
     const res = await api.put('/reset-password', {
@@ -89,7 +79,7 @@ const changePassword = async (data, setLoading, setPage, showErrorNoti) => {
     return res;
   } catch (error) {
     setLoading(false);
-    showErrorNoti(error.data.message);
+    showNoti(error.data.message);
   }
 };
 
