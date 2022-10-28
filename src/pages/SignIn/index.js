@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
 
 import { login } from 'global/redux/auth/slice';
 import { loginUser } from 'global/redux/auth/request';
@@ -25,8 +24,6 @@ const SignIn = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const showErrorNoti = (message) => toast.error(message);
 
   const {
     watch,
@@ -49,7 +46,7 @@ const SignIn = () => {
 
   const formSubmit = async (data) => {
     setLoading(true);
-    let res = await loginUser(data, setLoading, showErrorNoti);
+    let res = await loginUser(data, setLoading);
     dispatch(login(res.data.data));
     localStorage.setItem('isLogin', true);
     reset();
@@ -57,13 +54,6 @@ const SignIn = () => {
 
   return (
     <div>
-      <ToastContainer
-        autoClose={2000}
-        closeButton={true}
-        position='top-right'
-        theme='light'
-        hideProgressBar
-      />
       <Header disableAnnounce login />
       <div className='container'>
         <form className='login' onSubmit={handleSubmit(formSubmit)}>

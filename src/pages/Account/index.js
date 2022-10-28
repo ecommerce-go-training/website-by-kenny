@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
 
 import { logout } from 'global/redux/auth/slice';
 import {
@@ -179,10 +178,6 @@ const Account = () => {
     setToggleAddAddress(!toggleAddAddress);
   };
 
-  //const formSubmit = (data) => {
-  //  updateUserAdress(data, reset, setLoading, setToggleAddAddress);
-  //};
-
   const formSubmit = (data) => {
     editForm
       ? editAddress(
@@ -242,13 +237,6 @@ const Account = () => {
 
   return (
     <div className='account-container'>
-      <ToastContainer
-        autoClose={2000}
-        closeButton={true}
-        position='top-right'
-        theme='light'
-        hideProgressBar
-      />
       <Header catalouge />
       <div className='account'>
         <div className='account__nav'>

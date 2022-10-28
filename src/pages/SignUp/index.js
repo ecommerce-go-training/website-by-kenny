@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ToastContainer } from 'react-toastify';
 
 import { registerUser } from 'global/redux/auth/request';
 
@@ -41,13 +40,6 @@ const SignUp = () => {
 
   return (
     <div>
-      <ToastContainer
-        autoClose={2000}
-        closeButton={true}
-        position='top-right'
-        theme='light'
-        hideProgressBar
-      />
       <Header disableAnnounce login />
       <div className='signup__container'>
         <form className='signup' onSubmit={handleSubmit(formSubmit)}>
