@@ -15,7 +15,7 @@ import { xmark } from 'assets/images';
 import './style.scss';
 
 const QuickCart = ({ toggle, setToggle, price }) => {
-  const cartItemData = useSelector((state) => state.cart);
+  const cartItemData = useSelector((state) => state.persistedCartReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
