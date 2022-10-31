@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { register } from './thunk';
 
 const initialState = {
-  userInfo       : {},
-  userAccessToken: null,
-  error          : null,
-  code           : null,
+  userInfo : {},
+  isLoading: false,
 };
 
 const authSlice = createSlice({
@@ -12,19 +11,24 @@ const authSlice = createSlice({
   initialState: initialState,
   reducers    : {
     login: (state, action) => {
-      return {
-        ...state,
-        userInfo       : action.payload.userInfo,
-        userAccessToken: action.payload.accessToken,
-      };
+      state.userInfo = action.payload.userInfo;
     },
-    loginFail: (state) => {
-      state.error = true;
+    logout: (state) => {
+      state.userInfo = null;
     },
-    logout: () => {
-      return initialState;
+  },
+  extraReducers: {
+    [register.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [register.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.userInfo = action.payload.userInfo;
+    },
+    [register.rejected]: (state) => {
+      state.isLoading = false;
     },
   },
 });
-export const { login, loginFail, logout } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;

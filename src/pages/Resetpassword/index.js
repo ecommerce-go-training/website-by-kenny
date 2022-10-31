@@ -9,7 +9,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import Input from 'components/Input';
 import Header from 'components/Header';
 import Button from 'components/Button';
-import Loading from 'components/Loading';
 
 import {
   changePassword,
@@ -115,8 +114,9 @@ const Resetpsw = () => {
                   handleClick={handleClick}
                   type='button'
                   login
+                  isLoading={loading}
                 >
-                  {loading ? <Loading /> : <p>{t('submit')}</p>}
+                  <p>{t('submit')}</p>
                 </Button>
               </div>
               <Link to='/sign-in'>{t('backToSignIn')}</Link>
@@ -144,8 +144,9 @@ const Resetpsw = () => {
                   handleClick={handleClick}
                   type='button'
                   login
+                  isLoading={loading}
                 >
-                  {loading ? <Loading /> : <p>{t('submit')}</p>}
+                  <p>{t('submit')}</p>
                 </Button>
               </div>
               <p>
@@ -183,8 +184,9 @@ const Resetpsw = () => {
                   handleClick={handleClick}
                   type='submit'
                   login
+                  isLoading={loading}
                 >
-                  {loading ? <Loading /> : <p>{t('resetPassword')}</p>}
+                  <p>{t('resetPassword')}</p>
                 </Button>
               </div>
             </section>

@@ -13,7 +13,6 @@ import Button from 'components/Button';
 import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
 import Footer from 'components/Footer';
-import Loading from 'components/Loading';
 
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -92,8 +91,8 @@ const SignUp = () => {
             <Link to='/privacy'>{t('privacy')}</Link>
           </p>
           <div className='signup__button'>
-            <Button login type='submit'>
-              {loading ? <Loading /> : <p>{t('create')}</p>}
+            <Button login type='submit' isLoading={loading}>
+              <p>{t('create')}</p>
             </Button>
           </div>
           <Link to='/sign-in'>{t('haveAccount')}</Link>

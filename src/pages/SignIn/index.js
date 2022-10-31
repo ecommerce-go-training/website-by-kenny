@@ -13,7 +13,6 @@ import Header from 'components/Header';
 import Button from 'components/Button';
 import signInVal from './validation';
 import Footer from 'components/Footer';
-import Loading from 'components/Loading';
 
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
@@ -74,8 +73,8 @@ const SignIn = () => {
             inputCheck={watch('password')}
           />
           <div className='login__button'>
-            <Button login type='submit'>
-              {loading ? <Loading /> : <p>{t('submit')}</p>}
+            <Button login type='submit' isLoading={loading}>
+              <p>{t('submit')}</p>
             </Button>
           </div>
         </form>

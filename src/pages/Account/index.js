@@ -20,7 +20,6 @@ import OrderHistory from './OrderHistory';
 import Input from 'components/Input';
 import Footer from 'components/Footer';
 import Button from 'components/Button';
-import Loading from 'components/Loading';
 
 import addressVal from './validation';
 
@@ -292,8 +291,9 @@ const Account = () => {
                             <Button
                               login
                               handleClick={() => handleDeleteAddress(item.id)}
+                              isLoading={loading}
                             >
-                              {loading ? <Loading /> : <p>{t('yes')}</p>}
+                              <p>{t('yes')}</p>
                             </Button>
                             <Button
                               whiteBg
@@ -391,14 +391,8 @@ const Account = () => {
                       inputCheck={watch('phone')}
                     />
                     <div className='form-button'>
-                      <Button discount login type='submit'>
-                        {loading ? (
-                          <Loading />
-                        ) : editForm ? (
-                          <p>{t('edit')}</p>
-                        ) : (
-                          <p>{t('save')}</p>
-                        )}
+                      <Button discount login type='submit' isLoading={loading}>
+                        {editForm ? <p>{t('edit')}</p> : <p>{t('save')}</p>}
                       </Button>
                     </div>
                   </form>

@@ -21,7 +21,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
   });
 
   const isLogin = localStorage.getItem('isLogin');
-  const userName = useSelector((state) => state.auth.userInfo.firstName);
+  const userName = useSelector((state) => state?.auth?.userInfo?.firstName);
   const cartItem = useSelector((state) => state.persistedCartReducer.cartItem);
 
   const [moveBg, setMoveBg] = useState(false);
