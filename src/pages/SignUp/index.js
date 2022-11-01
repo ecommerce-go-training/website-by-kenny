@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-import { registerUser } from 'global/redux/auth/request';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -14,12 +13,16 @@ import Checkbox from 'components/Checkbox';
 import signUpVal from './validation';
 import Footer from 'components/Footer';
 
+import { registerAccount } from 'global/redux/auth/thunk';
+
 import './style.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.SignUp' });
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.auth.isLoading);
   const {
     watch,
     register,
@@ -33,8 +36,11 @@ const SignUp = () => {
   });
 
   const formSubmit = async () => {
-    const data = getValues();
-    registerUser(data, reset, setLoading);
+    const formData = getValues();
+    const status = await dispatch(registerAccount(formData));
+    if (status.payload) {
+      reset();
+    }
   };
 
   return (
@@ -91,7 +97,7 @@ const SignUp = () => {
             <Link to='/privacy'>{t('privacy')}</Link>
           </p>
           <div className='signup__button'>
-            <Button login type='submit' isLoading={loading}>
+            <Button login type='submit' isLoading={isLoading}>
               <p>{t('create')}</p>
             </Button>
           </div>

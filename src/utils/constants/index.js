@@ -6,4 +6,6 @@ const StorageKey = {
   accessToken: '@auth:accessToken',
 };
 
-export { ONE_HOUR, ONE_MINUTE, ONE_SECOND, StorageKey };
+const ValidApiStatus = [200, 201, 202, 203, 204];
+
+export { ONE_HOUR, ONE_MINUTE, ONE_SECOND, StorageKey, ValidApiStatus };

@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { showNoti } from 'utils/helpers';
 
-import { registerUser } from './requestv2';
+import { saveLoginToken } from 'utils/helpers';
+import { registerUser, loginUser } from './requestv2';
 
-const register = createAsyncThunk('user/register', async (data, reset) => {
+const registerAccount = createAsyncThunk('auth/register', async (data) => {
   try {
     const response = await registerUser(data);
-    reset();
     showNoti('success', 'Register Success');
     return response;
   } catch (error) {
@@ -14,4 +14,15 @@ const register = createAsyncThunk('user/register', async (data, reset) => {
   }
 });
 
-export { register };
+const loginAccount = createAsyncThunk('auth/login', async (data) => {
+  try {
+    const response = await loginUser(data);
+    localStorage.setItem('isLogin', true);
+    saveLoginToken(response?.data?.accessToken);
+    return response;
+  } catch (error) {
+    showNoti('error', error.data.message);
+  }
+});
+
+export { loginAccount, registerAccount };

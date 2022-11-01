@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register } from './thunk';
+import { registerAccount, loginAccount } from './thunk';
 
 const initialState = {
   userInfo : {},
@@ -18,14 +18,23 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
-    [register.pending]: (state) => {
+    [registerAccount.pending]: (state) => {
       state.isLoading = true;
     },
-    [register.fulfilled]: (state, action) => {
+    [registerAccount.fulfilled]: (state) => {
       state.isLoading = false;
-      state.userInfo = action.payload.userInfo;
     },
-    [register.rejected]: (state) => {
+    [registerAccount.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [loginAccount.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [loginAccount.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.userInfo = action?.payload?.data;
+    },
+    [loginAccount.rejected]: (state) => {
       state.isLoading = false;
     },
   },

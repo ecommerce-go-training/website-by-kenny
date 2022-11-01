@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { login } from 'global/redux/auth/slice';
-import { loginUser } from 'global/redux/auth/request';
+import { loginAccount } from 'global/redux/auth/thunk';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -21,6 +20,8 @@ const SignIn = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.SignIn',
   });
+
+  const isLoading = useSelector((state) => state.auth.isLoading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -35,8 +36,6 @@ const SignIn = () => {
     resolver: yupResolver(signInVal),
   });
 
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     if (localStorage.getItem('isLogin') === 'true') {
       navigate('/');
@@ -44,11 +43,10 @@ const SignIn = () => {
   });
 
   const formSubmit = async (data) => {
-    setLoading(true);
-    let res = await loginUser(data, setLoading);
-    dispatch(login(res.data.data));
-    localStorage.setItem('isLogin', true);
-    reset();
+    const status = await dispatch(loginAccount(data));
+    if (status.payload) {
+      reset();
+    }
   };
 
   return (
@@ -73,7 +71,7 @@ const SignIn = () => {
             inputCheck={watch('password')}
           />
           <div className='login__button'>
-            <Button login type='submit' isLoading={loading}>
+            <Button login type='submit' isLoading={isLoading}>
               <p>{t('submit')}</p>
             </Button>
           </div>
