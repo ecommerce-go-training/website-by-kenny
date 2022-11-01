@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerAccount, loginAccount } from './thunk';
+import {
+  registerAccount,
+  loginAccount,
+  sendCode,
+  verifyCode,
+  changePassword,
+} from './thunk';
 
 const initialState = {
   userInfo : {},
@@ -32,6 +38,33 @@ const authSlice = createSlice({
       state.userInfo = action?.payload?.data;
     },
     [loginAccount.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [sendCode.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [sendCode.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [sendCode.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [verifyCode.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [verifyCode.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [verifyCode.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [changePassword.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [changePassword.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [changePassword.rejected]: (state) => {
       state.isLoading = false;
     },
   },

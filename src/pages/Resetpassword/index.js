@@ -4,33 +4,28 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { toast, ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { sendCode, verifyCode, changePassword } from 'global/redux/auth/thunk';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
 import Button from 'components/Button';
-
-import {
-  changePassword,
-  sendResetPasswordCode,
-  sendResetPasswordMail,
-} from 'global/redux/auth/request';
 
 import resetVal from './validation';
 
 import { successMail, success } from 'assets/images';
 
 import './style.scss';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Resetpsw = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.auth.isLoading);
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ResetPassword',
   });
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const showErrorNoti = (message) => toast.error(message);
+  const [formPage, setFormPage] = useState(1);
 
   const {
     reset,
@@ -45,36 +40,25 @@ const Resetpsw = () => {
   });
 
   const handleClick = async () => {
-    setLoading(true);
-    if (page === 1)
-      await sendResetPasswordMail(
-        getValues('email'),
-        setLoading,
-        setPage,
-        showErrorNoti
-      );
-    if (page === 2)
-      await sendResetPasswordCode(
-        {
-          email: getValues('email'),
-          code : getValues('code'),
-        },
-        setLoading,
-        setPage,
-        showErrorNoti
-      );
-    if (page === 3) {
-      await changePassword(
-        {
-          email          : getValues('email'),
-          code           : getValues('code'),
-          newPassword    : getValues('password'),
-          confirmPassword: getValues('confirmPassword'),
-        },
-        setLoading,
-        setPage,
-        showErrorNoti
-      );
+    const formData = {
+      email          : getValues('email'),
+      code           : getValues('code'),
+      newPassword    : getValues('password'),
+      confirmPassword: getValues('confirmPassword'),
+      function       : setFormPage,
+    };
+    switch (formPage) {
+    case 1:
+      await dispatch(sendCode(formData));
+      break;
+    case 2:
+      await dispatch(verifyCode(formData));
+      break;
+    case 3:
+      await dispatch(changePassword(formData));
+      break;
+    default:
+      break;
     }
   };
 
@@ -84,17 +68,10 @@ const Resetpsw = () => {
 
   return (
     <div>
-      <ToastContainer
-        autoClose={2000}
-        closeButton={true}
-        position='top-right'
-        theme='light'
-        hideProgressBar
-      />
       <Header disableAnnounce login />
       <div className='container'>
         <form onSubmit={handleSubmit(formSubmit)}>
-          {page === 1 && (
+          {formPage === 1 && (
             <section className='page1' style={{ display: '' }}>
               <div className='page1__intro'>
                 <p className='title'>{t('title')}</p>
@@ -114,7 +91,7 @@ const Resetpsw = () => {
                   handleClick={handleClick}
                   type='button'
                   login
-                  isLoading={loading}
+                  isLoading={isLoading}
                 >
                   <p>{t('submit')}</p>
                 </Button>
@@ -123,7 +100,7 @@ const Resetpsw = () => {
             </section>
           )}
 
-          {page === 2 && (
+          {formPage === 2 && (
             <section className='page2'>
               <div className='page2__intro'>
                 <p className='title'>Check your Email</p>
@@ -144,19 +121,19 @@ const Resetpsw = () => {
                   handleClick={handleClick}
                   type='button'
                   login
-                  isLoading={loading}
+                  isLoading={isLoading}
                 >
                   <p>{t('submit')}</p>
                 </Button>
               </div>
               <p>
                 {t('didntReceive')} &nbsp;
-                <span onClick={() => setPage(1)}>{t('resend')}</span>
+                <span onClick={() => setFormPage(1)}>{t('resend')}</span>
               </p>
             </section>
           )}
 
-          {page === 3 && (
+          {formPage === 3 && (
             <section className='page3'>
               <div className='page3__intro'>
                 <p className='title'>{t('createNewPassword')}</p>
@@ -184,7 +161,7 @@ const Resetpsw = () => {
                   handleClick={handleClick}
                   type='submit'
                   login
-                  isLoading={loading}
+                  isLoading={isLoading}
                 >
                   <p>{t('resetPassword')}</p>
                 </Button>
@@ -192,7 +169,7 @@ const Resetpsw = () => {
             </section>
           )}
 
-          {page === 4 && (
+          {formPage === 4 && (
             <section className='page4'>
               <img src={success} alt='success' />
               <p className='title'>{t('success')}</p>

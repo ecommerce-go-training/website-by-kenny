@@ -29,9 +29,9 @@ const loginUser = async (data) => {
   return res.data;
 };
 
-const sendResetPasswordMail = async (data) => {
+const sendVerifyCodeToMail = async (email) => {
   const body = {
-    data,
+    email,
   };
 
   const res = await api.post('/forget-password', body);
@@ -39,7 +39,7 @@ const sendResetPasswordMail = async (data) => {
   return res.data;
 };
 
-const sendResetPasswordCode = async (data) => {
+const checkVerifyCode = async (data) => {
   const { email, code } = data;
 
   const body = {
@@ -67,9 +67,9 @@ const resetPassword = async (data) => {
 };
 
 export {
+  checkVerifyCode,
   loginUser,
   registerUser,
   resetPassword,
-  sendResetPasswordCode,
-  sendResetPasswordMail,
+  sendVerifyCodeToMail,
 };
