@@ -11,6 +11,8 @@ import Announce from './Announce';
 import MobileNav from './MobileNav';
 import Filter from 'components/Filter';
 
+import { modifyLocalStorage } from 'utils/helpers';
+
 import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
 import './style.scss';
@@ -20,11 +22,11 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
     keyPrefix: 'Components.Header',
   });
 
-  const isLogin = localStorage.getItem('isLogin');
+  const isLogin = modifyLocalStorage('getItem', 'isLogin');
   const userName = useSelector(
     (state) => state?.auth?.userInfo?.userInfo?.firstName
   );
-  const cartItem = useSelector((state) => state.persistedCartReducer.cartItem);
+  const cartItem = useSelector((state) => state.persistCart.cartItem);
 
   const [moveBg, setMoveBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);

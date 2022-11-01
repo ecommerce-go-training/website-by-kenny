@@ -41,23 +41,17 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name        : 'cart/reducer',
+  name        : 'cart',
   initialState: initialState,
   reducers    : {
     addItemToCart: (state, action) => {
-      return {
-        ...state,
-        cartItem: action.payload,
-      };
+      state.cartItem = action.payload;
     },
     removeItem: (state, action) => {
       const newCartItem = state.cartItem.filter(
         (item) => item.id !== action.payload
       );
-      return {
-        ...state,
-        cartItem: [...newCartItem],
-      };
+      state.cartItem = newCartItem;
     },
     addItemQuantity: (state, action) => {
       let newItem = state.cartItem.map((item) => {
@@ -71,10 +65,7 @@ const cartSlice = createSlice({
           return item;
         }
       });
-      return {
-        ...state,
-        cartItem: [...newItem],
-      };
+      state.cartItem = newItem;
     },
     minusItemQuantity: (state, action) => {
       let newItem = state.cartItem.map((item) => {
@@ -88,10 +79,7 @@ const cartSlice = createSlice({
           return item;
         }
       });
-      return {
-        ...state,
-        cartItem: [...newItem],
-      };
+      state.cartItem = newItem;
     },
   },
 });

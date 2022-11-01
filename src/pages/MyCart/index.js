@@ -16,7 +16,7 @@ const MyCart = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cart' });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cartItem = useSelector((state) => state.persistedCartReducer);
+  const cartItem = useSelector((state) => state.persistCart);
 
   return (
     <div>

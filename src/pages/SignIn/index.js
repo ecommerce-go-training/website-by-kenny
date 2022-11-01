@@ -14,7 +14,6 @@ import signInVal from './validation';
 import Footer from 'components/Footer';
 
 import './style.scss';
-import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
   const { t } = useTranslation('translation', {
@@ -43,8 +42,8 @@ const SignIn = () => {
   });
 
   const formSubmit = async (data) => {
-    const status = await dispatch(loginAccount(data));
-    if (status.payload) {
+    const { payload } = await dispatch(loginAccount(data));
+    if (payload.status) {
       reset();
     }
   };

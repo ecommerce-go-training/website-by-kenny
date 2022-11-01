@@ -1,27 +1,37 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { showNoti } from 'utils/helpers';
 
-import { saveLoginToken } from 'utils/helpers';
+import { saveLoginToken, modifyLocalStorage } from 'utils/helpers';
 import { registerUser, loginUser } from './requestv2';
 
 const registerAccount = createAsyncThunk('auth/register', async (data) => {
   try {
-    const response = await registerUser(data);
+    const res = await registerUser(data);
     showNoti('success', 'Register Success');
-    return response;
+    return {
+      status: true,
+      data  : res.data,
+    };
   } catch (error) {
-    showNoti('error', error.data.message);
+    return {
+      status: false,
+    };
   }
 });
 
 const loginAccount = createAsyncThunk('auth/login', async (data) => {
   try {
-    const response = await loginUser(data);
-    localStorage.setItem('isLogin', true);
-    saveLoginToken(response?.data?.accessToken);
-    return response;
+    const res = await loginUser(data);
+    modifyLocalStorage('setItem', 'isLogin', true);
+    saveLoginToken(res?.data?.accessToken);
+    return {
+      status: true,
+      data  : res.data,
+    };
   } catch (error) {
-    showNoti('error', error.data.message);
+    return {
+      status: false,
+    };
   }
 });
 

@@ -9,11 +9,11 @@ const persistConfig = {
   storage,
 };
 
-const persistedCartReducer = persistReducer(persistConfig, cart);
+const persistCart = persistReducer(persistConfig, cart);
 
 const allReducer = combineReducers({
   auth,
-  persistedCartReducer,
+  persistCart,
 });
 
 const rootReducer = (state, action) => {

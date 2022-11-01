@@ -16,13 +16,13 @@ import Footer from 'components/Footer';
 import { registerAccount } from 'global/redux/auth/thunk';
 
 import './style.scss';
-import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.SignUp' });
 
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.auth.isLoading);
+
   const {
     watch,
     register,
@@ -34,11 +34,18 @@ const SignUp = () => {
     mode    : 'all',
     resolver: yupResolver(signUpVal),
   });
+  const formInputField = [
+    'firstName',
+    'lastName',
+    'phone',
+    'email',
+    'password',
+  ];
 
   const formSubmit = async () => {
     const formData = getValues();
-    const status = await dispatch(registerAccount(formData));
-    if (status.payload) {
+    const { payload } = await dispatch(registerAccount(formData));
+    if (payload.status) {
       reset();
     }
   };
@@ -50,42 +57,17 @@ const SignUp = () => {
         <form className='signup' onSubmit={handleSubmit(formSubmit)}>
           <label>{t('label')}</label>
           <p>{t('description')}</p>
-          <Input
-            register={register}
-            error={errors.firstName?.message}
-            label={t('firstName')}
-            name='firstName'
-            inputCheck={watch('firstName')}
-          />
-          <Input
-            register={register}
-            error={errors.lastName?.message}
-            label={t('lastName')}
-            name='lastName'
-            inputCheck={watch('lastName')}
-          />
-          <Input
-            register={register}
-            error={errors.phone?.message}
-            label={t('phone')}
-            name='phone'
-            inputCheck={watch('phone')}
-          />
-          <Input
-            register={register}
-            error={errors.email?.message}
-            label={t('email')}
-            name='email'
-            inputCheck={watch('email')}
-          />
-          <Input
-            register={register}
-            error={errors.password?.message}
-            label={t('password')}
-            name='password'
-            type='password'
-            inputCheck={watch('password')}
-          />
+          {formInputField.map((item, index) => (
+            <Input
+              key={index}
+              register={register}
+              error={errors[item]?.message}
+              label={t(`${item}`)}
+              name={item}
+              inputCheck={watch(item)}
+              type={item === 'password' ? 'password' : 'text'}
+            />
+          ))}
           <div className='signup__checkbox'>
             <Checkbox>
               <p className='receive-news'>{t('receiveNews')}</p>

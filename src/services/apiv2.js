@@ -1,15 +1,8 @@
 import axios from 'axios';
 import Env from 'config/env';
 import { StorageKey, ValidApiStatus } from 'utils/constants';
-/**
- * Instance information structure
- * @structure {
- * name: string,
- * secure: bool
- * baseURL: string
- * headers: object
- * }
- */
+import { showNoti } from 'utils/helpers';
+
 const instancesInfo = [
   {
     name   : 'api',
@@ -41,7 +34,8 @@ const createInstance = ({ baseURL, headers, secure }) => {
       return config;
     },
     (error) => {
-      Promise.reject(error);
+      showNoti('error', error.message);
+      return Promise.reject(error);
     }
   );
   instance.interceptors.response.use(
@@ -51,9 +45,11 @@ const createInstance = ({ baseURL, headers, secure }) => {
         return response;
       } else {
         controller.abort();
+        showNoti('error', response.message);
       }
     },
     ({ message, response: { data, status } }) => {
+      showNoti('error', data.message);
       // eslint-disable-next-line prefer-promise-reject-errors
       return Promise.reject({ message, data, status });
     }
