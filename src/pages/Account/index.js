@@ -14,7 +14,7 @@ import {
   addAddress,
   editAddress,
   deleteAddress,
-} from 'global/redux/user/thunk';
+} from 'global/redux/address/thunk';
 
 import Header from 'components/Header';
 import OrderHistory from './OrderHistory';

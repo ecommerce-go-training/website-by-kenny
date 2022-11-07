@@ -5,7 +5,7 @@ import {
   addUserAdress,
   editUserAddress,
   deleteUserAddress,
-} from './requestv2';
+} from './request';
 
 const getAddress = createAsyncThunk('user/get-address', async () => {
   const res = await getUserAddress();
@@ -39,7 +39,6 @@ const deleteAddress = createAsyncThunk(
   'user/delete-address',
   async (addressId) => {
     const res = await deleteUserAddress(addressId);
-    console.log('🚀 ~ file: thunk.js ~ line 39 ~ deleteAddress ~ res', res);
     return {
       status: true,
       id    : res,

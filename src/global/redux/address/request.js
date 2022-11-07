@@ -50,10 +50,6 @@ const editUserAddress = async (data, id) => {
 
 const deleteUserAddress = async (id) => {
   const res = await api.delete(`/addresses/${id}`);
-  console.log(
-    '🚀 ~ file: requestv2.js ~ line 67 ~ deleteUserAddress ~ res',
-    res?.data?.data
-  );
   return res?.data?.data;
 };
 

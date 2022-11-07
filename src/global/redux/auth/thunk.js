@@ -48,7 +48,6 @@ const verifyCode = createAsyncThunk('auth/check-code', async (data) => {
 });
 
 const changePassword = createAsyncThunk('auth/reset-password', async (data) => {
-  console.log(data);
   const res = await resetPassword(data);
   data.function((prev) => prev + 1);
   return {

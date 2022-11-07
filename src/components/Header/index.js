@@ -12,7 +12,7 @@ import MobileNav from './MobileNav';
 import Filter from 'components/Filter';
 import Loading from 'components/Loading';
 
-import { getUserInfo } from 'global/redux/user/requestv2';
+import { getUserInfo } from 'global/redux/address/request';
 
 import { modifyLocalStorage } from 'utils/helpers';
 
