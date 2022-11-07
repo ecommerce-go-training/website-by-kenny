@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
@@ -82,4 +82,4 @@ const MobileNav = ({ toggle, setToggle }) => {
   );
 };
 
-export default MobileNav;
+export default memo(MobileNav);

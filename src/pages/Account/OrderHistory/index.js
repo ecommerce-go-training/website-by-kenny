@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -189,4 +189,4 @@ const OrderHistory = ({ data }) => {
   );
 };
 
-export default OrderHistory;
+export default memo(OrderHistory);

@@ -5,15 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from 'global/redux/auth/slice';
+
 import {
-  getUserAddress,
-  updateUserAdress,
-  deleteUserAddress,
+  getAddress,
+  addAddress,
   editAddress,
-} from 'global/redux/user/request';
+  deleteAddress,
+} from 'global/redux/user/thunk';
 
 import Header from 'components/Header';
 import OrderHistory from './OrderHistory';
@@ -31,6 +32,7 @@ import {
 } from 'assets/images';
 
 import './style.scss';
+import { removeLoginToken, showNoti } from 'utils/helpers';
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -49,15 +51,6 @@ const Account = () => {
     mode    : 'all',
     resolver: yupResolver(addressVal),
   });
-  const [loading, setLoading] = useState(false);
-
-  const [selectNav, setSelectNav] = useState(0);
-  const [toggleAddAddress, setToggleAddAddress] = useState(false);
-  const [userAddress, setUserAddress] = useState([]);
-  const [deleteAddressConfirm, setDeleteAddressConfirm] = useState(false);
-  const [choosenLang, setChoosenLang] = useState(null);
-  const [editForm, setEditForm] = useState(false);
-  const [addressId, setAddressId] = useState('');
 
   const languages = [
     {
@@ -169,6 +162,20 @@ const Account = () => {
     },
   ];
 
+  const { isLoading, userAddress: addressData } = useSelector(
+    (state) => state.address
+  );
+
+  const [selectNav, setSelectNav] = useState(0);
+  const [toggleAddAddress, setToggleAddAddress] = useState(false);
+  const [deleteAddressConfirm, setDeleteAddressConfirm] = useState(false);
+  const [choosenLang, setChoosenLang] = useState(null);
+  const [editForm, setEditForm] = useState(false);
+  const [addressId, setAddressId] = useState('');
+  const [addressIndex, setAddressIndex] = useState(null);
+
+  /* --------------------------------- */
+
   const switchNav = (e) => {
     setSelectNav(e);
   };
@@ -177,28 +184,45 @@ const Account = () => {
     setToggleAddAddress(!toggleAddAddress);
   };
 
-  const formSubmit = (data) => {
-    editForm
-      ? editAddress(
-        addressId,
-        data,
-        setLoading,
-        reset,
-        setToggleAddAddress,
-        setEditForm
-			  )
-      : updateUserAdress(data, reset, setLoading, setToggleAddAddress);
+  const formSubmit = async (data) => {
+    if (editForm) {
+      const { payload } = await dispatch(
+        editAddress({ data, addressId, addressIndex })
+      );
+      if (payload?.status) {
+        reset();
+        setEditForm(false);
+        setToggleAddAddress(false);
+        showNoti('success', 'Edit success');
+      }
+    } else {
+      const { payload } = await dispatch(addAddress(data));
+      if (payload?.status) {
+        reset();
+        toggleAddForm();
+        showNoti('success', 'Add success');
+      }
+    }
   };
 
-  const handleDeleteAddress = async (id) => {
-    await deleteUserAddress(id, setLoading);
-    setDeleteAddressConfirm(false);
+  const handleDeleteAddress = async () => {
+    const res = await dispatch(deleteAddress(addressId));
+    if (res?.payload?.status) {
+      setDeleteAddressConfirm(false);
+      showNoti('success', 'Delete Success');
+    }
   };
 
-  const handleEditAddress = async (data) => {
+  const handleClickTrashCan = (data) => {
+    setAddressId(data.id);
+    setDeleteAddressConfirm(true);
+  };
+
+  const handleEditAddress = (data, index) => {
     toggleAddForm();
     setEditForm(!editForm);
     setAddressId(data.id);
+    setAddressIndex(index);
     if (!editForm) {
       setValue('firstName', data.firstName);
       setValue('lastName', data.lastName);
@@ -212,6 +236,8 @@ const Account = () => {
     }
   };
 
+  /* ---------------------------------------------------- */
+
   const handleSelectLang = (e) => {
     setChoosenLang(e);
     i18n.changeLanguage(e.value);
@@ -219,20 +245,22 @@ const Account = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('isLogin');
-    localStorage.removeItem('token');
+    removeLoginToken();
     dispatch(logout());
     navigate('/');
   };
 
   useEffect(() => {
-    if (localStorage.getItem('isLogin' !== 'true')) {
+    if (localStorage.getItem('isLogin') !== 'true') {
       navigate('/');
     }
-  });
+    /*eslint-disable-next-line */
+	}, [localStorage.getItem('isLogin')]);
 
   useEffect(() => {
-    getUserAddress(setUserAddress);
-  }, [userAddress]);
+    dispatch(getAddress());
+    /*eslint-disable-next-line */
+	}, []);
 
   return (
     <div className='account-container'>
@@ -279,8 +307,8 @@ const Account = () => {
           )}
           {selectNav === 1 && (
             <div className='account__content__address'>
-              {userAddress?.length === 0 && <p>{t('addAddress')}</p>}
-              {userAddress?.map((item, index) => (
+              {addressData?.length === 0 && <p>{t('addAddress')}</p>}
+              {addressData?.map((item, index) => (
                 <div key={index} className='user-address'>
                   {deleteAddressConfirm && (
                     <div className='delete-address-confirm'>
@@ -290,8 +318,8 @@ const Account = () => {
                           <div>
                             <Button
                               login
-                              handleClick={() => handleDeleteAddress(item.id)}
-                              isLoading={loading}
+                              handleClick={() => handleDeleteAddress()}
+                              isLoading={isLoading}
                             >
                               <p>{t('yes')}</p>
                             </Button>
@@ -313,7 +341,7 @@ const Account = () => {
                     </p>
                     <p>
                       <span
-                        onClick={() => handleEditAddress(item)}
+                        onClick={() => handleEditAddress(item, index)}
                         className='editButton'
                       >
                         {t('edit')}
@@ -321,7 +349,7 @@ const Account = () => {
 											&nbsp; | &nbsp;
                       <img
                         className='trashCan'
-                        onClick={() => setDeleteAddressConfirm(true)}
+                        onClick={() => handleClickTrashCan(item)}
                         src={trashCan}
                         alt='icon image'
                       />
@@ -356,7 +384,7 @@ const Account = () => {
                     <Input
                       register={register}
                       error={errors.address?.message}
-                      label={t('streetAddress')}
+                      label={t('address')}
                       name='address'
                       inputCheck={watch('address')}
                     />
@@ -378,7 +406,7 @@ const Account = () => {
                       <Input
                         register={register}
                         error={errors.postalCode?.message}
-                        label={t('postal')}
+                        label={t('postalCode')}
                         name='postalCode'
                         inputCheck={watch('postalCode')}
                       />
@@ -391,14 +419,19 @@ const Account = () => {
                       inputCheck={watch('phone')}
                     />
                     <div className='form-button'>
-                      <Button discount login type='submit' isLoading={loading}>
+                      <Button
+                        discount
+                        login
+                        type='submit'
+                        isLoading={isLoading}
+                      >
                         {editForm ? <p>{t('edit')}</p> : <p>{t('save')}</p>}
                       </Button>
                     </div>
                   </form>
                 )}
               </div>
-              {userAddress?.length > 0 && <p>{t('saveAddress')}</p>}
+              {addressData?.length > 0 && <p>{t('saveAddress')}</p>}
             </div>
           )}
           {selectNav === 2 && (

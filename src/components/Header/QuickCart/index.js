@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
@@ -63,4 +63,4 @@ const QuickCart = ({ toggle, setToggle, price }) => {
   );
 };
 
-export default QuickCart;
+export default memo(QuickCart);

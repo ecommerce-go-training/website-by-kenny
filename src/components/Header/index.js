@@ -10,6 +10,9 @@ import Search from './Search';
 import Announce from './Announce';
 import MobileNav from './MobileNav';
 import Filter from 'components/Filter';
+import Loading from 'components/Loading';
+
+import { getUserInfo } from 'global/redux/user/requestv2';
 
 import { modifyLocalStorage } from 'utils/helpers';
 
@@ -23,11 +26,9 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
   });
 
   const isLogin = modifyLocalStorage('getItem', 'isLogin');
-  const userName = useSelector(
-    (state) => state?.auth?.userInfo?.userInfo?.firstName
-  );
   const cartItem = useSelector((state) => state.persistCart.cartItem);
 
+  const [userName, setUserName] = useState(null);
   const [moveBg, setMoveBg] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleNavMobile, setToggleNavMobile] = useState(false);
@@ -45,6 +46,16 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
     return () => {
       window.removeEventListener('scroll', changeBackground);
     };
+  }, []);
+
+  useEffect(() => {
+    const getUserName = async () => {
+      if (modifyLocalStorage('getItem', 'isLogin')) {
+        const { firstName } = await getUserInfo();
+        setUserName(firstName);
+      }
+    };
+    getUserName();
   }, []);
 
   return (
@@ -104,8 +115,21 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
             src={moveBg || login || store || catalouge ? searchBlack : search}
             alt='search img'
           />
-          <Link to={isLogin ? '/account' : '/sign-in'}>
-            {login ? t('account') : isLogin ? userName : t('login')}
+          <Link
+            className='navigate-button'
+            to={isLogin ? '/account' : '/sign-in'}
+          >
+            {login ? (
+              t('account')
+            ) : isLogin ? (
+              userName ? (
+                userName
+              ) : (
+                <Loading alter={catalouge} />
+              )
+            ) : (
+              t('login')
+            )}
           </Link>
           <div onClick={() => setToggleCart(true)}>
             {!login && <p className='item-quantity'>{cartItem.length}</p>}

@@ -8,83 +8,53 @@ import {
   sendVerifyCodeToMail,
   checkVerifyCode,
   resetPassword,
-} from './requestv2';
+} from './request';
 
 const registerAccount = createAsyncThunk('auth/register', async (data) => {
-  try {
-    const res = await registerUser(data);
-    showNoti('success', 'Register Success');
-    return {
-      status: true,
-      data  : res.data,
-    };
-  } catch (error) {
-    return {
-      status: false,
-    };
-  }
+  const res = await registerUser(data);
+  showNoti('success', 'Register Success');
+  return {
+    status: true,
+    data  : res.data,
+  };
 });
 
 const loginAccount = createAsyncThunk('auth/login', async (data) => {
-  try {
-    const res = await loginUser(data);
-    modifyLocalStorage('setItem', 'isLogin', true);
-    saveLoginToken(res?.data?.accessToken);
-    return {
-      status: true,
-      data  : res.data,
-    };
-  } catch (error) {
-    return {
-      status: false,
-    };
-  }
+  const res = await loginUser(data);
+  modifyLocalStorage('setItem', 'isLogin', true);
+  saveLoginToken(res?.data?.accessToken);
+  return {
+    status: true,
+    data  : res.data,
+  };
 });
 
 const sendCode = createAsyncThunk('auth/send-code', async (data) => {
-  try {
-    const res = await sendVerifyCodeToMail(data.email);
-    data.function((prev) => prev + 1);
-    return {
-      status: true,
-      data  : res.data,
-    };
-  } catch (error) {
-    return {
-      status: false,
-    };
-  }
+  const res = await sendVerifyCodeToMail(data.email);
+  data.function((prev) => prev + 1);
+  return {
+    status: true,
+    data  : res.data,
+  };
 });
 
 const verifyCode = createAsyncThunk('auth/check-code', async (data) => {
-  try {
-    const res = await checkVerifyCode(data);
-    data.function((prev) => prev + 1);
-    return {
-      status: true,
-      data  : res.data,
-    };
-  } catch (error) {
-    return {
-      status: false,
-    };
-  }
+  const res = await checkVerifyCode(data);
+  data.function((prev) => prev + 1);
+  return {
+    status: true,
+    data  : res.data,
+  };
 });
 
 const changePassword = createAsyncThunk('auth/reset-password', async (data) => {
-  try {
-    console.log(data);
-    const res = await resetPassword(data);
-    data.function((prev) => prev + 1);
-    return {
-      status: true,
-      data  : res.data,
-    };
-  } catch (error) {
-    return {
-      status: false,
-    };
-  }
+  console.log(data);
+  const res = await resetPassword(data);
+  data.function((prev) => prev + 1);
+  return {
+    status: true,
+    data  : res.data,
+  };
 });
 
 export { changePassword, loginAccount, registerAccount, sendCode, verifyCode };

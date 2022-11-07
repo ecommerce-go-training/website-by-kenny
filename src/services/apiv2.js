@@ -41,7 +41,6 @@ const createInstance = ({ baseURL, headers, secure }) => {
   instance.interceptors.response.use(
     (response) => {
       if (ValidApiStatus.includes(response.status)) {
-        console.log('verified');
         return response;
       } else {
         controller.abort();
