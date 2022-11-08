@@ -1,109 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Filter from 'components/Filter';
 import Footer from 'components/Footer';
-import CatalougeItem from 'components/CatalougeItem';
-
-import {
-  cataBackDress,
-  cataPinkDress,
-  cataPurpleDress,
-  cataWhiteDress,
-  whiteDress,
-  greenDress,
-  orangeDress,
-} from 'assets/images';
-
 import Pagination from 'components/Pagination';
+import CatalougeItem from 'components/CatalougeItem';
+import Loading from 'components/Loading';
+
+import { getProducts } from 'global/redux/product/thunk';
 
 import './style.scss';
 
 const Catalouge = () => {
-  const data = [
-    {
-      img      : cataBackDress,
-      name     : 'Black Dress',
-      price    : 50,
-      catalouge: 'New Arrival',
-      details  : 'Hello darkness my old friend, i come to talk with you again',
-      care     : 'Dry clean only',
-      quantity : 0,
-    },
-    {
-      img        : cataWhiteDress,
-      name       : 'White Dress',
-      price      : 150,
-      catalouge  : 'Best sellers',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 5,
-    },
-    {
-      img        : cataPinkDress,
-      name       : 'Pink Dress',
-      price      : 30,
-      catalouge  : 'Shorts',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 9,
-    },
-    {
-      img        : cataPurpleDress,
-      name       : 'Purple Dress',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 0,
-    },
-    {
-      img        : orangeDress,
-      name       : 'Dress Orange',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 5,
-    },
-    {
-      img        : greenDress,
-      name       : 'Dressing OOO',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 0,
-    },
-    {
-      img        : whiteDress,
-      name       : 'Builtin Dress',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 5,
-    },
-  ];
+  const dispatch = useDispatch();
+  const { productList, fetched } = useSelector((state) => state.product);
+
+  const { type } = useParams();
+  console.log('🚀 ~ file: index.js ~ line 22 ~ Catalouge ~ type', type);
+
+  useEffect(() => {
+    if (!fetched) {
+      dispatch(getProducts());
+    }
+    /*eslint-disable-next-line */
+	}, []);
+
+  const selectedProductList = productList.filter(
+    (item) => item?.category?.name === type
+  );
+  const salesProduct = productList.filter((item) => item?.discount?.status);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage] = useState(4);
+  const [itemPerPage] = useState(8);
 
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItemShow = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItemShow =
+		type === 'sale'
+		  ? salesProduct.slice(indexOfFirstItem, indexOfLastItem)
+		  : selectedProductList.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleSwitchPage = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -116,13 +53,17 @@ const Catalouge = () => {
         </div>
         <div className='catalouge__items'>
           <div>
-            {currentItemShow.map((item, index) => (
-              <CatalougeItem key={index} data={item} />
-            ))}
+            {currentItemShow ? (
+              currentItemShow.map((item, index) => (
+                <CatalougeItem key={index} data={item} />
+              ))
+            ) : (
+              <Loading alter />
+            )}
           </div>
           <Pagination
             itemPerPage={itemPerPage}
-            totalItemLength={data.length}
+            totalItemLength={selectedProductList.length}
             handleSwitchPage={handleSwitchPage}
           />
         </div>

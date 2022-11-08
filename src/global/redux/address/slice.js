@@ -5,6 +5,7 @@ import { getAddress, addAddress, editAddress, deleteAddress } from './thunk';
 const initialState = {
   userAddress: [],
   isLoading  : false,
+  fetched    : false,
 };
 
 const addressSlice = createSlice({
@@ -18,6 +19,7 @@ const addressSlice = createSlice({
     [getAddress.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.userAddress = action?.payload?.data;
+      state.fetched = true;
     },
     [getAddress.rejected]: (state) => {
       state.isLoading = false;

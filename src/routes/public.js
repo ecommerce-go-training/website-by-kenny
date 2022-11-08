@@ -60,7 +60,7 @@ const publicRoutes = [
     component: Catalouge,
   },
   {
-    path     : '/details:id',
+    path     : '/details/:id',
     component: ItemDetails,
   },
   {

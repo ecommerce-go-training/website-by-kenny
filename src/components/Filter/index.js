@@ -79,7 +79,7 @@ const Filter = ({ shop = false }) => {
     },
     {
       label: t('sales'),
-      value: 'sales',
+      value: 'sale',
     },
   ];
 

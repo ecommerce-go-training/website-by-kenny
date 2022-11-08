@@ -162,9 +162,11 @@ const Account = () => {
     },
   ];
 
-  const { isLoading, userAddress: addressData } = useSelector(
-    (state) => state.address
-  );
+  const {
+    isLoading,
+    userAddress: addressData,
+    fetched,
+  } = useSelector((state) => state.address);
 
   const [selectNav, setSelectNav] = useState(0);
   const [toggleAddAddress, setToggleAddAddress] = useState(false);
@@ -173,8 +175,6 @@ const Account = () => {
   const [editForm, setEditForm] = useState(false);
   const [addressId, setAddressId] = useState('');
   const [addressIndex, setAddressIndex] = useState(null);
-
-  /* --------------------------------- */
 
   const switchNav = (e) => {
     setSelectNav(e);
@@ -236,8 +236,6 @@ const Account = () => {
     }
   };
 
-  /* ---------------------------------------------------- */
-
   const handleSelectLang = (e) => {
     setChoosenLang(e);
     i18n.changeLanguage(e.value);
@@ -258,7 +256,9 @@ const Account = () => {
 	}, [localStorage.getItem('isLogin')]);
 
   useEffect(() => {
-    dispatch(getAddress());
+    if (!fetched) {
+      dispatch(getAddress());
+    }
     /*eslint-disable-next-line */
 	}, []);
 

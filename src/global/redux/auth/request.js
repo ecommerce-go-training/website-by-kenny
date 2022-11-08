@@ -1,4 +1,9 @@
-import { api } from 'services/apiv2';
+import { api } from 'services/api';
+
+const getUserInfo = async () => {
+  const res = await api.get('/users/me');
+  return res.data;
+};
 
 const registerUser = async (data) => {
   const { firstName, lastName, password, phone, email } = data;
@@ -68,6 +73,7 @@ const resetPassword = async (data) => {
 
 export {
   checkVerifyCode,
+  getUserInfo,
   loginUser,
   registerUser,
   resetPassword,

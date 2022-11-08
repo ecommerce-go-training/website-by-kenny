@@ -7,36 +7,55 @@
   padding-top: 110px;
   display: flex;
   white-space: pre-line;
+
   @include responsive(tablet) {
     padding-top: 100px;
   }
+
   @include responsive(mobile) {
     padding-top: 80px;
     flex-direction: column;
   }
+
+  & .old-price {
+    margin-left: 30px;
+    color: $grey;
+    text-decoration: line-through;
+
+    @include responsive(mobile) {
+      margin-left: 20px;
+    }
+  }
+
   &__img {
     width: 65%;
     display: flex;
     flex-wrap: wrap;
+
     @include responsive(tablet) {
       width: 60%;
     }
+
     @include responsive(mobile) {
       display: none;
     }
-    & > div {
+
+    &>div {
       width: 550px;
       height: 830px;
+
       @include responsive(tablet) {
         width: 50%;
         height: 50%;
       }
-      & > img {
+
+      &>img {
         width: 100%;
         height: 100%;
       }
     }
   }
+
   &__info {
     box-sizing: border-box;
     margin-top: 50px;
@@ -47,83 +66,102 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     @include responsive(tablet) {
       width: 40%;
       margin-top: 30px;
       padding: 0px 5vw;
     }
+
     @include responsive(mobile) {
       width: 100%;
       padding: 0px 30px;
       margin-top: 30px;
     }
-    & > p:first-child {
+
+    &>p:first-child {
       font-size: 13px;
       line-height: 140%;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: $grey;
+
       @include responsive(tablet) {
         font-size: 12px;
       }
+
       @include responsive(mobile) {
         font-size: 12px;
       }
     }
-    & > p {
+
+    &>p {
       font-size: 16px;
       line-height: 128%;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: $black;
+
       @include responsive(tablet) {
         font-size: 15px;
       }
+
       @include responsive(mobile) {
         font-size: 14px;
       }
     }
-    & > p:nth-child(4) {
+
+    &>p:nth-child(4) {
       font-size: 13px;
       text-transform: none;
       line-height: 150%;
       letter-spacing: 0.05em;
+
       @include responsive(tablet) {
         font-size: 12px;
       }
+
       @include responsive(mobile) {
         font-size: 11px;
       }
     }
+
     &-filter {
       width: 100%;
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
-      & > div:first-child {
-        & > p {
+
+      &>div:first-child {
+        &>p {
           font-size: 13px;
           line-height: 140%;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: $grey;
+
           @include responsive(mobile) {
             font-size: 12px;
           }
         }
-        & > div {
+
+        &>div {
           display: flex;
           margin-top: 30px;
           gap: 30px;
+
           @include responsive(tablet) {
             gap: 20px;
           }
+
           @include responsive(mobile) {
             gap: 15px;
           }
-          & > p {
+
+          &>p {
             color: $grey;
             cursor: pointer;
+
             &.active {
               color: black;
               padding-bottom: 2px;
@@ -132,33 +170,39 @@
           }
         }
       }
-      & > div:nth-child(2) {
-        & > p {
+
+      &>div:nth-child(2) {
+        &>p {
           font-size: 13px;
           line-height: 140%;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: $grey;
         }
-        & > input[type="color"] {
+
+        &>input[type="color"] {
           margin-top: 20px;
+
           @include responsive(mobile) {
             margin-left: 20px;
           }
         }
       }
     }
+
     &-faq {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
       height: auto;
+
       & .info-item {
         font-size: 13px;
         line-height: 150%;
         letter-spacing: 0.05em;
         color: $black;
-        & > a {
+
+        &>a {
           color: $black;
           text-transform: uppercase;
         }
@@ -170,13 +214,16 @@
 .moreItem {
   margin-top: 80px;
   padding-bottom: 50px;
+
   @include responsive(tablet) {
     margin-top: 60px;
   }
+
   @include responsive(mobile) {
     margin-top: 20px;
   }
-  & > p {
+
+  &>p {
     margin-bottom: 30px;
     text-align: center;
     font-family: 'Sofia Pro';
@@ -193,20 +240,23 @@
 #color1 {
   cursor: pointer;
   padding: 0;
-  border: none;
+  border: 1px solid $black;
   border-radius: 50%;
   width: 30px;
   height: 30px;
+
   @include responsive(mobile) {
     width: 25px;
     height: 25px;
   }
 }
+
 #color1::-webkit-color-swatch {
   border: none;
   border-radius: 50%;
   padding: 0;
 }
+
 #color1::-webkit-color-swatch-wrapper {
   border: none;
   border-radius: 50%;

@@ -27,7 +27,7 @@ function Slider3({ children }) {
   useEffect(() => {
     const imageChangeInterval = setInterval(() => {
       if (!checkImg) updateIndex(currentIndex + 1);
-    }, TIME.ONE_SECOND * 5);
+    }, TIME.ONE_SECOND * 3);
 
     return () => {
       if (imageChangeInterval) clearInterval(imageChangeInterval);

@@ -9,36 +9,45 @@
   font-family: 'Sofia Pro';
   font-style: normal;
   font-weight: 400;
+
   @include responsive(tablet) {
     width: 65vw;
   }
+
   @include responsive(mobile) {
     margin-bottom: 15px;
     width: 45vw;
   }
+
   & .img-container {
     position: relative;
+
     & .item-img {
       width: 100%;
       height: 800px;
       overflow: hidden;
+
       @include responsive(tablet) {
         height: auto;
       }
+
       @include responsive(mobile) {
         height: 80vw;
       }
-      & > img {
+
+      &>img {
         width: 100%;
         height: 100%;
         transition: 0.3s all;
         transition-delay: 0.1s;
         cursor: pointer;
+
         &:hover {
           scale: 1.1;
         }
       }
     }
+
     & .item-add {
       opacity: 0;
       background-color: $blur-white;
@@ -51,77 +60,100 @@
       align-items: center;
       gap: 20px;
       cursor: pointer;
+
       @include responsive(mobile) {
         display: none;
       }
+
       &:hover {
         opacity: 1;
       }
-      & > div {
+
+      &>div {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
+
         @include responsive(mobile) {
           gap: 5px;
         }
+
         cursor: pointer;
-        & > p {
+
+        &>p {
           font-size: 10px;
           line-height: 140%;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: $black;
+
           @include responsive(mobile) {
             font-size: 10px;
           }
         }
-        & > img {
+
+        &>img {
           position: relative;
           width: 15px;
           bottom: 2px;
         }
       }
-      & > p {
+
+      &>p {
         font-size: 13px;
         letter-spacing: 0.05em;
         color: $grey;
         cursor: pointer;
+
         &:hover {
           color: $black;
           text-decoration: underline;
         }
+
         &.active {
           color: $black;
         }
       }
     }
+
     & .item-info {
       margin-top: 10px;
       display: flex;
       flex-direction: column;
+
       @include responsive(mobile) {
         margin-top: 5px;
       }
-      & > div {
+
+      &>div {
         display: flex;
         justify-content: space-between;
-      }
-      & p {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 150%;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #000000;
-        @include responsive(mobile) {
-          letter-spacing: 0.05em;
-          font-size: 10px;
+
+        &>p {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 150%;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: $black;
+
+          @include responsive(mobile) {
+            letter-spacing: 0.05em;
+            font-size: 10px;
+          }
         }
-      }
-      & > p:last-child {
-        color: $grey;
+
+        & .category-info {
+          color: $grey;
+        }
+
+        & .old-price {
+          color: $grey;
+          text-decoration: line-through;
+        }
+
       }
     }
   }
