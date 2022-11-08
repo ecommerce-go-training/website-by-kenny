@@ -52,7 +52,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
   }, []);
 
   useEffect(() => {
-    if (!fetched) {
+    if (!fetched && isLogin) {
       dispatch(getUser());
     }
     /*eslint-disable*/
