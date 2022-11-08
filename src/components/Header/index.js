@@ -28,7 +28,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
   const dispatch = useDispatch();
 
   const { userInfo, fetched } = useSelector((state) => state.auth);
-  const cartItem = useSelector((state) => state.persistCart.cartItem);
+  const cartItem = useSelector((state) => state.cart.cartItem);
 
   const isLogin = modifyLocalStorage('getItem', 'isLogin');
 

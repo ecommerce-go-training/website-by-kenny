@@ -10,20 +10,16 @@ const persistConfig = {
 };
 
 const persistCart = persistReducer(persistConfig, cart);
+const persistProduct = persistReducer(persistConfig, product);
 
 const allReducer = combineReducers({
   auth,
-  persistCart,
+  cart   : persistCart,
   address,
-  product,
+  product: persistProduct,
 });
 
 const rootReducer = (state, action) => {
-  if (action.type === 'auth/logout') {
-    /*eslint-disable-next-line*/
-		state = undefined;
-  }
-
   return allReducer(state, action);
 };
 

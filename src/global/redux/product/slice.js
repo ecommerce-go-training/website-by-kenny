@@ -6,14 +6,27 @@ import { getProducts, getProduct } from './thunk';
 const initialState = {
   productList   : [],
   currentProduct: [],
+  searchProduct : [],
   isLoading     : false,
   fetched       : false,
 };
 
 const productSlice = createSlice({
-  name         : 'product',
-  initialState : initialState,
-  reducers     : {},
+  name        : 'product',
+  initialState: initialState,
+  reducers    : {
+    search: (state, action) => {
+      state.searchProduct = state.productList.filter((item) =>
+        item.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+    },
+    resetProduct: (state) => {
+      state.fetched = false;
+      state.productList = [];
+      state.currentProduct = [];
+      state.searchProduct = [];
+    },
+  },
   extraReducers: {
     [getProducts.pending]: (state) => {
       state.isLoading = true;
@@ -42,4 +55,5 @@ const productSlice = createSlice({
 	},
 });
 
+export const { search, resetProduct } = productSlice.actions;
 export default productSlice.reducer;

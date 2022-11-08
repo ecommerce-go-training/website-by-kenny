@@ -1,18 +1,35 @@
-import React, { memo } from 'react';
+import React, { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
+import { search } from 'global/redux/product/slice';
 
 import { searchBlack, xmark } from 'assets/images';
 
 import './style.scss';
 
 const Search = ({ toggle, setToggle }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Search',
   });
+
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchInput) {
+      dispatch(search(searchInput));
+      setToggle(false);
+      setSearchInput('');
+      navigate('/catalouge/search-result');
+    }
+  };
 
   return (
     <div
@@ -21,8 +38,12 @@ const Search = ({ toggle, setToggle }) => {
         active: toggle,
       })}
     >
-      <div className='search__input'>
-        <input type='text' />
+      <form onSubmit={handleSubmit} className='search__input'>
+        <input
+          value={searchInput}
+          type='text'
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
         <img className='search-icon' src={searchBlack} alt='search icon' />
         <img
           onClick={() => setToggle(false)}
@@ -30,7 +51,7 @@ const Search = ({ toggle, setToggle }) => {
           src={xmark}
           alt='x icon'
         />
-      </div>
+      </form>
       <div className='search__quick-nav'>
         <p>{t('quickLink')}</p>
         <div>

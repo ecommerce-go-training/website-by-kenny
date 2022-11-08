@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-
 import React, { useState, useEffect } from 'react';
-
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getProducts } from 'global/redux/product/thunk';
 
 import Stack from 'components/Stack';
 import Button from 'components/Button';
@@ -32,6 +33,8 @@ import './style.scss';
 const Home = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Home' });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { fetched } = useSelector((state) => state.product);
   const images = [
     beachEdit1,
     beachEdit2,
@@ -56,6 +59,13 @@ const Home = () => {
       navigate('/');
     }
   });
+
+  useEffect(() => {
+    if (!fetched) {
+      dispatch(getProducts());
+    }
+    /*eslint-disable-next-line */
+	}, []);
 
   return (
     <div>

@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from 'global/redux/auth/slice';
+import { resetProduct } from 'global/redux/product/slice';
 
 import {
   getAddress,
@@ -244,6 +245,7 @@ const Account = () => {
   const handleLogout = () => {
     localStorage.removeItem('isLogin');
     removeLoginToken();
+    dispatch(resetProduct());
     dispatch(logout());
     navigate('/');
   };
