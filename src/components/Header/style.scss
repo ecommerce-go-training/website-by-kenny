@@ -14,13 +14,16 @@
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s;
+
   @include responsive(tablet) {
     padding: 0 70px;
   }
+
   @include responsive(mobile) {
     height: 70px;
     padding: 0 5vw 0 5vw;
   }
+
   & .header-shop {
     font-family: 'Sofia Pro';
     text-transform: uppercase;
@@ -31,13 +34,20 @@
     letter-spacing: 0.15em;
     cursor: pointer;
     user-select: none;
+
     &:hover {
       color: $black;
     }
+
     @include responsive(mobile) {
       display: none;
     }
   }
+
+  & .navigate-button {
+    width: 50px;
+  }
+
   & a {
     text-decoration: none;
     font-family: 'Sofia Pro';
@@ -47,18 +57,22 @@
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 0.15em;
+
     @include responsive(tablet) {
       font-size: 12px;
       letter-spacing: 0;
     }
+
     @include responsive(mobile) {
       font-size: 5px;
       letter-spacing: 0;
     }
+
     &:hover {
       color: $primary-color !important;
     }
   }
+
   &__nav {
     box-sizing: border-box;
     flex: 1;
@@ -67,16 +81,20 @@
     align-items: center;
     text-align: center;
     height: 100%;
+
     &-link {
       box-sizing: border-box;
       display: flex;
       align-items: center;
       gap: 68px;
+
       @include responsive(tablet) {
         gap: 40px;
       }
+
       & .triple-line {
         display: none;
+
         @include responsive(mobile) {
           position: relative;
           right: 7vw;
@@ -84,35 +102,43 @@
           flex-direction: column;
           gap: 5px;
         }
+
         & .line {
           width: 30px;
           height: 2px;
         }
       }
-      & > a {
+
+      &>a {
         @include responsive(tablet) {
           text-align: center;
           font-size: 12px;
         }
+
         @include responsive(mobile) {
           display: none;
         }
       }
     }
   }
+
   &__logo {
     flex: 1;
     text-align: center;
+
     & .logo {
       font-size: 40px;
+
       @include responsive(tablet) {
         font-size: 28px;
       }
+
       @include responsive(mobile) {
         font-size: 20px;
       }
     }
   }
+
   &__icon {
     flex: 1;
     font-size: 30px;
@@ -121,27 +147,33 @@
     justify-content: flex-end;
     align-items: center;
     gap: 40px;
+
     @include responsive(tablet) {
       gap: 1vw;
     }
+
     @include responsive(mobile) {
       gap: 15px;
       margin-right: 10px;
     }
+
     & .search-img {
       width: 20px;
       position: relative;
       right: 8vw;
       cursor: pointer;
+
       @include responsive(mobile) {
         right: 0;
       }
     }
-    & > div {
+
+    &>div {
       position: relative;
       display: flex;
       width: 20px;
-      & > p {
+
+      &>p {
         position: absolute;
         font-family: 'Sofia Pro';
         font-style: normal;
@@ -154,26 +186,32 @@
         top: 13px;
         left: 7px;
         cursor: pointer;
+
         @include responsive(mobile) {
           top: 10px;
         }
       }
-      & > img {
+
+      &>img {
         cursor: pointer;
         width: 100%;
         height: auto;
+
         @include responsive(mobile) {
           position: relative;
           bottom: 3px;
         }
       }
     }
-    & > a {
+
+    &>a {
       position: relative;
       top: 2px;
+
       @include responsive(tablet) {
         margin-right: 5px;
       }
+
       @include responsive(mobile) {
         display: none;
       }
@@ -197,9 +235,11 @@
   display: none;
   transition: 0.5s all;
   animation: fade 0.4s;
+
   &.toggleShop {
     display: inline;
   }
+
   &.moveup {
     top: 100px;
   }
@@ -208,9 +248,14 @@
 .move {
   box-shadow: 0 5px 5px -5px $grey;
   background-color: $white;
-  & a, &.logo, .header-shop, .item-quantity {
+
+  & a,
+  &.logo,
+  .header-shop,
+  .item-quantity {
     color: $black;
   }
+
   & .line {
     background-color: $black;
   }
@@ -218,9 +263,14 @@
 
 .stand {
   background-color: $transparent;
-  & a, &.logo, .header-shop, .item-quantity {
+
+  & a,
+  &.logo,
+  .header-shop,
+  .item-quantity {
     color: $white;
   }
+
   & .line {
     background-color: $white;
   }
@@ -229,10 +279,14 @@
 .login-header {
   position: fixed;
   top: 0px;
-  background-color: $white;
-  & a, &.logo, .header-shop {
+  background-color: $transparent;
+
+  & a,
+  &.logo,
+  .header-shop {
     color: $black;
   }
+
   & .line {
     background-color: $black;
   }
@@ -243,9 +297,13 @@
   position: fixed;
   top: 0px;
   background-color: $white;
-  & a, &.logo, .header-shop {
+
+  & a,
+  &.logo,
+  .header-shop {
     color: $black;
   }
+
   & .line {
     background-color: $black;
   }
@@ -256,9 +314,14 @@
   position: fixed;
   top: -30px;
   background-color: $white;
-  & a, &.logo, .header-shop, .item-quantity {
+
+  & a,
+  &.logo,
+  .header-shop,
+  .item-quantity {
     color: $black;
   }
+
   & .line {
     background-color: $black;
   }

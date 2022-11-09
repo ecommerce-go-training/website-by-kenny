@@ -3,6 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
 
 import ScrollToTop from 'components/ScrollToTop';
 import PrivateRoute from 'components/PrivateRoute';
@@ -17,6 +18,15 @@ import 'assets/scss/normalize.scss';
 const App = () => {
   return (
     <Provider store={store}>
+      <ToastContainer
+        enableMultiContainer
+        containerId={'top-right'}
+        autoClose={2000}
+        closeButton={true}
+        position='top-right'
+        theme='light'
+        hideProgressBar
+      />
       <InternetCheck />
       <PersistGate loading={null} persistor={persistor}>
         <Router>

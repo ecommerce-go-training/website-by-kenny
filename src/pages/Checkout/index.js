@@ -33,7 +33,7 @@ import './style.scss';
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const cartItem = useSelector((state) => state.cart);
+  const cartItem = useSelector((state) => state.persistedCartReducer);
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Checkout' });
   const {
     watch,
@@ -140,6 +140,7 @@ const Checkout = () => {
                 <p>{t('total')}</p>
                 <p>
                   {formatCurrency(
+                    t('unit'),
                     cartItem.cartItem
                       .map((item) => item.price * item.quantity)
                       .reduce((item, sum) => item + sum, 0)
@@ -554,6 +555,7 @@ const Checkout = () => {
           <p>{t('total')}</p>
           <p>
             {formatCurrency(
+              t('unit'),
               cartItem.cartItem
                 .map((item) => item.price * item.quantity)
                 .reduce((item, sum) => item + sum, 0)

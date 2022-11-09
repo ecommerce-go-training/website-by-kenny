@@ -1,7 +1,6 @@
+import React, { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-import React, { useState, memo } from 'react';
 
 import { closeEye, openEye } from 'assets/images';
 

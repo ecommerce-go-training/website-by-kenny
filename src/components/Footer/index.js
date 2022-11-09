@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -149,4 +149,4 @@ Footer.propTypes = {
   paymentSuccess: PropTypes.bool,
 };
 
-export default Footer;
+export default memo(Footer);

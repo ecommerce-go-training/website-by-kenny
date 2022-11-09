@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Env from 'config/env';
+import { StorageKey } from 'utils/constants';
 
 const api = axios.create({
   baseURL: Env.API_URL,
@@ -11,7 +12,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem(StorageKey.accessToken);
     if (token) {
       config.headers.authorization = `Bearer ${token}`;
     }

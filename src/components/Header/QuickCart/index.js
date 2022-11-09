@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ import { xmark } from 'assets/images';
 import './style.scss';
 
 const QuickCart = ({ toggle, setToggle, price }) => {
-  const cartItemData = useSelector((state) => state.cart);
+  const cartItemData = useSelector((state) => state.persistCart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
@@ -63,4 +63,4 @@ const QuickCart = ({ toggle, setToggle, price }) => {
   );
 };
 
-export default QuickCart;
+export default memo(QuickCart);

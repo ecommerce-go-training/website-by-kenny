@@ -79,7 +79,8 @@ import cataPinkDress from './catalouge/pinkDress.png';
 import cataWhiteDress from './catalouge/whiteDress.png';
 import cataPurpleDress from './catalouge/purpleDress.png';
 
-import loadingIcon from './icons/Loading.png';
+import loadingIcon from './icons/loading.png';
+import redLoadingIcon from './icons/redLoading.png';
 
 export {
   backArrow,
@@ -137,6 +138,7 @@ export {
   pinterest,
   plus,
   question,
+  redLoadingIcon,
   returnOrder,
   riderBuild,
   riderOoo,

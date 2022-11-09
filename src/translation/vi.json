@@ -15,7 +15,6 @@
       "$": "$",
       "sale": "Giảm giá"
     },
-
     "Search": {
       "quickLink": "Truy cập nhanh",
       "dress": "Váy",
@@ -24,7 +23,6 @@
       "store": "Cửa hàng",
       "ship": "Shipping"
     },
-
     "Footer": {
       "follow": "Theo dõi",
       "copyRight": "© 2020 Bản quyền thuộc về Élemush",
@@ -43,12 +41,10 @@
       "customerService": "Dịch vụ khách hàng \nCONTACT@ELEMUSH.COM",
       "whosesalse": "Bán sỉ & lẻ \nTEAM@ELEMUSH.COM"
     },
-
     "Announce": {
       "freeShipInVietnam": "Miễn phí ship cho đơn hàng trong nước",
       "internationalShip": "Miễn phí ship cho đơn hàng quốc tế từ 500$"
     },
-
     "Filter": {
       "categories": "Phân loại",
       "newArrivals": "Hàng mới về",
@@ -65,7 +61,7 @@
       "collections": "Bộ sưu t",
       "essentialsEdit": "Chỉnh sửa cần thiết",
       "springSummer": "Xuân Hè 2021",
-      "fallWinter" : "Thu Đông 2020",
+      "fallWinter": "Thu Đông 2020",
       "filter": "Bộ lọc",
       "color": "Màu sắc",
       "beige": "Xám tro",
@@ -92,35 +88,30 @@
       "priceHighest": "Mắc nhất",
       "priceLowest": "Rẻ nhất"
     },
-
-    "CatalougeItem" : {
+    "CatalougeItem": {
       "quickAdd": "Thêm vào giỏ hàng",
-      "$" : "$"
+      "$": "$"
     },
-
     "CartItem": {
       "remove": "Xóa",
-      "unit": "$"
+      "unit": "VND"
     }
   },
-  
   "Pages": {
-
     "Home": {
-      "description1": "Bộ sưu tầm Du lịch 2021 là một lá thư tình gửi đến tuổi trẻ", 
-      "description2": "Hãy cùng khám phá vẻ đẹp của những bông hoa đang nở dưới bầu trời nắng và xanh ", 
+      "description1": "Bộ sưu tầm Du lịch 2021 là một lá thư tình gửi đến tuổi trẻ",
+      "description2": "Hãy cùng khám phá vẻ đẹp của những bông hoa đang nở dưới bầu trời nắng và xanh ",
       "explore": "Khám phá bộ sưu tập",
       "theBeachEdit": "Thời trang bãi biển",
       "follow": "Theo dõi chúng tôi",
       "signUpUpdate": "Hãy đăng kí để được cập nhật thông tin mới nhất",
       "signUp": "Đăng kí",
-      "description3": "Đăng kí ngay để được giảm gía 10% cho đơn hàng đầu tiên cũng như là \n nhận được những thông tin mới nhất về các sản phẩm sắp được ra mắt cũng như mã giảm giá & sự kiện của chúng tôi" 
+      "description3": "Đăng kí ngay để được giảm gía 10% cho đơn hàng đầu tiên cũng như là \n nhận được những thông tin mới nhất về các sản phẩm sắp được ra mắt cũng như mã giảm giá & sự kiện của chúng tôi"
     },
-
     "Account": {
       "ordersReturn": "Đơn đặt hàng và trả lại",
-      "addressBook":"Đỉa chỉ",
-      "newsLetter":"Tin mới nhất",
+      "addressBook": "Đỉa chỉ",
+      "newsLetter": "Tin mới nhất",
       "changeLanguage": "Thay đổi ngôn ngữ",
       "logout": "Đăng xuất",
       "order": "Đơn hàng",
@@ -129,7 +120,7 @@
       "trackOrder": "Theo dõi đơn hàng",
       "details": "Thông tin",
       "articles": "Tiêu mục",
-      "sendBack": "Nếu sản phẩm bạn mua bị lỗi, bạn có 30 ngày để gửi trả lại cho chúng tôi. Hãy liên hệ với bộ phận chăm sóc khách hàng nếu cần thêm sự giúp đỡ.", 
+      "sendBack": "Nếu sản phẩm bạn mua bị lỗi, bạn có 30 ngày để gửi trả lại cho chúng tôi. Hãy liên hệ với bộ phận chăm sóc khách hàng nếu cần thêm sự giúp đỡ.",
       "subtotal": "Tổng phụ",
       "shipping": "Phí vận chuyển",
       "total": "Tổng thu",
@@ -143,20 +134,20 @@
       "email": "Email",
       "returnReason": "Lý do trả hàng",
       "link": "Link của sản phẩm lỗi",
-      "linkPaste": "Vui lòng đính kèm link ảnh của sản phẩm và 1 video ngắn để chứng minh sản phẩm bị lỗi", 
+      "linkPaste": "Vui lòng đính kèm link ảnh của sản phẩm và 1 video ngắn để chứng minh sản phẩm bị lỗi",
       "startReturn": "Xác nhận trả hàng",
       "close": "Đóng",
       "requestSubmit": "Yêu cầu đã được gửi đi !",
-      "response": "Bộ phận chăm sóc khách hàng của chúng tôi sẽ liên hệ với bạn từ 1-3 ngày thông qua email.",  
+      "response": "Bộ phận chăm sóc khách hàng của chúng tôi sẽ liên hệ với bạn từ 1-3 ngày thông qua email.",
       "addAddress": " Lưu thông tin của bạn để quá trính thanh toán đơn hàng được diễn ra nhanh chóng hơn. Thông tin của bạn sẽ được bảo mật bởi Gun Secure",
       "saveAddress": "Lưu địa chỉ để thanh toán dễ dàng hơn",
       "newAddress": "Thêm địa chỉ mới",
       "firstName": "Tên",
       "lastName": "Họ",
-      "streetAddress": "Tên đường",
+      "address": "Tên đường",
       "city": "Thành phố",
       "country": "Nước",
-      "postal": "Mã bưu kiện",
+      "postalCode": "Mã bưu kiện",
       "phone": "Số điện thoại",
       "save": "Lưu",
       "edit": "Chỉnh sửa",
@@ -164,11 +155,10 @@
       "yes": "Đồng ý",
       "cancel": "Hủy",
       "emailPref": "Email mẫu",
-      "updatePref": "Để cập nhật mail mẫu hãy vui lòng tick vào ô vuông bên dưới. Nếu bạn muốn ngừng theo dõi, hãy xóa tick với ô tương ứng và gửi.", 
+      "updatePref": "Để cập nhật mail mẫu hãy vui lòng tick vào ô vuông bên dưới. Nếu bạn muốn ngừng theo dõi, hãy xóa tick với ô tương ứng và gửi.",
       "newsletter": "Tin mới",
       "savePref": "Lưu chỉnh sửa cá nhân"
     },
-
     "Store": {
       "ourStore": "Cửa hàng của chúng t",
       "stockist": "Kho hàng",
@@ -181,18 +171,16 @@
       "contact": "Liên hệ",
       "description2": "Kỷ nguyên mới của chúng ta được đánh dấu bằng một kho ý tưởng mới với nguồn cảm hứng bất tận từ những câu chuyện cổ tích. Chúng tôi tin rằng thời trang là một điều kỳ diệu của thế giới này bằng cách tạo ra những thứ đẹp đẽ và truyền tải những câu chuyện văn minh. Khám phá cửa hàng của chúng tôi để không chỉ ăn mặc ở Elemush mà còn để cảm nhận sự sang trọng của nó."
     },
-
     "Cart": {
       "cart": "Giỏ hàng",
       "items": "Sản phẩm",
       "checkOut": "Tiếp tục \nThanh toán",
       "total": "Tổng thu",
-      "unit": "$",
+      "unit": "VND",
       "color": "Màu sắc",
       "size": "Kích cỡ",
       "quantity": "Số lượng"
     },
-
     "Checkout": {
       "contact": "Thông tin liên hệ",
       "already": "Đã có tài khoản? ",
@@ -217,7 +205,7 @@
       "unit": "VND",
       "calcNextStep": "Được tính ở bước tiếp theo",
       "total": "Tổng thu",
-      "needHelp": "Cần giúp đỡ ? Hãy liên hệ với bộ phận CSKH của chúng tôi", 
+      "needHelp": "Cần giúp đỡ ? Hãy liên hệ với bộ phận CSKH của chúng tôi",
       "customerService": "Chăm sóc khác hàng\nCONTACT@DEARJOSE.COM",
       "wholsesale": "Bán sỉ & lẻ\nTEAM@DEARJOSE.COM",
       "contactConfirm": "Liên hệ",
@@ -239,16 +227,14 @@
       "cardName": "Chủ thẻ",
       "sameShip": "Giống với địa chỉ vận chuyển",
       "differentShip": "Sử dụng địa chỉ khác",
-      "term": "Bằng việc tick vào ô này, bạn đồng ý tuân theo quy định mua bán của chúng tôi. Các mặt hàng được mua trong một sự kiện khuyến mại hoặc là một mặt hàng giảm giá chỉ có thể được trả lại để lấy tín dụng cửa hàng hoặc trao đổi. Bấm vào đây để đọc chính sách hoàn trả đầy đủ.", 
+      "term": "Bằng việc tick vào ô này, bạn đồng ý tuân theo quy định mua bán của chúng tôi. Các mặt hàng được mua trong một sự kiện khuyến mại hoặc là một mặt hàng giảm giá chỉ có thể được trả lại để lấy tín dụng cửa hàng hoặc trao đổi. Bấm vào đây để đọc chính sách hoàn trả đầy đủ.",
       "userAgree": "Tôi đồng ý thanh toán tất cả các khoản thuế nhập khẩu, thuế hải quan và thuế bán hàng địa phương mà quốc gia mà tôi chuyển hàng đến.",
       "paypalDes": "Sau khi nhấp vào “Hoàn tất đơn đặt hàng”, bạn sẽ được chuyển hướng đến PayPal để hoàn tất giao dịch mua của mình một cách an toàn.",
       "showOrder": "Hiển thị đơn hàng",
       "thank": "CẢM ƠN!\nĐƠN HÀNG CỦA BẠN ĐÃ THÀNH CÔNG",
       "confirmEmail": "Chúng tôi đã gửi mail xác nhận đơn hàng về mail của bạn",
       "orderNumber": "Đơn hàng của bạn có mã số là: "
-      
     },
-
     "Brand": {
       "brand": "Thương hiệu",
       "ourStory": "Câu chuyện của chúng tôi",
@@ -258,7 +244,6 @@
       "women": "women",
       "description": "Nhãn hàng may sẵn dành cho phụ nữ của Gun Phan. Ông giữ vai trò là Người sáng lập và Giám đốc Sáng tạo với trọng tâm là đáp ứng nhu cầu về tủ quần áo của phụ nữ trên toàn thế giới. Tên thương hiệu ngọt ngào như một hỗn hợp thanh lịch, gửi gắm những thông điệp giàu sức gợi qua trang phục. \n\n Sau khi tốt nghiệp ngành Thiết kế Công nghiệp, Gun trở thành nhà thiết kế phụ kiện và giám đốc sáng tạo tự do. Anh thành lập Elemush vào năm 2018 với mong muốn thay đổi phong cách của phụ nữ trẻ Việt Nam. Thiết kế hướng đến sự nữ tính, mềm mại mang tinh thần thơ mộng lãng mạn. \n\nĐược thiết kế tinh xảo và đẹp mắt, mỗi bộ quần áo và phụ kiện đều thổi luồng sinh khí mới vào tủ quần áo không ngừng phát triển của phái đẹp. Hình bóng của chúng tôi được xác định bởi tính linh hoạt và vẫn có thể đeo được thông qua sự thay đổi của xu hướng và mùa. Chúng tôi chi tiết và chu đáo trong quá trình sản xuất để đảm bảo quần áo của chúng tôi không chỉ có giá cả phải chăng mà còn có thể chịu được thử thách của thời gian."
     },
-
     "SignUp": {
       "label": "Tạo tài khoản",
       "description": "Vui lòng điền thông tin của bạn để đăng kí tài khoản",
@@ -274,7 +259,6 @@
       "phone": "Số điện thoại",
       "password": "Mật khẩu"
     },
-
     "SignIn": {
       "title": "Đăng nhập",
       "email": "email",
@@ -283,8 +267,7 @@
       "submit": "Xác nhận",
       "signup": "Đăng kí"
     },
-
-    "ResetPassword" : {
+    "ResetPassword": {
       "title": "Cài lại mật khẩu",
       "description": "Vui lòng nhập địa chỉ email của bạn và nhấp vào gửi. Chúng tôi sẽ gửi cho bạn một liên kết email với một liên kết mà bạn có thể nhấp vào để tạo mật khẩu mới.",
       "submit": "Xác nhận",
@@ -299,7 +282,6 @@
       "success": "Thay đổi mật khẩu thành công !",
       "signIn": "Đăng nhập"
     },
-
     "Season": {
       "smallTitle": "Thu/đông 2022",
       "bigTitle": "Thu Đông",
@@ -317,7 +299,6 @@
       "signup": "Đăng kí để nhận được thông tin mới nhất",
       "promo": "Giảm giá 15% cho tất cả các đơn đặt hàng trước từ Bộ sưu tập Loungewear trước tháng 9. Mua sắm ngay bây giờ!"
     },
-
     "CustomerSupport": {
       "faq": "Câu hỏi thường gặp",
       "ship": "Vận chuyển & trả hàng",
@@ -394,10 +375,10 @@
         "silkDes": "Làm sạch khô là rất khuyến khích. Rửa tay bằng nước ấm. Không vắt, bóp hoặc vặn. Nằm phẳng để khô. Ủi từ trong ra ngoài ở chế độ cài đặt thấp. \n\n Xin lưu ý rằng vón cục là một quá trình tự nhiên đôi khi có thể xảy ra đối với sợi len. Giặt quần áo từ trong ra ngoài sẽ giúp tránh bị vón cục và đầu tư vào máy khử cặn bằng điện sẽ giúp loại bỏ chúng một cách an toàn. Tuy nhiên, nếu để yên, những thứ này cuối cùng sẽ tự biến mất.",
         "title2": "Vải tổng hợp",
         "title2Des": "Vải tổng hợp là loại vải dệt từ các nguyên liệu nhân tạo chứ không phải tự nhiên.",
-          "denim": "Vải denim",
-          "denimDes": "Giặt máy từ trong ra ngoài bằng nước ấm, chu trình giặt nhẹ nhàng. Đặt bằng phẳng để khô rất khuyến khích.",
-          "elastine": "Vải co giãn",
-          "elastineDes": "Giặt máy trong túi giặt lưới trong nước lạnh, chu trình giặt nhẹ nhàng. Đặt phẳng để làm khô, hoặc sấy khô ở chế độ thấp. Ủi ở chế độ cài đặt thấp. Không nên giặt khô.",
+        "denim": "Vải denim",
+        "denimDes": "Giặt máy từ trong ra ngoài bằng nước ấm, chu trình giặt nhẹ nhàng. Đặt bằng phẳng để khô rất khuyến khích.",
+        "elastine": "Vải co giãn",
+        "elastineDes": "Giặt máy trong túi giặt lưới trong nước lạnh, chu trình giặt nhẹ nhàng. Đặt phẳng để làm khô, hoặc sấy khô ở chế độ thấp. Ủi ở chế độ cài đặt thấp. Không nên giặt khô.",
         "modal": "Phương thức",
         "modalDes": "Giặt máy bằng nước lạnh, chu trình giặt bình thường. Sấy khô ở chế độ thấp, lấy ra khi hơi ẩm để giảm nếp nhăn.",
         "nylon": "Vải nylon",
@@ -467,7 +448,6 @@
         "hipsDes": "Đo phần đầy đủ nhất của hông của bạn. Những quý cô có thân hình mảnh mai có thể lấy số đo này từ vòng eo dưới 20cm / 8in"
       }
     },
-
     "ItemDetails": {
       "Form": {
         "title": "Danh sách chờ",
@@ -482,13 +462,12 @@
         "email": "email",
         "country": "Nước"
       },
-      "$" : "VND",
+      "$": "VND",
       "addToCart": "Thêm vào giỏ hàng",
       "waitList": "Danh sách chờ",
       "findYourSize": "Chọn kích cỡ phù hợp với bạn: ",
       "more": "Bạn cũng có thể thích",
       "shipping": "Giao hàng miễn phí trong phạm vi Việt Nam. \n\n Giao hàng bên ngoài Việt Nam: \n • Giao hàng thông thường - $ 20 \n • Vận chuyển nhanh - $ 30 \n • Miễn phí giao hàng tiêu chuẩn cho đơn hàng trên $ 500 \n\nDễ dàng trả hàng trong 14 ngày kể từ ngày giao hàng. Không có trả lại cho các sản phẩm bán. \nĐọc thêm"
     }
-
   }
 }

@@ -1,6 +1,5 @@
 {
   "Components": {
-
     "Header": {
       "newArrivals": "new arrivals",
       "shopWinter": "Shop winter",
@@ -16,7 +15,6 @@
       "$": "$",
       "sale": "sale"
     },
-
     "Search": {
       "quickLink": "quick link",
       "dress": "dresses",
@@ -25,7 +23,6 @@
       "store": "store",
       "ship": "shipping"
     },
-
     "Footer": {
       "follow": "follow us",
       "copyRight": "© 2020 Élemush All Rights Reserved.",
@@ -44,12 +41,10 @@
       "customerService": "customer services \nCONTACT@ELEMUSH.COM",
       "whosesalse": "whosesales & pressed \nTEAM@ELEMUSH.COM"
     },
-
     "Announce": {
       "freeShipInVietnam": "free shipping in vietnam",
       "internationalShip": "free shipping for international orders over 500$"
     },
-
     "Filter": {
       "categories": "categories",
       "newArrivals": "new arrivals",
@@ -66,7 +61,7 @@
       "collections": "collections",
       "essentialsEdit": "essentials edit",
       "springSummer": "spring summer 2021",
-      "fallWinter" : "fall winter 2020",
+      "fallWinter": "fall winter 2020",
       "filter": "filters",
       "color": "color",
       "beige": "beige",
@@ -93,20 +88,16 @@
       "priceHighest": "price highest",
       "priceLowest": "price lowest"
     },
-
-    "CatalougeItem" : {
+    "CatalougeItem": {
       "quickAdd": "quick add",
-      "$" : "$"
+      "$": "$"
     },
-
     "CartItem": {
       "remove": "remove",
-      "unit": "$"
+      "unit": "USD"
     }
   },
-  
   "Pages": {
-
     "Home": {
       "description1": "The Resort 2021 collection is a love letter to our youth. Discover the",
       "description2": "beauty of blooming flowers under the blue sky and sunny",
@@ -117,11 +108,10 @@
       "signUp": "sign up",
       "description3": "Sign-up to receive 10% off your first purchase as well as the \nlatest updates on new arrivals, exclusive promotions and events."
     },
-
     "Account": {
       "ordersReturn": "orders & return",
-      "addressBook":"address book",
-      "newsLetter":"newsletter",
+      "addressBook": "address book",
+      "newsLetter": "newsletter",
       "changeLanguage": "change language",
       "logout": "log out",
       "order": "order",
@@ -154,10 +144,10 @@
       "newAddress": "add new address",
       "firstName": "First Name",
       "lastName": "Last Name",
-      "streetAddress": "Street Address",
+      "address": "Street Address",
       "city": "City",
       "country": "Country",
-      "postal": "Postal Code",
+      "postalCode": "Postal Code",
       "phone": "Phone Number",
       "save": "save",
       "edit": "edit",
@@ -169,7 +159,6 @@
       "newsletter": "newsletter",
       "savePref": "save preferences"
     },
-
     "Store": {
       "ourStore": "our store",
       "stockist": "stockists",
@@ -182,18 +171,16 @@
       "contact": "contact",
       "description2": "Our new era is marked by a new concept store with endless inspiration from fairy tales. We believe fashion is a miracle of this world by creating beautiful things and conveying civilized stories. Discover our store to not only dress in Elemush, but also to feel its elegance."
     },
-
     "Cart": {
       "cart": "cart",
       "items": "items",
       "checkOut": "proceed to \ncheckout",
       "total": "total",
-      "unit": "$",
+      "unit": "USD",
       "color": "color",
       "size": "size",
       "quantity": "quantity"
     },
-
     "Checkout": {
       "contact": "Contact information",
       "already": "Already have an account? ",
@@ -215,7 +202,7 @@
       "discount": "Gift card or discount code",
       "subtotal": "Subtotal",
       "shipping": "Shipping",
-      "unit": "USD $",
+      "unit": "USD",
       "calcNextStep": "calculated at next step",
       "total": "Total",
       "needHelp": "Need Help? Contact our support from below",
@@ -247,9 +234,7 @@
       "thank": "THANK YOU!\nYOUR ORDER IS COMPLETED.",
       "confirmEmail": "We send an email to confirm your order details.",
       "orderNumber": "YOUR ORDER NUMBER"
-      
     },
-
     "Brand": {
       "brand": "brand",
       "ourStory": "our story",
@@ -259,7 +244,6 @@
       "women": "women",
       "description": "A women’s ready-to-wear label by Gun Phan. He serves as Founder and Creative Director with a focus to meet the wardrobe needs of women all over the world. The brand name is sweet like an elegance mushrrom, sending rich and evocative messages through clothing. \n\nAfter graduating in Industrial Design, Gun became an accessory designer and freelance creative director. He founded Elemush in 2018 with the desire to change the style of young Vietnamese women. The design is aimed at femininity, softness with romantic poetic spirit. \n\nArtfully crafted and beautifully designed, each garment and accessory breathes new life into the ever-evolving female wardrobe. Our silhouettes are defined by fluidity, and remain wearable through the changing of trends and seasons. We are detailed and thoughtful in our manufacturing to ensure our clothes are not only affordable, but can withstand the test of time."
     },
-
     "SignUp": {
       "label": "create an account",
       "description": "Please register your details below to create an account",
@@ -275,7 +259,6 @@
       "phone": "Phone Number",
       "password": "password"
     },
-
     "SignIn": {
       "title": "sign in",
       "email": "email",
@@ -284,8 +267,7 @@
       "submit": "submit",
       "signup": "sign up"
     },
-
-    "ResetPassword" : {
+    "ResetPassword": {
       "title": "Reset your password",
       "description": "Please enter your email address and click on submit. We will send you an email contaninng a link that you can click to create a new password.",
       "submit": "Submit",
@@ -300,7 +282,6 @@
       "success": "password changed !",
       "signIn": "sign in"
     },
-
     "Season": {
       "smallTitle": "fall/winter 2022",
       "bigTitle": "fall winter",
@@ -318,7 +299,6 @@
       "signup": "sign up for updates",
       "promo": "Get 15% off on all pre-order from Loungewear Collection before September. Shop now!"
     },
-
     "CustomerSupport": {
       "faq": "faq",
       "ship": "shipping & returns",
@@ -468,7 +448,6 @@
         "hipsDes": "Measure aroud the fullest part of your hips. Slim-hipped ladies can take this measurement from 20cm/8in below the waistline"
       }
     },
-
     "ItemDetails": {
       "Form": {
         "title": "waitlist",
@@ -483,13 +462,12 @@
         "email": "email",
         "country": "country"
       },
-      "$" : "$",
+      "$": "$",
       "addToCart": "add to cart",
       "waitList": "waitlist",
       "findYourSize": "Find your size: ",
       "more": "you may also like",
       "shipping": "Free shipping within Vietnam.\n\nDelivery outside of Vietnam:\n• Standard shipping - $20\n• Express shipping - $30\n• Free standard shipping on orders over $500\n\nEasy 14 days returns from delivery date. No return available for sale products. \nRead more"
     }
-
   }
 }

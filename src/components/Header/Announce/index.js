@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import React, { useState, useEffect, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ONE_SECOND } from 'utils/constants';
+import { TIME } from 'utils/constants';
 
 import './style.scss';
 
@@ -17,11 +17,11 @@ const Announce = ({ disable = false }) => {
   useEffect(() => {
     const showInternationalShipping = setInterval(() => {
       setLabel(t('internationalShip'));
-    }, ONE_SECOND * 4);
+    }, TIME.ONE_SECOND * 4);
 
     const ShowVietnamShipping = setInterval(() => {
       setLabel(t('freeShipInVietnam'));
-    }, ONE_SECOND * 8);
+    }, TIME.ONE_SECOND * 8);
 
     return () => clearInterval(showInternationalShipping, ShowVietnamShipping);
   }, [t]);

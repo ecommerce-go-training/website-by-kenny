@@ -1,15 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { loadingIcon } from 'assets/images';
+import { loadingIcon, redLoadingIcon } from 'assets/images';
 
 import './style.scss';
 
-const Loading = () => {
+const Loading = ({ alter = false }) => {
   return (
     <div className='loading-icon'>
-      <img src={loadingIcon} alt='loading icon' />
+      <img src={alter ? redLoadingIcon : loadingIcon} alt='loading icon' />
     </div>
   );
+};
+
+Loading.defaultProps = {
+  alter: false,
+};
+
+Loading.propTypes = {
+  alter: PropTypes.bool,
 };
 
 export default Loading;

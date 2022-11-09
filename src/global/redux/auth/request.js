@@ -1,102 +1,75 @@
-import { api } from 'services/api';
-import { saveLoginToken, showErrorNoti, showSuccessNoti } from 'utils/helpers';
+import { api } from 'services/apiv2';
 
-const registerUser = async (data, reset, setLoading) => {
-  try {
-    setLoading(true);
-    await api.post('/register', {
-      email      : data.email,
-      password   : data.password,
-      firstName  : data.firstName,
-      lastName   : data.lastName,
-      phoneNumber: data.phone,
-    });
-    setLoading(false);
-    reset();
-    showSuccessNoti('Register Success');
-  } catch (error) {
-    setLoading(false);
-    showErrorNoti(error.data.message);
-  }
+const registerUser = async (data) => {
+  const { firstName, lastName, password, phone, email } = data;
+
+  const body = {
+    firstName,
+    lastName,
+    password,
+    email,
+    phoneNumber: phone,
+  };
+
+  const res = await api.post('/register', body);
+
+  return res.data;
 };
 
-const loginUser = async (data, setLoading) => {
-  try {
-    const res = await api.post('/login', {
-      email   : data.email,
-      password: data.password,
-    });
-    saveLoginToken(res.data.data.accessToken);
-    return res;
-  } catch (error) {
-    setLoading(false);
-    showErrorNoti(error.data.message);
-  }
+const loginUser = async (data) => {
+  const { email, password } = data;
+
+  const body = {
+    email,
+    password,
+  };
+
+  const res = await api.post('/login', body);
+
+  return res.data;
 };
 
-const sendResetPasswordMail = async (
-  data,
-  setLoading,
-  setPage,
-  showErrorNoti
-) => {
-  try {
-    setLoading(true);
-    const res = await api.post('/forget-password', {
-      email: data,
-    });
-    setLoading(false);
-    setPage((prev) => prev + 1);
-    return res;
-  } catch (error) {
-    setLoading(false);
-    showErrorNoti(error.data.message);
-  }
+const sendVerifyCodeToMail = async (email) => {
+  const body = {
+    email,
+  };
+
+  const res = await api.post('/forget-password', body);
+
+  return res.data;
 };
 
-const sendResetPasswordCode = async (
-  data,
-  setLoading,
-  setPage,
-  showErrorNoti
-) => {
-  try {
-    setLoading(true);
-    const res = await api.put('/verify-password-reset-code', {
-      email: data.email,
-      code : data.code,
-    });
-    setLoading(false);
-    setPage((prev) => prev + 1);
-    return res;
-  } catch (error) {
-    setLoading(false);
-    showErrorNoti(error.data.message);
-  }
+const checkVerifyCode = async (data) => {
+  const { email, code } = data;
+
+  const body = {
+    email,
+    code,
+  };
+
+  const res = await api.put('/verify-password-reset-code', body);
+
+  return res.data;
 };
 
-const changePassword = async (data, setLoading, setPage, showErrorNoti) => {
-  try {
-    setLoading(true);
-    const res = await api.put('/reset-password', {
-      email          : data.email,
-      code           : data.code,
-      newPassword    : data.newPassword,
-      confirmPassword: data.confirmPassword,
-    });
-    setLoading(false);
-    setPage((prev) => prev + 1);
-    return res;
-  } catch (error) {
-    setLoading(false);
-    showErrorNoti(error.data.message);
-  }
+const resetPassword = async (data) => {
+  const { email, code, newPassword, confirmPassword } = data;
+
+  const body = {
+    email,
+    code,
+    newPassword,
+    confirmPassword,
+  };
+
+  const res = await api.put('/reset-password', body);
+  return res.data;
 };
 
 export {
-  changePassword,
+  checkVerifyCode,
   loginUser,
   registerUser,
-  sendResetPasswordCode,
-  sendResetPasswordMail,
+  resetPassword,
+  sendVerifyCodeToMail,
 };

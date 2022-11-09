@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
-import { ONE_SECOND } from 'utils/constants';
+import { TIME } from 'utils/constants';
 
 import './style.scss';
 
@@ -27,7 +27,7 @@ function Slider3({ children }) {
   useEffect(() => {
     const imageChangeInterval = setInterval(() => {
       if (!checkImg) updateIndex(currentIndex + 1);
-    }, ONE_SECOND * 5);
+    }, TIME.ONE_SECOND * 5);
 
     return () => {
       if (imageChangeInterval) clearInterval(imageChangeInterval);

@@ -1,7 +1,8 @@
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import React, { memo } from 'react';
+import Loading from 'components/Loading';
 
 import './style.scss';
 
@@ -16,6 +17,7 @@ const Button = ({
   discount = false,
   greyBorder = false,
   login = false,
+  isLoading,
 }) => {
   return (
     <button
@@ -32,7 +34,7 @@ const Button = ({
       })}
       onClick={handleClick}
     >
-      {children}
+      {isLoading ? <Loading /> : children}
     </button>
   );
 };

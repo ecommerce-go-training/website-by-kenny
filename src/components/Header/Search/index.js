@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -55,4 +55,4 @@ Search.propTypes = {
   setToggle: PropTypes.func,
 };
 
-export default Search;
+export default memo(Search);

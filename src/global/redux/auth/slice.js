@@ -1,30 +1,73 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  registerAccount,
+  loginAccount,
+  sendCode,
+  verifyCode,
+  changePassword,
+} from './thunk';
 
 const initialState = {
-  userInfo       : {},
-  userAccessToken: null,
-  error          : null,
-  code           : null,
+  userInfo : {},
+  isLoading: false,
 };
 
 const authSlice = createSlice({
   name        : 'auth',
   initialState: initialState,
   reducers    : {
-    login: (state, action) => {
-      return {
-        ...state,
-        userInfo       : action.payload.userInfo,
-        userAccessToken: action.payload.accessToken,
-      };
+    logout: (state) => {
+      state.userInfo = null;
     },
-    loginFail: (state) => {
-      state.error = true;
+  },
+  extraReducers: {
+    [registerAccount.pending]: (state) => {
+      state.isLoading = true;
     },
-    logout: () => {
-      return initialState;
+    [registerAccount.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [registerAccount.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [loginAccount.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [loginAccount.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.userInfo = action?.payload?.data;
+    },
+    [loginAccount.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [sendCode.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [sendCode.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [sendCode.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [verifyCode.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [verifyCode.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [verifyCode.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [changePassword.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [changePassword.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [changePassword.rejected]: (state) => {
+      state.isLoading = false;
     },
   },
 });
-export const { login, loginFail, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;
