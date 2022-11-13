@@ -9,9 +9,14 @@ const initialState = {
 };
 
 const addressSlice = createSlice({
-  name         : 'address',
-  initialState : initialState,
-  reducers     : {},
+  name        : 'address',
+  initialState: initialState,
+  reducers    : {
+    clearAddress: (state) => {
+      state.userAddress = [];
+      state.fetched = false;
+    },
+  },
   extraReducers: {
     [getAddress.pending]: (state) => {
       state.isLoading = true;
@@ -64,4 +69,5 @@ const addressSlice = createSlice({
   },
 });
 
+export const { clearAddress } = addressSlice.actions;
 export default addressSlice.reducer;

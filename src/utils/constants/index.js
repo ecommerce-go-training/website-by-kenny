@@ -10,6 +10,92 @@ const StorageKey = {
 
 const ValidApiStatus = [200, 201, 202, 203, 204];
 
+const sizeList = [
+  {
+    key  : 'freesize',
+    value: 'freesize',
+  },
+  {
+    key  : 'XS',
+    value: 'XS',
+  },
+  {
+    key  : 'S',
+    value: 'S',
+  },
+  {
+    key  : 'M',
+    value: 'M',
+  },
+  {
+    key  : 'L',
+    value: 'L',
+  },
+  {
+    key  : 'XL',
+    value: 'XL',
+  },
+];
+
+const colorList = [
+  {
+    key  : 'beige',
+    value: '#F5F5DC',
+  },
+  {
+    key  : 'blue',
+    value: '#0000FF',
+  },
+  {
+    key  : 'black',
+    value: '#000000',
+  },
+  {
+    key  : 'brown',
+    value: '#A52A2A',
+  },
+  {
+    key  : 'green',
+    value: '#008000',
+  },
+  {
+    key  : 'red',
+    value: '#FF0000',
+  },
+  {
+    key  : 'metallic',
+    value: '#999999',
+  },
+  {
+    key  : 'white',
+    value: '#FFFFFF',
+  },
+  {
+    key  : 'cream',
+    value: '#FCE5CD',
+  },
+  {
+    key  : 'pink',
+    value: '#FFC0CB',
+  },
+  {
+    key  : 'orange',
+    value: '#FFA500',
+  },
+  {
+    key  : 'yellow',
+    value: '#FFFF00',
+  },
+  {
+    key  : 'lilac',
+    value: '##C8A2C8',
+  },
+  {
+    key  : 'floral',
+    value: '#FFF2CC',
+  },
+];
+
 /*eslint-disable*/
 const imageList = [
 	{
@@ -175,4 +261,4 @@ const imageList = [
 ];
 /*eslint-enable*/
 
-export { StorageKey, TIME, ValidApiStatus, imageList };
+export { StorageKey, TIME, ValidApiStatus, colorList, imageList, sizeList };

@@ -33,7 +33,7 @@ import './style.scss';
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const cartItem = useSelector((state) => state.persistedCartReducer);
+  const cartItem = useSelector((state) => state.cart);
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Checkout' });
   const {
     watch,

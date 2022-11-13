@@ -125,7 +125,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
 							userInfo.firstName ? (
 								userInfo.firstName
 							) : (
-								<Loading alter={catalouge} />
+								<Loading alter={catalouge || moveBg} />
 							)
 						) : (
 							t('login')

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from 'global/redux/auth/slice';
+import { clearAddress } from 'global/redux/address/slice';
 import { resetProduct } from 'global/redux/product/slice';
 
 import Filter from 'components/Filter';
@@ -35,6 +36,7 @@ const MobileNav = ({ toggle, setToggle }) => {
       localStorage.removeItem('token');
       dispatch(resetProduct());
       dispatch(logout());
+      dispatch(clearAddress());
       setToggle(!toggle);
     } else navigate('/sign-in');
   };

@@ -20,6 +20,7 @@ const authSlice = createSlice({
   reducers    : {
     logout: (state) => {
       state.userInfo = null;
+      state.fetched = false;
     },
   },
   extraReducers: {

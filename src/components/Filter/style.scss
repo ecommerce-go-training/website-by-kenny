@@ -7,45 +7,66 @@
   font-family: 'Sofia Pro';
   font-style: normal;
   font-weight: 400;
+
   & a {
     &:focus {
       outline: 0;
     }
   }
+
+  & .sort-options {
+    box-sizing: border-box;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $white;
+
+    @include responsive(mobile) {
+      padding-bottom: 3px;
+    }
+  }
+
   &.shopNav {
     display: flex;
     justify-content: space-between;
-    & .filter-categories, & .filter-collections {
-      & > a {
+
+    & .filter-categories,
+    & .filter-collections {
+      &>a {
         &:hover {
           border-bottom: 1px solid $black;
         }
       }
     }
+
     @include responsive(mobile) {
       flex-direction: column;
+
       & .filter-categories {
         display: flex;
         margin-bottom: 30px;
-        & > a {
+
+        &>a {
           &:hover {
             border-bottom: 1px solid $black;
           }
         }
       }
+
       & .filter-collections {
         display: flex;
         flex-direction: column;
       }
     }
+
     & .shop-nav-link {
       position: relative;
       bottom: 12px;
     }
+
     & .title {
       margin-bottom: 20px;
     }
   }
+
   & .title {
     cursor: default;
     font-size: 12px;
@@ -56,19 +77,23 @@
     text-transform: uppercase;
     color: $very-light-grey;
     margin-bottom: 30px;
+
     &:hover {
       opacity: 1;
     }
   }
+
   &-categories {
     margin-bottom: 60px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     @include responsive(mobile) {
       display: none;
     }
-    & > a {
+
+    &>a {
       width: max-content;
       text-decoration: none;
       font-size: 12px;
@@ -78,20 +103,24 @@
       cursor: pointer;
       border-bottom: 1px solid white;
       padding-bottom: 5px;
+
       &:hover {
         opacity: 0.8;
       }
     }
   }
+
   &-collections {
     margin-bottom: 60px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     @include responsive(mobile) {
       display: none;
     }
-    & > a {
+
+    &>a {
       text-decoration: none;
       width: max-content;
       font-size: 12px;
@@ -101,35 +130,42 @@
       cursor: pointer;
       border-bottom: 1px solid white;
       padding-bottom: 5px;
+
       &:hover {
         opacity: 0.8;
       }
     }
   }
+
   &-filtering {
     box-sizing: border-box;
     display: flex;
     align-items: flex-start;
     gap: 20px;
     margin-bottom: 60px;
+
     @include responsive(tablet) {
       flex-direction: column;
     }
+
     @include responsive(mobile) {
       display: none;
     }
+
     &-type {
       position: relative;
       bottom: 2px;
       display: flex;
       flex-direction: column;
       gap: 20px;
+
       & .handle-filter {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 200px;
-        & > p {
+
+        &>p {
           width: max-content;
           text-align: center;
           margin-bottom: 30px;
@@ -143,9 +179,11 @@
           cursor: pointer;
         }
       }
+
       & .type-filter {
         height: auto;
         user-select: none;
+
         & .items {
           margin-top: 20px;
           display: flex;
@@ -153,14 +191,17 @@
           flex-wrap: wrap;
           height: 200px;
           gap: 10px 40px;
+
           &.size-filter {
             height: 100px;
           }
-          & > div {
+
+          &>div {
             display: flex;
             width: 80px;
             gap: 5px;
           }
+
           & p {
             cursor: pointer;
             position: relative;
@@ -170,15 +211,18 @@
             text-transform: uppercase;
             color: $black;
             display: flex;
+
             &:hover {
               opacity: 0.8;
             }
-            & > span {
+
+            &>span {
               position: relative;
               margin-right: 5px;
             }
           }
         }
+
         & .label {
           height: 20px;
           position: relative;
@@ -187,15 +231,18 @@
           align-items: center;
           gap: 10px;
           cursor: pointer;
+
           &:hover {
             opacity: 0.8;
           }
-          & > img {
+
+          &>img {
             position: relative;
             width: 15px;
             bottom: 1px;
           }
-          & > p {
+
+          &>p {
             font-size: 12px;
             line-height: 100%;
             letter-spacing: 0.15em;
@@ -206,18 +253,22 @@
       }
     }
   }
+
   &-sort {
     display: flex;
     align-items: flex-start;
     gap: 20px;
+
     @include responsive(mobile) {
       display: none;
     }
-    & > div {
+
+    &>div {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      & > p {
+
+      &>p {
         width: max-content;
         font-size: 12px;
         line-height: 100%;
@@ -230,18 +281,45 @@
       }
     }
   }
+
   &-mobile {
     width: 100%;
     margin-bottom: 20px;
     display: none;
+
+    & .handle-filter-mobile {
+      box-sizing: border-box;
+      padding: 0 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      &>p {
+        width: max-content;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        font-size: 13px;
+        line-height: 140%;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $black;
+        border-bottom: 0.5px solid $eclipse;
+        cursor: pointer;
+      }
+    }
+
     @include responsive(mobile) {
       display: flex;
       flex-direction: column;
     }
+
     &-nav {
       display: flex;
       justify-content: space-between;
-      & > p {
+
+      &>p {
         font-size: 10px;
         line-height: 140%;
         letter-spacing: 0.12em;
@@ -249,10 +327,12 @@
         align-self: center;
         color: $black;
       }
+
       &-option {
         display: flex;
         align-self: center;
         gap: 10vw;
+
         & .label {
           height: 20px;
           position: relative;
@@ -261,15 +341,18 @@
           align-items: center;
           gap: 10px;
           cursor: pointer;
+
           &:hover {
             opacity: 0.8;
           }
-          & > img {
+
+          &>img {
             position: relative;
             width: 10px;
             bottom: 1px;
           }
-          & > p {
+
+          &>p {
             font-size: 10px;
             line-height: 100%;
             letter-spacing: 0.15em;
@@ -279,15 +362,18 @@
         }
       }
     }
+
     & .line {
       border-bottom: 1px solid $raven;
       margin: 15px 0 10px 0;
     }
+
     & .type-filter {
       margin-top: 20px;
       height: auto;
       user-select: none;
       padding-left: 15px;
+
       & .items {
         margin-top: 10px;
         display: flex;
@@ -295,14 +381,17 @@
         flex-wrap: wrap;
         height: 200px;
         gap: 10px 40px;
+
         &.size-filter {
           height: 100px;
         }
-        & > div {
+
+        &>div {
           display: flex;
           width: 80px;
           gap: 5px;
         }
+
         & p {
           width: 80px;
           cursor: pointer;
@@ -313,15 +402,18 @@
           text-transform: uppercase;
           color: $black;
           display: flex;
+
           &:hover {
             opacity: 0.8;
           }
-          & > span {
+
+          &>span {
             position: relative;
             margin-right: 5px;
           }
         }
       }
+
       & .label {
         height: 20px;
         position: relative;
@@ -330,15 +422,18 @@
         align-items: center;
         gap: 10px;
         cursor: pointer;
+
         &:hover {
           opacity: 0.8;
         }
-        & > img {
+
+        &>img {
           position: relative;
           width: 10px;
           bottom: 1px;
         }
-        & > p {
+
+        &>p {
           font-size: 11px;
           line-height: 100%;
           letter-spacing: 0.15em;
@@ -347,11 +442,13 @@
         }
       }
     }
+
     & .sort-mobile {
       position: relative;
       display: flex;
       justify-content: flex-end;
-      & > div {
+
+      &>div {
         margin-top: 10px;
         z-index: 1;
         position: absolute;
@@ -363,7 +460,8 @@
         background-color: $white;
         padding: 15px 25px;
         box-shadow: 0px 1px 4px rgba($black, 0.1);
-        & > p {
+
+        &>p {
           width: max-content;
           font-family: 'Sofia Pro';
           font-style: normal;
@@ -373,20 +471,23 @@
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: $black;
+
           &:hover {
             opacity: 0.8;
           }
+
           &.active {
-            padding-bottom: 2px;
             border-bottom: 1px solid $black;
           }
         }
       }
     }
   }
+
   & .active {
     border-bottom: 1px solid $black;
   }
+
   & .disable {
     display: none;
   }

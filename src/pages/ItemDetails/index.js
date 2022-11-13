@@ -165,8 +165,8 @@ const ItemDetails = () => {
             </div>
             <div>
               <Collapse smallLabel label='garment care'>
-                {currentProduct?.germentCare
-                  ? currentProduct?.germentCare
+                {currentProduct?.garmentCare
+                  ? currentProduct?.garmentCare
                   : 'Wash with hand'}
               </Collapse>
             </div>

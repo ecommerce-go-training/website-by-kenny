@@ -4,11 +4,14 @@ import { imageGenerator } from 'utils/helpers';
 import { getProducts, getProduct } from './thunk';
 
 const initialState = {
-  productList   : [],
-  currentProduct: [],
-  searchProduct : [],
-  isLoading     : false,
-  fetched       : false,
+  productList    : [],
+  currentProduct : [],
+  displayProduct : [],
+  categoryProduct: [],
+  filterProduct  : [],
+  sortProduct    : [],
+  isLoading      : false,
+  fetched        : false,
 };
 
 const productSlice = createSlice({
@@ -16,15 +19,44 @@ const productSlice = createSlice({
   initialState: initialState,
   reducers    : {
     search: (state, action) => {
-      state.searchProduct = state.productList.filter((item) =>
+      state.displayProduct = state.productList.filter((item) =>
         item.name.toLowerCase().includes(action.payload.toLowerCase())
       );
     },
+    filterByCategory: (state, action) => {
+      state.filterProduct = [];
+      state.categoryProduct = state.productList.filter((item) =>
+        action.payload === 'sale'
+          ? item.discount?.status
+          : item.category?.name === action.payload
+      );
+      state.displayProduct = [...state.categoryProduct];
+    },
+    filterBySizeColor: (state, action) => {
+      state.filterProduct = state.categoryProduct
+        .map((item) => {
+          return {
+            ...item,
+            inventories: item.inventories.filter(
+              (item) =>
+                action.payload.color.includes(item.color) ||
+								action.payload.size.includes(item.size)
+            ),
+          };
+        })
+        .filter((item) => item.inventories.length !== 0);
+      state.displayProduct = [...state.filterProduct];
+    },
+    clearFilter: (state) => {
+      state.displayProduct = [...state.categoryProduct];
+    },
+    sortProduct: (state) => {
+      console.log(state.displayProduct);
+    },
+    // temporary use only because theres no real img, delete once we have img from be
     resetProduct: (state) => {
-      state.fetched = false;
-      state.productList = [];
-      state.currentProduct = [];
-      state.searchProduct = [];
+      /*eslint-disable-next-line*/
+			state = initialState;
     },
   },
   extraReducers: {
@@ -55,5 +87,12 @@ const productSlice = createSlice({
 	},
 });
 
-export const { search, resetProduct } = productSlice.actions;
+export const {
+	clearFilter,
+	search,
+	resetProduct,
+	filterByCategory,
+	filterBySizeColor,
+	sortProduct,
+} = productSlice.actions;
 export default productSlice.reducer;

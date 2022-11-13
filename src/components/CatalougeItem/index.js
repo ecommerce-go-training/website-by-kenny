@@ -21,8 +21,8 @@ const CatalougeItem = ({ data }) => {
     if (isLogin) {
       navigate(`/details/${data.id}`, {
         state: {
-          img      : data.image.detailImages,
-          initColor: data.inventories[0].color,
+          img      : data?.image?.detailImages,
+          initColor: data?.inventories[0]?.color,
         },
       });
     } else {
@@ -36,7 +36,7 @@ const CatalougeItem = ({ data }) => {
         <div className='item-img'>
           <img
             onClick={handleClick}
-            src={data.image.mainImage}
+            src={data?.image?.mainImage}
             alt='Item image'
           />
         </div>

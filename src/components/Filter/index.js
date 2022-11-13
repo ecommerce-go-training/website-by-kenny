@@ -1,40 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import Checkbox from 'components/Checkbox';
 
-import { plus, minus } from 'assets/images';
+import { colorList, sizeList } from 'utils/constants';
+import { clearFilter } from 'global/redux/product/slice';
 
 import './style.scss';
+import { plus, minus } from 'assets/images';
 
-const Filter = ({ shop = false }) => {
+const Filter = ({ shop = false, sort = null, setSort, handleApplyFilter }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Filter',
   });
-
   const { type } = useParams();
 
-  const colorFilter = [
-    t('beige'),
-    t('blue'),
-    t('black'),
-    t('brown'),
-    t('green'),
-    t('red'),
-    t('metallic'),
-    t('white'),
-    t('cream'),
-    t('pink'),
-    t('orange'),
-    t('yellow'),
-    t('lilac'),
-    t('floral'),
-  ];
-
-  const sizeFilter = [t('freesize'), 'XS', 'S', 'M', 'L', 'XL'];
+  const dispatch = useDispatch();
 
   const categoriesList = [
     {
@@ -92,7 +77,16 @@ const Filter = ({ shop = false }) => {
 
   const [color, setColor] = useState([]);
   const [size, setSize] = useState([]);
-  const [sortSelect, setSortSelect] = useState(0);
+
+  const filterCondition = {
+    color: colorList
+      .filter((item, index) => color.includes(index))
+      .map((item) => item.value),
+    size: sizeList
+      .filter((item, index) => size.includes(index))
+      .map((item) => item.value),
+  };
+
   const [toggleColor, setToggleColor] = useState(false);
   const [toggleSize, setToggleSize] = useState(false);
   const [toggleFilter, setToggleFilter] = useState(false);
@@ -107,9 +101,17 @@ const Filter = ({ shop = false }) => {
     } else func((prev) => [...prev, index]);
   };
 
+  const [, setSearchParams] = useSearchParams();
+
   const handleClearFilter = () => {
     setColor([]);
     setSize([]);
+    setSearchParams({});
+    dispatch(clearFilter());
+  };
+
+  const handleSortType = (index) => {
+    setSort(index);
   };
 
   return (
@@ -150,7 +152,7 @@ const Filter = ({ shop = false }) => {
             </div>
             {!toggleColor && (
               <div className='items'>
-                {colorFilter.map((item, index) => (
+                {colorList.map((item, index) => (
                   <div
                     onClick={() => handleFilter(setColor, color, index)}
                     key={index}
@@ -158,7 +160,7 @@ const Filter = ({ shop = false }) => {
                     <span>
                       <Checkbox filter toggle={color.includes(index)} />
                     </span>
-                    <p>{item}</p>
+                    <p>{t(item.key)}</p>
                   </div>
                 ))}
               </div>
@@ -172,7 +174,7 @@ const Filter = ({ shop = false }) => {
             </div>
             {!toggleSize && (
               <div className='items size-filter'>
-                {sizeFilter.map((item, index) => (
+                {sizeList.map((item, index) => (
                   <div
                     onClick={() => handleFilter(setSize, size, index)}
                     key={index}
@@ -180,7 +182,7 @@ const Filter = ({ shop = false }) => {
                     <span>
                       <Checkbox filter toggle={size.includes(index)} />
                     </span>
-                    <p>{item}</p>
+                    <p>{item.key}</p>
                   </div>
                 ))}
               </div>
@@ -190,7 +192,14 @@ const Filter = ({ shop = false }) => {
           {(!toggleSize || !toggleColor) && (
             <div className='handle-filter'>
               <p onClick={handleClearFilter}>{t('clearFilters')}</p>
-              <div className='button'>{t('apply')}</div>
+              <div
+                onClick={() =>
+                  handleApplyFilter(filterCondition, setSearchParams, dispatch)
+                }
+                className='button'
+              >
+                {t('apply')}
+              </div>
             </div>
           )}
         </div>
@@ -200,7 +209,16 @@ const Filter = ({ shop = false }) => {
         <p className='title'>{t('sort')}</p>
         <div>
           {sortList.map((item, index) => (
-            <p key={index}>{item}</p>
+            <p
+              key={index}
+              onClick={() => handleSortType(index)}
+              className={classNames(
+                'sort-options',
+                sort === index ? 'active' : ''
+              )}
+            >
+              {item}
+            </p>
           ))}
         </div>
       </div>
@@ -234,7 +252,7 @@ const Filter = ({ shop = false }) => {
               </div>
               {toggleColor && (
                 <div className='items'>
-                  {colorFilter.map((item, index) => (
+                  {colorList.map((item, index) => (
                     <div
                       onClick={() => handleFilter(setColor, color, index)}
                       key={index}
@@ -242,7 +260,7 @@ const Filter = ({ shop = false }) => {
                       <span>
                         <Checkbox filter toggle={color.includes(index)} />
                       </span>
-                      <p>{item}</p>
+                      <p>{t(item.key)}</p>
                     </div>
                   ))}
                 </div>
@@ -256,7 +274,7 @@ const Filter = ({ shop = false }) => {
               </div>
               {toggleSize && (
                 <div className='items size-filter'>
-                  {sizeFilter.map((item, index) => (
+                  {sizeList.map((item, index) => (
                     <div
                       onClick={() => handleFilter(setSize, size, index)}
                       key={index}
@@ -264,12 +282,27 @@ const Filter = ({ shop = false }) => {
                       <span>
                         <Checkbox filter toggle={size.includes(index)} />
                       </span>
-                      <p>{item}</p>
+                      <p>{item.key}</p>
                     </div>
                   ))}
                 </div>
               )}
             </div>
+            {(toggleSize || toggleColor) && (
+              <div className='handle-filter-mobile'>
+                <p onClick={handleClearFilter}>{t('clearFilters')}</p>
+                <div
+                  onClick={handleApplyFilter(
+                    filterCondition,
+                    setSearchParams,
+                    dispatch
+                  )}
+                  className='button'
+                >
+                  {t('apply')}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -279,8 +312,10 @@ const Filter = ({ shop = false }) => {
               {sortList.map((item, index) => (
                 <p
                   key={index}
-                  className={classNames({ active: sortSelect === index })}
-                  onClick={() => setSortSelect(index)}
+                  className={classNames('sort-options', {
+                    active: sort === index,
+                  })}
+                  onClick={() => handleSortType(index)}
                 >
                   {item}
                 </p>
@@ -301,4 +336,4 @@ Filter.propTypes = {
   shop: PropTypes.bool,
 };
 
-export default Filter;
+export default memo(Filter);
