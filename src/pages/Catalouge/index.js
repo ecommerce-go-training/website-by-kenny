@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { getProducts } from 'global/redux/product/thunk';
@@ -25,8 +25,7 @@ const Catalouge = () => {
   const { type } = useParams();
   const dispatch = useDispatch();
 
-  const [searchParams] = useSearchParams();
-  const searchKeyword = searchParams.get('searchKeyword');
+  const searchKeyword = localStorage.getItem('searchKeyword');
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage] = useState(8);
@@ -36,12 +35,6 @@ const Catalouge = () => {
 
   const handleSwitchPage = (pageNumber) => setCurrentPage(pageNumber);
 
-  // const filterColor = searchParams?.get('color')?.split(',');
-  // const convertColor = colorList
-  //   .filter(item => filterColor?.includes(item.key))
-  //   .map(item => item.value);
-  // const filterSize = searchParams?.get('size')?.split(',');
-
   const { fetched, displayProduct } = useSelector((state) => state.product);
 
   useEffect(() => {
@@ -50,63 +43,6 @@ const Catalouge = () => {
     }
     /*eslint-disable-next-line */
 	}, []);
-
-  // testing v1 ----------------------------- //
-
-  // const categoryProductList = productList.filter(
-  //   (item) => item?.category?.name === type
-  // );
-  // const salesProduct = productList.filter((item) => item?.discount?.status);
-
-  // let currentItemShow = [];
-  // let totalData = [];
-
-  // switch(type) {
-  // case 'sale':
-  //   totalData = [...salesProduct];
-  //   if (filterSize || filterColor) {
-  //     currentItemShow = salesProduct.map(item => {
-  //       return {
-  //         ...item,
-  //         inventories: item.inventories.filter(item =>
-  //           convertColor.includes(item.color) ||
-  //           filterSize.includes(item.size))};
-  //     }).filter(item => item.inventories.length !== 0)
-  //       .slice(indexOfFirstItem, indexOfLastItem);
-  //   } else {
-  //     currentItemShow = salesProduct.slice(indexOfFirstItem, indexOfLastItem);
-  //   }
-  //   break;
-  // case 'search-result':
-  //   totalData = [...searchProduct];
-  //   if (filterSize || filterColor) {
-  //     currentItemShow = searchProduct.map(item => {
-  //       return {
-  //         ...item,
-  //         inventories: item.inventories.filter(item =>
-  //           convertColor.includes(item.color) ||
-  //           filterSize.includes(item.size))};
-  //     }).filter(item => item.inventories.length !== 0)
-  //       .slice(indexOfFirstItem, indexOfLastItem);
-  //   } else {
-  //     currentItemShow = searchProduct.slice(indexOfFirstItem, indexOfLastItem);
-  //   }
-  //   break;
-  // default :
-  //   totalData = [...categoryProductList];
-  //   if (filterSize || filterColor) {
-  //     currentItemShow = categoryProductList.map(item => {
-  //       return {
-  //         ...item,
-  //         inventories: item.inventories.filter(item =>
-  //           convertColor.includes(item.color) ||
-  //           filterSize.includes(item.size))};
-  //     }).filter(item => item.inventories.length !== 0)
-  //       .slice(indexOfFirstItem, indexOfLastItem);
-  //   } else {
-  //     currentItemShow = categoryProductList.slice(indexOfFirstItem, indexOfLastItem);
-  //   }
-  // }
 
   // testing v2 ----------------------------- //
 

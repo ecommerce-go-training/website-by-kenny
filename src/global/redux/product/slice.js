@@ -7,11 +7,13 @@ const initialState = {
   productList    : [],
   currentProduct : [],
   displayProduct : [],
+  searchProduct  : [],
   categoryProduct: [],
   filterProduct  : [],
   sortProduct    : [],
   isLoading      : false,
   fetched        : false,
+  isSearching    : false,
 };
 
 const productSlice = createSlice({
@@ -19,12 +21,14 @@ const productSlice = createSlice({
   initialState: initialState,
   reducers    : {
     search: (state, action) => {
-      state.displayProduct = state.productList.filter((item) =>
+      state.searchProduct = state.productList.filter((item) =>
         item.name.toLowerCase().includes(action.payload.toLowerCase())
       );
+      state.isSearching = true;
+      state.displayProduct = [...state.searchProduct];
     },
     filterByCategory: (state, action) => {
-      state.filterProduct = [];
+      state.isSearching = false;
       state.categoryProduct = state.productList.filter((item) =>
         action.payload === 'sale'
           ? item.discount?.status
@@ -33,7 +37,10 @@ const productSlice = createSlice({
       state.displayProduct = [...state.categoryProduct];
     },
     filterBySizeColor: (state, action) => {
-      state.filterProduct = state.categoryProduct
+      // state.filterProduct = state.categoryProduct
+      state.filterProduct = state[
+        state.isSearching ? 'searchProduct' : 'categoryProduct'
+      ]
         .map((item) => {
           return {
             ...item,
@@ -48,7 +55,9 @@ const productSlice = createSlice({
       state.displayProduct = [...state.filterProduct];
     },
     clearFilter: (state) => {
-      state.displayProduct = [...state.categoryProduct];
+      state.isSearching
+        ? (state.displayProduct = [...state.searchProduct])
+        : (state.displayProduct = [...state.categoryProduct]);
     },
     sortProduct: (state) => {
       console.log(state.displayProduct);

@@ -27,6 +27,7 @@ const Search = ({ toggle, setToggle }) => {
     if (searchInput) {
       dispatch(search(searchInput));
       setToggle(false);
+      localStorage.setItem('searchKeyword', searchInput);
       setSearchInput('');
       navigate({
         pathname: '/catalouge/search-result',
