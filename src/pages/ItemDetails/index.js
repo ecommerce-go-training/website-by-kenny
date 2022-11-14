@@ -13,6 +13,8 @@ import WaitlistForm from './WaitlistForm';
 import { formatCurrency } from 'utils/helpers';
 import { getProduct } from 'global/redux/product/thunk';
 
+import { blackCheck } from 'assets/images';
+
 import {
   cataBackDress,
   cataPinkDress,
@@ -28,12 +30,13 @@ import './style.scss';
 
 const ItemDetails = () => {
   const { state } = useLocation();
-  const { img, initColor } = state;
+  const { img } = state;
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ItemDetails',
   });
   const dispatch = useDispatch();
   const { currentProduct } = useSelector((state) => state.product);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -53,7 +56,7 @@ const ItemDetails = () => {
   ];
 
   const [size, setSize] = useState(0);
-  const [color, setColor] = useState(initColor);
+  const [color, setColor] = useState(null);
   const [toggleWaitForm, setToggleWaitForm] = useState(false);
 
   const handleWaitForm = () => setToggleWaitForm(!toggleWaitForm);
@@ -82,15 +85,7 @@ const ItemDetails = () => {
           <p>{currentProduct?.category?.name}</p>
           <p>{currentProduct?.name}</p>
           <p>
-            {formatCurrency(
-              'VND',
-              currentProduct?.discount?.status
-                ? currentProduct?.price -
-										(currentProduct?.price *
-											currentProduct?.discount?.percent) /
-											100
-                : currentProduct?.price
-            )}
+            {formatCurrency('VND', currentProduct.totalPrice)}
             {currentProduct?.discount?.status && (
               <span className='old-price'>
                 {' '}
@@ -103,27 +98,35 @@ const ItemDetails = () => {
             <div>
               <p>size</p>
               <div>
-                {currentProduct?.inventories?.map((item, index) => (
+                {currentProduct?.sizeColorList?.size.map((item, index) => (
                   <p
                     key={index}
                     className={size === index ? 'active' : ''}
                     onClick={() => {
                       setSize(index);
-                      setColor(item.color);
                     }}
                   >
-                    {item.size}
+                    {item}
                   </p>
                 ))}
               </div>
             </div>
             <div>
               <p>color</p>
-              <input
-                type='color'
-                id='color1'
-                defaultValue={color ? color : '#000000'}
-              />
+              <div className='product-color-div'>
+                {currentProduct?.sizeColorList?.color.map((item, index) => (
+                  <div
+                    key={index}
+                    className='product-color'
+                    style={{ backgroundColor: item }}
+                    onClick={() => setColor(item)}
+                  >
+                    {color === item && (
+                      <img src={blackCheck} alt='icon image' />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <Button

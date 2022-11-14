@@ -13,7 +13,13 @@ import { clearFilter } from 'global/redux/product/slice';
 import './style.scss';
 import { plus, minus } from 'assets/images';
 
-const Filter = ({ shop = false, sort = null, setSort, handleApplyFilter }) => {
+const Filter = ({
+  shop = false,
+  sort = null,
+  setSort,
+  handleApplyFilter,
+  handleSortFilter,
+}) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Filter',
   });
@@ -107,11 +113,8 @@ const Filter = ({ shop = false, sort = null, setSort, handleApplyFilter }) => {
     setColor([]);
     setSize([]);
     setSearchParams({});
+    setSort(null);
     dispatch(clearFilter());
-  };
-
-  const handleSortType = (index) => {
-    setSort(index);
   };
 
   return (
@@ -211,7 +214,7 @@ const Filter = ({ shop = false, sort = null, setSort, handleApplyFilter }) => {
           {sortList.map((item, index) => (
             <p
               key={index}
-              onClick={() => handleSortType(index)}
+              onClick={() => handleSortFilter(dispatch, index)}
               className={classNames(
                 'sort-options',
                 sort === index ? 'active' : ''
@@ -315,7 +318,7 @@ const Filter = ({ shop = false, sort = null, setSort, handleApplyFilter }) => {
                   className={classNames('sort-options', {
                     active: sort === index,
                   })}
-                  onClick={() => handleSortType(index)}
+                  onClick={() => handleSortFilter(dispatch, index)}
                 >
                   {item}
                 </p>

@@ -2,7 +2,7 @@ import React, { useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { formatCurrency, modifyLocalStorage } from 'utils/helpers';
+import { formatCurrency } from 'utils/helpers';
 
 import { plus } from 'assets/images';
 
@@ -15,19 +15,12 @@ const CatalougeItem = ({ data }) => {
   });
   const [size, setSize] = useState(0);
 
-  const isLogin = modifyLocalStorage('getItem', 'isLogin');
-
   const handleClick = () => {
-    if (isLogin) {
-      navigate(`/details/${data.id}`, {
-        state: {
-          img      : data?.image?.detailImages,
-          initColor: data?.inventories[0]?.color,
-        },
-      });
-    } else {
-      navigate('/sign-in');
-    }
+    navigate(`/details/${data.id}`, {
+      state: {
+        img: data?.image?.detailImages,
+      },
+    });
   };
 
   return (
@@ -58,14 +51,7 @@ const CatalougeItem = ({ data }) => {
         <div className='item-info'>
           <div>
             <p>{data.name}</p>
-            <p>
-              {formatCurrency(
-                'VND',
-                data?.discount?.status
-                  ? data?.price - (data?.price * data?.discount?.percent) / 100
-                  : data?.price
-              )}
-            </p>
+            <p>{formatCurrency('VND', data.totalPrice)}</p>
           </div>
           <div>
             <p className='category-info'>{data.category.name}</p>

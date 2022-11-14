@@ -10,7 +10,6 @@ const initialState = {
   searchProduct  : [],
   categoryProduct: [],
   filterProduct  : [],
-  sortProduct    : [],
   isLoading      : false,
   fetched        : false,
   isSearching    : false,
@@ -37,7 +36,6 @@ const productSlice = createSlice({
       state.displayProduct = [...state.categoryProduct];
     },
     filterBySizeColor: (state, action) => {
-      // state.filterProduct = state.categoryProduct
       state.filterProduct = state[
         state.isSearching ? 'searchProduct' : 'categoryProduct'
       ]
@@ -59,8 +57,22 @@ const productSlice = createSlice({
         ? (state.displayProduct = [...state.searchProduct])
         : (state.displayProduct = [...state.categoryProduct]);
     },
-    sortProduct: (state) => {
-      console.log(state.displayProduct);
+    sortProduct: (state, action) => {
+      switch (action.payload) {
+      case 0:
+        state.displayProduct.sort(
+          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+        );
+        break;
+      case 2:
+        state.displayProduct.sort((a, b) => b.totalPrice - a.totalPrice);
+        break;
+      case 3:
+        state.displayProduct.sort((a, b) => a.totalPrice - b.totalPrice);
+        break;
+      default:
+        return;
+      }
     },
     // temporary use only because theres no real img, delete once we have img from be
     resetProduct: (state) => {
@@ -77,7 +89,13 @@ const productSlice = createSlice({
       state.fetched = true;
       /* eslint-disable */
 			state.productList = action?.payload?.data.map(
-				(item) => (item = { ...item, image: imageGenerator() })
+				(item) =>
+					(item = {
+						...item,
+						image: imageGenerator(),
+						totalPrice:
+							item.price - (item.price * item?.discount?.percent || 0) / 100,
+					})
 			);
 		},
 		[getProducts.rejected]: (state) => {
@@ -88,7 +106,20 @@ const productSlice = createSlice({
 		},
 		[getProduct.fulfilled]: (state, action) => {
 			state.isLoading = false;
-			state.currentProduct = action?.payload?.data;
+			const price = action?.payload?.data?.price;
+			const percent = action?.payload?.data.discount?.percent || 0;
+			const inventories = action?.payload?.data?.inventories;
+			const sizeList = ['freesize', 'XS', 'S', 'M', 'L', 'XL'];
+			state.currentProduct = {
+				...action?.payload?.data,
+				totalPrice: price - (price * percent) / 100,
+				sizeColorList: {
+					size: [...new Set(inventories.map((item) => item.size))].sort(
+						(a, b) => sizeList.indexOf(a) - sizeList.indexOf(b)
+					),
+					color: [...new Set(inventories.map((item) => item.color))],
+				},
+			};
 		},
 		[getProduct.rejected]: (state) => {
 			state.isLoading = false;

@@ -132,6 +132,25 @@
       justify-content: space-between;
       margin-bottom: 20px;
 
+      & .product-color-div {
+        display: flex;
+        gap: 5px;
+        margin-top: 22px;
+
+        & .product-color {
+          width: 25px;
+          height: 25px;
+          border: 1px solid $black;
+          border-radius: 50%;
+          cursor: pointer;
+
+          @include responsive(mobile) {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
       &>div:first-child {
         &>p {
           font-size: 13px;
@@ -178,14 +197,6 @@
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: $grey;
-        }
-
-        &>input[type="color"] {
-          margin-top: 20px;
-
-          @include responsive(mobile) {
-            margin-left: 20px;
-          }
         }
       }
     }
@@ -235,30 +246,4 @@
     text-transform: uppercase;
     color: $black;
   }
-}
-
-#color1 {
-  cursor: pointer;
-  padding: 0;
-  border: 1px solid $black;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-
-  @include responsive(mobile) {
-    width: 25px;
-    height: 25px;
-  }
-}
-
-#color1::-webkit-color-swatch {
-  border: none;
-  border-radius: 50%;
-  padding: 0;
-}
-
-#color1::-webkit-color-swatch-wrapper {
-  border: none;
-  border-radius: 50%;
-  padding: 0;
 }

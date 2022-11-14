@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { getProducts } from 'global/redux/product/thunk';
@@ -11,12 +11,16 @@ import Footer from 'components/Footer';
 import Pagination from 'components/Pagination';
 import CatalougeItem from 'components/CatalougeItem';
 
-import './style.scss';
 import {
   filterByCategory,
   filterBySizeColor,
   search,
+  sortProduct,
 } from 'global/redux/product/slice';
+
+import { colorList } from 'utils/constants';
+
+import './style.scss';
 
 const Catalouge = () => {
   const { t } = useTranslation('translation', {
@@ -37,6 +41,17 @@ const Catalouge = () => {
 
   const { fetched, displayProduct } = useSelector((state) => state.product);
 
+  const [searchParams] = useSearchParams();
+
+  const filterCondition = {
+    color: colorList
+      .filter((item) =>
+        searchParams.get('color')?.split(',').includes(item.key)
+      )
+      .map((item) => item.value),
+    size: searchParams.get('size')?.split(','),
+  };
+
   useEffect(() => {
     if (!fetched) {
       dispatch(getProducts());
@@ -44,13 +59,17 @@ const Catalouge = () => {
     /*eslint-disable-next-line */
 	}, []);
 
-  // testing v2 ----------------------------- //
-
   useEffect(() => {
     if (type === 'search-result') {
       dispatch(search(searchKeyword));
     } else {
       dispatch(filterByCategory(type));
+    }
+    if (
+      filterCondition?.color?.length > 0 ||
+			filterCondition?.size?.length > 0
+    ) {
+      dispatch(filterBySizeColor(filterCondition));
     }
     /*eslint-disable-next-line */
 	}, [type]);
@@ -63,8 +82,16 @@ const Catalouge = () => {
       return;
     } else {
       setSearchParams({
-        color: filterCondition?.color.map((item) => item).toString(),
-        size : filterCondition?.size.map((item) => item).toString(),
+        color: colorList
+          .filter((item) =>
+            filterCondition?.color
+              .map((item) => item)
+              .toString()
+              .includes(item.value)
+          )
+          .map((item) => item.key)
+          .toString(),
+        size: filterCondition?.size.map((item) => item).toString(),
       });
       dispatch(filterBySizeColor(filterCondition));
     }
@@ -75,6 +102,11 @@ const Catalouge = () => {
   );
   const [sort, setSort] = useState(null);
 
+  const handleSortFilter = (dispatch, index) => {
+    setSort(index);
+    dispatch(sortProduct(index));
+  };
+
   return (
     <div>
       <Header catalouge disableAnnounce />
@@ -84,6 +116,7 @@ const Catalouge = () => {
             sort={sort}
             setSort={setSort}
             handleApplyFilter={handleApplyFilter}
+            handleSortFilter={handleSortFilter}
           />
         </div>
         <div className='catalouge__items'>
