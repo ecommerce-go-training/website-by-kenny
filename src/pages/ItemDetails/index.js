@@ -15,17 +15,6 @@ import { getProduct } from 'global/redux/product/thunk';
 
 import { blackCheck } from 'assets/images';
 
-import {
-  cataBackDress,
-  cataPinkDress,
-  cataPurpleDress,
-  cataWhiteDress,
-  whiteDress,
-  greenDress,
-  backDress,
-  orangeDress,
-} from 'assets/images';
-
 import './style.scss';
 
 const ItemDetails = () => {
@@ -35,25 +24,16 @@ const ItemDetails = () => {
     keyPrefix: 'Pages.ItemDetails',
   });
   const dispatch = useDispatch();
-  const { currentProduct } = useSelector((state) => state.product);
+  const { currentProduct, productList } = useSelector((state) => state.product);
 
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getProduct(id));
     /* eslint-disable-next-line */
-	}, []);
+	}, [id]);
 
-  const moreItem = [
-    cataBackDress,
-    cataPinkDress,
-    cataPurpleDress,
-    cataWhiteDress,
-    whiteDress,
-    greenDress,
-    backDress,
-    orangeDress,
-  ];
+  const moreItem = [...productList].sort(() => 0.5 - Math.random()).slice(0, 8);
 
   const [size, setSize] = useState(0);
   const [color, setColor] = useState(null);
@@ -66,7 +46,7 @@ const ItemDetails = () => {
       <Header catalouge disableAnnounce />
       <div className='details'>
         <Slider3>
-          {img.map((item, index) => (
+          {img?.map((item, index) => (
             <Slider3Item key={index}>
               <div>
                 <img src={item} alt='dress image' />
@@ -75,7 +55,7 @@ const ItemDetails = () => {
           ))}
         </Slider3>
         <div className='details__img'>
-          {img.map((item, index) => (
+          {img?.map((item, index) => (
             <div key={index}>
               <img src={item} alt='testing img' />
             </div>
@@ -178,7 +158,7 @@ const ItemDetails = () => {
       </div>
       <div className='moreItem'>
         <p>{t('more')}</p>
-        <Slider2 images={moreItem} />
+        <Slider2 data={moreItem} />
       </div>
     </div>
   );

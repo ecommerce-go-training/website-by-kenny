@@ -12,21 +12,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Slider2 from 'components/Sliderv2';
 
-import {
-  subBg1,
-  subBg2,
-  model1,
-  model2,
-  background,
-  beachEdit1,
-  beachEdit2,
-  beachEdit3,
-  beachEdit4,
-  newArrival1,
-  newArrival2,
-  newArrival3,
-  newArrival4,
-} from 'assets/images';
+import { subBg1, subBg2, model1, model2, background } from 'assets/images';
 
 import './style.scss';
 
@@ -35,16 +21,14 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { fetched } = useSelector((state) => state.product);
-  const images = [
-    beachEdit1,
-    beachEdit2,
-    beachEdit3,
-    beachEdit4,
-    newArrival1,
-    newArrival2,
-    newArrival3,
-    newArrival4,
-  ];
+  const { productList } = useSelector((state) => state.product);
+  const newArrivalSliderItem = [...productList]
+    .filter((item) => item?.category?.name === 'new-arrivals')
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 8);
+  const recommendSliderItem = [...productList]
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 8);
 
   const [active, setActive] = useState(true);
   const toggleOn = classNames({
@@ -100,7 +84,7 @@ const Home = () => {
               {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
-          <Slider2 images={images} />
+          <Slider2 data={newArrivalSliderItem} />
         </div>
         <div className='home__doublebg'>
           <img src={subBg1} alt='Knitwear bg img' />
@@ -112,7 +96,7 @@ const Home = () => {
               {t('theBeachEdit')}
             </p>
           </Stack>
-          <Slider2 images={images} />
+          <Slider2 data={recommendSliderItem} />
         </div>
         <Link to='/' className='home__follow'>
           {t('follow')} @ÉLEMUSH.XO

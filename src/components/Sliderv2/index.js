@@ -6,7 +6,7 @@ import { plus, leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-const Slider2 = ({ images }) => {
+const Slider2 = ({ data }) => {
   const navigate = useNavigate();
   const sliderItem = useRef(null);
 
@@ -24,33 +24,35 @@ const Slider2 = ({ images }) => {
         <img onClick={handleClick} src={leftArrow} alt='left arrow img' />
       </div>
       <div className='slider' ref={sliderItem}>
-        {images.map((item, index) => (
+        {data?.map((item, index) => (
           <div key={index} className='slider__item'>
             <div className='slider__item-img'>
               <img
                 onClick={() =>
-                  navigate('/details:id', {
+                  navigate(`/details/${item.id}`, {
                     state: {
-                      img        : item,
-                      name       : item.name || 'add name',
-                      price      : item.price || 'add price',
-                      catalouge  : item.catalouge || 'add catalouge',
-                      description: item.description || 'add des',
-                      care       : item.care || 'add garment care',
-                      details    : item.details || 'add item details',
+                      img: item?.image?.detailImages,
                     },
                   })
                 }
-                src={item}
+                src={item?.image?.mainImage}
                 alt='item img'
               />
-              <div>
+              <div
+                onClick={() =>
+                  navigate(`/details/${item.id}`, {
+                    state: {
+                      img: item?.image?.detailImages,
+                    },
+                  })
+                }
+              >
                 <img src={plus} alt='icon img' />
                 <p>more info</p>
               </div>
             </div>
             <div className='slider__item-description'>
-              <p>Add later</p>
+              <p>{item.name}</p>
             </div>
           </div>
         ))}
@@ -63,7 +65,7 @@ const Slider2 = ({ images }) => {
 };
 
 Slider2.propTypes = {
-  images: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default Slider2;
