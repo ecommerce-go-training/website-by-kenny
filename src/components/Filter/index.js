@@ -81,15 +81,26 @@ const Filter = ({
     t('priceLowest'),
   ];
 
-  const [color, setColor] = useState([]);
-  const [size, setSize] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const filterColor = searchParams?.get('color')?.split(',');
+  const colorIndexes = filterColor?.map((item) =>
+    colorList.map((item) => item.key).indexOf(item)
+  );
+  const filterSize = searchParams?.get('size')?.split(',');
+  const sizeIndexes = filterSize?.map((item) =>
+    sizeList.map((item) => item.key).indexOf(item)
+  );
+
+  const [color, setColor] = useState(colorIndexes);
+  const [size, setSize] = useState(sizeIndexes);
 
   const filterCondition = {
     color: colorList
-      .filter((item, index) => color.includes(index))
+      .filter((item, index) => color?.includes(index))
       .map((item) => item.value),
     size: sizeList
-      .filter((item, index) => size.includes(index))
+      .filter((item, index) => size?.includes(index))
       .map((item) => item.value),
   };
 
@@ -106,8 +117,6 @@ const Filter = ({
       ]);
     } else func((prev) => [...prev, index]);
   };
-
-  const [, setSearchParams] = useSearchParams();
 
   const handleClearFilter = () => {
     setColor([]);
@@ -161,7 +170,7 @@ const Filter = ({
                     key={index}
                   >
                     <span>
-                      <Checkbox filter toggle={color.includes(index)} />
+                      <Checkbox filter toggle={color?.includes(index)} />
                     </span>
                     <p>{t(item.key)}</p>
                   </div>
@@ -183,7 +192,7 @@ const Filter = ({
                     key={index}
                   >
                     <span>
-                      <Checkbox filter toggle={size.includes(index)} />
+                      <Checkbox filter toggle={size?.includes(index)} />
                     </span>
                     <p>{item.key}</p>
                   </div>
@@ -261,7 +270,7 @@ const Filter = ({
                       key={index}
                     >
                       <span>
-                        <Checkbox filter toggle={color.includes(index)} />
+                        <Checkbox filter toggle={color?.includes(index)} />
                       </span>
                       <p>{t(item.key)}</p>
                     </div>
@@ -283,7 +292,7 @@ const Filter = ({
                       key={index}
                     >
                       <span>
-                        <Checkbox filter toggle={size.includes(index)} />
+                        <Checkbox filter toggle={size?.includes(index)} />
                       </span>
                       <p>{item.key}</p>
                     </div>
