@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import React, { useRef } from 'react';
 
+import { formatCurrency } from 'utils/helpers';
+
 import { plus, leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
@@ -53,6 +55,7 @@ const Slider2 = ({ data }) => {
             </div>
             <div className='slider__item-description'>
               <p>{item.name}</p>
+              <p>{formatCurrency('VND', item.totalPrice)}</p>
             </div>
           </div>
         ))}

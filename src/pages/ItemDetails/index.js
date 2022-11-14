@@ -12,20 +12,23 @@ import WaitlistForm from './WaitlistForm';
 
 import { formatCurrency } from 'utils/helpers';
 import { getProduct } from 'global/redux/product/thunk';
+import { addItem } from 'global/redux/cart/slice';
 
 import { blackCheck } from 'assets/images';
 
 import './style.scss';
 
 const ItemDetails = () => {
-  const { state } = useLocation();
-  const { img } = state;
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ItemDetails',
   });
-  const dispatch = useDispatch();
-  const { currentProduct, productList } = useSelector((state) => state.product);
 
+  const { state } = useLocation();
+  const { img } = state;
+
+  const dispatch = useDispatch();
+
+  const { currentProduct, productList } = useSelector((state) => state.product);
   const { id } = useParams();
 
   useEffect(() => {
@@ -40,6 +43,12 @@ const ItemDetails = () => {
   const [toggleWaitForm, setToggleWaitForm] = useState(false);
 
   const handleWaitForm = () => setToggleWaitForm(!toggleWaitForm);
+
+  // cart logic ----------------------- //
+
+  const handleAddItem = (data) => {
+    dispatch(addItem(data));
+  };
 
   return (
     <div>
@@ -102,7 +111,11 @@ const ItemDetails = () => {
                     onClick={() => setColor(item)}
                   >
                     {color === item && (
-                      <img src={blackCheck} alt='icon image' />
+                      <img
+                        className='blackCheck-icon'
+                        src={blackCheck}
+                        alt='icon image'
+                      />
                     )}
                   </div>
                 ))}
@@ -110,7 +123,16 @@ const ItemDetails = () => {
             </div>
           </div>
           <Button
-            handleClick={currentProduct?.inventories ? null : handleWaitForm}
+            handleClick={
+              currentProduct?.inventories
+                ? () =>
+                  handleAddItem({
+                    ...currentProduct,
+                    size : size,
+                    color: color,
+                  })
+                : handleWaitForm
+            }
           >
             <p>
               {currentProduct?.inventories ? t('addToCart') : t('waitList')}

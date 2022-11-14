@@ -27,6 +27,12 @@
     }
   }
 
+  & .blackCheck-icon {
+    @include responsive(mobile) {
+      width: 20px;
+    }
+  }
+
   &__img {
     width: 65%;
     display: flex;

@@ -28,7 +28,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
   const dispatch = useDispatch();
 
   const { userInfo, fetched } = useSelector((state) => state.auth);
-  const cartItem = useSelector((state) => state.cart.cartItem);
+  const { cartItem } = useSelector((state) => state.cart);
 
   const isLogin = modifyLocalStorage('getItem', 'isLogin');
 
@@ -132,7 +132,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
 						)}
 					</Link>
 					<div onClick={() => setToggleCart(true)}>
-						{!login && <p className='item-quantity'>{cartItem.length}</p>}
+						{!login && <p className='item-quantity'>{cartItem?.length}</p>}
 						<img
 							src={
 								moveBg || login || store || catalouge
