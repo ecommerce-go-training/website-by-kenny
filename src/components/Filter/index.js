@@ -92,8 +92,10 @@ const Filter = ({
     sizeList.map((item) => item.key).indexOf(item)
   );
 
-  const [color, setColor] = useState(colorIndexes);
-  const [size, setSize] = useState(sizeIndexes);
+  const [color, setColor] = useState(
+    filterColor?.length > 0 ? colorIndexes : []
+  );
+  const [size, setSize] = useState(filterSize?.length > 0 ? sizeIndexes : []);
 
   const filterCondition = {
     color: colorList
