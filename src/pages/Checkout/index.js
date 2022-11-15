@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,7 +33,13 @@ import './style.scss';
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const cartItem = useSelector((state) => state.cart);
+
+  const { cartItem } = useSelector((state) => state.cart);
+  const totalPrice = cartItem
+    .map((item) => item.quantity * item.totalPrice)
+    .reduce((item, sum) => item + sum, 0);
+  const [shipFee] = useState(null);
+
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Checkout' });
   const {
     watch,
@@ -64,6 +70,13 @@ const Checkout = () => {
     navigate('/payment-success');
   };
 
+  useEffect(() => {
+    if (localStorage.getItem('isLogin') !== 'true') {
+      navigate('/sign-in');
+    }
+    /*eslint-disable-next-line */
+	}, [localStorage.getItem('isLogin')]);
+
   return (
     <div className='checkout'>
       <div className='checkout-info'>
@@ -80,17 +93,12 @@ const Checkout = () => {
                 alt='icon image'
               />
             </div>
-            <p>
-              {Intl.NumberFormat('vi-VIET', {
-                style   : 'currency',
-                currency: 'VND',
-              }).format(250)}
-            </p>
+            <p>{formatCurrency('VND', 450)}</p>
           </div>
           {toggleSummary && (
             <div>
               <div className='summary-bill'>
-                {cartItem.cartItem.map((item, index) => (
+                {cartItem.map((item, index) => (
                   <Item key={index} data={item} />
                 ))}
               </div>
@@ -119,29 +127,19 @@ const Checkout = () => {
               <div className='summary-subtotal'>
                 <div>
                   <p>{t('subtotal')}</p>
-                  <p>
-                    {Intl.NumberFormat('vi-VIET', {
-                      style   : 'currency',
-                      currency: 'VND',
-                    }).format(250)}
-                  </p>
+                  <p>{formatCurrency('VND', 450)}</p>
                 </div>
                 <div>
                   <p>{t('shipping')}</p>
-                  <p>
-                    {Intl.NumberFormat('vi-VIET', {
-                      style   : 'currency',
-                      currency: 'VND',
-                    }).format(250)}
-                  </p>
+                  <p>{formatCurrency('VND', 450)}</p>
                 </div>
               </div>
               <div className='summary-total'>
                 <p>{t('total')}</p>
                 <p>
                   {formatCurrency(
-                    t('unit'),
-                    cartItem.cartItem
+                    'VND',
+                    cartItem
                       .map((item) => item.price * item.quantity)
                       .reduce((item, sum) => item + sum, 0)
                   )}
@@ -428,7 +426,7 @@ const Checkout = () => {
                   </div>
                   {billOption === 2 && (
                     <section className='form-info'>
-                      <div>
+                      <div className='form-info-double'>
                         <Input
                           register={register}
                           error={errors.firstName?.message}
@@ -462,7 +460,7 @@ const Checkout = () => {
                         inputCheck={watch('city')}
                         greyBg
                       />
-                      <div>
+                      <div className='form-info-double'>
                         <Input
                           register={register}
                           error={errors.countryReg?.message}
@@ -517,7 +515,7 @@ const Checkout = () => {
       </div>
       <div className='checkout-item'>
         <div className='checkout-item-images'>
-          {cartItem.cartItem.map((item, index) => (
+          {cartItem.map((item, index) => (
             <Item key={index} data={item} />
           ))}
         </div>
@@ -544,23 +542,20 @@ const Checkout = () => {
         <div className='checkout-item-subtotal'>
           <div>
             <p>{t('subtotal')}</p>
-            <p>{t('unit')}250.00</p>
+            <p>{formatCurrency('VND', totalPrice)}</p>
           </div>
           <div>
             <p>{t('shipping')}</p>
-            <p>{t('calcNextStep')}</p>
+            {shipFee ? (
+              <p>{formatCurrency('VND', shipFee)}</p>
+            ) : (
+              <p>{t('calcNextStep')}</p>
+            )}
           </div>
         </div>
         <div className='checkout-item-total'>
           <p>{t('total')}</p>
-          <p>
-            {formatCurrency(
-              t('unit'),
-              cartItem.cartItem
-                .map((item) => item.price * item.quantity)
-                .reduce((item, sum) => item + sum, 0)
-            )}
-          </p>
+          <p>{formatCurrency('VND', totalPrice + shipFee)}</p>
         </div>
         <div className='checkout-item-contact'>
           <div>

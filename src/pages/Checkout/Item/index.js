@@ -2,24 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { formatCurrency } from 'utils/helpers';
+import { colorList } from 'utils/constants';
+
 import './style.scss';
 
 const Item = ({ textQuantity = false, data }) => {
+  const convertColor =
+		colorList.filter((item) => item.value === data.color).length > 0
+		  ? colorList
+		    .filter((item) => item.value === data.color)
+		    .map((item) => item.key)
+		  : data.color;
+
   return (
     <div className='checkout-item-image'>
       <div className='item-img'>
         <p className={classNames({ hide: textQuantity })}>{data.quantity}</p>
-        <img src={data.image} alt='dress image' />
+        <img src={data.image.mainImage} alt='dress image' />
       </div>
       <div className='item-info'>
         <div>
           <p>{data.name}</p>
           <p>
-            {data.color} / {data.size}{' '}
-            {textQuantity && `/ Qty ${data.quantity}`}
+            {convertColor.toString().charAt(0).toUpperCase() +
+							convertColor.toString().slice(1)}{' '}
+						/ {data.size} {textQuantity && `/ Qty ${data.quantity}`}
           </p>
         </div>
-        <p>USD ${data.price}</p>
+        <p>{formatCurrency('VND', data.totalPrice)}</p>
       </div>
     </div>
   );
