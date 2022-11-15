@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Header from 'components/Header';
@@ -12,7 +12,9 @@ import WaitlistForm from './WaitlistForm';
 
 import { formatCurrency } from 'utils/helpers';
 import { getProduct } from 'global/redux/product/thunk';
-import { addItem } from 'global/redux/cart/slice';
+import { addItem, addItemQuantity } from 'global/redux/cart/slice';
+
+import { showNoti } from 'utils/helpers';
 
 import { blackCheck } from 'assets/images';
 
@@ -23,12 +25,15 @@ const ItemDetails = () => {
     keyPrefix: 'Pages.ItemDetails',
   });
 
+  const navigate = useNavigate();
+
   const { state } = useLocation();
   const { img } = state;
 
   const dispatch = useDispatch();
 
   const { currentProduct, productList } = useSelector((state) => state.product);
+  const { cartItem } = useSelector((state) => state.cart);
   const { id } = useParams();
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const ItemDetails = () => {
 
   const moreItem = [...productList].sort(() => 0.5 - Math.random()).slice(0, 8);
 
-  const [size, setSize] = useState(0);
+  const [size, setSize] = useState(null);
   const [color, setColor] = useState(null);
   const [toggleWaitForm, setToggleWaitForm] = useState(false);
 
@@ -46,8 +51,49 @@ const ItemDetails = () => {
 
   // cart logic ----------------------- //
 
+  // const handleAddItem = (data) => {
+  //   if (color && size) {
+  //     if (cartItem.map(item => item.id).includes(data.id)) {
+  //       dispatch(addItemQuantity(data.id));
+  //     } else {
+  //       dispatch(addItem(data));
+  //     }
+  //     showNoti('success', 'Add success');
+  //   } else {
+  //     showNoti('error', 'Check size or color');
+  //   }
+  // };
+
   const handleAddItem = (data) => {
-    dispatch(addItem(data));
+    if (color && size) {
+      if (
+        cartItem
+          .filter((item) => item.id === data.id)
+          .filter(
+            (item) => item.color === data.color && item.size === data.size
+          ).length > 0
+      ) {
+        const index = cartItem.findIndex(
+          (item) => item.color === data.color && item.size === data.size
+        );
+        dispatch(addItemQuantity(index));
+      } else {
+        dispatch(addItem(data));
+      }
+      showNoti('success', 'Add success');
+    } else {
+      showNoti('error', 'Check size or color');
+    }
+  };
+
+  const handleClickImg = (item) => {
+    setSize(null);
+    setColor(null);
+    navigate(`/details/${item.id}`, {
+      state: {
+        img: item?.image,
+      },
+    });
   };
 
   return (
@@ -55,7 +101,7 @@ const ItemDetails = () => {
       <Header catalouge disableAnnounce />
       <div className='details'>
         <Slider3>
-          {img?.map((item, index) => (
+          {img?.detailImages?.map((item, index) => (
             <Slider3Item key={index}>
               <div>
                 <img src={item} alt='dress image' />
@@ -64,7 +110,7 @@ const ItemDetails = () => {
           ))}
         </Slider3>
         <div className='details__img'>
-          {img?.map((item, index) => (
+          {img?.detailImages?.map((item, index) => (
             <div key={index}>
               <img src={item} alt='testing img' />
             </div>
@@ -90,9 +136,9 @@ const ItemDetails = () => {
                 {currentProduct?.sizeColorList?.size.map((item, index) => (
                   <p
                     key={index}
-                    className={size === index ? 'active' : ''}
+                    className={size === item ? 'active' : ''}
                     onClick={() => {
-                      setSize(index);
+                      setSize(item);
                     }}
                   >
                     {item}
@@ -128,8 +174,11 @@ const ItemDetails = () => {
                 ? () =>
                   handleAddItem({
                     ...currentProduct,
-                    size : size,
-                    color: color,
+                    size    : size,
+                    color   : color,
+                    quantity: 1,
+                    // image   : img.mainImage
+                    image   : img,
                   })
                 : handleWaitForm
             }
@@ -180,7 +229,7 @@ const ItemDetails = () => {
       </div>
       <div className='moreItem'>
         <p>{t('more')}</p>
-        <Slider2 data={moreItem} />
+        <Slider2 handleClick={handleClickImg} data={moreItem} />
       </div>
     </div>
   );

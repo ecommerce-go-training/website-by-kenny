@@ -131,7 +131,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
 							t('login')
 						)}
 					</Link>
-					<div onClick={() => setToggleCart(true)}>
+					<div onClick={() => setToggleCart(login ? false : true)}>
 						{!login && <p className='item-quantity'>{cartItem?.length}</p>}
 						<img
 							src={

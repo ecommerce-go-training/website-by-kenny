@@ -18,7 +18,7 @@ const CatalougeItem = ({ data }) => {
   const handleClick = () => {
     navigate(`/details/${data.id}`, {
       state: {
-        img: data?.image?.detailImages,
+        img: data?.image,
       },
     });
   };

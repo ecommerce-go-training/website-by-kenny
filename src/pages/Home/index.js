@@ -51,6 +51,14 @@ const Home = () => {
     /*eslint-disable-next-line */
 	}, []);
 
+  const handleClickImg = (item) => {
+    navigate(`/details/${item.id}`, {
+      state: {
+        img: item?.image,
+      },
+    });
+  };
+
   return (
     <div>
       <Header />
@@ -84,7 +92,7 @@ const Home = () => {
               {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
-          <Slider2 data={newArrivalSliderItem} />
+          <Slider2 data={newArrivalSliderItem} handleClick={handleClickImg} />
         </div>
         <div className='home__doublebg'>
           <img src={subBg1} alt='Knitwear bg img' />
@@ -96,7 +104,7 @@ const Home = () => {
               {t('theBeachEdit')}
             </p>
           </Stack>
-          <Slider2 data={recommendSliderItem} />
+          <Slider2 data={recommendSliderItem} handleClick={handleClickImg} />
         </div>
         <Link to='/' className='home__follow'>
           {t('follow')} @ÉLEMUSH.XO

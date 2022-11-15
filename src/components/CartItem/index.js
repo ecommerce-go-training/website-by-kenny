@@ -1,30 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { formatCurrency } from 'utils/helpers';
-import {
-  addItemQuantity,
-  minusItemQuantity,
-  removeItem,
-} from 'global/redux/cart/slice';
 
 import { minus, plus } from 'assets/images';
+import { colorList } from 'utils/constants';
 
 import './style.scss';
 
-const CartItem = ({ data, handleRemove }) => {
-  const dispatch = useDispatch();
+const CartItem = ({ data, handleRemove, handleAddItem, handleMinusItem }) => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.CartItem',
   });
+  const navigate = useNavigate();
+
+  const convertColor =
+		colorList.filter((item) => item.value === data.color).length > 0
+		  ? colorList
+		    .filter((item) => item.value === data.color)
+		    .map((item) => item.key)
+		  : data.color;
 
   return (
     <div className='cart-item'>
       <div className='cart-item-info'>
         <p>
-          {data.name} | <b>{data.size}</b>
+          {data.name} | <b>{data.size}</b> | <b>{convertColor}</b>
         </p>
         <div className='item-price'>
           <div>
@@ -32,9 +35,9 @@ const CartItem = ({ data, handleRemove }) => {
               <img
                 onClick={() => {
                   if (data.quantity > 1) {
-                    dispatch(minusItemQuantity(data.id));
+                    handleMinusItem();
                   } else {
-                    dispatch(removeItem(data.id));
+                    handleRemove();
                   }
                 }}
                 src={minus}
@@ -44,21 +47,32 @@ const CartItem = ({ data, handleRemove }) => {
             <p>{data.quantity}</p>
             <div>
               <img
-                onClick={() => dispatch(addItemQuantity(data.id))}
+                // onClick={() => dispatch(addItemQuantity(data.id))}
+                onClick={handleAddItem}
                 src={plus}
                 alt='plus icon'
               />
             </div>
           </div>
-          <p>{formatCurrency(t('unit'), data.price)}</p>
+          <p>{formatCurrency('VND', data.totalPrice)}</p>
         </div>
         <div className='item-total'>
-          <p>{formatCurrency(t('unit'), data.price * data.quantity)}</p>
+          <p>{formatCurrency('VND', data.totalPrice * data.quantity)}</p>
           <p onClick={handleRemove}>{t('remove')}</p>
         </div>
       </div>
       <div className='cart-item-img'>
-        <img src={data.image} alt='cloth image' />
+        <img
+          onClick={() =>
+            navigate(`/details/${data.id}`, {
+              state: {
+                img: data?.image,
+              },
+            })
+          }
+          src={data.image.mainImage}
+          alt='cloth image'
+        />
       </div>
     </div>
   );

@@ -10,42 +10,50 @@ const cartSlice = createSlice({
   initialState: initialState,
   reducers    : {
     addItem: (state, action) => {
-      console.log(action.payload);
-      state.cartItem = [{ ...action.payload }];
+      state.cartItem = [...state.cartItem, action.payload];
     },
+    // removeItem: (state, action) => {
+    //   const newCartItem = state.cartItem.filter(
+    //     (item) => item.id !== action.payload
+    //   );
+    //   state.cartItem = [...newCartItem];
+    // },
     removeItem: (state, action) => {
-      const newCartItem = state.cartItem.filter(
-        (item) => item.id !== action.payload
-      );
-      state.cartItem = newCartItem;
+      state.cartItem.splice(action.payload, 1);
     },
+    // addItemQuantity: (state, action) => {
+    //   let newItem = state.cartItem.map((item) => {
+    //     if (item.id === action.payload) {
+    //       let addQuantity = {
+    //         ...item,
+    //         quantity: item.quantity + 1,
+    //       };
+    //       return addQuantity;
+    //     } else {
+    //       return item;
+    //     }
+    //   });
+    //   state.cartItem = [...newItem];
+    // },
     addItemQuantity: (state, action) => {
-      let newItem = state.cartItem.map((item) => {
-        if (item.id === action.payload) {
-          let addQuantity = {
-            ...item,
-            quantity: item.quantity + 1,
-          };
-          return addQuantity;
-        } else {
-          return item;
-        }
-      });
-      state.cartItem = newItem;
+      state.cartItem[action.payload].quantity += 1;
     },
+    // minusItemQuantity: (state, action) => {
+    //   let newItem = state.cartItem.map((item) => {
+    //     if (item.id === action.payload) {
+    //       let minusQuantity = {
+    //         ...item,
+    //         quantity: item.quantity - 1,
+    //       };
+    //       return minusQuantity;
+    //     } else {
+    //       return item;
+    //     }
+    //   });
+    //   state.cartItem = [...newItem];
+    // },
     minusItemQuantity: (state, action) => {
-      let newItem = state.cartItem.map((item) => {
-        if (item.id === action.payload) {
-          let minusQuantity = {
-            ...item,
-            quantity: item.quantity - 1,
-          };
-          return minusQuantity;
-        } else {
-          return item;
-        }
-      });
-      state.cartItem = newItem;
+      state.cartItem[action.payload].quantity -= 1;
     },
   },
 });

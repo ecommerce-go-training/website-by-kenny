@@ -8,11 +8,11 @@ import { plus, leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-const Slider2 = ({ data }) => {
+const Slider2 = ({ data, handleClick }) => {
   const navigate = useNavigate();
   const sliderItem = useRef(null);
 
-  const handleClick = () => {
+  const handleClickNav = () => {
     let view = sliderItem.current.scrollLeft;
     sliderItem.current.scrollLeft = sliderItem.current.offsetWidth * 10;
     if (sliderItem.current.scrollLeft === view && view > 0) {
@@ -23,20 +23,14 @@ const Slider2 = ({ data }) => {
   return (
     <div className='slider-container'>
       <div className='slider-button'>
-        <img onClick={handleClick} src={leftArrow} alt='left arrow img' />
+        <img onClick={handleClickNav} src={leftArrow} alt='left arrow img' />
       </div>
       <div className='slider' ref={sliderItem}>
         {data?.map((item, index) => (
           <div key={index} className='slider__item'>
             <div className='slider__item-img'>
               <img
-                onClick={() =>
-                  navigate(`/details/${item.id}`, {
-                    state: {
-                      img: item?.image?.detailImages,
-                    },
-                  })
-                }
+                onClick={() => handleClick(item)}
                 src={item?.image?.mainImage}
                 alt='item img'
               />
@@ -61,7 +55,7 @@ const Slider2 = ({ data }) => {
         ))}
       </div>
       <div className='slider-button'>
-        <img onClick={handleClick} src={rightArrow} alt='right arrow img' />
+        <img onClick={handleClickNav} src={rightArrow} alt='right arrow img' />
       </div>
     </div>
   );

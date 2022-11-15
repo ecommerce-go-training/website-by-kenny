@@ -19,40 +19,52 @@
   align-items: center;
   padding: 15px 0 10px 0;
   overflow: hidden;
+
   &.loginBtn {
     height: 50px;
   }
+
   &.border {
     box-sizing: border-box;
     border: 1px solid $black;
   }
+
   &.greyBorder {
     box-sizing: border-box;
     border: 1px solid $grey;
   }
+
   &.smallPad {
     padding: 10px 5px 5px 5px;
   }
+
   &.discount {
     box-sizing: border-box;
     padding: 20px 0;
   }
+
   &.blur {
     opacity: 0.4;
+
     &:hover {
       opacity: 0.4;
     }
   }
+
   &.whiteBg {
     background-color: $white;
     color: $black;
+    height: 100%;
   }
+
   &:hover {
     opacity: 0.8;
   }
+
   @include responsive(tablet) {
     font-size: 0.9rem;
   }
+
   @include responsive(mobile) {
     padding: 15px 0px;
     font-size: 0.7rem;
