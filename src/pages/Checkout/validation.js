@@ -14,13 +14,23 @@ const checkoutVal = yup.object().shape({
   cardNumber    : yup
     .number('Need to be number')
     .required("Can't be empty")
-    .typeError('Try again'),
-  cardName   : yup.string().required("Can't be empty").typeError('Try again'),
-  cardExpire : yup.date().required("Can't be empty").typeError('Try again'),
+    .typeError('Try again')
+    .notRequired(),
+  cardName: yup
+    .string()
+    .required("Can't be empty")
+    .typeError('Try again')
+    .notRequired(),
+  cardExpire: yup
+    .date()
+    .required("Can't be empty")
+    .typeError('Try again')
+    .notRequired(),
   cardSecCode: yup
     .number('Wrong format, need to be number')
     .required("Can't be empty")
-    .typeError('Try again'),
+    .typeError('Try again')
+    .notRequired(),
 });
 
 export default checkoutVal;
