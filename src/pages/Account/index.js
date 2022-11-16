@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'global/redux/auth/slice';
 import { clearAddress } from 'global/redux/address/slice';
 import { resetProduct } from 'global/redux/product/slice';
+import { useClickOutside } from 'utils/helpers';
 
 import {
   getAddress,
@@ -266,15 +267,7 @@ const Account = () => {
     /*eslint-disable-next-line */
 	}, []);
 
-  let confirmDeleteRef = useRef();
-
-  useEffect(() => {
-    window.addEventListener('mousedown', (e) => {
-      if (!confirmDeleteRef.current.contains(e.target)) {
-        setDeleteAddressConfirm(false);
-      }
-    });
-  }, []);
+  let confirmDeleteRef = useClickOutside(() => setDeleteAddressConfirm(false));
 
   return (
     <div className='account-container'>

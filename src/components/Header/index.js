@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ import Loading from 'components/Loading';
 
 import { getUser } from 'global/redux/auth/thunk';
 
-import { modifyLocalStorage } from 'utils/helpers';
+import { modifyLocalStorage, useClickOutside } from 'utils/helpers';
 
 import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
@@ -58,15 +58,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
     /*eslint-disable*/
 	}, []);
 
-	let shopRef = useRef();
-
-	useEffect(() => {
-		window.addEventListener('mousedown', (e) => {
-			if (!shopRef.current.contains(e.target)) {
-				setToggleShop(false);
-			}
-		});
-	}, []);
+	let shopRef = useClickOutside(() => setToggleShop(false));
 
 	return (
 		<div>

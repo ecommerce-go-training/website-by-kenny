@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo } from 'react';
 import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'components/Button';
 import CartItem from 'components/CartItem';
 
-import { formatCurrency, showNoti } from 'utils/helpers';
+import { formatCurrency, showNoti, useClickOutside } from 'utils/helpers';
 import {
   addItemQuantity,
   minusItemQuantity,
@@ -48,16 +48,7 @@ const QuickCart = ({ toggle, setToggle }) => {
     }
   };
 
-  let cartRef = useRef();
-
-  useEffect(() => {
-    document.addEventListener('mousedown', (e) => {
-      if (!cartRef.current.contains(e.target)) {
-        setToggle(false);
-      }
-    });
-    /* eslint-disable-next-line */
-	}, []);
+  let cartRef = useClickOutside(() => setToggle(false));
 
   return (
     <div

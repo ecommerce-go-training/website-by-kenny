@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getProducts } from 'global/redux/product/thunk';
-
 import Stack from 'components/Stack';
 import Button from 'components/Button';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Slider2 from 'components/Sliderv2';
+
+import { getProducts } from 'global/redux/product/thunk';
 
 import { subBg1, subBg2, model1, model2, background } from 'assets/images';
 

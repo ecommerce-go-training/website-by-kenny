@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { StorageKey } from 'utils/constants';
 import { imageList } from 'utils/constants';
@@ -30,6 +31,26 @@ const imageGenerator = () => {
   return imageList[Math.floor(Math.random() * imageList.length)];
 };
 
+const useClickOutside = (toggle) => {
+  let ref = useRef();
+
+  useEffect(() => {
+    let handler = (event) => {
+      if (!ref.current.contains(event.target)) {
+        toggle();
+      }
+    };
+
+    document.addEventListener('mousedown', handler);
+
+    return () => {
+      document.removeEventListener('mousedown', handler);
+    };
+  });
+
+  return ref;
+};
+
 export {
   formatCurrency,
   getLoginToken,
@@ -38,4 +59,5 @@ export {
   removeLoginToken,
   saveLoginToken,
   showNoti,
+  useClickOutside,
 };
