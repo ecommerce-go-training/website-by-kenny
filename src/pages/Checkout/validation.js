@@ -13,22 +13,12 @@ const checkoutVal = yup.object().shape({
   discountMobile: yup.string().max(12),
   cardNumber    : yup
     .number('Need to be number')
-    .required("Can't be empty")
     .typeError('Try again')
     .notRequired(),
-  cardName: yup
-    .string()
-    .required("Can't be empty")
-    .typeError('Try again')
-    .notRequired(),
-  cardExpire: yup
-    .date()
-    .required("Can't be empty")
-    .typeError('Try again')
-    .notRequired(),
+  cardName   : yup.string().typeError('Try again').notRequired(),
+  cardExpire : yup.date().typeError('Try again').notRequired(),
   cardSecCode: yup
     .number('Wrong format, need to be number')
-    .required("Can't be empty")
     .typeError('Try again')
     .notRequired(),
 });
