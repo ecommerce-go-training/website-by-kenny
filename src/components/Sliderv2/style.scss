@@ -1,4 +1,5 @@
-@import 'assets/scss/mixins.scss';
+@import 'assets/scss/mixins';
+@import 'assets/scss/variables';
 
 .slider-container {
   width: 100vw;
@@ -109,6 +110,12 @@
           font-family: 'Sofia Pro';
           text-transform: capitalize;
           margin-bottom: 5px;
+
+          &>span {
+            color: $grey;
+            margin-left: 10px;
+            text-decoration: line-through;
+          }
         }
       }
     }

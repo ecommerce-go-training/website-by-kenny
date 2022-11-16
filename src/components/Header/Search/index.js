@@ -47,8 +47,20 @@ const Search = ({ toggle, setToggle }) => {
     if (toggle) focusInput.current.focus();
   }, [toggle]);
 
+  let searchRef = useRef();
+
+  useEffect(() => {
+    document.addEventListener('mousedown', (e) => {
+      if (!searchRef.current.contains(e.target)) {
+        setToggle(false);
+      }
+    });
+    /* eslint-disable-next-line */
+	}, []);
+
   return (
     <div
+      ref={searchRef}
       className={classNames({
         search: true,
         active: toggle,

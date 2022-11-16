@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { Link } from 'react-router-dom';
@@ -41,8 +41,20 @@ const MobileNav = ({ toggle, setToggle }) => {
     } else navigate('/sign-in');
   };
 
+  let mobileNavRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener('mousedown', (e) => {
+      if (!mobileNavRef.current.contains(e.target)) {
+        setToggle(false);
+      }
+    });
+    /* eslint-disable-next-line */
+	}, []);
+
   return (
     <div
+      ref={mobileNavRef}
       className={classNames({
         'mobile-nav': true,
         active      : toggle,

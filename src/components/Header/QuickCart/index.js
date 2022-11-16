@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
@@ -48,8 +48,20 @@ const QuickCart = ({ toggle, setToggle }) => {
     }
   };
 
+  let cartRef = useRef();
+
+  useEffect(() => {
+    document.addEventListener('mousedown', (e) => {
+      if (!cartRef.current.contains(e.target)) {
+        setToggle(false);
+      }
+    });
+    /* eslint-disable-next-line */
+	}, []);
+
   return (
     <div
+      ref={cartRef}
       className={classNames({
         'my-cart': true,
         active   : toggle,

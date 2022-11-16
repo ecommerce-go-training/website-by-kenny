@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useRef, useState, memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -58,6 +58,16 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
     /*eslint-disable*/
 	}, []);
 
+	let shopRef = useRef();
+
+	useEffect(() => {
+		window.addEventListener('mousedown', (e) => {
+			if (!shopRef.current.contains(e.target)) {
+				setToggleShop(false);
+			}
+		});
+	}, []);
+
 	return (
 		<div>
 			<Announce disable={disableAnnounce} />
@@ -65,6 +75,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
 			<MobileNav toggle={toggleNavMobile} setToggle={setToggleNavMobile} />
 			<QuickCart toggle={toggleCart} setToggle={setToggleCart} />
 			<div
+				ref={shopRef}
 				className={classNames('quick-shop-nav', {
 					toggleShop: toggleShop,
 					moveup: login,

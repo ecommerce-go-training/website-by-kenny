@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Select from 'react-select';
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
@@ -266,6 +266,16 @@ const Account = () => {
     /*eslint-disable-next-line */
 	}, []);
 
+  let confirmDeleteRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener('mousedown', (e) => {
+      if (!confirmDeleteRef.current.contains(e.target)) {
+        setDeleteAddressConfirm(false);
+      }
+    });
+  }, []);
+
   return (
     <div className='account-container'>
       <Header catalouge />
@@ -317,7 +327,7 @@ const Account = () => {
                   {deleteAddressConfirm && (
                     <div className='delete-address-confirm'>
                       <div className='delete-address-confirm-wrapper'>
-                        <div>
+                        <div ref={confirmDeleteRef}>
                           <p>{t('consider')}</p>
                           <div>
                             <Button
