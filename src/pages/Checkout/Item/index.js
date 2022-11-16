@@ -30,7 +30,12 @@ const Item = ({ textQuantity = false, data }) => {
 						/ {data.size} {textQuantity && `/ Qty ${data.quantity}`}
           </p>
         </div>
-        <p>{formatCurrency('VND', data.totalPrice)}</p>
+        <p className='item-info-price'>
+          {data?.discount?.status && (
+            <span>{formatCurrency('VND', data.price)}</span>
+          )}
+          {formatCurrency('VND', data.totalPrice)}
+        </p>
       </div>
     </div>
   );

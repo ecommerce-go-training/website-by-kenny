@@ -113,7 +113,6 @@ const Checkout = () => {
   const formSubmit = async () => {
     if (cartItem.length > 0) {
       if (saveInfo) {
-        console.log('run this block');
         const data = {
           firstName : getValues('firstName'),
           lastName  : getValues('lastName'),
