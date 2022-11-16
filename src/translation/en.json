@@ -236,7 +236,8 @@
       "showOrder": "Show order summary",
       "thank": "THANK YOU!\nYOUR ORDER IS COMPLETED.",
       "confirmEmail": "We send an email to confirm your order details.",
-      "orderNumber": "YOUR ORDER NUMBER"
+      "orderNumber": "YOUR ORDER NUMBER",
+      "couponDiscount": "Coupon Discount"
     },
     "Brand": {
       "brand": "brand",

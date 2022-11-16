@@ -645,17 +645,19 @@
           border-bottom: 1px solid $very-light-grey;
           gap: 10px;
 
-          & img {
-            width: 20px;
-          }
-
           &>div:first-child {
             width: 70%;
           }
 
           &>div:nth-child(2) {
-            height: 100%;
+            background-color: red;
+            box-sizing: border-box;
+            overflow: hidden;
             width: 30%;
+
+            & .arrow-img {
+              width: 20px;
+            }
           }
         }
 
@@ -685,6 +687,7 @@
 
   &-item {
     background-color: $dark-white-smoke;
+    min-height: 100vh;
     flex: 1;
     padding: 75px 0 0 50px;
     display: flex;

@@ -29,8 +29,8 @@ const QuickCart = ({ toggle, setToggle }) => {
   });
 
   const totalPrice = cartItem
-    .map((item) => item.quantity * item.totalPrice)
-    .reduce((item, sum) => item + sum, 0);
+    ?.map((item) => item.quantity * item.totalPrice)
+    ?.reduce((item, sum) => item + sum, 0);
 
   return (
     <div

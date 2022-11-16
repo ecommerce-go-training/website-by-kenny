@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Header from 'components/Header';
@@ -13,7 +14,7 @@ const PaymentSuccess = ({ orderNumber = '812218' }) => {
 
   return (
     <div className='payment-success'>
-      <Header login />
+      <Header disableAnnounce login />
       <div className='payment-success__content'>
         <div className='payment-success__content__result'>
           <img src={success} alt='image icon' />
@@ -22,6 +23,7 @@ const PaymentSuccess = ({ orderNumber = '812218' }) => {
           <p>
             {t('orderNumber')} <span>#{orderNumber}</span>
           </p>
+          <Link to='/catalouge/new-arrivals'>Back to Shopping</Link>
         </div>
       </div>
       <Footer paymentSuccess />

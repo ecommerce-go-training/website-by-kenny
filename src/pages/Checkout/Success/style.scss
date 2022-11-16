@@ -5,6 +5,7 @@
   white-space: pre-line;
   height: 100vh;
   max-height: 100%;
+
   &__content {
     box-sizing: border-box;
     padding-top: 110px;
@@ -12,9 +13,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     @include responsive(mobile) {
       height: 60%;
     }
+
+
     &__result {
       width: 40%;
       height: auto;
@@ -22,27 +26,38 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      &>a {
+        margin-top: 30px;
+      }
+
       @include responsive(tablet) {
         width: 80%;
       }
+
       @include responsive(mobile) {
         width: 100%;
       }
-      & > img {
+
+      &>img {
+        z-index: 0;
         width: 100px;
         height: 100px;
         margin-bottom: 30px;
+
         @include responsive(tablet) {
           width: 90px;
           height: 90px;
         }
+
         @include responsive(mobile) {
           width: 60px;
           height: 60px;
           margin-bottom: 20px;
         }
       }
-      & > p {
+
+      &>p {
         font-family: 'Sofia Pro';
         font-style: normal;
         font-weight: 400;
@@ -51,14 +66,17 @@
         text-align: center;
         text-transform: capitalize;
         color: $black;
+
         @include responsive(tablet) {
           font-size: 35px;
         }
+
         @include responsive(mobile) {
           font-size: 16px;
         }
       }
-      & > p:nth-child(3) {
+
+      &>p:nth-child(3) {
         margin-top: 20px;
         font-weight: 500;
         font-size: 20px;
@@ -66,16 +84,19 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: $grey;
+
         @include responsive(tablet) {
           margin-top: 10px;
           font-size: 18px;
         }
+
         @include responsive(mobile) {
           font-size: 10px;
           margin-top: 15px;
         }
       }
-      & > p:nth-child(4) {
+
+      &>p:nth-child(4) {
         margin-top: 50px;
         font-weight: 400;
         font-size: 16px;
@@ -84,15 +105,18 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         color: $grey;
+
         @include responsive(tablet) {
           margin-top: 40px;
           font-size: 14px;
         }
+
         @include responsive(mobile) {
           font-size: 9px;
           margin-top: 20px;
         }
-        & > span {
+
+        &>span {
           color: $black;
         }
       }

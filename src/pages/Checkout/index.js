@@ -6,12 +6,17 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 
 import Input from 'components/Input';
 import Item from './Item';
 import Button from 'components/Button';
 
-import { formatCurrency } from 'utils/helpers';
+import { formatCurrency, showNoti } from 'utils/helpers';
+import { getUser } from 'global/redux/auth/thunk';
+import { clearCart } from 'global/redux/cart/slice';
+import { getAddress } from 'global/redux/address/thunk';
+import { verifyUserCoupon } from 'global/redux/checkout/thunk';
 
 import checkoutVal from './validation';
 
@@ -33,18 +38,30 @@ import './style.scss';
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isLogin = localStorage.getItem('isLogin');
 
   const { cartItem } = useSelector((state) => state.cart);
+  const { fetched: userAddressFetch, userAddress } = useSelector(
+    (state) => state.address
+  );
+  const { fetched: userInfoFetch, userInfo } = useSelector(
+    (state) => state.auth
+  );
+  const { isLoading } = useSelector((state) => state.checkout);
+
   const totalPrice = cartItem
     .map((item) => item.quantity * item.totalPrice)
     .reduce((item, sum) => item + sum, 0);
-  const [shipFee] = useState(null);
+  const [shipFee, setShipFee] = useState(null);
 
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Checkout' });
   const {
     watch,
     register,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     mode    : 'all',
@@ -57,6 +74,30 @@ const Checkout = () => {
   const [billOption, setBillOption] = useState(1);
   const [toggleSummary, setToggleSummary] = useState(false);
 
+  const shipMethods = [
+    {
+      key  : 1,
+      value: 25000,
+    },
+    {
+      key  : 2,
+      value: 15000,
+    },
+    {
+      key  : 3,
+      value: 35000,
+    },
+  ];
+
+  useEffect(() => {
+    setShipFee(
+      shipMethods
+        .filter((item) => item.key === shipMethod)
+        .map((item) => item.value)[0]
+    );
+    /* eslint-disable-next-line */
+	}, [shipMethod]);
+
   const handleClick = () => {
     setFormStep((prev) => prev + 1);
   };
@@ -68,6 +109,7 @@ const Checkout = () => {
 
   const formSubmit = () => {
     navigate('/payment-success');
+    dispatch(clearCart());
   };
 
   useEffect(() => {
@@ -76,6 +118,62 @@ const Checkout = () => {
     }
     /*eslint-disable-next-line */
 	}, [localStorage.getItem('isLogin')]);
+
+  useEffect(() => {
+    if (!userAddressFetch && isLogin) {
+      dispatch(getAddress());
+    }
+    if (!userInfoFetch && isLogin) {
+      dispatch(getUser());
+    }
+    /*eslint-disable-next-line */
+	}, []);
+
+  useEffect(() => {
+    setValue('email', userInfo.email);
+    setValue('firstName', userInfo.firstName);
+    setValue('lastName', userInfo.lastName);
+    setValue('phone]', userInfo.phoneNumber);
+    if (userAddress.length > 0) {
+      setValue('address', userAddress[userAddress.length - 1].street);
+      setValue('city', userAddress[userAddress.length - 1].city);
+      setValue('countryReg', userAddress[userAddress.length - 1].country);
+      setValue('postalCode', userAddress[userAddress.length - 1].postalCode);
+    }
+    /*eslint-disable-next-line */
+	}, [userAddress]);
+
+  useEffect(() => {
+    if (billOption === 2) {
+      setValue('firstName', '');
+      setValue('lastName', '');
+      setValue('address', '');
+      setValue('city', '');
+      setValue('countryReg', '');
+      setValue('postalCode', '');
+      setValue('phone', '');
+    }
+    /*eslint-disable-next-line */
+	}, [billOption]);
+
+  const [couponDiscount, setCouponDiscount] = useState(false);
+  console.log(
+    '🚀 ~ file: index.js ~ line 132 ~ Checkout ~ couponDiscount',
+    couponDiscount
+  );
+
+  const handleApplyDiscount = async (code) => {
+    const { payload } = await dispatch(verifyUserCoupon(code));
+    const { status, data } = payload;
+    if (status) {
+      showNoti('success', 'Coupon Used');
+      console.log(
+        '🚀 ~ file: index.js ~ line 134 ~ handleApplyDiscount ~ res',
+        data
+      );
+      setCouponDiscount(data.status !== 'IS_USED' ? true : false);
+    }
+  };
 
   return (
     <div className='checkout'>
@@ -93,7 +191,14 @@ const Checkout = () => {
                 alt='icon image'
               />
             </div>
-            <p>{formatCurrency('VND', 450)}</p>
+            <p>
+              {formatCurrency(
+                'VND',
+                totalPrice -
+									(totalPrice * (couponDiscount ? 10 : 0)) / 100 +
+									shipFee
+              )}
+            </p>
           </div>
           {toggleSummary && (
             <div>
@@ -115,23 +220,33 @@ const Checkout = () => {
                 </div>
                 <div>
                   <Button
-                    discount
-                    disable={
-                      !watch('discountMobile') || errors.discount?.message
+                    handleClick={() =>
+                      handleApplyDiscount(getValues('discountMobile'))
                     }
+                    login
+                    discount
+                    isLoading={isLoading}
                   >
-                    <img src={discountArrow} alt='icon image' />
+                    <img
+                      className='arrow-img'
+                      src={discountArrow}
+                      alt='icon image'
+                    />
                   </Button>
                 </div>
               </div>
               <div className='summary-subtotal'>
                 <div>
                   <p>{t('subtotal')}</p>
-                  <p>{formatCurrency('VND', 450)}</p>
+                  <p>{formatCurrency('VND', totalPrice)}</p>
                 </div>
                 <div>
                   <p>{t('shipping')}</p>
-                  <p>{formatCurrency('VND', 450)}</p>
+                  <p>{formatCurrency('VND', shipFee)}</p>
+                </div>
+                <div>
+                  <p>{t('couponDiscount')}</p>
+                  <p>{couponDiscount ? '10 %' : 'None'}</p>
                 </div>
               </div>
               <div className='summary-total'>
@@ -139,9 +254,9 @@ const Checkout = () => {
                 <p>
                   {formatCurrency(
                     'VND',
-                    cartItem
-                      .map((item) => item.price * item.quantity)
-                      .reduce((item, sum) => item + sum, 0)
+                    totalPrice -
+											(totalPrice * (couponDiscount ? 10 : 0)) / 100 +
+											shipFee
                   )}
                 </p>
               </div>
@@ -266,7 +381,9 @@ const Checkout = () => {
                 <div>
                   <p>{t('shipTo')}</p>
                   <div>
-                    <p>{watch('address')}</p>
+                    <p>
+                      {watch('address')}, {watch('city')}
+                    </p>
                     <p>{t('change')}</p>
                   </div>
                 </div>
@@ -532,8 +649,9 @@ const Checkout = () => {
           </div>
           <div>
             <Button
+              handleClick={() => handleApplyDiscount(getValues('discount'))}
               discount
-              disable={!watch('discount') || errors.discount?.message}
+              isLoading={isLoading}
             >
               <p>{t('apply')}</p>
             </Button>
@@ -552,10 +670,21 @@ const Checkout = () => {
               <p>{t('calcNextStep')}</p>
             )}
           </div>
+          <div>
+            <p>{t('couponDiscount')}</p>
+            <p>{couponDiscount ? '10 %' : 'None'}</p>
+          </div>
         </div>
         <div className='checkout-item-total'>
           <p>{t('total')}</p>
-          <p>{formatCurrency('VND', totalPrice + shipFee)}</p>
+          <p>
+            {formatCurrency(
+              'VND',
+              totalPrice -
+								(totalPrice * (couponDiscount ? 10 : 0)) / 100 +
+								shipFee
+            )}
+          </p>
         </div>
         <div className='checkout-item-contact'>
           <div>
