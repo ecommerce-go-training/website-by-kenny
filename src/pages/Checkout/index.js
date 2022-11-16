@@ -13,9 +13,10 @@ import Item from './Item';
 import Button from 'components/Button';
 
 import { formatCurrency, showNoti } from 'utils/helpers';
+
 import { getUser } from 'global/redux/auth/thunk';
 import { clearCart } from 'global/redux/cart/slice';
-import { getAddress } from 'global/redux/address/thunk';
+import { getAddress, addAddress } from 'global/redux/address/thunk';
 import { verifyUserCoupon } from 'global/redux/checkout/thunk';
 
 import checkoutVal from './validation';
@@ -73,6 +74,8 @@ const Checkout = () => {
   const [paymentOption, setpaymentOption] = useState(1);
   const [billOption, setBillOption] = useState(1);
   const [toggleSummary, setToggleSummary] = useState(false);
+  const [saveInfo, setSaveInfo] = useState(false);
+  const [couponDiscount, setCouponDiscount] = useState(false);
 
   const shipMethods = [
     {
@@ -107,9 +110,26 @@ const Checkout = () => {
     else navigate('/my-cart');
   };
 
-  const formSubmit = () => {
-    navigate('/payment-success');
-    dispatch(clearCart());
+  const formSubmit = async () => {
+    if (cartItem.length > 0) {
+      if (saveInfo) {
+        console.log('run this block');
+        const data = {
+          firstName : getValues('firstName'),
+          lastName  : getValues('lastName'),
+          address   : getValues('address'),
+          city      : getValues('city'),
+          country   : getValues('countryReg'),
+          postalCode: getValues('postalCode'),
+          phone     : getValues('phone'),
+        };
+        await dispatch(addAddress(data));
+      }
+      dispatch(clearCart());
+      navigate('/payment-success');
+    } else {
+      showNoti('error', 'Empty cart');
+    }
   };
 
   useEffect(() => {
@@ -156,21 +176,11 @@ const Checkout = () => {
     /*eslint-disable-next-line */
 	}, [billOption]);
 
-  const [couponDiscount, setCouponDiscount] = useState(false);
-  console.log(
-    '🚀 ~ file: index.js ~ line 132 ~ Checkout ~ couponDiscount',
-    couponDiscount
-  );
-
   const handleApplyDiscount = async (code) => {
     const { payload } = await dispatch(verifyUserCoupon(code));
     const { status, data } = payload;
     if (status) {
       showNoti('success', 'Coupon Used');
-      console.log(
-        '🚀 ~ file: index.js ~ line 134 ~ handleApplyDiscount ~ res',
-        data
-      );
       setCouponDiscount(data.status !== 'IS_USED' ? true : false);
     }
   };
@@ -351,7 +361,11 @@ const Checkout = () => {
                 />
               </div>
               <div className='form-check second'>
-                <input type='checkbox' id='checkbox' />
+                <input
+                  type='checkbox'
+                  id='checkbox'
+                  onChange={() => setSaveInfo(!saveInfo)}
+                />
                 <label htmlFor='checkbox'>{t('saveInfo')}</label>
               </div>
               <div className='form-navigate'>
