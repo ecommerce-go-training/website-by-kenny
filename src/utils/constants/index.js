@@ -588,6 +588,26 @@ const imageList = [
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/05/12185801/Untitled-2_0019_DJ-0520.jpg',
 		],
 	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141221/Untitled-1_0011_DJ-1224.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141221/Untitled-1_0011_DJ-1224.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141212/Untitled-1_0010_DJ-1227.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141202/Untitled-1_0009_DJ-1238.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141150/Untitled-1_0008_DJ-1269.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/06/07221254/SANTOS-CUT-OUT-TROUSER-2-scaled',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/06/07221219/SANTOS-CUT-OUT-TROUSER-1.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/06/07221356/SANTOS-CUT-OUT-TROUSER-4.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/06/07221342/SANTOS-CUT-OUT-TROUSER-3.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/06/07221254/SANTOS-CUT-OUT-TROUSER-2-scaled',
+		],
+	},
 ];
 /*eslint-enable*/
 
