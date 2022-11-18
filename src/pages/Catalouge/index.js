@@ -74,6 +74,10 @@ const Catalouge = () => {
     /*eslint-disable-next-line */
 	}, [type]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [displayProduct]);
+
   const handleApplyFilter = (filterCondition, setSearchParams, dispatch) => {
     if (
       filterCondition?.color?.length === 0 &&

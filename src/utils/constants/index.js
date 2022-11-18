@@ -88,7 +88,7 @@ const colorList = [
   },
   {
     key  : 'lilac',
-    value: '##C8A2C8',
+    value: '#C8A2C8',
   },
   {
     key  : 'floral',
