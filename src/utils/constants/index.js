@@ -513,9 +513,9 @@ const imageList = [
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/10144313/Dearjose25628-2-2.webp',
 		detailImages: [
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/10144313/Dearjose25628-2-2.webp',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/10144118/Dearjose25669-2.webp)',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/10144112/Dearjose25638-2.webp)',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/10144106/Dearjose25633-2.webp)',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/10144118/Dearjose25669-2.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/10144112/Dearjose25638-2.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/10144106/Dearjose25633-2.webp',
 		],
 	},
 	{

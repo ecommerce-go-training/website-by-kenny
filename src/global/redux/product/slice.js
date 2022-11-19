@@ -109,13 +109,13 @@ const productSlice = createSlice({
 			const price = action?.payload?.data?.price;
 			const percent = action?.payload?.data.discount?.percent || 0;
 			const inventories = action?.payload?.data?.inventories;
-			const sizeList = ['freesize', 'XS', 'S', 'M', 'L', 'XL'];
+			const sizeOrder = ['freesize', 'XS', 'S', 'M', 'L', 'XL'];
 			state.currentProduct = {
 				...action?.payload?.data,
 				totalPrice: price - (price * percent) / 100,
 				sizeColorList: {
 					size: [...new Set(inventories.map((item) => item.size))].sort(
-						(a, b) => sizeList.indexOf(a) - sizeList.indexOf(b)
+						(a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b)
 					),
 					color: [...new Set(inventories.map((item) => item.color))],
 				},

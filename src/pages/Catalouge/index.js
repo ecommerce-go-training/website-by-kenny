@@ -74,10 +74,6 @@ const Catalouge = () => {
     /*eslint-disable-next-line */
 	}, [type]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [displayProduct]);
-
   const handleApplyFilter = (filterCondition, setSearchParams, dispatch) => {
     if (
       filterCondition?.color?.length === 0 &&
@@ -111,6 +107,10 @@ const Catalouge = () => {
     dispatch(sortProduct(index));
   };
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [displayProduct]);
+
   return (
     <div>
       <Header catalouge disableAnnounce />
@@ -137,6 +137,7 @@ const Catalouge = () => {
                 ))}
               </div>
               <Pagination
+                currentPage={currentPage}
                 itemPerPage={itemPerPage}
                 totalItemLength={displayProduct.length}
                 handleSwitchPage={handleSwitchPage}
