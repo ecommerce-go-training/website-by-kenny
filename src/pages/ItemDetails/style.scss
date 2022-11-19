@@ -214,13 +214,14 @@
       height: auto;
 
       & .info-item {
-        font-size: 13px;
+        font-size: 14px;
         line-height: 150%;
         letter-spacing: 0.05em;
         color: $black;
 
-        &>a {
-          color: $black;
+        &>span {
+          cursor: pointer;
+          color: blue;
           text-transform: uppercase;
         }
       }

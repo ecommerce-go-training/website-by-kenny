@@ -300,16 +300,6 @@ const imageList = [
 	},
 	{
 		mainImage:
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110136/fw21a_0009_Background-copy-18.webp',
-		detailImages: [
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110156/fw21b_0025_Background-copy-2.webp',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110136/fw21a_0009_Background-copy-18.webp',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110129/fw21a_0007_Background-copy-20.webp',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110133/fw21a_0008_Background-copy-19.webp',
-		],
-	},
-	{
-		mainImage:
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/30150416/La-Petal-Mini-Dress-3.jpg',
 		detailImages: [
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/30150416/La-Petal-Mini-Dress-3.jpg',
@@ -550,16 +540,6 @@ const imageList = [
 	},
 	{
 		mainImage:
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160902/Miuccia-Linen-Mini-Dress-4.jpg',
-		detailImages: [
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160855/Miuccia-Linen-Mini-Dress-3.jpg',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160846/Miuccia-Linen-Mini-Dress-2.jpg',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160902/Miuccia-Linen-Mini-Dress-4.jpg',
-			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160838/Miuccia-Linen-Mini-Dress-1.jpg',
-		],
-	},
-	{
-		mainImage:
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/29003206/Dearjose25212.webp',
 		detailImages: [
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/26005430/ARTEMIS-CUT-OUT-KNIT-MIDI-DRESS-1.webp',
@@ -596,6 +576,116 @@ const imageList = [
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141212/Untitled-1_0010_DJ-1227.jpg',
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141202/Untitled-1_0009_DJ-1238.jpg',
 			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/06/08141150/Untitled-1_0008_DJ-1269.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://i0.wp.com/mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/11/18103159/Dearjose25069-2.webp?fit=1500%2C2250&ssl=1',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/11/18103156/Dearjose25049.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/11/18103153/Dearjose25033.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/11/18103151/Dearjose25013.webp',
+			'https://i0.wp.com/mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/11/18103159/Dearjose25069-2.webp?fit=1500%2C2250&ssl=1',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/17104127/fw21a_0011_Background-copy-16.webp',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/17104143/fw21b_0026_Background-copy.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/17104121/fw21b_0027_Background.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/17104127/fw21a_0011_Background-copy-16.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/08/17104041/fw21a_0010_Background-copy-17.webp',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110136/fw21a_0009_Background-copy-18.webp',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110156/fw21b_0025_Background-copy-2.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110136/fw21a_0009_Background-copy-18.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110129/fw21a_0007_Background-copy-20.webp',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17110133/fw21a_0008_Background-copy-19.webp',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115116/CHIKO-MINI-DRESS-IN-YELLOW-4.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115116/CHIKO-MINI-DRESS-IN-YELLOW-4.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115024/CHIKO-MINI-DRESS-IN-YELLOW-2.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115043/CHIKO-MINI-DRESS-IN-YELLOW-3.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115014/CHIKO-MINI-DRESS-IN-YELLOW-1.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31120642/MONACO-LINEN-MIDI-DRESS-4.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31120543/MONACO-LINEN-MIDI-DRESS-1.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31120554/MONACO-LINEN-MIDI-DRESS-2.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31120642/MONACO-LINEN-MIDI-DRESS-4.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31120602/MONACO-LINEN-MIDI-DRESS-3.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115025/CHARLOTTE-OFF-SHOULDER-LINEN-MIDI-DRESS-IN-WHITE-1.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115025/CHARLOTTE-OFF-SHOULDER-LINEN-MIDI-DRESS-IN-WHITE-1.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115103/CHARLOTTE-OFF-SHOULDER-LINEN-MIDI-DRESS-IN-WHITE-3.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115045/CHARLOTTE-OFF-SHOULDER-LINEN-MIDI-DRESS-IN-WHITE-2.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/05/31115233/CHARLOTTE-OFF-SHOULDER-LINEN-MIDI-DRESS-IN-WHITE-4.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25213005/LILO-LINEN-PLEATED-MINIDRESS-4.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25213005/LILO-LINEN-PLEATED-MINIDRESS-4.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25213016/LILO-LINEN-PLEATED-MINIDRESS-3.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25213035/LILO-LINEN-PLEATED-MINIDRESS-1.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25213025/LILO-LINEN-PLEATED-MINIDRESS-2.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/08180824/MANGO-MARTINI-PLEATE-MINIDRESS-1.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/08180824/MANGO-MARTINI-PLEATE-MINIDRESS-1.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/08180750/MANGO-MARTINI-PLEATE-MINIDRESS-4.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/08180809/MANGO-MARTINI-PLEATE-MINIDRESS-2.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/08180801/MANGO-MARTINI-PLEATE-MINIDRESS-3.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25230137/CALYPSO-CUT.OUT-MAXIDRESS-1.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25230137/CALYPSO-CUT.OUT-MAXIDRESS-1.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25230152/CALYPSO-CUT.OUT-MAXIDRESS-2.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25230202/CALYPSO-CUT.OUT-MAXIDRESS-3.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2022/03/25230215/CALYPSO-CUT.OUT-MAXIDRESS-4.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160902/Miuccia-Linen-Mini-Dress-4.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160855/Miuccia-Linen-Mini-Dress-3.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160846/Miuccia-Linen-Mini-Dress-2.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160902/Miuccia-Linen-Mini-Dress-4.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/11/17160838/Miuccia-Linen-Mini-Dress-1.jpg',
+		],
+	},
+	{
+		mainImage:
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17174738/SLOW-DANCE-SATIN-MIDI-DRESS-IN-DUSTY-ROSE-1.jpg',
+		detailImages: [
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17174749/SLOW-DANCE-SATIN-MIDI-DRESS-IN-DUSTY-ROSE-2.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17174759/SLOW-DANCE-SATIN-MIDI-DRESS-IN-DUSTY-ROSE-3.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17174810/SLOW-DANCE-SATIN-MIDI-DRESS-IN-DUSTY-ROSE-4.jpg',
+			'https://mdj-01.nyc3.digitaloceanspaces.com/wp-content/uploads/2021/12/17174738/SLOW-DANCE-SATIN-MIDI-DRESS-IN-DUSTY-ROSE-1.jpg',
 		],
 	},
 ];

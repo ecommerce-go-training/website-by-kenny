@@ -464,7 +464,10 @@
         "firstName": "Tên",
         "lastName": "Họ",
         "email": "email",
-        "country": "Nước"
+        "country": "Nước",
+        "sizeGuide": "BẢNG QUY ĐỔI KÍCH THƯỚC",
+        "sizeGuideDescription": "Nếu số đo của bạn chỉ không phù hợp với một cột duy nhất, hãy sử dụng số đo vòng eo để xác định kích thước lý tưởng của bạn.",
+        "sizeCoverSation": "CHUYỂN ĐỔI KÍCH THƯỚC"
       },
       "$": "VND",
       "addToCart": "Thêm vào giỏ hàng",

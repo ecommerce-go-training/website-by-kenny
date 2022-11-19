@@ -464,9 +464,12 @@
         "firstName": "firstName",
         "lastName": "lastName",
         "email": "email",
-        "country": "country"
+        "country": "country",
+        "sizeGuide": "SIZE GUIDE",
+        "sizeGuideDescription": "If your measurements just don't fit in a single column, use your waist measurement to determine your ideal size.",
+        "sizeCoversation": "SIZING CONVERSATION"
       },
-      "$": "$",
+      "$": "USD",
       "addToCart": "add to cart",
       "waitList": "waitlist",
       "findYourSize": "Find your size: ",

@@ -12,6 +12,7 @@ import returnVal from './validation';
 import { returnOrder, xmark, success } from 'assets/images';
 
 import './style.scss';
+import { useClickOutside } from 'utils/helpers';
 
 const OrderHistory = ({ data }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Account' });
@@ -46,12 +47,15 @@ const OrderHistory = ({ data }) => {
     reset();
   };
 
+  let returnFormRef = useClickOutside(() => setToggleReturnOrder(false));
+
   return (
     <div className='order-history'>
       {toggleReturnOrder && (
         <div className='return-order'>
           {!showSuccessForm && (
             <form
+              ref={returnFormRef}
               onSubmit={handleSubmit(formSubmit)}
               className='return-order__form'
             >

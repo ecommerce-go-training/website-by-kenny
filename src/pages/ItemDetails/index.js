@@ -18,6 +18,8 @@ import { showNoti } from 'utils/helpers';
 
 import { blackCheck } from 'assets/images';
 
+import QuickSizeGuide from './SizeGuide/index';
+
 import './style.scss';
 
 const ItemDetails = () => {
@@ -48,21 +50,6 @@ const ItemDetails = () => {
   const [toggleWaitForm, setToggleWaitForm] = useState(false);
 
   const handleWaitForm = () => setToggleWaitForm(!toggleWaitForm);
-
-  // cart logic ----------------------- //
-
-  // const handleAddItem = (data) => {
-  //   if (color && size) {
-  //     if (cartItem.map(item => item.id).includes(data.id)) {
-  //       dispatch(addItemQuantity(data.id));
-  //     } else {
-  //       dispatch(addItem(data));
-  //     }
-  //     showNoti('success', 'Add success');
-  //   } else {
-  //     showNoti('error', 'Check size or color');
-  //   }
-  // };
 
   const handleAddItem = (data) => {
     if (color && size) {
@@ -95,6 +82,10 @@ const ItemDetails = () => {
       },
     });
   };
+
+  // size guide
+
+  const [toggleSizeGuide, setToggleSizeGuide] = useState(false);
 
   return (
     <div>
@@ -201,10 +192,13 @@ const ItemDetails = () => {
             </div>
             <div>
               <Collapse smallLabel label='size & fit'>
-                <p className='info-item'>
+                <div className='info-item'>
                   {t('findYourSize')}{' '}
-                  <Link to='/customer-support/size'>sizing</Link>
-                </p>
+                  <span onClick={() => setToggleSizeGuide(true)}>Here</span>
+                  {toggleSizeGuide && (
+                    <QuickSizeGuide toggle={setToggleSizeGuide} />
+                  )}
+                </div>
               </Collapse>
             </div>
             <div>
