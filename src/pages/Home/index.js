@@ -32,10 +32,6 @@ const Home = () => {
   const bestSellerSliderItem = [...productList]
     .sort((a, b) => b.sold - a.sold)
     .slice(0, 8);
-  console.log(
-    '🚀 ~ file: index.js ~ line 33 ~ Home ~ bestSellerSliderItem',
-    bestSellerSliderItem
-  );
 
   const [active, setActive] = useState(true);
   const toggleOn = classNames({
