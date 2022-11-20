@@ -64,6 +64,9 @@ const productSlice = createSlice({
           (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
         );
         break;
+      case 1:
+        state.displayProduct.sort((a, b) => b.sold - a.sold);
+        break;
       case 2:
         state.displayProduct.sort((a, b) => b.totalPrice - a.totalPrice);
         break;
@@ -79,6 +82,14 @@ const productSlice = createSlice({
       /*eslint-disable-next-line*/
 			state = initialState;
     },
+    addProductSoldItem: (state, action) => {
+      const newList = state.productList.map((item) =>
+        item.id === action?.payload?.id
+          ? { ...item, sold: item.sold + action?.payload?.amount }
+          : item
+      );
+      state.productList = [...newList];
+    },
   },
   extraReducers: {
     [getProducts.pending]: (state) => {
@@ -93,6 +104,11 @@ const productSlice = createSlice({
 					(item = {
 						...item,
 						image: imageGenerator(),
+						sold: item.inventories
+							.map((invent) => invent?.detailInvoiceItems)
+							.map((item) => item.map((item) => item.amount))
+							.map((item) => item.reduce((item, sum) => item + sum, 0))
+							.reduce((item, sum) => item + sum, 0),
 						totalPrice:
 							item.price - (item.price * item?.discount?.percent || 0) / 100,
 					})
@@ -134,5 +150,6 @@ export const {
 	filterByCategory,
 	filterBySizeColor,
 	sortProduct,
+	addProductSoldItem,
 } = productSlice.actions;
 export default productSlice.reducer;

@@ -29,6 +29,13 @@ const Home = () => {
   const recommendSliderItem = [...productList]
     .sort(() => 0.5 - Math.random())
     .slice(0, 8);
+  const bestSellerSliderItem = [...productList]
+    .sort((a, b) => b.sold - a.sold)
+    .slice(0, 8);
+  console.log(
+    '🚀 ~ file: index.js ~ line 33 ~ Home ~ bestSellerSliderItem',
+    bestSellerSliderItem
+  );
 
   const [active, setActive] = useState(true);
   const toggleOn = classNames({
@@ -92,7 +99,10 @@ const Home = () => {
               {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
-          <Slider2 data={newArrivalSliderItem} handleClick={handleClickImg} />
+          <Slider2
+            data={active ? newArrivalSliderItem : bestSellerSliderItem}
+            handleClick={handleClickImg}
+          />
         </div>
         <div className='home__doublebg'>
           <img src={subBg1} alt='Knitwear bg img' />

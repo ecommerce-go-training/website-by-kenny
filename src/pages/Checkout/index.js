@@ -16,6 +16,7 @@ import { formatCurrency, showNoti } from 'utils/helpers';
 
 import { getUser } from 'global/redux/auth/thunk';
 import { clearCart } from 'global/redux/cart/slice';
+import { addProductSoldItem } from 'global/redux/product/slice';
 import { getAddress, addAddress } from 'global/redux/address/thunk';
 import {
   createBillInvoice,
@@ -190,6 +191,7 @@ const Checkout = () => {
       discountCode: formData.discount || formData.discountMobile,
       detailItems : cartItem.map((item) => {
         return {
+          itemId   : item.id,
           inventory: item?.inventories
             ?.filter(
               (inventItem) =>
@@ -206,6 +208,15 @@ const Checkout = () => {
     const { payload } = await dispatch(createBillInvoice(data));
 
     if (payload?.status) {
+      data?.detailItems.forEach((item) => {
+        dispatch(
+          addProductSoldItem({
+            id    : item.itemId,
+            amount: item.amount,
+          })
+        );
+      });
+
       if (saveAddressInfo) {
         const {
           firstName,
