@@ -117,7 +117,7 @@
       "newsLetter": "newsletter",
       "changeLanguage": "change language",
       "logout": "log out",
-      "order": "order",
+      "order": "order ID:",
       "return": "make a return",
       "status": "status:",
       "trackOrder": "track order",
@@ -160,7 +160,8 @@
       "emailPref": "Email preferences",
       "updatePref": "To update your preferences please check the relevant boxes below. If you wish to unsubscribe from any email, please uncheck the appropriate box and submit.",
       "newsletter": "newsletter",
-      "savePref": "save preferences"
+      "savePref": "save preferences",
+      "discountCode": "Discount code"
     },
     "Store": {
       "ourStore": "our store",

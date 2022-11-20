@@ -17,7 +17,10 @@ import { formatCurrency, showNoti } from 'utils/helpers';
 import { getUser } from 'global/redux/auth/thunk';
 import { clearCart } from 'global/redux/cart/slice';
 import { getAddress, addAddress } from 'global/redux/address/thunk';
-import { verifyUserCoupon } from 'global/redux/checkout/thunk';
+import {
+  createBillInvoice,
+  verifyUserCoupon,
+} from 'global/redux/checkout/thunk';
 
 import checkoutVal from './validation';
 
@@ -49,7 +52,10 @@ const Checkout = () => {
   const { fetched: userInfoFetch, userInfo } = useSelector(
     (state) => state.auth
   );
-  const { isLoading } = useSelector((state) => state.checkout);
+  const { isLoadingCheckout, isLoadingDiscount } = useSelector(
+    (state) => state.checkout
+  );
+  const { isLoading: addressLoading } = useSelector((state) => state.address);
 
   const totalPrice = cartItem
     .map((item) => item.quantity * item.totalPrice)
@@ -74,7 +80,7 @@ const Checkout = () => {
   const [paymentOption, setpaymentOption] = useState(1);
   const [billOption, setBillOption] = useState(1);
   const [toggleSummary, setToggleSummary] = useState(false);
-  const [saveInfo, setSaveInfo] = useState(false);
+  const [saveAddressInfo, setSaveAddressInfo] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(false);
 
   const shipMethods = [
@@ -84,11 +90,11 @@ const Checkout = () => {
     },
     {
       key  : 2,
-      value: 15000,
+      value: 25000,
     },
     {
       key  : 3,
-      value: 35000,
+      value: 25000,
     },
   ];
 
@@ -110,27 +116,6 @@ const Checkout = () => {
     else navigate('/my-cart');
   };
 
-  const formSubmit = async () => {
-    if (cartItem.length > 0) {
-      if (saveInfo) {
-        const data = {
-          firstName : getValues('firstName'),
-          lastName  : getValues('lastName'),
-          address   : getValues('address'),
-          city      : getValues('city'),
-          country   : getValues('countryReg'),
-          postalCode: getValues('postalCode'),
-          phone     : getValues('phone'),
-        };
-        await dispatch(addAddress(data));
-      }
-      dispatch(clearCart());
-      navigate('/payment-success');
-    } else {
-      showNoti('error', 'Empty cart');
-    }
-  };
-
   useEffect(() => {
     if (localStorage.getItem('isLogin') !== 'true') {
       navigate('/sign-in');
@@ -148,6 +133,7 @@ const Checkout = () => {
     /*eslint-disable-next-line */
 	}, []);
 
+  // auto fill address input
   useEffect(() => {
     setValue('email', userInfo.email);
     setValue('firstName', userInfo.firstName);
@@ -162,6 +148,7 @@ const Checkout = () => {
     /*eslint-disable-next-line */
 	}, [userAddress]);
 
+  // reset address input
   useEffect(() => {
     if (billOption === 2) {
       setValue('firstName', '');
@@ -181,6 +168,73 @@ const Checkout = () => {
     if (status) {
       showNoti('success', 'Coupon Used');
       setCouponDiscount(data.status !== 'IS_USED' ? true : false);
+    }
+  };
+
+  // Checkout logic
+
+  const formSubmit = async () => {
+    const formData = getValues();
+
+    const data = {
+      email     : formData.email,
+      firstName : formData.firstName,
+      lastName  : formData.lastName,
+      street    : formData.address,
+      city      : formData.city,
+      country   : formData.countryReg,
+      postalCode: formData.postalCode,
+      total     :
+				totalPrice - (totalPrice * (couponDiscount ? 10 : 0)) / 100 + shipFee,
+      phoneNumber : formData.phone,
+      discountCode: formData.discount || formData.discountMobile,
+      detailItems : cartItem.map((item) => {
+        return {
+          inventory: item?.inventories
+            ?.filter(
+              (inventItem) =>
+                inventItem.size === item.size && inventItem.color === item.color
+            )
+            ?.map((item) => item.id)[0],
+          amount  : item.quantity,
+          total   : item.price,
+          discount: item?.discount?.status ? item?.discount?.percent : 0,
+        };
+      }),
+    };
+
+    const { payload } = await dispatch(createBillInvoice(data));
+
+    if (payload?.status) {
+      if (saveAddressInfo) {
+        const {
+          firstName,
+          lastName,
+          street,
+          city,
+          country,
+          postalCode,
+          phoneNumber,
+        } = data;
+        const body = {
+          firstName,
+          lastName,
+          address: street,
+          city,
+          country,
+          postalCode,
+          phone  : phoneNumber,
+        };
+        const res = await dispatch(addAddress(body));
+        if (res.payload.status) {
+          dispatch(clearCart());
+          showNoti('success', 'New address added');
+          navigate('/payment-success');
+        }
+      } else {
+        dispatch(clearCart());
+        navigate('/payment-success');
+      }
     }
   };
 
@@ -234,7 +288,7 @@ const Checkout = () => {
                     }
                     login
                     discount
-                    isLoading={isLoading}
+                    isLoading={isLoadingDiscount}
                   >
                     <img
                       className='arrow-img'
@@ -363,7 +417,7 @@ const Checkout = () => {
                 <input
                   type='checkbox'
                   id='checkbox'
-                  onChange={() => setSaveInfo(!saveInfo)}
+                  onChange={() => setSaveAddressInfo(!saveAddressInfo)}
                 />
                 <label htmlFor='checkbox'>{t('saveInfo')}</label>
               </div>
@@ -634,7 +688,11 @@ const Checkout = () => {
                   <p>{t('return')}</p>
                 </div>
                 <div>
-                  <Button type='submit'>
+                  <Button
+                    discount
+                    isLoading={addressLoading || isLoadingCheckout}
+                    type='submit'
+                  >
                     <p>{t('pay')}</p>
                   </Button>
                 </div>
@@ -664,7 +722,7 @@ const Checkout = () => {
             <Button
               handleClick={() => handleApplyDiscount(getValues('discount'))}
               discount
-              isLoading={isLoading}
+              isLoading={isLoadingDiscount}
             >
               <p>{t('apply')}</p>
             </Button>

@@ -9,8 +9,8 @@ const checkoutVal = yup.object().shape({
   countryReg    : yup.string().required(),
   postalCode    : yup.string().required(),
   phone         : yup.string().required(),
-  discount      : yup.string().max(12),
-  discountMobile: yup.string().max(12),
+  discount      : yup.string(),
+  discountMobile: yup.string(),
   cardNumber    : yup
     .number()
     .typeError('Card number must be a number')

@@ -11,8 +11,9 @@ import returnVal from './validation';
 
 import { returnOrder, xmark, success } from 'assets/images';
 
+import { useClickOutside, formatCurrency } from 'utils/helpers';
+
 import './style.scss';
-import { useClickOutside } from 'utils/helpers';
 
 const OrderHistory = ({ data }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Account' });
@@ -48,6 +49,16 @@ const OrderHistory = ({ data }) => {
   };
 
   let returnFormRef = useClickOutside(() => setToggleReturnOrder(false));
+
+  const shipFee = 25000;
+  // const subTotal = data.total - shipFee;
+  const subTotal = data.detailInvoiceItems
+    ?.map(
+      (item) => item.amount * (item.total - (item.total * item.discount) / 100)
+    )
+    ?.reduce((item, sum) => item + sum, 0);
+  const totalPrice =
+		subTotal - subTotal * (data.discountCode ? 10 / 100 : 0) + shipFee;
 
   return (
     <div className='order-history'>
@@ -116,7 +127,7 @@ const OrderHistory = ({ data }) => {
         </p>
       </div>
       <p className='order-history__status'>
-        {t('status')} &nbsp; <span>{data.status}</span>
+        {t('status')} &nbsp; <span>SUCCESS</span>
       </p>
       <div className='order-history__button'>
         <div>
@@ -134,45 +145,37 @@ const OrderHistory = ({ data }) => {
         <div className='order-history__details'>
           <p>{t('articles')}</p>
           <p>{t('sendBack')}</p>
-          {data.items.map((item, index) => (
-            <Item textQuantity key={index} data={item} />
+          {data?.detailInvoiceItems?.map((item, index) => (
+            <Item invoice textQuantity key={index} data={item} />
           ))}
           <div className='order-price'>
             <div>
               <p>{t('subtotal')}</p>
-              <p>
-                {Intl.NumberFormat('vi-VIET', {
-                  style   : 'currency',
-                  currency: 'VND',
-                }).format(250)}
-              </p>
+              <p>{formatCurrency('VND', subTotal)}</p>
+            </div>
+            <div>
+              <p>{t('discountCode')}</p>
+              <p>{data.discountCode ? '10%' : 'None'}</p>
             </div>
             <div>
               <p>{t('shipping')}</p>
-              <p>
-                {Intl.NumberFormat('vi-VIET', {
-                  style   : 'currency',
-                  currency: 'VND',
-                }).format(250)}
-              </p>
+              <p>{formatCurrency('VND', shipFee)}</p>
             </div>
             <div>
               <p>{t('total')}</p>
-              <p>
-                {Intl.NumberFormat('vi-VIET', {
-                  style   : 'currency',
-                  currency: 'VND',
-                }).format(250)}
-              </p>
+              <p>{formatCurrency('VND', totalPrice)}</p>
             </div>
           </div>
           <div className='shipping-method'>
             <div>
               <p>{t('payMethod')}</p>
-              <p>{data.payment}</p>
+              <p>Default</p>
               <p>{t('billTo')}</p>
-              <p>{data.customerName}</p>
-              <p>{data.customerAddress}</p>
+              <p>{data?.firstName}</p>
+              <p>
+                {data?.street}, {data?.city}, {data?.postalCode} <br />{' '}
+                {data?.country} <br /> +{data.phoneNumber}
+              </p>
               <div>
                 <Button>
                   <p>{t('pdf')}</p>
@@ -181,10 +184,13 @@ const OrderHistory = ({ data }) => {
             </div>
             <div>
               <p>{t('deliverMethod')}</p>
-              <p>{data.delivery}</p>
+              <p>Default</p>
               <p>{t('shipTo')}</p>
-              <p>{data.customerName}</p>
-              <p>{data.customerAddress}</p>
+              <p>{data?.firstName}</p>
+              <p>
+                {data?.street}, {data?.city}, {data?.postalCode} <br />{' '}
+                {data?.country} <br /> +{data.phoneNumber}
+              </p>
             </div>
           </div>
         </div>

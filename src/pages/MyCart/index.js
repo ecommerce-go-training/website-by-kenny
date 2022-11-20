@@ -57,13 +57,13 @@ const MyCart = () => {
               <Button
                 handleClick={() =>
                   navigate(
-                    cartItem?.length > 1
+                    cartItem?.length > 0
                       ? '/checkout'
                       : '/catalouge/new-arrivals'
                   )
                 }
               >
-                {cartItem?.length > 1 ? t('checkOut') : 'Back to shopping'}
+                {cartItem?.length > 0 ? t('checkOut') : 'Back to shopping'}
               </Button>
             </div>
           </div>

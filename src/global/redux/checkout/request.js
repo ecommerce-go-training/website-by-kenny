@@ -12,4 +12,43 @@ const verifyCoupon = async (data) => {
   return res.data.data;
 };
 
-export { verifyCoupon };
+const createInvoice = async (data) => {
+  const {
+    email,
+    firstName,
+    lastName,
+    street,
+    city,
+    country,
+    postalCode,
+    phoneNumber,
+    discountCode,
+    detailItems,
+    total,
+  } = data;
+
+  const body = {
+    email,
+    firstName,
+    lastName,
+    street,
+    city,
+    country,
+    postalCode,
+    total,
+    phoneNumber,
+    discountCode,
+    detailItems,
+  };
+
+  const res = await api.post('/invoices', body);
+
+  return res.data.data;
+};
+
+const getInvoices = async () => {
+  const res = await api.get('/invoices');
+  return res.data.data;
+};
+
+export { createInvoice, getInvoices, verifyCoupon };
