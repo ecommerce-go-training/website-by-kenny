@@ -46,7 +46,8 @@ const useClickOutside = (toggle) => {
     return () => {
       document.removeEventListener('mousedown', handler);
     };
-  });
+    /* eslint-disable-next-line */
+	}, []);
 
   return ref;
 };

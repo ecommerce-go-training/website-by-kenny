@@ -306,11 +306,13 @@ const Filter = ({
               <div className='handle-filter-mobile'>
                 <p onClick={handleClearFilter}>{t('clearFilters')}</p>
                 <div
-                  onClick={handleApplyFilter(
-                    filterCondition,
-                    setSearchParams,
-                    dispatch
-                  )}
+                  onClick={() =>
+                    handleApplyFilter(
+                      filterCondition,
+                      setSearchParams,
+                      dispatch
+                    )
+                  }
                   className='button'
                 >
                   {t('apply')}
