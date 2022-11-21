@@ -35,6 +35,10 @@
     scroll-behavior: smooth;
     gap: 30px;
 
+    @include responsive(mobile) {
+      gap: 20px;
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -54,12 +58,13 @@
 
         @include responsive(tablet) {
           width: 50vw;
+          max-width: 350px;
           height: 500px;
         }
 
         @include responsive(mobile) {
           width: 90vw;
-          max-width: 400px;
+          max-width: 350px;
           height: 500px;
         }
 
@@ -103,13 +108,20 @@
 
       &-description {
         font-family: 'Sofia Pro';
-        margin-top: 20px;
+        margin-top: 15px;
 
-        &>p {
+        &-name {
+          height: 20px;
           font-size: 13px;
           font-family: 'Sofia Pro';
           text-transform: capitalize;
-          margin-bottom: 5px;
+        }
+
+        &>p:last-child {
+          margin-top: 5px;
+          font-size: 12px;
+          font-family: 'Sofia Pro';
+          text-transform: capitalize;
 
           &>span {
             color: $grey;

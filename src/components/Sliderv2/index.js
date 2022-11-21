@@ -48,7 +48,7 @@ const Slider2 = ({ data, handleClick }) => {
               </div>
             </div>
             <div className='slider__item-description'>
-              <p>{item.name}</p>
+              <p className='slider__item-description-name'>{item.name}</p>
               <p>
                 {formatCurrency('VND', item.totalPrice)}
                 {item?.discount?.status && (
