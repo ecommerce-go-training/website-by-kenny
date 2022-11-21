@@ -246,9 +246,15 @@ const Filter = ({
 
       <div className={classNames('filter-mobile', { disable: shop })}>
         <div className='filter-mobile-nav'>
-          <p onClick={() => setToggleCategory(!toggleCategory)}>
-            {type?.split('-')?.reduce((item, combine) => item + ' ' + combine)}
-          </p>
+          <div
+            className='label'
+            onClick={() => setToggleCategory(!toggleCategory)}
+          >
+            <img src={toggleCategory ? minus : plus} alt='icon image' />
+            <p>
+              {type?.split('-').reduce((item, combine) => item + ' ' + combine)}
+            </p>
+          </div>
           <div className='filter-mobile-nav-option'>
             <div
               className='label'

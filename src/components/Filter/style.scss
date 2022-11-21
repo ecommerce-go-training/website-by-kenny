@@ -319,6 +319,34 @@
       display: flex;
       justify-content: space-between;
 
+      & .label {
+        height: 20px;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &>img {
+          position: relative;
+          width: 10px;
+          bottom: 1px;
+        }
+
+        &>p {
+          font-size: 10px;
+          line-height: 100%;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: $black;
+        }
+      }
+
       &>p {
         font-size: 10px;
         line-height: 140%;
@@ -326,6 +354,17 @@
         text-transform: uppercase;
         align-self: center;
         color: $black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+
+        & img {
+          top: 1px;
+          position: relative;
+          width: 10px;
+          bottom: 1px;
+        }
       }
 
       &-option {
