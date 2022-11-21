@@ -482,6 +482,47 @@
         }
       }
     }
+
+    & .category-mobile {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+
+      &>div {
+        margin-top: 10px;
+        z-index: 1;
+        position: absolute;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        background-color: $white;
+        padding: 15px 25px;
+        box-shadow: 0px 1px 4px rgba($black, 0.1);
+
+        &>p {
+          width: max-content;
+          font-family: 'Sofia Pro';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 10px;
+          line-height: 140%;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: $black;
+          border-bottom: 1px solid $white;
+
+          &:hover {
+            opacity: 0.8;
+          }
+
+          &.active {
+            border-bottom: 1px solid $black;
+          }
+        }
+      }
+    }
   }
 
   & .active {
