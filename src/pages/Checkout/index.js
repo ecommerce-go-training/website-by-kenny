@@ -216,7 +216,6 @@ const Checkout = () => {
           })
         );
       });
-
       if (saveAddressInfo) {
         const {
           firstName,
@@ -240,11 +239,19 @@ const Checkout = () => {
         if (res.payload.status) {
           dispatch(clearCart());
           showNoti('success', 'New address added');
-          navigate('/payment-success');
+          navigate('/payment-success', {
+            state: {
+              invoiceId: payload?.data?.id,
+            },
+          });
         }
       } else {
         dispatch(clearCart());
-        navigate('/payment-success');
+        navigate('/payment-success', {
+          state: {
+            invoiceId: payload?.data?.id,
+          },
+        });
       }
     }
   };
