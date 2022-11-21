@@ -96,6 +96,7 @@ const productSlice = createSlice({
       state.isLoading = true;
     },
     [getProducts.fulfilled]: (state, action) => {
+      const sizeOrder = ['freesize', 'XS', 'S', 'M', 'L', 'XL'];
       state.isLoading = false;
       state.fetched = true;
       /* eslint-disable */
@@ -104,6 +105,12 @@ const productSlice = createSlice({
 					(item = {
 						...item,
 						image: imageGenerator(),
+						sizeColorList: {
+							size: [
+								...new Set(item?.inventories?.map((invent) => invent.size)),
+							].sort((a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b)),
+							color: [...new Set(item?.inventories?.map((item) => item.color))],
+						},
 						sold: item.inventories
 							.map((invent) => invent?.detailInvoiceItems)
 							.map((item) => item.map((item) => item.amount))
