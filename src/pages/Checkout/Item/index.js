@@ -53,8 +53,10 @@ const Item = ({ textQuantity = false, data, invoice }) => {
       </div>
       <div className='item-info'>
         <div>
-          <p>{invoice ? data?.inventory?.product?.name : data?.name}</p>
-          <p>
+          <p className='item-name'>
+            {invoice ? data?.inventory?.product?.name : data?.name}
+          </p>
+          <p className='item-color'>
             {convertColor?.toString()?.charAt(0)?.toUpperCase() +
 							convertColor?.toString()?.slice(1)}{' '}
 						/ {invoice ? convertSize : data?.size}
@@ -77,7 +79,7 @@ const Item = ({ textQuantity = false, data, invoice }) => {
               )}
             </p>
           ) : (
-            <p>
+            <p style={{ color: 'black' }}>
               {data?.discount?.status && (
                 <span>{formatCurrency('VND', data.price)}</span>
               )}

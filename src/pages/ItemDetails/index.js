@@ -176,7 +176,6 @@ const ItemDetails = () => {
                       size    : size,
                       color   : color,
                       quantity: 1,
-                      // image   : img.mainImage
                       image   : img,
                     })
                   : handleWaitForm

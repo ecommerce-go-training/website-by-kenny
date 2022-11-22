@@ -25,12 +25,12 @@
   }
 
   & .old-price {
-    margin-left: 30px;
+    margin-left: 15px;
     color: $grey;
     text-decoration: line-through;
 
     @include responsive(mobile) {
-      margin-left: 20px;
+      margin-left: 10px;
     }
   }
 
@@ -193,10 +193,11 @@
           &>p {
             color: $grey;
             cursor: pointer;
+            padding-bottom: 2px;
+            border-bottom: 1px solid white;
 
             &.active {
               color: black;
-              padding-bottom: 2px;
               border-bottom: 1px solid $black;
             }
           }
