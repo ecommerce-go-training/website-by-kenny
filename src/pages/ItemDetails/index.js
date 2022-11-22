@@ -230,9 +230,7 @@ const ItemDetails = () => {
           </div>
         </div>
       )}
-      {isLoading ? (
-        <Loading alter />
-      ) : (
+      {!isLoading && (
         <div className='moreItem'>
           <p>{t('more')}</p>
           <Slider2 handleClick={handleClickImg} data={moreItem} />
