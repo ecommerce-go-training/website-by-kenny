@@ -207,6 +207,9 @@ const Account = () => {
         <div className='account__content'>
           {selectNav === 0 && (
             <div className='account__content__order'>
+              {invoiceInfo?.length === 0 && (
+                <p>Empty, try ordering some items !</p>
+              )}
               {invoiceInfo.map((item, index) => (
                 <OrderHistory key={index} data={item} />
               ))}
