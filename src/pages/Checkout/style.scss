@@ -76,6 +76,10 @@
       cursor: pointer;
       width: max-content;
 
+      & .active {
+        color: $black;
+      }
+
       @include responsive(tablet) {
         font-size: 11px;
         margin-bottom: 0px;
@@ -592,6 +596,95 @@
     & .checkout-nav-mobile {
       background-color: $snow;
       display: none;
+
+      @include responsive(tablet) {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        margin: -15px;
+        border: 1px solid $whisper;
+        margin-bottom: 10px;
+
+        & .summary {
+          display: flex;
+          margin: -15px;
+          padding: 15px;
+          border: 1px solid $whisper;
+          justify-content: space-between;
+          align-items: center;
+
+          &>div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            &>img:first-child {
+              width: 18px;
+              height: 16px;
+            }
+
+            &>img:last-child {
+              width: 10px;
+              height: 8px;
+            }
+
+            &>p {
+              font-weight: 500;
+              font-size: 11px;
+              line-height: 150%;
+              letter-spacing: 0.01em;
+              color: $cornflower-blue;
+            }
+          }
+        }
+
+        & .summary-bill {
+          margin-top: 30px;
+        }
+
+        & .summary-discount {
+          display: flex;
+          padding: 20px 0;
+          border-top: 1px solid $very-light-grey;
+          border-bottom: 1px solid $very-light-grey;
+          gap: 10px;
+
+          &>div:first-child {
+            width: 70%;
+          }
+
+          &>div:nth-child(2) {
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 30%;
+
+            & .arrow-img {
+              width: 20px;
+            }
+          }
+        }
+
+        & .summary-subtotal {
+          margin-top: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          padding-bottom: 25px;
+          border-bottom: 1px solid $very-light-grey;
+
+          &>div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+        }
+
+        & .summary-total {
+          margin-top: 20px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
 
       @include responsive(mobile) {
         display: flex;

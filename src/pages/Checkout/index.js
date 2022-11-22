@@ -344,8 +344,31 @@ const Checkout = () => {
             </div>
           )}
         </div>
-        <p className='current-path' onClick={() => setFormStep(1)}>
-					cart / infomation <span>/ shipping / payment</span>
+        <p className='current-path'>
+          <span
+            onClick={() => navigate('/my-cart')}
+            className={classNames({ active: formStep > 0 })}
+          >
+						cart
+          </span>
+          <span
+            onClick={() => setFormStep(1)}
+            className={classNames({ active: formStep > 0 })}
+          >
+						/ information
+          </span>
+          <span
+            onClick={() => setFormStep(2)}
+            className={classNames({ active: formStep > 1 })}
+          >
+						/ shipping
+          </span>
+          <span
+            onClick={() => setFormStep(3)}
+            className={classNames({ active: formStep > 2 })}
+          >
+						/ payment
+          </span>
         </p>
         <form onSubmit={handleSubmit(formSubmit)}>
           {formStep === 1 && (
