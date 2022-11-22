@@ -93,26 +93,28 @@ const ItemDetails = () => {
   return (
     <div>
       <Header catalouge disableAnnounce />
-      <div className='details'>
-        <Slider3>
-          {img?.detailImages?.map((item, index) => (
-            <Slider3Item key={index}>
-              <div>
-                <img src={item} alt='dress image' />
-              </div>
-            </Slider3Item>
-          ))}
-        </Slider3>
-        <div className='details__img'>
-          {img?.detailImages?.map((item, index) => (
-            <div key={index}>
-              <img src={item} alt='testing img' />
-            </div>
-          ))}
-        </div>
-        {isLoading ? (
+      {isLoading ? (
+        <div className='loadingWhileFetching'>
           <Loading alter />
-        ) : (
+        </div>
+      ) : (
+        <div className='details'>
+          <Slider3>
+            {img?.detailImages?.map((item, index) => (
+              <Slider3Item key={index}>
+                <div>
+                  <img src={item} alt='dress image' />
+                </div>
+              </Slider3Item>
+            ))}
+          </Slider3>
+          <div className='details__img'>
+            {img?.detailImages?.map((item, index) => (
+              <div key={index}>
+                <img src={item} alt='testing img' />
+              </div>
+            ))}
+          </div>
           <div className='details__info'>
             <p>{currentProduct?.category?.name}</p>
             <p>{currentProduct?.name}</p>
@@ -226,12 +228,16 @@ const ItemDetails = () => {
               </div>
             </div>
           </div>
-        )}
-      </div>
-      <div className='moreItem'>
-        <p>{t('more')}</p>
-        <Slider2 handleClick={handleClickImg} data={moreItem} />
-      </div>
+        </div>
+      )}
+      {isLoading ? (
+        <Loading alter />
+      ) : (
+        <div className='moreItem'>
+          <p>{t('more')}</p>
+          <Slider2 handleClick={handleClickImg} data={moreItem} />
+        </div>
+      )}
     </div>
   );
 };
