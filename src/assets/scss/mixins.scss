@@ -25,12 +25,11 @@ $max-desktop-width: 1600px;
   }
 }
 
-@mixin text($family, $size: 16px, $color, $fontWeight: 400, $lineHeight: normal) {
+@mixin text($family, $size, $color, $fontWeight, $lineHeight) {
   color: $color;
   font-size: $size;
   font-family: $family;
   font-weight: $fontWeight;
   line-height: $lineHeight;
-
   margin: 0;
 }
