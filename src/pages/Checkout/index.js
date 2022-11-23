@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -83,6 +83,17 @@ const Checkout = () => {
   const [toggleSummary, setToggleSummary] = useState(false);
   const [saveAddressInfo, setSaveAddressInfo] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(false);
+  const emailFocusOnClick = useRef(null);
+  const addressFocusOnClick = useRef(null);
+
+  const handleChangeInfo = (ref) => {
+    setFormStep(1);
+    window.scrollTo({
+      top : 0,
+      left: 0,
+    });
+    ref.current.focus();
+  };
 
   const shipMethods = [
     {
@@ -482,7 +493,9 @@ const Checkout = () => {
                   <p>{t('contactConfirm')}</p>
                   <div>
                     <p>{watch('email')}</p>
-                    <p>{t('change')}</p>
+                    <p onClick={() => handleChangeInfo(emailFocusOnClick)}>
+                      {t('change')}
+                    </p>
                   </div>
                 </div>
                 <div className='form-line'></div>
@@ -492,7 +505,9 @@ const Checkout = () => {
                     <p>
                       {watch('address')}, {watch('city')}
                     </p>
-                    <p>{t('change')}</p>
+                    <p onClick={() => handleChangeInfo(addressFocusOnClick)}>
+                      {t('change')}
+                    </p>
                   </div>
                 </div>
               </div>
