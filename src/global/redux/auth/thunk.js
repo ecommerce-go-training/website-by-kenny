@@ -8,6 +8,7 @@ import {
   sendVerifyCodeToMail,
   checkVerifyCode,
   resetPassword,
+  getUserInfo,
 } from './request';
 
 const registerAccount = createAsyncThunk('auth/register', async (data) => {
@@ -56,4 +57,19 @@ const changePassword = createAsyncThunk('auth/reset-password', async (data) => {
   };
 });
 
-export { changePassword, loginAccount, registerAccount, sendCode, verifyCode };
+const getUser = createAsyncThunk('auth/get-user', async () => {
+  const res = await getUserInfo();
+  return {
+    status: true,
+    data  : res.data,
+  };
+});
+
+export {
+  changePassword,
+  getUser,
+  loginAccount,
+  registerAccount,
+  sendCode,
+  verifyCode,
+};

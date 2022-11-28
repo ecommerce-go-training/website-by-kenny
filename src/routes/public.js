@@ -3,6 +3,7 @@ import Home from 'pages/Home';
 import Brand from 'pages/Brand';
 import Store from 'pages/Store';
 import Season from 'pages/Season';
+import Account from 'pages/Account';
 import SignUp from 'pages/SignUp';
 import SignIn from 'pages/SignIn';
 import Checkout from 'pages/Checkout';
@@ -60,7 +61,7 @@ const publicRoutes = [
     component: Catalouge,
   },
   {
-    path     : '/details:id',
+    path     : '/details/:id',
     component: ItemDetails,
   },
   {
@@ -78,6 +79,10 @@ const publicRoutes = [
   {
     path     : '*',
     component: PageNotFound,
+  },
+  {
+    path     : '/account',
+    component: Account,
   },
 ];
 

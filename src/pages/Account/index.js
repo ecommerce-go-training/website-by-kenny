@@ -8,6 +8,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { logout } from 'global/redux/auth/slice';
+import { clearAddress } from 'global/redux/address/slice';
+import { resetProduct } from 'global/redux/product/slice';
 
 import {
   getAddress,
@@ -162,9 +164,11 @@ const Account = () => {
     },
   ];
 
-  const { isLoading, userAddress: addressData } = useSelector(
-    (state) => state.address
-  );
+  const {
+    isLoading,
+    userAddress: addressData,
+    fetched,
+  } = useSelector((state) => state.address);
 
   const [selectNav, setSelectNav] = useState(0);
   const [toggleAddAddress, setToggleAddAddress] = useState(false);
@@ -173,8 +177,6 @@ const Account = () => {
   const [editForm, setEditForm] = useState(false);
   const [addressId, setAddressId] = useState('');
   const [addressIndex, setAddressIndex] = useState(null);
-
-  /* --------------------------------- */
 
   const switchNav = (e) => {
     setSelectNav(e);
@@ -236,8 +238,6 @@ const Account = () => {
     }
   };
 
-  /* ---------------------------------------------------- */
-
   const handleSelectLang = (e) => {
     setChoosenLang(e);
     i18n.changeLanguage(e.value);
@@ -246,7 +246,9 @@ const Account = () => {
   const handleLogout = () => {
     localStorage.removeItem('isLogin');
     removeLoginToken();
+    dispatch(resetProduct());
     dispatch(logout());
+    dispatch(clearAddress());
     navigate('/');
   };
 
@@ -258,7 +260,9 @@ const Account = () => {
 	}, [localStorage.getItem('isLogin')]);
 
   useEffect(() => {
-    dispatch(getAddress());
+    if (!fetched) {
+      dispatch(getAddress());
+    }
     /*eslint-disable-next-line */
 	}, []);
 

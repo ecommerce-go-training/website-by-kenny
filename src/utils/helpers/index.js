@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import { StorageKey } from 'utils/constants';
+import { imageList } from 'utils/constants';
 
 const saveLoginToken = (token) =>
   localStorage.setItem(StorageKey.accessToken, token);
@@ -25,9 +26,14 @@ const formatCurrency = (unit, value) => {
 const showNoti = (type, message, position = 'top-right') =>
   toast?.[type](message, { containerId: position });
 
+const imageGenerator = () => {
+  return imageList[Math.floor(Math.random() * imageList.length)];
+};
+
 export {
   formatCurrency,
   getLoginToken,
+  imageGenerator,
   modifyLocalStorage,
   removeLoginToken,
   saveLoginToken,

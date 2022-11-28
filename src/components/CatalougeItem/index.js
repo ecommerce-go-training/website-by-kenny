@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import { formatCurrency } from 'utils/helpers';
 
 import { plus } from 'assets/images';
 
@@ -13,26 +15,21 @@ const CatalougeItem = ({ data }) => {
   });
   const [size, setSize] = useState(0);
 
+  const handleClick = () => {
+    navigate(`/details/${data.id}`, {
+      state: {
+        img: data?.image?.detailImages,
+      },
+    });
+  };
+
   return (
     <div className='cataItem'>
       <div className='img-container'>
         <div className='item-img'>
           <img
-            onClick={() =>
-              navigate('/details:id', {
-                state: {
-                  img        : data.img,
-                  name       : data.name || 'add name',
-                  price      : data.price || 'add price',
-                  catalouge  : data.catalouge || 'add catalouge',
-                  description: data.description || 'add des',
-                  care       : data.care || 'add garment care',
-                  details    : data.details || 'add item details',
-                  quantity   : data.quantity || 0,
-                },
-              })
-            }
-            src={data.img}
+            onClick={handleClick}
+            src={data?.image?.mainImage}
             alt='Item image'
           />
         </div>
@@ -41,31 +38,31 @@ const CatalougeItem = ({ data }) => {
             <img src={plus} alt='icon image' />
             <p>{t('quickAdd')}:</p>
           </div>
-          <p className={size === 0 ? 'active' : ''} onClick={() => setSize(0)}>
-						XS
-          </p>
-          <p className={size === 1 ? 'active' : ''} onClick={() => setSize(1)}>
-						S
-          </p>
-          <p className={size === 2 ? 'active' : ''} onClick={() => setSize(2)}>
-						M
-          </p>
-          <p className={size === 3 ? 'active' : ''} onClick={() => setSize(3)}>
-						L
-          </p>
+          {data?.inventories.map((item, index) => (
+            <p
+              key={index}
+              className={size === index ? 'active' : ''}
+              onClick={() => setSize(index)}
+            >
+              {item.size}
+            </p>
+          ))}
         </div>
         <div className='item-info'>
           <div>
             <p>{data.name}</p>
-            <p>
-              {data.price.toString()} {t('$')}
-            </p>
+            <p>{formatCurrency('VND', data.totalPrice)}</p>
           </div>
-          <p>{data.catalouge}</p>
+          <div>
+            <p className='category-info'>{data.category.name}</p>
+            {data?.discount?.status && (
+              <p className='old-price'>{formatCurrency('VND', data?.price)}</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default CatalougeItem;
+export default memo(CatalougeItem);

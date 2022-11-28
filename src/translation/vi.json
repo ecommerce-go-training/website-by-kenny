@@ -98,6 +98,9 @@
     }
   },
   "Pages": {
+    "Catalouge": {
+      "searchResult": "Kết quả tìm kiếm của bạn"
+    },
     "Home": {
       "description1": "Bộ sưu tầm Du lịch 2021 là một lá thư tình gửi đến tuổi trẻ",
       "description2": "Hãy cùng khám phá vẻ đẹp của những bông hoa đang nở dưới bầu trời nắng và xanh ",

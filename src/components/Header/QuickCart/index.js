@@ -15,7 +15,7 @@ import { xmark } from 'assets/images';
 import './style.scss';
 
 const QuickCart = ({ toggle, setToggle, price }) => {
-  const cartItemData = useSelector((state) => state.persistCart);
+  const cartItem = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
@@ -36,7 +36,7 @@ const QuickCart = ({ toggle, setToggle, price }) => {
         </div>
       </div>
       <div className='my-cart-item'>
-        {cartItemData.cartItem.map((item, index) => (
+        {cartItem.cartItem.map((item, index) => (
           <CartItem
             key={index}
             data={item}

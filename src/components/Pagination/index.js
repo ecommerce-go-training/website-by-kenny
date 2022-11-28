@@ -22,13 +22,15 @@ const Pagination = ({ itemPerPage, totalItemLength, handleSwitchPage }) => {
             })}
             key={number}
             onClick={() => {
-              handleSwitchPage(number);
-              setCurrentPage(number);
-              window.scrollTo({
-                top     : 0,
-                left    : 0,
-                behavior: 'smooth',
-              });
+              if (number !== currentPage) {
+                handleSwitchPage(number);
+                setCurrentPage(number);
+                window.scrollTo({
+                  top     : 0,
+                  left    : 0,
+                  behavior: 'smooth',
+                });
+              }
             }}
           >
             <p>{number}</p>

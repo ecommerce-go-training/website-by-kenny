@@ -65,6 +65,7 @@ import pinterest from './icons/pinterest.png';
 import cartBlack from './icons/cartBlack.png';
 import leftArrow from './icons/leftArrow.png';
 import nextArrow from './icons/nextArrow.png';
+import blackCheck from './icons/blackCheck.png';
 import rightArrow from './icons/rightArrow.png';
 import blueArrowUp from './icons/blueArrowUp.png';
 import searchBlack from './icons/searchBlack.png';
@@ -93,6 +94,7 @@ export {
   beachEdit3,
   beachEdit4,
   blackCart,
+  blackCheck,
   blueArrowDown,
   blueArrowUp,
   blueCart,

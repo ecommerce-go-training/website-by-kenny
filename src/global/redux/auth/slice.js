@@ -5,11 +5,13 @@ import {
   sendCode,
   verifyCode,
   changePassword,
+  getUser,
 } from './thunk';
 
 const initialState = {
-  userInfo : {},
+  userInfo : [],
   isLoading: false,
+  fetched  : false,
 };
 
 const authSlice = createSlice({
@@ -18,9 +20,21 @@ const authSlice = createSlice({
   reducers    : {
     logout: (state) => {
       state.userInfo = null;
+      state.fetched = false;
     },
   },
   extraReducers: {
+    [getUser.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getUser.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.fetched = true;
+      state.userInfo = action?.payload?.data;
+    },
+    [getUser.rejected]: (state) => {
+      state.isLoading = false;
+    },
     [registerAccount.pending]: (state) => {
       state.isLoading = true;
     },

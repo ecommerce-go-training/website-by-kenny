@@ -1,130 +1,146 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+import { getProducts } from 'global/redux/product/thunk';
 
 import Header from 'components/Header';
 import Filter from 'components/Filter';
 import Footer from 'components/Footer';
+import Pagination from 'components/Pagination';
 import CatalougeItem from 'components/CatalougeItem';
 
 import {
-  cataBackDress,
-  cataPinkDress,
-  cataPurpleDress,
-  cataWhiteDress,
-  whiteDress,
-  greenDress,
-  orangeDress,
-} from 'assets/images';
+  filterByCategory,
+  filterBySizeColor,
+  search,
+  sortProduct,
+} from 'global/redux/product/slice';
 
-import Pagination from 'components/Pagination';
+import { colorList } from 'utils/constants';
 
 import './style.scss';
 
 const Catalouge = () => {
-  const data = [
-    {
-      img      : cataBackDress,
-      name     : 'Black Dress',
-      price    : 50,
-      catalouge: 'New Arrival',
-      details  : 'Hello darkness my old friend, i come to talk with you again',
-      care     : 'Dry clean only',
-      quantity : 0,
-    },
-    {
-      img        : cataWhiteDress,
-      name       : 'White Dress',
-      price      : 150,
-      catalouge  : 'Best sellers',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 5,
-    },
-    {
-      img        : cataPinkDress,
-      name       : 'Pink Dress',
-      price      : 30,
-      catalouge  : 'Shorts',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 9,
-    },
-    {
-      img        : cataPurpleDress,
-      name       : 'Purple Dress',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 0,
-    },
-    {
-      img        : orangeDress,
-      name       : 'Dress Orange',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 5,
-    },
-    {
-      img        : greenDress,
-      name       : 'Dressing OOO',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 0,
-    },
-    {
-      img        : whiteDress,
-      name       : 'Builtin Dress',
-      price      : 20,
-      catalouge  : 'Sale',
-      description:
-				'A high neck open mini dress cut in a lien with an elasticated waist and back cross over detail',
-      details : 'Hello darkness my old friend, i come to talk with you again',
-      care    : 'Dry clean only',
-      quantity: 5,
-    },
-  ];
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Pages.Catalouge',
+  });
+  const { type } = useParams();
+  const dispatch = useDispatch();
+
+  const searchKeyword = localStorage.getItem('searchKeyword');
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemPerPage] = useState(4);
+  const [itemPerPage] = useState(8);
 
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItemShow = data.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleSwitchPage = (pageNumber) => setCurrentPage(pageNumber);
+
+  const { fetched, displayProduct } = useSelector((state) => state.product);
+
+  const [searchParams] = useSearchParams();
+
+  const filterCondition = {
+    color: colorList
+      .filter((item) =>
+        searchParams.get('color')?.split(',').includes(item.key)
+      )
+      .map((item) => item.value),
+    size: searchParams.get('size')?.split(','),
+  };
+
+  useEffect(() => {
+    if (!fetched) {
+      dispatch(getProducts());
+    }
+    /*eslint-disable-next-line */
+	}, []);
+
+  useEffect(() => {
+    if (type === 'search-result') {
+      dispatch(search(searchKeyword));
+    } else {
+      dispatch(filterByCategory(type));
+    }
+    if (
+      filterCondition?.color?.length > 0 ||
+			filterCondition?.size?.length > 0
+    ) {
+      dispatch(filterBySizeColor(filterCondition));
+    }
+    /*eslint-disable-next-line */
+	}, [type]);
+
+  const handleApplyFilter = (filterCondition, setSearchParams, dispatch) => {
+    if (
+      filterCondition?.color?.length === 0 &&
+			filterCondition?.size?.length === 0
+    ) {
+      return;
+    } else {
+      setSearchParams({
+        color: colorList
+          .filter((item) =>
+            filterCondition?.color
+              .map((item) => item)
+              .toString()
+              .includes(item.value)
+          )
+          .map((item) => item.key)
+          .toString(),
+        size: filterCondition?.size.map((item) => item).toString(),
+      });
+      dispatch(filterBySizeColor(filterCondition));
+    }
+  };
+  const currentItemShow = displayProduct.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  const [sort, setSort] = useState(null);
+
+  const handleSortFilter = (dispatch, index) => {
+    setSort(index);
+    dispatch(sortProduct(index));
+  };
 
   return (
     <div>
       <Header catalouge disableAnnounce />
       <div className='catalouge'>
         <div className='catalouge__filter'>
-          <Filter />
+          <Filter
+            sort={sort}
+            setSort={setSort}
+            handleApplyFilter={handleApplyFilter}
+            handleSortFilter={handleSortFilter}
+          />
         </div>
         <div className='catalouge__items'>
-          <div>
-            {currentItemShow.map((item, index) => (
-              <CatalougeItem key={index} data={item} />
-            ))}
-          </div>
-          <Pagination
-            itemPerPage={itemPerPage}
-            totalItemLength={data.length}
-            handleSwitchPage={handleSwitchPage}
-          />
+          {type === 'search-result' && (
+            <p className='search-indicator'>
+              {t('searchResult')} &quot;{searchKeyword}&quot;
+            </p>
+          )}
+          {currentItemShow.length > 0 ? (
+            <div>
+              <div>
+                {currentItemShow.map((item, index) => (
+                  <CatalougeItem key={index} data={item} />
+                ))}
+              </div>
+              <Pagination
+                itemPerPage={itemPerPage}
+                totalItemLength={displayProduct.length}
+                handleSwitchPage={handleSwitchPage}
+              />
+            </div>
+          ) : (
+            <p className='fail'>No item found, try again</p>
+          )}
         </div>
       </div>
       <Footer lineTop />

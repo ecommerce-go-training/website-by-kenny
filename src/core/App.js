@@ -6,11 +6,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
 
 import ScrollToTop from 'components/ScrollToTop';
-import PrivateRoute from 'components/PrivateRoute';
 import InternetCheck from 'components/InternetCheck';
 
 import { store, persistor } from './store';
-import { privateRoutes, publicRoutes } from 'routes';
+import { publicRoutes } from 'routes';
 
 import 'assets/scss/global.scss';
 import 'assets/scss/normalize.scss';
@@ -37,19 +36,6 @@ const App = () => {
                   key={index}
                   path={item.path}
                   element={<item.component />}
-                />
-              ))}
-            </Routes>
-            <Routes>
-              {privateRoutes.map((item, index) => (
-                <Route
-                  key={index}
-                  path={item.path}
-                  element={
-                    <PrivateRoute>
-                      <item.component />
-                    </PrivateRoute>
-                  }
                 />
               ))}
             </Routes>

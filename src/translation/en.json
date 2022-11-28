@@ -98,6 +98,9 @@
     }
   },
   "Pages": {
+    "Catalouge": {
+      "searchResult": "Search result for"
+    },
     "Home": {
       "description1": "The Resort 2021 collection is a love letter to our youth. Discover the",
       "description2": "beauty of blooming flowers under the blue sky and sunny",

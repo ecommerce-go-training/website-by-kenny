@@ -1,9 +1,4 @@
-import { api } from 'services/apiv2';
-
-const getUserInfo = async () => {
-  const res = await api.get('/users/me');
-  return res.data.data;
-};
+import { api } from 'services/api';
 
 const getUserAddress = async () => {
   const res = await api.get('/addresses');
@@ -53,10 +48,4 @@ const deleteUserAddress = async (id) => {
   return res?.data?.data;
 };
 
-export {
-  addUserAdress,
-  deleteUserAddress,
-  editUserAddress,
-  getUserAddress,
-  getUserInfo,
-};
+export { addUserAdress, deleteUserAddress, editUserAddress, getUserAddress };
