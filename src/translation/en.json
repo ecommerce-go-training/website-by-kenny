@@ -117,7 +117,7 @@
       "newsLetter": "newsletter",
       "changeLanguage": "change language",
       "logout": "log out",
-      "order": "order",
+      "order": "order ID:",
       "return": "make a return",
       "status": "status:",
       "trackOrder": "track order",
@@ -160,7 +160,8 @@
       "emailPref": "Email preferences",
       "updatePref": "To update your preferences please check the relevant boxes below. If you wish to unsubscribe from any email, please uncheck the appropriate box and submit.",
       "newsletter": "newsletter",
-      "savePref": "save preferences"
+      "savePref": "save preferences",
+      "discountCode": "Discount code"
     },
     "Store": {
       "ourStore": "our store",
@@ -224,10 +225,10 @@
       "billAddress": "Billing address",
       "billAddressDes": "Select the address that matches your card or payment method.",
       "creditCard": "Credit card",
-      "cardNumber": "cardNumber",
-      "cardExpire": "cardExpire",
-      "cardSecCode": "cardSecCode",
-      "cardName": "cardName",
+      "cardNumber": "Card Number",
+      "cardExpire": "Card Expire",
+      "cardSecCode": "Card Security Code",
+      "cardName": "Card Name",
       "sameShip": "Same as shipping address",
       "differentShip": "Use a different billing address",
       "term": "By ticking, you agree to the following terms of sale. Items purchased during a promotional event or is a sale item can only be returned for a store credit or exchange. Click here to read full returns policy.",
@@ -236,7 +237,8 @@
       "showOrder": "Show order summary",
       "thank": "THANK YOU!\nYOUR ORDER IS COMPLETED.",
       "confirmEmail": "We send an email to confirm your order details.",
-      "orderNumber": "YOUR ORDER NUMBER"
+      "orderNumber": "YOUR ORDER NUMBER",
+      "couponDiscount": "Coupon Discount"
     },
     "Brand": {
       "brand": "brand",
@@ -463,9 +465,12 @@
         "firstName": "firstName",
         "lastName": "lastName",
         "email": "email",
-        "country": "country"
+        "country": "country",
+        "sizeGuide": "SIZE GUIDE",
+        "sizeGuideDescription": "If your measurements just don't fit in a single column, use your waist measurement to determine your ideal size.",
+        "sizeCoversation": "SIZING CONVERSATION"
       },
-      "$": "$",
+      "$": "USD",
       "addToCart": "add to cart",
       "waitList": "waitlist",
       "findYourSize": "Find your size: ",

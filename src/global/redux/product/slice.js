@@ -64,6 +64,9 @@ const productSlice = createSlice({
           (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
         );
         break;
+      case 1:
+        state.displayProduct.sort((a, b) => b.sold - a.sold);
+        break;
       case 2:
         state.displayProduct.sort((a, b) => b.totalPrice - a.totalPrice);
         break;
@@ -79,12 +82,21 @@ const productSlice = createSlice({
       /*eslint-disable-next-line*/
 			state = initialState;
     },
+    addProductSoldItem: (state, action) => {
+      const newList = state.productList.map((item) =>
+        item.id === action?.payload?.id
+          ? { ...item, sold: item.sold + action?.payload?.amount }
+          : item
+      );
+      state.productList = [...newList];
+    },
   },
   extraReducers: {
     [getProducts.pending]: (state) => {
       state.isLoading = true;
     },
     [getProducts.fulfilled]: (state, action) => {
+      const sizeOrder = ['freesize', 'XS', 'S', 'M', 'L', 'XL'];
       state.isLoading = false;
       state.fetched = true;
       /* eslint-disable */
@@ -93,6 +105,17 @@ const productSlice = createSlice({
 					(item = {
 						...item,
 						image: imageGenerator(),
+						sizeColorList: {
+							size: [
+								...new Set(item?.inventories?.map((invent) => invent.size)),
+							].sort((a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b)),
+							color: [...new Set(item?.inventories?.map((item) => item.color))],
+						},
+						sold: item.inventories
+							.map((invent) => invent?.detailInvoiceItems)
+							.map((item) => item.map((item) => item.amount))
+							.map((item) => item.reduce((item, sum) => item + sum, 0))
+							.reduce((item, sum) => item + sum, 0),
 						totalPrice:
 							item.price - (item.price * item?.discount?.percent || 0) / 100,
 					})
@@ -109,13 +132,13 @@ const productSlice = createSlice({
 			const price = action?.payload?.data?.price;
 			const percent = action?.payload?.data.discount?.percent || 0;
 			const inventories = action?.payload?.data?.inventories;
-			const sizeList = ['freesize', 'XS', 'S', 'M', 'L', 'XL'];
+			const sizeOrder = ['freesize', 'XS', 'S', 'M', 'L', 'XL'];
 			state.currentProduct = {
 				...action?.payload?.data,
 				totalPrice: price - (price * percent) / 100,
 				sizeColorList: {
 					size: [...new Set(inventories.map((item) => item.size))].sort(
-						(a, b) => sizeList.indexOf(a) - sizeList.indexOf(b)
+						(a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b)
 					),
 					color: [...new Set(inventories.map((item) => item.color))],
 				},
@@ -134,5 +157,6 @@ export const {
 	filterByCategory,
 	filterBySizeColor,
 	sortProduct,
+	addProductSoldItem,
 } = productSlice.actions;
 export default productSlice.reducer;

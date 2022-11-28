@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'components/Button';
 import CartItem from 'components/CartItem';
 
-import { formatCurrency } from 'utils/helpers';
+import { formatCurrency, showNoti, useClickOutside } from 'utils/helpers';
 import {
   addItemQuantity,
   minusItemQuantity,
@@ -29,11 +29,30 @@ const QuickCart = ({ toggle, setToggle }) => {
   });
 
   const totalPrice = cartItem
-    .map((item) => item.quantity * item.totalPrice)
-    .reduce((item, sum) => item + sum, 0);
+    ?.map((item) => item.quantity * item.totalPrice)
+    ?.reduce((item, sum) => item + sum, 0);
+
+  const handleViewCart = () => {
+    if (cartItem.length > 0) {
+      navigate('/my-cart');
+    } else {
+      showNoti('error', 'Cart is empty');
+    }
+  };
+
+  const handleCheckout = () => {
+    if (cartItem.length > 0) {
+      navigate('/checkout');
+    } else {
+      showNoti('error', 'Cart is empty');
+    }
+  };
+
+  let cartRef = useClickOutside(() => setToggle(false));
 
   return (
     <div
+      ref={cartRef}
       className={classNames({
         'my-cart': true,
         active   : toggle,
@@ -46,24 +65,30 @@ const QuickCart = ({ toggle, setToggle }) => {
         </div>
       </div>
       <div className='my-cart-item'>
-        {cartItem?.map((item, index) => (
-          <CartItem
-            key={index}
-            data={item}
-            handleAddItem={() => dispatch(addItemQuantity(index))}
-            handleMinusItem={() => dispatch(minusItemQuantity(index))}
-            handleRemove={() => dispatch(removeItem(index))}
-          />
-        ))}
+        {cartItem.length > 0 ? (
+          cartItem?.map((item, index) => (
+            <CartItem
+              key={index}
+              data={item}
+              handleAddItem={() => dispatch(addItemQuantity(index))}
+              handleMinusItem={() => dispatch(minusItemQuantity(index))}
+              handleRemove={() => dispatch(removeItem(index))}
+            />
+          ))
+        ) : (
+          <p className='empty-cart-inform'>
+						Empty cart, let&lsquo;s add more item
+          </p>
+        )}
       </div>
       <div className='my-cart-button'>
         <div className='my-cart-button-cart'>
-          <Button whiteBg border handleClick={() => navigate('/my-cart')}>
+          <Button whiteBg border handleClick={handleViewCart}>
             {t('viewCart')}
           </Button>
         </div>
         <div>
-          <Button border handleClick={() => navigate('/checkout')}>
+          <Button border handleClick={handleCheckout}>
             <div className='button-info'>
               <p>{t('checkOut')}</p>
               {totalPrice > 0 && <p>{formatCurrency('VND', totalPrice)}</p>}

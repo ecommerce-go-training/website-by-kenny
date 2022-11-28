@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getProducts } from 'global/redux/product/thunk';
-
 import Stack from 'components/Stack';
 import Button from 'components/Button';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Slider2 from 'components/Sliderv2';
+
+import { getProducts } from 'global/redux/product/thunk';
 
 import { subBg1, subBg2, model1, model2, background } from 'assets/images';
 
@@ -28,6 +28,9 @@ const Home = () => {
     .slice(0, 8);
   const recommendSliderItem = [...productList]
     .sort(() => 0.5 - Math.random())
+    .slice(0, 8);
+  const bestSellerSliderItem = [...productList]
+    .sort((a, b) => b.sold - a.sold)
     .slice(0, 8);
 
   const [active, setActive] = useState(true);
@@ -92,7 +95,10 @@ const Home = () => {
               {window.innerWidth < 737 ? 'best seller' : 'shop best seller'}
             </p>
           </Stack>
-          <Slider2 data={newArrivalSliderItem} handleClick={handleClickImg} />
+          <Slider2
+            data={active ? newArrivalSliderItem : bestSellerSliderItem}
+            handleClick={handleClickImg}
+          />
         </div>
         <div className='home__doublebg'>
           <img src={subBg1} alt='Knitwear bg img' />

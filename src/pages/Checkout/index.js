@@ -1,17 +1,27 @@
 import classNames from 'classnames';
 
-import { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 
 import Input from 'components/Input';
 import Item from './Item';
 import Button from 'components/Button';
 
-import { formatCurrency } from 'utils/helpers';
+import { formatCurrency, showNoti } from 'utils/helpers';
+
+import { getUser } from 'global/redux/auth/thunk';
+import { clearCart } from 'global/redux/cart/slice';
+import { addProductSoldItem } from 'global/redux/product/slice';
+import { getAddress, addAddress } from 'global/redux/address/thunk';
+import {
+  createBillInvoice,
+  verifyUserCoupon,
+} from 'global/redux/checkout/thunk';
 
 import checkoutVal from './validation';
 
@@ -33,12 +43,33 @@ import './style.scss';
 
 const Checkout = () => {
   const navigate = useNavigate();
-  const cartItem = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const isLogin = localStorage.getItem('isLogin');
+
+  const { cartItem } = useSelector((state) => state.cart);
+  const { fetched: userAddressFetch, userAddress } = useSelector(
+    (state) => state.address
+  );
+  const { fetched: userInfoFetch, userInfo } = useSelector(
+    (state) => state.auth
+  );
+  const { isLoadingCheckout, isLoadingDiscount } = useSelector(
+    (state) => state.checkout
+  );
+  const { isLoading: addressLoading } = useSelector((state) => state.address);
+
+  const totalPrice = cartItem
+    .map((item) => item.quantity * item.totalPrice)
+    .reduce((item, sum) => item + sum, 0);
+  const [shipFee, setShipFee] = useState(null);
+
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Checkout' });
   const {
     watch,
     register,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     mode    : 'all',
@@ -50,6 +81,43 @@ const Checkout = () => {
   const [paymentOption, setpaymentOption] = useState(1);
   const [billOption, setBillOption] = useState(1);
   const [toggleSummary, setToggleSummary] = useState(false);
+  const [saveAddressInfo, setSaveAddressInfo] = useState(false);
+  const [couponDiscount, setCouponDiscount] = useState(false);
+  const emailFocusOnClick = useRef(null);
+  const addressFocusOnClick = useRef(null);
+
+  const handleChangeInfo = (ref) => {
+    setFormStep(1);
+    window.scrollTo({
+      top : 0,
+      left: 0,
+    });
+    ref.current.focus();
+  };
+
+  const shipMethods = [
+    {
+      key  : 1,
+      value: 25000,
+    },
+    {
+      key  : 2,
+      value: 25000,
+    },
+    {
+      key  : 3,
+      value: 25000,
+    },
+  ];
+
+  useEffect(() => {
+    setShipFee(
+      shipMethods
+        .filter((item) => item.key === shipMethod)
+        .map((item) => item.value)[0]
+    );
+    /* eslint-disable-next-line */
+	}, [shipMethod]);
 
   const handleClick = () => {
     setFormStep((prev) => prev + 1);
@@ -60,8 +128,143 @@ const Checkout = () => {
     else navigate('/my-cart');
   };
 
-  const formSubmit = () => {
-    navigate('/payment-success');
+  useEffect(() => {
+    if (localStorage.getItem('isLogin') !== 'true') {
+      navigate('/sign-in');
+    }
+    /*eslint-disable-next-line */
+	}, [localStorage.getItem('isLogin')]);
+
+  useEffect(() => {
+    if (!userAddressFetch && isLogin) {
+      dispatch(getAddress());
+    }
+    if (!userInfoFetch && isLogin) {
+      dispatch(getUser());
+    }
+    /*eslint-disable-next-line */
+	}, []);
+
+  // auto fill address input
+  useEffect(() => {
+    setValue('email', userInfo.email);
+    setValue('firstName', userInfo.firstName);
+    setValue('lastName', userInfo.lastName);
+    setValue('phone]', userInfo.phoneNumber);
+    if (userAddress.length > 0) {
+      setValue('address', userAddress[userAddress.length - 1].street);
+      setValue('city', userAddress[userAddress.length - 1].city);
+      setValue('countryReg', userAddress[userAddress.length - 1].country);
+      setValue('postalCode', userAddress[userAddress.length - 1].postalCode);
+    }
+    /*eslint-disable-next-line */
+	}, [userAddress]);
+
+  // reset address input
+  useEffect(() => {
+    if (billOption === 2) {
+      setValue('firstName', '');
+      setValue('lastName', '');
+      setValue('address', '');
+      setValue('city', '');
+      setValue('countryReg', '');
+      setValue('postalCode', '');
+      setValue('phone', '');
+    }
+    /*eslint-disable-next-line */
+	}, [billOption]);
+
+  const handleApplyDiscount = async (code) => {
+    const { payload } = await dispatch(verifyUserCoupon(code));
+    const { status, data } = payload;
+    if (status) {
+      showNoti('success', 'Coupon Used');
+      setCouponDiscount(data.status !== 'IS_USED' ? true : false);
+    }
+  };
+
+  // Checkout logic
+
+  const formSubmit = async () => {
+    const formData = getValues();
+
+    const data = {
+      email     : formData.email,
+      firstName : formData.firstName,
+      lastName  : formData.lastName,
+      street    : formData.address,
+      city      : formData.city,
+      country   : formData.countryReg,
+      postalCode: formData.postalCode,
+      total     :
+				totalPrice - (totalPrice * (couponDiscount ? 10 : 0)) / 100 + shipFee,
+      phoneNumber : formData.phone,
+      discountCode: formData.discount || formData.discountMobile,
+      detailItems : cartItem.map((item) => {
+        return {
+          itemId   : item.id,
+          inventory: item?.inventories
+            ?.filter(
+              (inventItem) =>
+                inventItem.size === item.size && inventItem.color === item.color
+            )
+            ?.map((item) => item.id)[0],
+          amount  : item.quantity,
+          total   : item.price,
+          discount: item?.discount?.status ? item?.discount?.percent : 0,
+        };
+      }),
+    };
+
+    const { payload } = await dispatch(createBillInvoice(data));
+
+    if (payload?.status) {
+      data?.detailItems.forEach((item) => {
+        dispatch(
+          addProductSoldItem({
+            id    : item.itemId,
+            amount: item.amount,
+          })
+        );
+      });
+      if (saveAddressInfo) {
+        const {
+          firstName,
+          lastName,
+          street,
+          city,
+          country,
+          postalCode,
+          phoneNumber,
+        } = data;
+        const body = {
+          firstName,
+          lastName,
+          address: street,
+          city,
+          country,
+          postalCode,
+          phone  : phoneNumber,
+        };
+        const res = await dispatch(addAddress(body));
+        if (res.payload.status) {
+          dispatch(clearCart());
+          showNoti('success', 'New address added');
+          navigate('/payment-success', {
+            state: {
+              invoiceId: payload?.data?.id,
+            },
+          });
+        }
+      } else {
+        dispatch(clearCart());
+        navigate('/payment-success', {
+          state: {
+            invoiceId: payload?.data?.id,
+          },
+        });
+      }
+    }
   };
 
   return (
@@ -81,16 +284,18 @@ const Checkout = () => {
               />
             </div>
             <p>
-              {Intl.NumberFormat('vi-VIET', {
-                style   : 'currency',
-                currency: 'VND',
-              }).format(250)}
+              {formatCurrency(
+                'VND',
+                totalPrice -
+									(totalPrice * (couponDiscount ? 10 : 0)) / 100 +
+									shipFee
+              )}
             </p>
           </div>
           {toggleSummary && (
             <div>
               <div className='summary-bill'>
-                {cartItem.cartItem.map((item, index) => (
+                {cartItem.map((item, index) => (
                   <Item key={index} data={item} />
                 ))}
               </div>
@@ -107,51 +312,74 @@ const Checkout = () => {
                 </div>
                 <div>
                   <Button
-                    discount
-                    disable={
-                      !watch('discountMobile') || errors.discount?.message
+                    handleClick={() =>
+                      handleApplyDiscount(getValues('discountMobile'))
                     }
+                    login
+                    discount
+                    isLoading={isLoadingDiscount}
                   >
-                    <img src={discountArrow} alt='icon image' />
+                    <img
+                      className='arrow-img'
+                      src={discountArrow}
+                      alt='icon image'
+                    />
                   </Button>
                 </div>
               </div>
               <div className='summary-subtotal'>
                 <div>
                   <p>{t('subtotal')}</p>
-                  <p>
-                    {Intl.NumberFormat('vi-VIET', {
-                      style   : 'currency',
-                      currency: 'VND',
-                    }).format(250)}
-                  </p>
+                  <p>{formatCurrency('VND', totalPrice)}</p>
                 </div>
                 <div>
                   <p>{t('shipping')}</p>
-                  <p>
-                    {Intl.NumberFormat('vi-VIET', {
-                      style   : 'currency',
-                      currency: 'VND',
-                    }).format(250)}
-                  </p>
+                  <p>{formatCurrency('VND', shipFee)}</p>
+                </div>
+                <div>
+                  <p>{t('couponDiscount')}</p>
+                  <p>{couponDiscount ? '10 %' : 'None'}</p>
                 </div>
               </div>
               <div className='summary-total'>
                 <p>{t('total')}</p>
                 <p>
                   {formatCurrency(
-                    t('unit'),
-                    cartItem.cartItem
-                      .map((item) => item.price * item.quantity)
-                      .reduce((item, sum) => item + sum, 0)
+                    'VND',
+                    totalPrice -
+											(totalPrice * (couponDiscount ? 10 : 0)) / 100 +
+											shipFee
                   )}
                 </p>
               </div>
             </div>
           )}
         </div>
-        <p className='current-path' onClick={() => setFormStep(1)}>
-					cart / infomation <span>/ shipping / payment</span>
+        <p className='current-path'>
+          <span
+            onClick={() => navigate('/my-cart')}
+            className={classNames({ active: formStep > 0 })}
+          >
+						cart
+          </span>
+          <span
+            onClick={() => setFormStep(1)}
+            className={classNames({ active: formStep > 0 })}
+          >
+						/ information
+          </span>
+          <span
+            onClick={() => setFormStep(2)}
+            className={classNames({ active: formStep > 1 })}
+          >
+						/ shipping
+          </span>
+          <span
+            onClick={() => setFormStep(3)}
+            className={classNames({ active: formStep > 2 })}
+          >
+						/ payment
+          </span>
         </p>
         <form onSubmit={handleSubmit(formSubmit)}>
           {formStep === 1 && (
@@ -238,7 +466,11 @@ const Checkout = () => {
                 />
               </div>
               <div className='form-check second'>
-                <input type='checkbox' id='checkbox' />
+                <input
+                  type='checkbox'
+                  id='checkbox'
+                  onChange={() => setSaveAddressInfo(!saveAddressInfo)}
+                />
                 <label htmlFor='checkbox'>{t('saveInfo')}</label>
               </div>
               <div className='form-navigate'>
@@ -261,15 +493,21 @@ const Checkout = () => {
                   <p>{t('contactConfirm')}</p>
                   <div>
                     <p>{watch('email')}</p>
-                    <p>{t('change')}</p>
+                    <p onClick={() => handleChangeInfo(emailFocusOnClick)}>
+                      {t('change')}
+                    </p>
                   </div>
                 </div>
                 <div className='form-line'></div>
                 <div>
                   <p>{t('shipTo')}</p>
                   <div>
-                    <p>{watch('address')}</p>
-                    <p>{t('change')}</p>
+                    <p>
+                      {watch('address')}, {watch('city')}
+                    </p>
+                    <p onClick={() => handleChangeInfo(addressFocusOnClick)}>
+                      {t('change')}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -428,7 +666,7 @@ const Checkout = () => {
                   </div>
                   {billOption === 2 && (
                     <section className='form-info'>
-                      <div>
+                      <div className='form-info-double'>
                         <Input
                           register={register}
                           error={errors.firstName?.message}
@@ -462,7 +700,7 @@ const Checkout = () => {
                         inputCheck={watch('city')}
                         greyBg
                       />
-                      <div>
+                      <div className='form-info-double'>
                         <Input
                           register={register}
                           error={errors.countryReg?.message}
@@ -506,7 +744,11 @@ const Checkout = () => {
                   <p>{t('return')}</p>
                 </div>
                 <div>
-                  <Button type='submit'>
+                  <Button
+                    discount
+                    isLoading={addressLoading || isLoadingCheckout}
+                    type='submit'
+                  >
                     <p>{t('pay')}</p>
                   </Button>
                 </div>
@@ -517,7 +759,7 @@ const Checkout = () => {
       </div>
       <div className='checkout-item'>
         <div className='checkout-item-images'>
-          {cartItem.cartItem.map((item, index) => (
+          {cartItem.map((item, index) => (
             <Item key={index} data={item} />
           ))}
         </div>
@@ -534,8 +776,9 @@ const Checkout = () => {
           </div>
           <div>
             <Button
+              handleClick={() => handleApplyDiscount(getValues('discount'))}
               discount
-              disable={!watch('discount') || errors.discount?.message}
+              isLoading={isLoadingDiscount}
             >
               <p>{t('apply')}</p>
             </Button>
@@ -544,21 +787,29 @@ const Checkout = () => {
         <div className='checkout-item-subtotal'>
           <div>
             <p>{t('subtotal')}</p>
-            <p>{t('unit')}250.00</p>
+            <p>{formatCurrency('VND', totalPrice)}</p>
           </div>
           <div>
             <p>{t('shipping')}</p>
-            <p>{t('calcNextStep')}</p>
+            {shipFee ? (
+              <p>{formatCurrency('VND', shipFee)}</p>
+            ) : (
+              <p>{t('calcNextStep')}</p>
+            )}
+          </div>
+          <div>
+            <p>{t('couponDiscount')}</p>
+            <p>{couponDiscount ? '10 %' : 'None'}</p>
           </div>
         </div>
         <div className='checkout-item-total'>
           <p>{t('total')}</p>
           <p>
             {formatCurrency(
-              t('unit'),
-              cartItem.cartItem
-                .map((item) => item.price * item.quantity)
-                .reduce((item, sum) => item + sum, 0)
+              'VND',
+              totalPrice -
+								(totalPrice * (couponDiscount ? 10 : 0)) / 100 +
+								shipFee
             )}
           </p>
         </div>

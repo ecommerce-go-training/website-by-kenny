@@ -11,14 +11,25 @@ $max-desktop-width: 1600px;
       @content;
     }
   }
+
   @if $type==tablet {
     @media only screen and (min-width: $min-tablet-width) and (max-width: $max-tablet-width) {
       @content;
     }
   }
+
   @if $type==mobile {
     @media only screen and (min-width: $min-mobile-width) and (max-width: $max-mobile-width) {
       @content;
     }
   }
+}
+
+@mixin text($family, $size, $color, $fontWeight, $lineHeight) {
+  color: $color;
+  font-size: $size;
+  font-family: $family;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  margin: 0;
 }

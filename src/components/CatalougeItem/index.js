@@ -38,13 +38,13 @@ const CatalougeItem = ({ data }) => {
             <img src={plus} alt='icon image' />
             <p>{t('quickAdd')}:</p>
           </div>
-          {data?.inventories.map((item, index) => (
+          {data?.sizeColorList?.size.map((item, index) => (
             <p
               key={index}
               className={size === index ? 'active' : ''}
               onClick={() => setSize(index)}
             >
-              {item.size}
+              {item}
             </p>
           ))}
         </div>

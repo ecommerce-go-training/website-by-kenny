@@ -1,7 +1,12 @@
 import React, { useState, memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useParams,
+  useSearchParams,
+  useNavigate,
+} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
@@ -20,6 +25,7 @@ const Filter = ({
   handleApplyFilter,
   handleSortFilter,
 }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Filter',
   });
@@ -110,6 +116,7 @@ const Filter = ({
   const [toggleSize, setToggleSize] = useState(false);
   const [toggleFilter, setToggleFilter] = useState(false);
   const [toggleSort, setToggleSort] = useState(false);
+  const [toggleCategory, setToggleCategory] = useState(false);
 
   const handleFilter = (func, arr, index) => {
     if (arr.includes(index)) {
@@ -239,7 +246,15 @@ const Filter = ({
 
       <div className={classNames('filter-mobile', { disable: shop })}>
         <div className='filter-mobile-nav'>
-          <p>{t('newArrivals')}</p>
+          <div
+            className='label'
+            onClick={() => setToggleCategory(!toggleCategory)}
+          >
+            <img src={toggleCategory ? minus : plus} alt='icon image' />
+            <p>
+              {type?.split('-').reduce((item, combine) => item + ' ' + combine)}
+            </p>
+          </div>
           <div className='filter-mobile-nav-option'>
             <div
               className='label'
@@ -306,11 +321,13 @@ const Filter = ({
               <div className='handle-filter-mobile'>
                 <p onClick={handleClearFilter}>{t('clearFilters')}</p>
                 <div
-                  onClick={handleApplyFilter(
-                    filterCondition,
-                    setSearchParams,
-                    dispatch
-                  )}
+                  onClick={() =>
+                    handleApplyFilter(
+                      filterCondition,
+                      setSearchParams,
+                      dispatch
+                    )
+                  }
                   className='button'
                 >
                   {t('apply')}
@@ -332,6 +349,22 @@ const Filter = ({
                   onClick={() => handleSortFilter(dispatch, index)}
                 >
                   {item}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {toggleCategory && (
+          <div className='category-mobile'>
+            <div>
+              {categoriesList.map((item, index) => (
+                <p
+                  key={index}
+                  onClick={() => navigate(`/catalouge/${item.value}`)}
+                  className={item.value === type ? 'active' : ''}
+                >
+                  {item.label}
                 </p>
               ))}
             </div>

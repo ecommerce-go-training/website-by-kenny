@@ -30,7 +30,7 @@ const CartItem = ({ data, handleRemove, handleAddItem, handleMinusItem }) => {
           {data.name} | <b>{data.size}</b> | <b>{convertColor}</b>
         </p>
         <div className='item-price'>
-          <div>
+          <div className='item-adjustment'>
             <div>
               <img
                 onClick={() => {
@@ -54,7 +54,12 @@ const CartItem = ({ data, handleRemove, handleAddItem, handleMinusItem }) => {
               />
             </div>
           </div>
-          <p>{formatCurrency('VND', data.totalPrice)}</p>
+          <div className='item-total-price'>
+            {data?.discount?.status && (
+              <p className='old-price'>{formatCurrency('VND', data.price)}</p>
+            )}
+            <p>{formatCurrency('VND', data.totalPrice)}</p>
+          </div>
         </div>
         <div className='item-total'>
           <p>{formatCurrency('VND', data.totalPrice * data.quantity)}</p>

@@ -45,7 +45,7 @@
   }
 
   & .navigate-button {
-    width: 50px;
+    width: max-content;
   }
 
   & a {
@@ -279,7 +279,7 @@
 .login-header {
   position: fixed;
   top: 0px;
-  background-color: $transparent;
+  background-color: $white;
 
   & a,
   &.logo,

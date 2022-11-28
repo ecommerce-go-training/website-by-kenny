@@ -9,18 +9,27 @@ const checkoutVal = yup.object().shape({
   countryReg    : yup.string().required(),
   postalCode    : yup.string().required(),
   phone         : yup.string().required(),
-  discount      : yup.string().max(12),
-  discountMobile: yup.string().max(12),
+  discount      : yup.string(),
+  discountMobile: yup.string(),
   cardNumber    : yup
-    .number('Need to be number')
-    .required("Can't be empty")
-    .typeError('Try again'),
-  cardName   : yup.string().required("Can't be empty").typeError('Try again'),
-  cardExpire : yup.date().required("Can't be empty").typeError('Try again'),
+    .number()
+    .typeError('Card number must be a number')
+    .nullable()
+    .moreThan(0, 'Floor area cannot be negative')
+    .transform((_, val) => (val !== '' ? Number(val) : null)),
+  cardName  : yup.string().notRequired(),
+  cardExpire: yup
+    .number()
+    .typeError('Expire must be a date format')
+    .nullable()
+    .moreThan(0, 'Floor area cannot be negative')
+    .transform((_, val) => (val !== '' ? Number(val) : null)),
   cardSecCode: yup
-    .number('Wrong format, need to be number')
-    .required("Can't be empty")
-    .typeError('Try again'),
+    .number()
+    .typeError('Sec code must be a number')
+    .nullable()
+    .moreThan(0, 'Floor area cannot be negative')
+    .transform((_, val) => (val !== '' ? Number(val) : null)),
 });
 
 export default checkoutVal;

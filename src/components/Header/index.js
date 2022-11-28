@@ -14,7 +14,7 @@ import Loading from 'components/Loading';
 
 import { getUser } from 'global/redux/auth/thunk';
 
-import { modifyLocalStorage } from 'utils/helpers';
+import { modifyLocalStorage, useClickOutside } from 'utils/helpers';
 
 import { search, searchBlack, cart, cartBlack, blackCart } from 'assets/images';
 
@@ -58,6 +58,8 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
     /*eslint-disable*/
 	}, []);
 
+	let shopRef = useClickOutside(() => setToggleShop(false));
+
 	return (
 		<div>
 			<Announce disable={disableAnnounce} />
@@ -65,6 +67,7 @@ const Header = ({ disable, disableAnnounce, login, store, catalouge }) => {
 			<MobileNav toggle={toggleNavMobile} setToggle={setToggleNavMobile} />
 			<QuickCart toggle={toggleCart} setToggle={setToggleCart} />
 			<div
+				ref={shopRef}
 				className={classNames('quick-shop-nav', {
 					toggleShop: toggleShop,
 					moveup: login,

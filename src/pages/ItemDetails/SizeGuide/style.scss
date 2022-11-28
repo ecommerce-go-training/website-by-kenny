@@ -1,0 +1,130 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables';
+
+.size-guide__container {
+  background-color: rgba($black, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .size-guide {
+    position: relative;
+    box-sizing: border-box;
+    background-color: white;
+    width: 600px;
+    height: 700px;
+    padding: 50px;
+
+    @include responsive(mobile) {
+      width: 90vw;
+      max-width: 480px;
+      height: 80vh;
+      padding: 30px;
+    }
+
+    &>img {
+      position: absolute;
+      right: 20px;
+      width: 20px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &-form {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+
+      &>p {
+        font-size: 16px;
+        text-align: center;
+
+        @include responsive(mobile) {
+          font-size: 12px;
+        }
+
+        &:first-child {
+          font-size: 20px;
+          font-weight: bold;
+          letter-spacing: 3px;
+
+          @include responsive(mobile) {
+            font-size: 16px;
+          }
+        }
+      }
+
+      &-nav {
+        display: flex;
+        gap: 40px;
+
+        @include responsive(mobile) {
+          gap: 30px;
+        }
+
+        &>p {
+          cursor: pointer;
+          padding-bottom: 3px;
+          border-bottom: 1px solid $white;
+          color: $grey;
+
+          &.active {
+            color: $black;
+            border-bottom: 1px solid $black;
+          }
+        }
+      }
+
+      &-info {
+        margin-top: 30px;
+        width: 100%;
+
+        &>table {
+          table-layout: fixed;
+          font-weight: normal;
+          font-size: 16px;
+          color: $grey;
+          cursor: pointer;
+          width: 100%;
+
+          & th {
+            padding-bottom: 20px;
+            border-bottom: 1px solid $very-light-grey;
+          }
+
+          & td {
+            padding: 20px 0;
+            margin-top: 30px;
+            border-bottom: 1px solid $very-light-grey;
+            text-align: center;
+
+            @include responsive(mobile) {
+              margin-top: 20px;
+            }
+          }
+
+          & tr:not(tr:first-child):hover {
+            color: $white;
+            background-color: $grey;
+          }
+
+          & tr:last-child td {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

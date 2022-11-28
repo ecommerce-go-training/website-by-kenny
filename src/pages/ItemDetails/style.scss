@@ -1,6 +1,13 @@
 @import 'assets/scss/variables';
 @import 'assets/scss/mixins';
 
+.loadingWhileFetching {
+  margin-top: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .details {
   width: 100vw;
   max-width: 100%;
@@ -18,12 +25,12 @@
   }
 
   & .old-price {
-    margin-left: 30px;
+    margin-left: 15px;
     color: $grey;
     text-decoration: line-through;
 
     @include responsive(mobile) {
-      margin-left: 20px;
+      margin-left: 10px;
     }
   }
 
@@ -186,10 +193,11 @@
           &>p {
             color: $grey;
             cursor: pointer;
+            padding-bottom: 2px;
+            border-bottom: 1px solid white;
 
             &.active {
               color: black;
-              padding-bottom: 2px;
               border-bottom: 1px solid $black;
             }
           }
@@ -214,13 +222,14 @@
       height: auto;
 
       & .info-item {
-        font-size: 13px;
+        font-size: 14px;
         line-height: 150%;
         letter-spacing: 0.05em;
         color: $black;
 
-        &>a {
-          color: $black;
+        &>span {
+          cursor: pointer;
+          color: blue;
           text-transform: uppercase;
         }
       }

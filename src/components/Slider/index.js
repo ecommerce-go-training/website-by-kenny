@@ -26,7 +26,7 @@ const Slider = ({ images, shiftImg }) => {
       if (window.innerWidth < 738) setImgToShow(1);
       if (window.innerWidth > 900) setImgToShow(4);
     });
-  });
+  }, []);
 
   const handleLeft = () => {
     sliderRef.current.style.animation = '0.8s left-slide';

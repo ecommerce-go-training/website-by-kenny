@@ -107,6 +107,10 @@ const Catalouge = () => {
     dispatch(sortProduct(index));
   };
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [displayProduct]);
+
   return (
     <div>
       <Header catalouge disableAnnounce />
@@ -133,6 +137,7 @@ const Catalouge = () => {
                 ))}
               </div>
               <Pagination
+                currentPage={currentPage}
                 itemPerPage={itemPerPage}
                 totalItemLength={displayProduct.length}
                 handleSwitchPage={handleSwitchPage}

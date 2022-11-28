@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'global/redux/auth/slice';
 import { clearAddress } from 'global/redux/address/slice';
 import { resetProduct } from 'global/redux/product/slice';
+import { useClickOutside } from 'utils/helpers';
 
 import {
   getAddress,
@@ -26,15 +27,11 @@ import Button from 'components/Button';
 
 import addressVal from './validation';
 
-import {
-  pinkDress,
-  whiteDressCart,
-  orangeDressCart,
-  trashCan,
-} from 'assets/images';
+import { trashCan } from 'assets/images';
 
 import './style.scss';
 import { removeLoginToken, showNoti } from 'utils/helpers';
+import { getUserInvoices } from 'global/redux/checkout/thunk';
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -65,110 +62,13 @@ const Account = () => {
     },
   ];
 
-  const orderHistory = [
-    {
-      id             : 'abc123',
-      status         : 'YOUR ORDER WILL BE SHIPPED ON JULY 20TH 2021',
-      trackNumber    : 123,
-      payment        : 'Paypal',
-      delivery       : 'VN Express',
-      customerName   : 'Sundeptrai',
-      customerAddress:
-				'44a phan dinh phung, phuong xuong huan, khanh hoa\n 0888551230',
-      items: [
-        {
-          id      : 1,
-          image   : pinkDress,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 4,
-          price   : 100,
-        },
-        {
-          id      : 2,
-          image   : whiteDressCart,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 1,
-          price   : 100,
-        },
-        {
-          id      : 3,
-          image   : orangeDressCart,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 10,
-          price   : 100,
-        },
-        {
-          id      : 13,
-          image   : pinkDress,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 4,
-          price   : 100,
-        },
-        {
-          id      : 23,
-          image   : pinkDress,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 4,
-          price   : 100,
-        },
-      ],
-    },
-    {
-      id             : '812218asd',
-      status         : 'YOUR ORDER IS BEING PROCESSED',
-      trackNumber    : 333,
-      payment        : 'Credit card',
-      delivery       : 'Amazon service',
-      customerName   : 'Gundeptrai',
-      customerAddress:
-				'18/10A Tang Bat Ho, Ward 11, District 1 ,Ho Chi Minh City, 70000, Vietnam\n 08824351130',
-      items: [
-        {
-          id      : 3,
-          image   : pinkDress,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 3,
-          price   : 100,
-        },
-        {
-          id      : 2,
-          image   : whiteDressCart,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 6,
-          price   : 100,
-        },
-        {
-          id      : 6,
-          image   : orangeDressCart,
-          name    : 'Demo name',
-          color   : 'Pink',
-          size    : 'M',
-          quantity: 9,
-          price   : 100,
-        },
-      ],
-    },
-  ];
-
   const {
     isLoading,
     userAddress: addressData,
-    fetched,
+    fetched: addressfetched,
   } = useSelector((state) => state.address);
+
+  const { invoiceInfo } = useSelector((state) => state.checkout);
 
   const [selectNav, setSelectNav] = useState(0);
   const [toggleAddAddress, setToggleAddAddress] = useState(false);
@@ -260,11 +160,14 @@ const Account = () => {
 	}, [localStorage.getItem('isLogin')]);
 
   useEffect(() => {
-    if (!fetched) {
+    if (!addressfetched) {
       dispatch(getAddress());
     }
+    dispatch(getUserInvoices());
     /*eslint-disable-next-line */
 	}, []);
+
+  let confirmDeleteRef = useClickOutside(() => setDeleteAddressConfirm(false));
 
   return (
     <div className='account-container'>
@@ -304,7 +207,10 @@ const Account = () => {
         <div className='account__content'>
           {selectNav === 0 && (
             <div className='account__content__order'>
-              {orderHistory.map((item, index) => (
+              {invoiceInfo?.length === 0 && (
+                <p>Empty, try ordering some items !</p>
+              )}
+              {invoiceInfo.map((item, index) => (
                 <OrderHistory key={index} data={item} />
               ))}
             </div>
@@ -317,7 +223,7 @@ const Account = () => {
                   {deleteAddressConfirm && (
                     <div className='delete-address-confirm'>
                       <div className='delete-address-confirm-wrapper'>
-                        <div>
+                        <div ref={confirmDeleteRef}>
                           <p>{t('consider')}</p>
                           <div>
                             <Button

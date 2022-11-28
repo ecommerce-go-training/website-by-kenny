@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { search } from 'global/redux/product/slice';
+import { useClickOutside } from 'utils/helpers';
 
 import { searchBlack, xmark } from 'assets/images';
 
@@ -47,8 +48,11 @@ const Search = ({ toggle, setToggle }) => {
     if (toggle) focusInput.current.focus();
   }, [toggle]);
 
+  let searchRef = useClickOutside(() => setToggle(false));
+
   return (
     <div
+      ref={searchRef}
       className={classNames({
         search: true,
         active: toggle,
