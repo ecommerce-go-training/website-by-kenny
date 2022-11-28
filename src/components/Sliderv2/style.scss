@@ -6,20 +6,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   & .slider-button {
     text-align: center;
     width: 10%;
+
     @include responsive(tablet) {
       display: none;
     }
+
     @include responsive(mobile) {
       display: none;
     }
-    & > img {
+
+    &>img {
       cursor: pointer;
       width: 15px;
     }
   }
+
   & .slider {
     width: 90%;
     display: flex;
@@ -37,6 +42,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+
       &-img {
         position: relative;
         width: 19vw;
@@ -44,26 +50,31 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
+
         @include responsive(tablet) {
           width: 50vw;
           height: 500px;
         }
+
         @include responsive(mobile) {
           width: 90vw;
           max-width: 400px;
           height: 500px;
         }
-        & > img {
+
+        &>img {
           width: 100%;
           height: 100%;
           transition: 0.3s all;
           transition-delay: 0.1s;
           cursor: pointer;
+
           &:hover {
             scale: 1.1;
           }
         }
-        & > div {
+
+        &>div {
           position: absolute;
           display: flex;
           justify-content: center;
@@ -73,17 +84,32 @@
           left: 20px;
           font-family: 'Sofia Pro';
           text-transform: capitalize;
+
           &:hover {
             color: white;
           }
-          & > img {
+
+          &>img {
+            cursor: pointer;
             width: 15px;
+          }
+
+          &>p {
+            cursor: pointer;
           }
         }
       }
+
       &-description {
         font-family: 'Sofia Pro';
         margin-top: 20px;
+
+        &>p {
+          font-size: 15px;
+          font-family: 'Sofia Pro';
+          text-transform: capitalize;
+          margin-bottom: 5px;
+        }
       }
     }
   }

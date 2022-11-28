@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Header from 'components/Header';
@@ -12,61 +12,96 @@ import WaitlistForm from './WaitlistForm';
 
 import { formatCurrency } from 'utils/helpers';
 import { getProduct } from 'global/redux/product/thunk';
+import { addItem, addItemQuantity } from 'global/redux/cart/slice';
+
+import { showNoti } from 'utils/helpers';
 
 import { blackCheck } from 'assets/images';
-
-import {
-  cataBackDress,
-  cataPinkDress,
-  cataPurpleDress,
-  cataWhiteDress,
-  whiteDress,
-  greenDress,
-  backDress,
-  orangeDress,
-} from 'assets/images';
 
 import './style.scss';
 
 const ItemDetails = () => {
-  const { state } = useLocation();
-  const { img } = state;
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ItemDetails',
   });
-  const dispatch = useDispatch();
-  const { currentProduct } = useSelector((state) => state.product);
 
+  const navigate = useNavigate();
+
+  const { state } = useLocation();
+  const { img } = state;
+
+  const dispatch = useDispatch();
+
+  const { currentProduct, productList } = useSelector((state) => state.product);
+  const { cartItem } = useSelector((state) => state.cart);
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getProduct(id));
     /* eslint-disable-next-line */
-	}, []);
+	}, [id]);
 
-  const moreItem = [
-    cataBackDress,
-    cataPinkDress,
-    cataPurpleDress,
-    cataWhiteDress,
-    whiteDress,
-    greenDress,
-    backDress,
-    orangeDress,
-  ];
+  const moreItem = [...productList].sort(() => 0.5 - Math.random()).slice(0, 8);
 
-  const [size, setSize] = useState(0);
+  const [size, setSize] = useState(null);
   const [color, setColor] = useState(null);
   const [toggleWaitForm, setToggleWaitForm] = useState(false);
 
   const handleWaitForm = () => setToggleWaitForm(!toggleWaitForm);
+
+  // cart logic ----------------------- //
+
+  // const handleAddItem = (data) => {
+  //   if (color && size) {
+  //     if (cartItem.map(item => item.id).includes(data.id)) {
+  //       dispatch(addItemQuantity(data.id));
+  //     } else {
+  //       dispatch(addItem(data));
+  //     }
+  //     showNoti('success', 'Add success');
+  //   } else {
+  //     showNoti('error', 'Check size or color');
+  //   }
+  // };
+
+  const handleAddItem = (data) => {
+    if (color && size) {
+      if (
+        cartItem
+          .filter((item) => item.id === data.id)
+          .filter(
+            (item) => item.color === data.color && item.size === data.size
+          ).length > 0
+      ) {
+        const index = cartItem.findIndex(
+          (item) => item.color === data.color && item.size === data.size
+        );
+        dispatch(addItemQuantity(index));
+      } else {
+        dispatch(addItem(data));
+      }
+      showNoti('success', 'Add success');
+    } else {
+      showNoti('error', 'Check size or color');
+    }
+  };
+
+  const handleClickImg = (item) => {
+    setSize(null);
+    setColor(null);
+    navigate(`/details/${item.id}`, {
+      state: {
+        img: item?.image,
+      },
+    });
+  };
 
   return (
     <div>
       <Header catalouge disableAnnounce />
       <div className='details'>
         <Slider3>
-          {img.map((item, index) => (
+          {img?.detailImages?.map((item, index) => (
             <Slider3Item key={index}>
               <div>
                 <img src={item} alt='dress image' />
@@ -75,7 +110,7 @@ const ItemDetails = () => {
           ))}
         </Slider3>
         <div className='details__img'>
-          {img.map((item, index) => (
+          {img?.detailImages?.map((item, index) => (
             <div key={index}>
               <img src={item} alt='testing img' />
             </div>
@@ -101,9 +136,9 @@ const ItemDetails = () => {
                 {currentProduct?.sizeColorList?.size.map((item, index) => (
                   <p
                     key={index}
-                    className={size === index ? 'active' : ''}
+                    className={size === item ? 'active' : ''}
                     onClick={() => {
-                      setSize(index);
+                      setSize(item);
                     }}
                   >
                     {item}
@@ -122,7 +157,11 @@ const ItemDetails = () => {
                     onClick={() => setColor(item)}
                   >
                     {color === item && (
-                      <img src={blackCheck} alt='icon image' />
+                      <img
+                        className='blackCheck-icon'
+                        src={blackCheck}
+                        alt='icon image'
+                      />
                     )}
                   </div>
                 ))}
@@ -130,7 +169,19 @@ const ItemDetails = () => {
             </div>
           </div>
           <Button
-            handleClick={currentProduct?.inventories ? null : handleWaitForm}
+            handleClick={
+              currentProduct?.inventories
+                ? () =>
+                  handleAddItem({
+                    ...currentProduct,
+                    size    : size,
+                    color   : color,
+                    quantity: 1,
+                    // image   : img.mainImage
+                    image   : img,
+                  })
+                : handleWaitForm
+            }
           >
             <p>
               {currentProduct?.inventories ? t('addToCart') : t('waitList')}
@@ -178,7 +229,7 @@ const ItemDetails = () => {
       </div>
       <div className='moreItem'>
         <p>{t('more')}</p>
-        <Slider2 images={moreItem} />
+        <Slider2 handleClick={handleClickImg} data={moreItem} />
       </div>
     </div>
   );

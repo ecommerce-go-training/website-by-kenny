@@ -2,15 +2,17 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import React, { useRef } from 'react';
 
+import { formatCurrency } from 'utils/helpers';
+
 import { plus, leftArrow, rightArrow } from 'assets/images';
 
 import './style.scss';
 
-const Slider2 = ({ images }) => {
+const Slider2 = ({ data, handleClick }) => {
   const navigate = useNavigate();
   const sliderItem = useRef(null);
 
-  const handleClick = () => {
+  const handleClickNav = () => {
     let view = sliderItem.current.scrollLeft;
     sliderItem.current.scrollLeft = sliderItem.current.offsetWidth * 10;
     if (sliderItem.current.scrollLeft === view && view > 0) {
@@ -21,49 +23,46 @@ const Slider2 = ({ images }) => {
   return (
     <div className='slider-container'>
       <div className='slider-button'>
-        <img onClick={handleClick} src={leftArrow} alt='left arrow img' />
+        <img onClick={handleClickNav} src={leftArrow} alt='left arrow img' />
       </div>
       <div className='slider' ref={sliderItem}>
-        {images.map((item, index) => (
+        {data?.map((item, index) => (
           <div key={index} className='slider__item'>
             <div className='slider__item-img'>
               <img
+                onClick={() => handleClick(item)}
+                src={item?.image?.mainImage}
+                alt='item img'
+              />
+              <div
                 onClick={() =>
-                  navigate('/details:id', {
+                  navigate(`/details/${item.id}`, {
                     state: {
-                      img        : item,
-                      name       : item.name || 'add name',
-                      price      : item.price || 'add price',
-                      catalouge  : item.catalouge || 'add catalouge',
-                      description: item.description || 'add des',
-                      care       : item.care || 'add garment care',
-                      details    : item.details || 'add item details',
+                      img: item?.image?.detailImages,
                     },
                   })
                 }
-                src={item}
-                alt='item img'
-              />
-              <div>
+              >
                 <img src={plus} alt='icon img' />
                 <p>more info</p>
               </div>
             </div>
             <div className='slider__item-description'>
-              <p>Add later</p>
+              <p>{item.name}</p>
+              <p>{formatCurrency('VND', item.totalPrice)}</p>
             </div>
           </div>
         ))}
       </div>
       <div className='slider-button'>
-        <img onClick={handleClick} src={rightArrow} alt='right arrow img' />
+        <img onClick={handleClickNav} src={rightArrow} alt='right arrow img' />
       </div>
     </div>
   );
 };
 
 Slider2.propTypes = {
-  images: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default Slider2;

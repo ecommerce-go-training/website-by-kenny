@@ -8,19 +8,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'components/Button';
 import CartItem from 'components/CartItem';
 
-import { removeItem } from 'global/redux/cart/slice';
+import { formatCurrency } from 'utils/helpers';
+import {
+  addItemQuantity,
+  minusItemQuantity,
+  removeItem,
+} from 'global/redux/cart/slice';
 
 import { xmark } from 'assets/images';
 
 import './style.scss';
 
-const QuickCart = ({ toggle, setToggle, price }) => {
-  const cartItem = useSelector((state) => state.cart);
+const QuickCart = ({ toggle, setToggle }) => {
+  const { cartItem } = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation('translation', {
     keyPrefix: 'Components.Header',
   });
+
+  const totalPrice = cartItem
+    .map((item) => item.quantity * item.totalPrice)
+    .reduce((item, sum) => item + sum, 0);
 
   return (
     <div
@@ -36,16 +46,18 @@ const QuickCart = ({ toggle, setToggle, price }) => {
         </div>
       </div>
       <div className='my-cart-item'>
-        {cartItem.cartItem.map((item, index) => (
+        {cartItem?.map((item, index) => (
           <CartItem
             key={index}
             data={item}
-            handleRemove={() => dispatch(removeItem(item.id))}
+            handleAddItem={() => dispatch(addItemQuantity(index))}
+            handleMinusItem={() => dispatch(minusItemQuantity(index))}
+            handleRemove={() => dispatch(removeItem(index))}
           />
         ))}
       </div>
       <div className='my-cart-button'>
-        <div>
+        <div className='my-cart-button-cart'>
           <Button whiteBg border handleClick={() => navigate('/my-cart')}>
             {t('viewCart')}
           </Button>
@@ -53,8 +65,8 @@ const QuickCart = ({ toggle, setToggle, price }) => {
         <div>
           <Button border handleClick={() => navigate('/checkout')}>
             <div className='button-info'>
-              <p>{t('checkOut')} </p>
-              {price && <p>price</p>}
+              <p>{t('checkOut')}</p>
+              {totalPrice > 0 && <p>{formatCurrency('VND', totalPrice)}</p>}
             </div>
           </Button>
         </div>

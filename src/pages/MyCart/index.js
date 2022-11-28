@@ -16,7 +16,7 @@ const MyCart = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cart' });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cartItem = useSelector((state) => state.persistCart);
+  const { cartItem } = useSelector((state) => state.cart);
 
   return (
     <div>
@@ -26,26 +26,29 @@ const MyCart = () => {
           <p>
             {t('cart')} &nbsp;
             <span>
-              {cartItem.cartItem.length} {t('items')}
+              {cartItem?.length} {t('items')}
             </span>
           </p>
-          <div className='cart-item'>
-            {cartItem.cartItem.map((item, index) => (
-              <CartItem
-                key={index}
-                data={item}
-                handleRemove={() => dispatch(removeItem(item.id))}
-              />
-            ))}
-          </div>
+          {cartItem.length > 0 && (
+            <div className='cart-item'>
+              {cartItem?.map((item, index) => (
+                <CartItem
+                  key={index}
+                  index={index}
+                  data={item}
+                  handleRemove={() => dispatch(removeItem(index))}
+                />
+              ))}
+            </div>
+          )}
           <div className='cart-checkout'>
             <p>
               {t('total')}: &nbsp;{' '}
               <span>
                 {formatCurrency(
-                  'USD',
-                  cartItem.cartItem
-                    .map((item) => item.price * item.quantity)
+                  'VND',
+                  cartItem
+                    .map((item) => item.totalPrice * item.quantity)
                     .reduce((item, sum) => item + sum, 0)
                 )}
               </span>
@@ -54,13 +57,13 @@ const MyCart = () => {
               <Button
                 handleClick={() =>
                   navigate(
-                    cartItem.cartItem.length > 1 ? '/checkout' : '/catalouge'
+                    cartItem?.length > 1
+                      ? '/checkout'
+                      : '/catalouge/new-arrivals'
                   )
                 }
               >
-                {cartItem.cartItem.length > 1
-                  ? t('checkOut')
-                  : 'Back to shopping'}
+                {cartItem?.length > 1 ? t('checkOut') : 'Back to shopping'}
               </Button>
             </div>
           </div>
